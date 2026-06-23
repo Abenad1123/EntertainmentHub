@@ -22,12 +22,17 @@ Partial Class StartMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StartMenu))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblTime = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,12 +82,44 @@ Partial Class StartMenu
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.lblTime)
+        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.PictureBox2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(214, 186)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(627, 414)
         Me.Panel2.TabIndex = 3
+        '
+        'lblTime
+        '
+        Me.lblTime.AutoSize = True
+        Me.lblTime.ForeColor = System.Drawing.Color.Snow
+        Me.lblTime.Location = New System.Drawing.Point(281, 324)
+        Me.lblTime.Name = "lblTime"
+        Me.lblTime.Size = New System.Drawing.Size(72, 16)
+        Me.lblTime.TabIndex = 5
+        Me.lblTime.Text = "hh:mm:ss tt"
+        Me.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(391, 205)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(124, 57)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "AdminLogin"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(108, 216)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(124, 46)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "Userlogin"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'PictureBox2
         '
@@ -94,6 +131,11 @@ Partial Class StartMenu
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'StartMenu
         '
@@ -115,6 +157,7 @@ Partial Class StartMenu
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -125,4 +168,8 @@ Partial Class StartMenu
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents lblTime As Label
+    Friend WithEvents Timer1 As Timer
 End Class
