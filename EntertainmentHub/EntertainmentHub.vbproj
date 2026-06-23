@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Common\AppColors.vb" />
     <Compile Include="Common\AppFonts.vb" />
+    <Compile Include="DatabaseInitializerModule.vb" />
     <Compile Include="Database\DBConnection.vb" />
     <Compile Include="Forms\Admin Forms\AdminDashboard.Designer.vb">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
