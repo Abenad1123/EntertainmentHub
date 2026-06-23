@@ -101,6 +101,12 @@
     <Compile Include="Common\AppColors.vb" />
     <Compile Include="Common\AppFonts.vb" />
     <Compile Include="Database\DBConnection.vb" />
+    <Compile Include="Forms\Admin Forms\AdminDashboard.Designer.vb">
+      <DependentUpon>AdminDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\AdminDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\InventoryPOS.Designer.vb">
       <DependentUpon>InventoryPOS.vb</DependentUpon>
     </Compile>
@@ -111,6 +117,12 @@
       <DependentUpon>SystemSetting.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin Forms\SystemSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement.Designer.vb">
+      <DependentUpon>UserManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Login Forms\AdminLoginMenu.Designer.vb">
