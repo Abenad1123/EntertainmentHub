@@ -28,13 +28,14 @@ Partial Class StartMenu
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblnotice = New System.Windows.Forms.Label()
         Me.lblTime = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +86,7 @@ Partial Class StartMenu
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.lblTitle)
         Me.Panel2.Controls.Add(Me.lblnotice)
         Me.Panel2.Controls.Add(Me.lblTime)
         Me.Panel2.Controls.Add(Me.Button2)
@@ -95,6 +97,16 @@ Partial Class StartMenu
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(627, 414)
         Me.Panel2.TabIndex = 3
+        '
+        'lblTitle
+        '
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(168, 62)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(191, 16)
+        Me.lblTitle.TabIndex = 7
+        Me.lblTitle.Text = "Welcome to Entertainment Hub"
         '
         'lblnotice
         '
@@ -147,11 +159,6 @@ Partial Class StartMenu
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(847, 186)
@@ -160,6 +167,11 @@ Partial Class StartMenu
         Me.Button3.TabIndex = 4
         Me.Button3.Text = "Main Menu"
         Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
         '
         'StartMenu
         '
@@ -198,4 +210,5 @@ Partial Class StartMenu
     Friend WithEvents Timer1 As Timer
     Friend WithEvents lblnotice As Label
     Friend WithEvents Button3 As Button
+    Friend WithEvents lblTitle As Label
 End Class

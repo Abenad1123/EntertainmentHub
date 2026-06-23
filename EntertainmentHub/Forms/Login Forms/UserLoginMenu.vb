@@ -2,12 +2,9 @@
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.Background
 
-        lblPassword.BackColor = AppColors.Background
-        lblUsername.BackColor = AppColors.Background
-
         lblPassword.Font = AppFonts.Hwygoth(14)
         lblUsername.Font = AppFonts.Hwygoth(14)
-        lblTitle.Font = AppFonts.VenusRising(18)
+        lblTitle.Font = AppFonts.VenusRising(20)
         txtboxUsername.Font = AppFonts.Hwygwde(14)
         txtboxPassword.Font = AppFonts.Hwygwde(14)
 

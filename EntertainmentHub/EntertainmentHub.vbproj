@@ -226,6 +226,8 @@
     <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\background1.png" />
+    <Content Include="Assets\Images\background2.png" />
     <Content Include="Assets\Images\login_panel.png" />
     <Content Include="Assets\Images\logo2048.png" />
     <Content Include="Assets\Images\logo256.ico" />

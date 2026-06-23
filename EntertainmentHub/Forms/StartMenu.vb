@@ -3,8 +3,10 @@
         Me.BackColor = AppColors.BackgroundStart
 
         lblnotice.Font = AppFonts.Hwygwde(10)
+        lblTitle.Font = AppFonts.VenusRising(8)
         lblnotice.Parent = PictureBox2
         lblTime.Parent = PictureBox2
+        lblTitle.Parent = PictureBox2
 
         Button2.Parent = PictureBox2
         Button1.Parent = PictureBox2
