@@ -181,6 +181,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Forms\Admin Forms\" />
+    <Folder Include="Forms\User Forms\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>

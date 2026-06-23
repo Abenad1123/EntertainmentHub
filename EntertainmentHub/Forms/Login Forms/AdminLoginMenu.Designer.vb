@@ -33,6 +33,7 @@ Partial Class AdminLoginMenu
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -49,6 +50,7 @@ Partial Class AdminLoginMenu
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel4, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Button1, 1, 4)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -56,8 +58,8 @@ Partial Class AdminLoginMenu
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.94879!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.33713!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.367!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.61309!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
         Me.TableLayoutPanel1.TabIndex = 1
@@ -75,7 +77,7 @@ Partial Class AdminLoginMenu
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(399, 150)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(399, 101)
         Me.TableLayoutPanel4.TabIndex = 3
         '
         'Panel1
@@ -183,6 +185,18 @@ Partial Class AdminLoginMenu
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "ADMINISTRATOR IDENTIFICATION"
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Button1.Location = New System.Drawing.Point(399, 419)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(399, 43)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "LOGIN"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'AdminLoginMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -219,4 +233,5 @@ Partial Class AdminLoginMenu
     Friend WithEvents Panel2 As Panel
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents Button1 As Button
 End Class

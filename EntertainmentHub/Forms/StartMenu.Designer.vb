@@ -28,6 +28,7 @@ Partial Class StartMenu
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblnotice = New System.Windows.Forms.Label()
         Me.lblTime = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -82,6 +83,7 @@ Partial Class StartMenu
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.lblnotice)
         Me.Panel2.Controls.Add(Me.lblTime)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.Button1)
@@ -92,11 +94,22 @@ Partial Class StartMenu
         Me.Panel2.Size = New System.Drawing.Size(627, 414)
         Me.Panel2.TabIndex = 3
         '
+        'lblnotice
+        '
+        Me.lblnotice.AutoSize = True
+        Me.lblnotice.ForeColor = System.Drawing.Color.Snow
+        Me.lblnotice.Location = New System.Drawing.Point(116, 325)
+        Me.lblnotice.Name = "lblnotice"
+        Me.lblnotice.Size = New System.Drawing.Size(376, 16)
+        Me.lblnotice.TabIndex = 6
+        Me.lblnotice.Text = "For all sesssion, please have your ID or account details ready."
+        Me.lblnotice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'lblTime
         '
         Me.lblTime.AutoSize = True
         Me.lblTime.ForeColor = System.Drawing.Color.Snow
-        Me.lblTime.Location = New System.Drawing.Point(281, 324)
+        Me.lblTime.Location = New System.Drawing.Point(274, 377)
         Me.lblTime.Name = "lblTime"
         Me.lblTime.Size = New System.Drawing.Size(72, 16)
         Me.lblTime.TabIndex = 5
@@ -172,4 +185,5 @@ Partial Class StartMenu
     Friend WithEvents Button1 As Button
     Friend WithEvents lblTime As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents lblnotice As Label
 End Class

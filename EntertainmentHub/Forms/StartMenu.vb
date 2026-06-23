@@ -1,9 +1,13 @@
 ﻿Public Class StartMenu
-    Private Sub StartMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.BackgroundStart
 
-        lblTime.BackColor = Color.Transparent
+        lblnotice.Font = AppFonts.Hwygwde(10)
+        lblnotice.Parent = PictureBox2
         lblTime.Parent = PictureBox2
+
+        Button2.Parent = PictureBox2
+        Button1.Parent = PictureBox2
 
         Timer1.Start()
         lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
