@@ -11,6 +11,8 @@ Public Class UserLoginMenu
         txtboxPassword.Font = AppFonts.Hwygwde(14)
 
         btnLogin.Font = AppFonts.Hwygoth(16)
+
+        txtboxPassword.PasswordChar = "*"c
     End Sub
 
     Private Sub GoBack(sender As Object, e As EventArgs) Handles lblGoBack.Click
@@ -28,46 +30,63 @@ Public Class UserLoginMenu
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim txtUsername = txtboxUsername
-        Dim txtPassword = txtboxPassword
+        Dim username As String = txtboxUsername.Text.Trim()
+        Dim password As String = txtboxPassword.Text
 
-        If txtUsername.Text.Trim() = "" Or txtPassword.Text.Trim() = "" Then
-            MessageBox.Show("Please fill in all fields.")
-            Exit Sub
+        If String.IsNullOrWhiteSpace(username) OrElse String.IsNullOrWhiteSpace(password) Then
+            MessageBox.Show("Please enter both username and password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
 
-        Try
-            Using conn As MySqlConnection = DBConnection.GetConnection()
-
+        Using conn = DBConnection.GetConnection()
+            Try
                 conn.Open()
 
-                Dim password As String = txtPassword.Text.Trim()
-                Dim hash As String = BCrypt.Net.BCrypt.HashPassword(password)
-
-                Dim query As String =
-                    "INSERT INTO AccountLogin (UserName, PasswordHash) " &
-                    "VALUES (@username, @hash)"
+                Dim query As String = "SELECT AccountID, PasswordHash FROM accountlogin WHERE UserName = @user"
+                Dim storedHash As String = String.Empty
+                Dim accountId As Integer = 0
 
                 Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@user", username)
 
-                    cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim())
-                    cmd.Parameters.AddWithValue("@hash", hash)
-
-                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-
-                    If rowsAffected > 0 Then
-                        MessageBox.Show("Account created successfully!")
-                    Else
-                        MessageBox.Show("Failed to create account.")
-                    End If
-
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            accountId = Convert.ToInt32(reader("AccountID"))
+                            storedHash = reader("PasswordHash").ToString()
+                        End If
+                    End Using
                 End Using
 
-            End Using
+                If Not String.IsNullOrEmpty(storedHash) AndAlso BCrypt.Net.BCrypt.Verify(password, storedHash) Then
 
-        Catch ex As Exception
-            MessageBox.Show("Database Error: " & ex.Message)
-        End Try
+                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    UpdateLastLogin(accountId, conn)
+
+                    Dim frm As New MainMenu()
+                    frm.Show()
+                    Me.Close()
+
+                Else
+                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    txtboxPassword.Clear()
+                    txtboxPassword.Focus()
+                End If
+
+            Catch ex As MySqlException
+                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
     End Sub
 
+    ' --- Helper Method: Update Last Login ---
+    Private Sub UpdateLastLogin(accountId As Integer, conn As MySqlConnection)
+        Dim updateQuery As String = "UPDATE accountlogin SET LastLogin = NOW() WHERE AccountID = @accId"
+        Using updateCmd As New MySqlCommand(updateQuery, conn)
+            updateCmd.Parameters.AddWithValue("@accId", accountId)
+            updateCmd.ExecuteNonQuery()
+        End Using
+    End Sub
 End Class

@@ -124,10 +124,16 @@
     <Compile Include="Forms\Admin Forms\AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\EmployeeManagement.Designer.vb">
+    <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.Designer.vb">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin Forms\EmployeeManagement.vb">
+    <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\RegisterEmployee.Designer.vb">
+      <DependentUpon>RegisterEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\RegisterEmployee.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\InventoryPOS.Designer.vb">
@@ -154,10 +160,10 @@
     <Compile Include="Forms\Login Forms\AdminLoginMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainMenu.vb">
+    <Compile Include="Forms\User Forms\MainMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainMenu.Designer.vb">
+    <Compile Include="Forms\User Forms\MainMenu.Designer.vb">
       <DependentUpon>MainMenu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -200,8 +206,11 @@
     <EmbeddedResource Include="Forms\Admin Forms\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement.resx">
+    <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement Forms\RegisterEmployee.resx">
+      <DependentUpon>RegisterEmployee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\InventoryPOS.resx">
       <DependentUpon>InventoryPOS.vb</DependentUpon>
@@ -218,7 +227,7 @@
     <EmbeddedResource Include="Forms\Login Forms\UserLoginMenu.resx">
       <DependentUpon>UserLoginMenu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainMenu.resx">
+    <EmbeddedResource Include="Forms\User Forms\MainMenu.resx">
       <DependentUpon>MainMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartMenu.resx">
