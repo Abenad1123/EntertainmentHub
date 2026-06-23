@@ -1,19 +1,28 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class MainMenu
+
+    ' ✅ SINGLE CONNECTION STRING (CHANGE ONLY THIS IF NEEDED)
     Dim connString As String = "server=localhost;userid=root;password=;database=mydb"
-    Dim conn As New MySqlConnection(connString)
-    Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    ' =========================
+    ' FORM LOAD
+    ' =========================
+    Private Sub MainMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.Background
         LoadCustomers()
     End Sub
 
+    ' =========================
+    ' LOAD DATA TO DATAGRIDVIEW
+    ' =========================
     Private Sub LoadCustomers()
 
         Dim query As String = "SELECT CustomerId, FirstName, LastName, ContactNumber, Email FROM Customer"
 
         Using conn As New MySqlConnection(connString)
             Using cmd As New MySqlCommand(query, conn)
+
                 Try
                     conn.Open()
 
@@ -27,16 +36,21 @@ Public Class MainMenu
                 Catch ex As Exception
                     MessageBox.Show("Error loading data: " & ex.Message)
                 End Try
+
             End Using
         End Using
 
     End Sub
 
+    ' =========================
+    ' INSERT CUSTOMER (BUTTON1)
+    ' =========================
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim query As String = "INSERT INTO Customers (FirstName, LastName, ContactNumber, Email) " &
-                          "VALUES (@FirstName, @LastName, @ContactNumber, @Email)"
 
-        Using conn As New MySqlConnection("server=localhost;userid=root;password=;database=your_database_name")
+        Dim query As String = "INSERT INTO Customer (FirstName, LastName, ContactNumber, Email) " &
+                              "VALUES (@FirstName, @LastName, @ContactNumber, @Email)"
+
+        Using conn As New MySqlConnection(connString)
             Using cmd As New MySqlCommand(query, conn)
 
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text)
@@ -46,10 +60,21 @@ Public Class MainMenu
 
                 Try
                     conn.Open()
+
                     Dim rows As Integer = cmd.ExecuteNonQuery()
 
                     If rows > 0 Then
                         MessageBox.Show("Customer added successfully!")
+
+                        ' refresh table
+                        LoadCustomers()
+
+                        ' clear fields
+                        txtFirstName.Clear()
+                        txtLastName.Clear()
+                        txtContactNumber.Clear()
+                        txtEmail.Clear()
+
                     Else
                         MessageBox.Show("Insert failed.")
                     End If
@@ -60,19 +85,29 @@ Public Class MainMenu
 
             End Using
         End Using
-        LoadCustomers()
+
     End Sub
 
+    ' =========================
+    ' TEST CONNECTION (BUTTON3)
+    ' =========================
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
         Try
-            conn.Open()
-            MessageBox.Show("Connected successfully!")
-            conn.Close()
+            Using conn As New MySqlConnection(connString)
+                conn.Open()
+                MessageBox.Show("Connected successfully!")
+            End Using
+
         Catch ex As Exception
             MessageBox.Show("Connection failed: " & ex.Message)
         End Try
+
     End Sub
 
+    ' =========================
+    ' DELETE SELECTED CUSTOMER (BUTTON2)
+    ' =========================
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
         If DataGridView1.SelectedRows.Count = 0 Then
@@ -84,8 +119,6 @@ Public Class MainMenu
         Dim customerId As Integer = Convert.ToInt32(selectedRow.Cells("CustomerId").Value)
 
         Dim query As String = "DELETE FROM Customers WHERE CustomerId = @CustomerId"
-
-        Dim connString As String = "server=localhost;userid=root;password=;database=your_database_name"
 
         Using conn As New MySqlConnection(connString)
             Using cmd As New MySqlCommand(query, conn)
@@ -99,8 +132,6 @@ Public Class MainMenu
 
                     If result > 0 Then
                         MessageBox.Show("Customer deleted successfully!")
-
-                        ' refresh table after delete
                         LoadCustomers()
                     Else
                         MessageBox.Show("Delete failed.")
@@ -114,4 +145,5 @@ Public Class MainMenu
         End Using
 
     End Sub
+
 End Class
