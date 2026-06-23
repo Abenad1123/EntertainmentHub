@@ -66,7 +66,7 @@ Partial Class MainMenu
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(902, 35)
+        Me.Button3.Location = New System.Drawing.Point(835, 33)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(253, 42)
         Me.Button3.TabIndex = 3

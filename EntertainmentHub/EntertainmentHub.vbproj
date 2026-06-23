@@ -101,6 +101,18 @@
     <Compile Include="Common\AppColors.vb" />
     <Compile Include="Common\AppFonts.vb" />
     <Compile Include="Database\DBConnection.vb" />
+    <Compile Include="Forms\Admin Forms\InventoryPOS.Designer.vb">
+      <DependentUpon>InventoryPOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\InventoryPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\SystemSetting.Designer.vb">
+      <DependentUpon>SystemSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\SystemSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Login Forms\AdminLoginMenu.Designer.vb">
       <DependentUpon>AdminLoginMenu.vb</DependentUpon>
     </Compile>
@@ -144,6 +156,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
+      <DependentUpon>SystemSetting.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login Forms\AdminLoginMenu.resx">
       <DependentUpon>AdminLoginMenu.vb</DependentUpon>
     </EmbeddedResource>
@@ -186,7 +201,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Admin Forms\" />
     <Folder Include="Forms\User Forms\" />
     <Folder Include="Utilities\" />
   </ItemGroup>

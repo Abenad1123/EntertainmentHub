@@ -2,9 +2,6 @@
 
 Public Class MainMenu
 
-    ' ✅ SINGLE CONNECTION STRING (CHANGE ONLY THIS IF NEEDED)
-    Dim connString As String = "server=localhost;userid=root;password=;database=entertainmenthub"
-
     ' =========================
     ' FORM LOAD
     ' =========================
@@ -14,13 +11,14 @@ Public Class MainMenu
     End Sub
 
     ' =========================
-    ' LOAD DATA TO DATAGRIDVIEW
+    ' LOAD DATA
     ' =========================
     Private Sub LoadCustomers()
 
-        Dim query As String = "SELECT CustomerId, FirstName, LastName, EmailAddress FROM CustomerInfo"
+        Dim query As String =
+            "SELECT CustomerId, FirstName, LastName, EmailAddress FROM CustomerInfo"
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Using cmd As New MySqlCommand(query, conn)
 
                 Try
@@ -43,14 +41,15 @@ Public Class MainMenu
     End Sub
 
     ' =========================
-    ' INSERT CUSTOMER (BUTTON1)
+    ' INSERT
     ' =========================
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Dim query As String = "INSERT INTO CustomerInfo (FirstName, LastName, EmailAddress) " &
-                              "VALUES (@FirstName, @LastName, @EmailAddress)"
+        Dim query As String =
+            "INSERT INTO CustomerInfo (FirstName, LastName, EmailAddress)
+             VALUES (@FirstName, @LastName, @EmailAddress)"
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Using cmd As New MySqlCommand(query, conn)
 
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text)
@@ -65,14 +64,11 @@ Public Class MainMenu
                     If rows > 0 Then
                         MessageBox.Show("Customer added successfully!")
 
-                        ' refresh table
                         LoadCustomers()
 
-                        ' clear fields
                         txtFirstName.Clear()
                         txtLastName.Clear()
                         txtEmail.Clear()
-
                     Else
                         MessageBox.Show("Insert failed.")
                     End If
@@ -87,12 +83,12 @@ Public Class MainMenu
     End Sub
 
     ' =========================
-    ' TEST CONNECTION (BUTTON3)
+    ' TEST CONNECTION
     ' =========================
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
         Try
-            Using conn As New MySqlConnection(connString)
+            Using conn As MySqlConnection = DBConnection.GetConnection()
                 conn.Open()
                 MessageBox.Show("Connected successfully!")
             End Using
@@ -104,7 +100,7 @@ Public Class MainMenu
     End Sub
 
     ' =========================
-    ' DELETE SELECTED CUSTOMER (BUTTON2)
+    ' DELETE
     ' =========================
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
@@ -113,12 +109,13 @@ Public Class MainMenu
             Exit Sub
         End If
 
-        Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
-        Dim customerId As Integer = Convert.ToInt32(selectedRow.Cells("CustomerId").Value)
+        Dim customerId As Integer =
+            Convert.ToInt32(DataGridView1.SelectedRows(0).Cells("CustomerId").Value)
 
-        Dim query As String = "DELETE FROM Customers WHERE CustomerId = @CustomerId"
+        Dim query As String =
+            "DELETE FROM CustomerInfo WHERE CustomerId = @CustomerId"
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Using cmd As New MySqlCommand(query, conn)
 
                 cmd.Parameters.AddWithValue("@CustomerId", customerId)
