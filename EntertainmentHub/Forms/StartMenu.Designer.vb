@@ -36,6 +36,7 @@ Partial Class StartMenu
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +54,7 @@ Partial Class StartMenu
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Button3, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Button4, 2, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
@@ -173,6 +175,15 @@ Partial Class StartMenu
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(847, 3)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 5
+        Me.Button4.Text = "Admin"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'StartMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -211,4 +222,5 @@ Partial Class StartMenu
     Friend WithEvents lblnotice As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents lblTitle As Label
+    Friend WithEvents Button4 As Button
 End Class
