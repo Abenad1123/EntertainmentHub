@@ -1,5 +1,117 @@
-﻿Public Class MainMenu
+﻿Imports MySql.Data.MySqlClient
+
+Public Class MainMenu
+    Dim connString As String = "server=localhost;userid=root;password=;database=mydb"
+    Dim conn As New MySqlConnection(connString)
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.Background
+        LoadCustomers()
+    End Sub
+
+    Private Sub LoadCustomers()
+
+        Dim query As String = "SELECT CustomerId, FirstName, LastName, ContactNumber, Email FROM Customer"
+
+        Using conn As New MySqlConnection(connString)
+            Using cmd As New MySqlCommand(query, conn)
+                Try
+                    conn.Open()
+
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim table As New DataTable()
+
+                    adapter.Fill(table)
+
+                    DataGridView1.DataSource = table
+
+                Catch ex As Exception
+                    MessageBox.Show("Error loading data: " & ex.Message)
+                End Try
+            End Using
+        End Using
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim query As String = "INSERT INTO Customers (FirstName, LastName, ContactNumber, Email) " &
+                          "VALUES (@FirstName, @LastName, @ContactNumber, @Email)"
+
+        Using conn As New MySqlConnection("server=localhost;userid=root;password=;database=your_database_name")
+            Using cmd As New MySqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text)
+                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text)
+                cmd.Parameters.AddWithValue("@ContactNumber", txtContactNumber.Text)
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text)
+
+                Try
+                    conn.Open()
+                    Dim rows As Integer = cmd.ExecuteNonQuery()
+
+                    If rows > 0 Then
+                        MessageBox.Show("Customer added successfully!")
+                    Else
+                        MessageBox.Show("Insert failed.")
+                    End If
+
+                Catch ex As Exception
+                    MessageBox.Show("Error: " & ex.Message)
+                End Try
+
+            End Using
+        End Using
+        LoadCustomers()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Try
+            conn.Open()
+            MessageBox.Show("Connected successfully!")
+            conn.Close()
+        Catch ex As Exception
+            MessageBox.Show("Connection failed: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        If DataGridView1.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a customer to delete.")
+            Exit Sub
+        End If
+
+        Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
+        Dim customerId As Integer = Convert.ToInt32(selectedRow.Cells("CustomerId").Value)
+
+        Dim query As String = "DELETE FROM Customers WHERE CustomerId = @CustomerId"
+
+        Dim connString As String = "server=localhost;userid=root;password=;database=your_database_name"
+
+        Using conn As New MySqlConnection(connString)
+            Using cmd As New MySqlCommand(query, conn)
+
+                cmd.Parameters.AddWithValue("@CustomerId", customerId)
+
+                Try
+                    conn.Open()
+
+                    Dim result As Integer = cmd.ExecuteNonQuery()
+
+                    If result > 0 Then
+                        MessageBox.Show("Customer deleted successfully!")
+
+                        ' refresh table after delete
+                        LoadCustomers()
+                    Else
+                        MessageBox.Show("Delete failed.")
+                    End If
+
+                Catch ex As Exception
+                    MessageBox.Show("Error: " & ex.Message)
+                End Try
+
+            End Using
+        End Using
+
     End Sub
 End Class

@@ -34,6 +34,7 @@ Partial Class StartMenu
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +51,7 @@ Partial Class StartMenu
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Button3, 2, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
@@ -150,6 +152,15 @@ Partial Class StartMenu
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(847, 186)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 4
+        Me.Button3.Text = "Main Menu"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'StartMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -186,4 +197,5 @@ Partial Class StartMenu
     Friend WithEvents lblTime As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents lblnotice As Label
+    Friend WithEvents Button3 As Button
 End Class
