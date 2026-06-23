@@ -43,7 +43,7 @@ Public Class AdminDashboard
     ' =========================
     ' INSERT
     ' =========================
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
 
         Dim query As String =
             "INSERT INTO CustomerInfo (FirstName, LastName, EmailAddress)
@@ -102,7 +102,7 @@ Public Class AdminDashboard
     ' =========================
     ' DELETE
     ' =========================
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
 
         If DataGridView1.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a customer to delete.")
@@ -113,7 +113,7 @@ Public Class AdminDashboard
             Convert.ToInt32(DataGridView1.SelectedRows(0).Cells("CustomerId").Value)
 
         Dim query As String =
-            "DELETE FROM CustomerInfo WHERE CustomerId = @CustomerId"
+            "DELETE FROM employeelogin WHERE CustomerId = @CustomerId"
 
         Using conn As MySqlConnection = DBConnection.GetConnection()
             Using cmd As New MySqlCommand(query, conn)
@@ -139,5 +139,17 @@ Public Class AdminDashboard
             End Using
         End Using
 
+    End Sub
+
+    Private Sub OpenUserManager(sender As Object, e As EventArgs) Handles btnOpenManageUser.Click
+        Dim frm As New UserManagement()
+        frm.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub OpenEmployeeManager(sender As Object, e As EventArgs) Handles btnOpenManageEmployee.Click
+        Dim frm As New EmployeeManagement()
+        frm.Show()
+        Me.Close()
     End Sub
 End Class
