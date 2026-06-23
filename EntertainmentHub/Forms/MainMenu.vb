@@ -3,7 +3,7 @@
 Public Class MainMenu
 
     ' ✅ SINGLE CONNECTION STRING (CHANGE ONLY THIS IF NEEDED)
-    Dim connString As String = "server=localhost;userid=root;password=;database=mydb"
+    Dim connString As String = "server=localhost;userid=root;password=;database=entertainmenthub"
 
     ' =========================
     ' FORM LOAD
@@ -18,7 +18,7 @@ Public Class MainMenu
     ' =========================
     Private Sub LoadCustomers()
 
-        Dim query As String = "SELECT CustomerId, FirstName, LastName, ContactNumber, Email FROM Customer"
+        Dim query As String = "SELECT CustomerId, FirstName, LastName, EmailAddress FROM CustomerInfo"
 
         Using conn As New MySqlConnection(connString)
             Using cmd As New MySqlCommand(query, conn)
@@ -47,16 +47,15 @@ Public Class MainMenu
     ' =========================
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Dim query As String = "INSERT INTO Customer (FirstName, LastName, ContactNumber, Email) " &
-                              "VALUES (@FirstName, @LastName, @ContactNumber, @Email)"
+        Dim query As String = "INSERT INTO CustomerInfo (FirstName, LastName, EmailAddress) " &
+                              "VALUES (@FirstName, @LastName, @EmailAddress)"
 
         Using conn As New MySqlConnection(connString)
             Using cmd As New MySqlCommand(query, conn)
 
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text)
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text)
-                cmd.Parameters.AddWithValue("@ContactNumber", txtContactNumber.Text)
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text)
+                cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text)
 
                 Try
                     conn.Open()
@@ -72,7 +71,6 @@ Public Class MainMenu
                         ' clear fields
                         txtFirstName.Clear()
                         txtLastName.Clear()
-                        txtContactNumber.Clear()
                         txtEmail.Clear()
 
                     Else

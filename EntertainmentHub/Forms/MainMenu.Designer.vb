@@ -29,11 +29,9 @@ Partial Class MainMenu
         Me.Button3 = New System.Windows.Forms.Button()
         Me.txtFirstName = New System.Windows.Forms.TextBox()
         Me.txtLastName = New System.Windows.Forms.TextBox()
-        Me.txtContactNumber = New System.Windows.Forms.TextBox()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -89,13 +87,6 @@ Partial Class MainMenu
         Me.txtLastName.Size = New System.Drawing.Size(243, 30)
         Me.txtLastName.TabIndex = 5
         '
-        'txtContactNumber
-        '
-        Me.txtContactNumber.Location = New System.Drawing.Point(875, 509)
-        Me.txtContactNumber.Name = "txtContactNumber"
-        Me.txtContactNumber.Size = New System.Drawing.Size(243, 30)
-        Me.txtContactNumber.TabIndex = 7
-        '
         'txtEmail
         '
         Me.txtEmail.Location = New System.Drawing.Point(875, 462)
@@ -121,15 +112,6 @@ Partial Class MainMenu
         Me.Label2.TabIndex = 9
         Me.Label2.Text = "Last Name"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(789, 514)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(80, 25)
-        Me.Label3.TabIndex = 10
-        Me.Label3.Text = "Contact"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -146,10 +128,8 @@ Partial Class MainMenu
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1200, 702)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtContactNumber)
         Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.txtLastName)
         Me.Controls.Add(Me.txtFirstName)
@@ -176,10 +156,8 @@ Partial Class MainMenu
     Friend WithEvents Button3 As Button
     Friend WithEvents txtFirstName As TextBox
     Friend WithEvents txtLastName As TextBox
-    Friend WithEvents txtContactNumber As TextBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
 End Class
