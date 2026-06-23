@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="\EntertainmentHub\Resources\Images\full_logo.png" alt="Entertainment Cafe & PC Management System Logo" width="500">
+  <img src="\EntertainmentHub\Assets\Images\full_logo.png" alt="Entertainment Cafe & PC Management System Logo" width="500">
 </p>
 
 # Entertainment Cafe & PC Management System
