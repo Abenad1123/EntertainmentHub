@@ -13,6 +13,7 @@ Module DatabaseInitializerModule
                 SeedRoles(conn)
                 SeedEntertainmentTypes(conn)
                 SeedEntertainmentTiers(conn)
+                seedproducts(conn)
 
             End Using
         Catch ex As Exception
@@ -184,5 +185,42 @@ Module DatabaseInitializerModule
         End Using
 
     End Sub
+#End Region
+
+#Region "Products"
+    Private Sub seedproducts(conn As MySqlConnection)
+        SeedProduct(conn, "Ramen", 80D)
+        SeedProduct(conn, "Coke Kasalo", 40D)
+        SeedProduct(conn, "Energy Drink", 50D)
+        SeedProduct(conn, "Snack Bar", 30D)
+        SeedProduct(conn, "Gaming Headset", 500D)
+        SeedProduct(conn, "Gaming Mouse", 300D)
+        SeedProduct(conn, "Gaming Keyboard", 400D)
+        SeedProduct(conn, "VR Controller", 6000D)
+    End Sub
+    Private Sub SeedProduct(conn As MySqlConnection, ProductName As String, UnitPrice As Decimal)
+        Dim checkSql As String =
+           "SELECT COUNT(*) 
+         FROM Products
+         WHERE ProductName = @ProductName"
+        Using cmd As New MySqlCommand(checkSql, conn)
+            cmd.Parameters.AddWithValue("@ProductName", ProductName)
+            Dim count As Integer =
+            Convert.ToInt32(cmd.ExecuteScalar())
+            If count = 0 Then
+                Dim insertSql As String =
+                "INSERT INTO Products
+                 (ProductName, UnitPrice)
+                 VALUES
+                 (@ProductName, @UnitPrice)"
+                Using insertCmd As New MySqlCommand(insertSql, conn)
+                    insertCmd.Parameters.AddWithValue("@ProductName", ProductName)
+                    insertCmd.Parameters.AddWithValue("@UnitPrice", UnitPrice)
+                    insertCmd.ExecuteNonQuery()
+                End Using
+            End If
+        End Using
+    End Sub
+
 #End Region
 End Module
