@@ -35,7 +35,7 @@ Partial Class TransactionManager
         Me.btnAdjust = New System.Windows.Forms.Button()
         Me.btnPayment = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtActionLog = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,7 +47,7 @@ Partial Class TransactionManager
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(481, 533)
+        Me.DataGridView1.Size = New System.Drawing.Size(481, 432)
         Me.DataGridView1.TabIndex = 0
         '
         'txtboxUsernameInput
@@ -145,23 +145,23 @@ Partial Class TransactionManager
         Me.Button5.Text = "Refund"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'txtActionLog
         '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.CausesValidation = False
-        Me.TextBox1.Location = New System.Drawing.Point(12, 650)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ShortcutsEnabled = False
-        Me.TextBox1.Size = New System.Drawing.Size(481, 223)
-        Me.TextBox1.TabIndex = 14
-        Me.TextBox1.TabStop = False
-        Me.TextBox1.WordWrap = False
+        Me.txtActionLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtActionLog.CausesValidation = False
+        Me.txtActionLog.Location = New System.Drawing.Point(12, 557)
+        Me.txtActionLog.Multiline = True
+        Me.txtActionLog.Name = "txtActionLog"
+        Me.txtActionLog.ShortcutsEnabled = False
+        Me.txtActionLog.Size = New System.Drawing.Size(481, 223)
+        Me.txtActionLog.TabIndex = 14
+        Me.txtActionLog.TabStop = False
+        Me.txtActionLog.WordWrap = False
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(179, 622)
+        Me.Label3.Location = New System.Drawing.Point(179, 529)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(136, 25)
         Me.Label3.TabIndex = 15
@@ -173,7 +173,7 @@ Partial Class TransactionManager
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1397, 885)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtActionLog)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.btnPayment)
         Me.Controls.Add(Me.btnAdjust)
@@ -211,6 +211,6 @@ Partial Class TransactionManager
     Friend WithEvents btnAdjust As Button
     Friend WithEvents btnPayment As Button
     Friend WithEvents Button5 As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtActionLog As TextBox
     Friend WithEvents Label3 As Label
 End Class
