@@ -114,6 +114,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AccountData.vb" />
     <Compile Include="Common\AppColors.vb" />
     <Compile Include="Common\AppFonts.vb" />
     <Compile Include="DatabaseInitializerModule.vb" />
@@ -148,10 +149,16 @@
     <Compile Include="Forms\Admin Forms\SystemSetting.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\UserManagement.Designer.vb">
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.Designer.vb">
+      <DependentUpon>TransactionManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\UserManagement.Designer.vb">
       <DependentUpon>UserManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin Forms\UserManagement.vb">
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\UserManagement.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Login Forms\AdminLoginMenu.Designer.vb">
@@ -218,7 +225,10 @@
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
       <DependentUpon>SystemSetting.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\UserManagement.resx">
+    <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.resx">
+      <DependentUpon>TransactionManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\UserManagement.resx">
       <DependentUpon>UserManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login Forms\AdminLoginMenu.resx">
@@ -270,6 +280,8 @@
     <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Images\admin_login_btn_state_1.png" />
+    <None Include="Assets\Images\admin_login_btn_state_2.png" />
     <Content Include="Assets\Images\background1.png" />
     <Content Include="Assets\Images\background2.png" />
     <Content Include="Assets\Images\login_panel.png" />
@@ -277,6 +289,8 @@
     <Content Include="Assets\Images\logo256.ico" />
     <Content Include="Assets\Images\logo256.png" />
     <Content Include="Assets\Images\start_menu_background.png" />
+    <None Include="Assets\Images\user_login_btn_state_1.png" />
+    <None Include="Assets\Images\user_login_btn_state_2.png" />
     <Content Include="logo256.ico" />
     <None Include="Assets\Images\start_menu_background.jpg" />
     <None Include="Assets\Images\start_menu_panel.png" />

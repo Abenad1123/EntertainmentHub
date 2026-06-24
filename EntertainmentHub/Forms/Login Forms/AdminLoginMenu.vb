@@ -63,15 +63,16 @@ Public Class AdminLoginMenu
                 ' If storedHash is empty, it means the username doesn't exist in the database.
                 If Not String.IsNullOrEmpty(storedHash) AndAlso BCrypt.Net.BCrypt.Verify(password, storedHash) Then
 
+                    AccountData.AdminUsername = username
+
                     MessageBox.Show("Employee login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     ' Update the LastLogin timestamp
                     UpdateLastLogin(employeeId, conn)
 
-                    ' TODO: Open your main employee dashboard/form here and close this login form
-                    ' Dim dashboard As New EmployeeDashboardForm()
-                    ' dashboard.Show()
-                    ' Me.Hide()
+                    Dim frm As New AdminDashboard()
+                    frm.Show()
+                    Me.Close()
 
                 Else
                     ' Use a generic error message to prevent user enumeration

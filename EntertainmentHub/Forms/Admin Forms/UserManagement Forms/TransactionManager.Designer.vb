@@ -1,0 +1,216 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class TransactionManager
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TransactionManager))
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.txtboxUsernameInput = New System.Windows.Forms.TextBox()
+        Me.txtboxAmount = New System.Windows.Forms.TextBox()
+        Me.btnDeposit = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 68)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersWidth = 51
+        Me.DataGridView1.RowTemplate.Height = 24
+        Me.DataGridView1.Size = New System.Drawing.Size(481, 533)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'txtboxUsernameInput
+        '
+        Me.txtboxUsernameInput.Location = New System.Drawing.Point(735, 68)
+        Me.txtboxUsernameInput.Name = "txtboxUsernameInput"
+        Me.txtboxUsernameInput.Size = New System.Drawing.Size(261, 30)
+        Me.txtboxUsernameInput.TabIndex = 1
+        '
+        'txtboxAmount
+        '
+        Me.txtboxAmount.Location = New System.Drawing.Point(735, 147)
+        Me.txtboxAmount.Name = "txtboxAmount"
+        Me.txtboxAmount.Size = New System.Drawing.Size(199, 30)
+        Me.txtboxAmount.TabIndex = 2
+        '
+        'btnDeposit
+        '
+        Me.btnDeposit.Location = New System.Drawing.Point(564, 312)
+        Me.btnDeposit.Name = "btnDeposit"
+        Me.btnDeposit.Size = New System.Drawing.Size(126, 40)
+        Me.btnDeposit.TabIndex = 4
+        Me.btnDeposit.Text = "Deposit"
+        Me.btnDeposit.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(647, 150)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Amount"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(135, 33)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(244, 25)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "WALLET TRANSACTION"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(627, 71)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(102, 25)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Username"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(720, 312)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(126, 40)
+        Me.Button1.TabIndex = 9
+        Me.Button1.Text = "Withdraw"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(881, 312)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(126, 40)
+        Me.Button2.TabIndex = 10
+        Me.Button2.Text = "Bonus"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(1045, 312)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(126, 40)
+        Me.Button3.TabIndex = 11
+        Me.Button3.Text = "Adjust"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(564, 390)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(126, 40)
+        Me.Button4.TabIndex = 12
+        Me.Button4.Text = "Payment"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(720, 390)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(126, 40)
+        Me.Button5.TabIndex = 13
+        Me.Button5.Text = "Refund"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.CausesValidation = False
+        Me.TextBox1.Location = New System.Drawing.Point(12, 650)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ShortcutsEnabled = False
+        Me.TextBox1.Size = New System.Drawing.Size(481, 223)
+        Me.TextBox1.TabIndex = 14
+        Me.TextBox1.TabStop = False
+        Me.TextBox1.WordWrap = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(179, 622)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(136, 25)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "ACTION LOG"
+        '
+        'TransactionManager
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(1397, 885)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.btnDeposit)
+        Me.Controls.Add(Me.txtboxAmount)
+        Me.Controls.Add(Me.txtboxUsernameInput)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MaximizeBox = False
+        Me.Name = "TransactionManager"
+        Me.Text = "Admin"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents txtboxUsernameInput As TextBox
+    Friend WithEvents txtboxAmount As TextBox
+    Friend WithEvents btnDeposit As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label3 As Label
+End Class

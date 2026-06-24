@@ -149,4 +149,10 @@ Public Class UserManagement
             End Using
         End Using
     End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim frm As New TransactionManager()
+        frm.Show()
+        Me.Close()
+    End Sub
 End Class

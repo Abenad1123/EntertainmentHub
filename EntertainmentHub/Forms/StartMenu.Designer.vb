@@ -31,17 +31,19 @@ Partial Class StartMenu
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblnotice = New System.Windows.Forms.Label()
         Me.lblTime = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.btnUserLogin = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.btnAdminLogin = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnUserLogin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnAdminLogin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -88,11 +90,11 @@ Partial Class StartMenu
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.btnAdminLogin)
         Me.Panel2.Controls.Add(Me.lblTitle)
         Me.Panel2.Controls.Add(Me.lblnotice)
         Me.Panel2.Controls.Add(Me.lblTime)
-        Me.Panel2.Controls.Add(Me.Button2)
-        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.btnUserLogin)
         Me.Panel2.Controls.Add(Me.PictureBox2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(214, 186)
@@ -132,24 +134,6 @@ Partial Class StartMenu
         Me.lblTime.Text = "hh:mm:ss tt"
         Me.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(391, 205)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(124, 57)
-        Me.Button2.TabIndex = 4
-        Me.Button2.Text = "AdminLogin"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(108, 216)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(124, 46)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Userlogin"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'PictureBox2
         '
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -170,11 +154,6 @@ Partial Class StartMenu
         Me.Button3.Text = "Main Menu"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1000
-        '
         'Button4
         '
         Me.Button4.Location = New System.Drawing.Point(847, 3)
@@ -183,6 +162,31 @@ Partial Class StartMenu
         Me.Button4.TabIndex = 5
         Me.Button4.Text = "Admin"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'btnUserLogin
+        '
+        Me.btnUserLogin.Image = Global.EntertainmentHub.My.Resources.Resources.user_login_btn_state_1
+        Me.btnUserLogin.Location = New System.Drawing.Point(100, 196)
+        Me.btnUserLogin.Name = "btnUserLogin"
+        Me.btnUserLogin.Size = New System.Drawing.Size(145, 72)
+        Me.btnUserLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnUserLogin.TabIndex = 6
+        Me.btnUserLogin.TabStop = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1000
+        '
+        'btnAdminLogin
+        '
+        Me.btnAdminLogin.Image = Global.EntertainmentHub.My.Resources.Resources.admin_login_btn_state_1
+        Me.btnAdminLogin.Location = New System.Drawing.Point(385, 196)
+        Me.btnAdminLogin.Name = "btnAdminLogin"
+        Me.btnAdminLogin.Size = New System.Drawing.Size(145, 72)
+        Me.btnAdminLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnAdminLogin.TabIndex = 8
+        Me.btnAdminLogin.TabStop = False
         '
         'StartMenu
         '
@@ -206,6 +210,8 @@ Partial Class StartMenu
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnUserLogin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnAdminLogin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,12 +221,12 @@ Partial Class StartMenu
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents lblTime As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents lblnotice As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents lblTitle As Label
     Friend WithEvents Button4 As Button
+    Friend WithEvents btnUserLogin As PictureBox
+    Friend WithEvents btnAdminLogin As PictureBox
 End Class

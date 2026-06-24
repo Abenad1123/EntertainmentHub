@@ -59,6 +59,8 @@ Public Class UserLoginMenu
 
                 If Not String.IsNullOrEmpty(storedHash) AndAlso BCrypt.Net.BCrypt.Verify(password, storedHash) Then
 
+                    AccountData.CustomerUsername = username
+
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     UpdateLastLogin(accountId, conn)

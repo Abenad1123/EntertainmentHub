@@ -8,28 +8,48 @@
         lblTime.Parent = PictureBox2
         lblTitle.Parent = PictureBox2
 
-        Button2.Parent = PictureBox2
-        Button1.Parent = PictureBox2
+        btnUserLogin.Parent = PictureBox2
+        btnAdminLogin.Parent = PictureBox2
 
         Timer1.Start()
         lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
     End Sub
 
+#Region "Button Hover effects"
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnUserLogin.MouseEnter
+        btnUserLogin.Image = My.Resources.user_login_btn_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnUserLogin.MouseLeave
+        btnUserLogin.Image = My.Resources.user_login_btn_state_1
+    End Sub
+
+    Private Sub BtnAdminLoginEnter(sender As Object, e As EventArgs) Handles btnAdminLogin.MouseEnter
+        btnAdminLogin.Image = My.Resources.admin_login_btn_state_2
+    End Sub
+
+    Private Sub BtnAdminLoginLeave(sender As Object, e As EventArgs) Handles btnAdminLogin.MouseLeave
+        btnAdminLogin.Image = My.Resources.admin_login_btn_state_1
+    End Sub
+
+#End Region
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub UserLoginClick(sender As Object, e As EventArgs) Handles btnUserLogin.Click
         Dim frm As New UserLoginMenu()
         frm.Show()
         Me.Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub AdminLoginClick(sender As Object, e As EventArgs) Handles btnAdminLogin.Click
         Dim frm As New AdminLoginMenu()
         frm.Show()
         Me.Close()
     End Sub
+
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim frm As New MainMenu()

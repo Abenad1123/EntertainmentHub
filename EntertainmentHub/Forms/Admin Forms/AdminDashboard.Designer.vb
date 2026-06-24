@@ -23,21 +23,11 @@ Partial Class AdminDashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AdminDashboard))
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.btnOpenManageUser = New System.Windows.Forms.Button()
         Me.btnOpenManageEmployee = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(864, 132)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(253, 42)
-        Me.Button3.TabIndex = 15
-        Me.Button3.Text = "Test DBbase connection"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -74,7 +64,6 @@ Partial Class AdminDashboard
         Me.ClientSize = New System.Drawing.Size(1200, 703)
         Me.Controls.Add(Me.btnOpenManageEmployee)
         Me.Controls.Add(Me.btnOpenManageUser)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -85,7 +74,6 @@ Partial Class AdminDashboard
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Button3 As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnOpenManageUser As Button
     Friend WithEvents btnOpenManageEmployee As Button
