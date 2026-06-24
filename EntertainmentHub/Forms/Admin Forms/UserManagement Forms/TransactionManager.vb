@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports Microsoft.VisualBasic.ApplicationServices
+Imports MySql.Data.MySqlClient
 
 Public Class TransactionManager
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -175,5 +176,11 @@ Public Class TransactionManager
                 MessageBox.Show("Error loading grid: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim frm As New UserManagement()
+        frm.Show()
+        Me.Close()
     End Sub
 End Class

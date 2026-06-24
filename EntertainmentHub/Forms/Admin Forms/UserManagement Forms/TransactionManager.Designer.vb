@@ -37,6 +37,7 @@ Partial Class TransactionManager
         Me.Button5 = New System.Windows.Forms.Button()
         Me.txtActionLog = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -167,11 +168,22 @@ Partial Class TransactionManager
         Me.Label3.TabIndex = 15
         Me.Label3.Text = "ACTION LOG"
         '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(567, 595)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(123, 40)
+        Me.Button3.TabIndex = 18
+        Me.Button3.Text = "Go back"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'TransactionManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1397, 885)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtActionLog)
         Me.Controls.Add(Me.Button5)
@@ -213,4 +225,5 @@ Partial Class TransactionManager
     Friend WithEvents Button5 As Button
     Friend WithEvents txtActionLog As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Button3 As Button
 End Class

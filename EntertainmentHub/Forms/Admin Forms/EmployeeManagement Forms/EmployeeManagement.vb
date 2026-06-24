@@ -57,4 +57,10 @@ Public Class EmployeeManagement
             End If
         End If
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim frm As New AdminDashboard()
+        frm.Show()
+        Me.Close()
+    End Sub
 End Class

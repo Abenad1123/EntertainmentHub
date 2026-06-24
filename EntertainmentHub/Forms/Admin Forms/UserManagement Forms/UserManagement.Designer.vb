@@ -38,13 +38,15 @@ Partial Class UserManagement
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.btnDeleteAccount = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextBox1
         '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.Location = New System.Drawing.Point(802, 59)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(227, 30)
@@ -52,6 +54,7 @@ Partial Class UserManagement
         '
         'TextBox2
         '
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox2.Location = New System.Drawing.Point(802, 108)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(227, 30)
@@ -77,6 +80,7 @@ Partial Class UserManagement
         '
         'TextBox3
         '
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.Location = New System.Drawing.Point(802, 176)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(227, 30)
@@ -110,6 +114,7 @@ Partial Class UserManagement
         '
         'TextBox4
         '
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox4.Location = New System.Drawing.Point(802, 321)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(227, 30)
@@ -117,6 +122,7 @@ Partial Class UserManagement
         '
         'TextBox5
         '
+        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox5.Location = New System.Drawing.Point(802, 367)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(227, 30)
@@ -124,6 +130,7 @@ Partial Class UserManagement
         '
         'Button1
         '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Location = New System.Drawing.Point(802, 472)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(227, 46)
@@ -151,6 +158,7 @@ Partial Class UserManagement
         '
         'Button2
         '
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Location = New System.Drawing.Point(802, 228)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(227, 46)
@@ -168,17 +176,19 @@ Partial Class UserManagement
         Me.DataGridView1.Size = New System.Drawing.Size(599, 537)
         Me.DataGridView1.TabIndex = 14
         '
-        'Button3
+        'btnDeleteAccount
         '
-        Me.Button3.Location = New System.Drawing.Point(646, 559)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(173, 40)
-        Me.Button3.TabIndex = 15
-        Me.Button3.Text = "Delete Account"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnDeleteAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeleteAccount.Location = New System.Drawing.Point(646, 559)
+        Me.btnDeleteAccount.Name = "btnDeleteAccount"
+        Me.btnDeleteAccount.Size = New System.Drawing.Size(173, 40)
+        Me.btnDeleteAccount.TabIndex = 15
+        Me.btnDeleteAccount.Text = "Delete Account"
+        Me.btnDeleteAccount.UseVisualStyleBackColor = True
         '
         'Button4
         '
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Location = New System.Drawing.Point(842, 559)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(209, 40)
@@ -186,13 +196,24 @@ Partial Class UserManagement
         Me.Button4.Text = "Transaction Manager"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(12, 559)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(123, 40)
+        Me.Button3.TabIndex = 17
+        Me.Button3.Text = "Go back"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'UserManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 703)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.btnDeleteAccount)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label6)
@@ -236,6 +257,7 @@ Partial Class UserManagement
     Friend WithEvents Label6 As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button3 As Button
+    Friend WithEvents btnDeleteAccount As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents Button3 As Button
 End Class

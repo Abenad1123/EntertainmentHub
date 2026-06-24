@@ -40,6 +40,7 @@ Partial Class RegisterEmployee
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -184,11 +185,22 @@ Partial Class RegisterEmployee
         Me.TextBox5.Size = New System.Drawing.Size(374, 30)
         Me.TextBox5.TabIndex = 14
         '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(45, 614)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(123, 40)
+        Me.Button3.TabIndex = 20
+        Me.Button3.Text = "Go back"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'RegisterEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 703)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.TextBox3)
@@ -209,8 +221,10 @@ Partial Class RegisterEmployee
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MaximizeBox = False
         Me.Name = "RegisterEmployee"
         Me.Text = "Admin"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -234,4 +248,5 @@ Partial Class RegisterEmployee
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Button3 As Button
 End Class

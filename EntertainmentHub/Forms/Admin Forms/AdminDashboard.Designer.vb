@@ -26,6 +26,7 @@ Partial Class AdminDashboard
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.btnOpenManageUser = New System.Windows.Forms.Button()
         Me.btnOpenManageEmployee = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -41,35 +42,47 @@ Partial Class AdminDashboard
         '
         'btnOpenManageUser
         '
-        Me.btnOpenManageUser.Location = New System.Drawing.Point(130, 43)
+        Me.btnOpenManageUser.Location = New System.Drawing.Point(825, 434)
         Me.btnOpenManageUser.Name = "btnOpenManageUser"
-        Me.btnOpenManageUser.Size = New System.Drawing.Size(194, 39)
+        Me.btnOpenManageUser.Size = New System.Drawing.Size(329, 39)
         Me.btnOpenManageUser.TabIndex = 22
-        Me.btnOpenManageUser.Text = "Manage Users"
+        Me.btnOpenManageUser.Text = "MANAGE USERS"
         Me.btnOpenManageUser.UseVisualStyleBackColor = True
         '
         'btnOpenManageEmployee
         '
-        Me.btnOpenManageEmployee.Location = New System.Drawing.Point(371, 43)
+        Me.btnOpenManageEmployee.Location = New System.Drawing.Point(825, 368)
         Me.btnOpenManageEmployee.Name = "btnOpenManageEmployee"
-        Me.btnOpenManageEmployee.Size = New System.Drawing.Size(194, 39)
+        Me.btnOpenManageEmployee.Size = New System.Drawing.Size(329, 39)
         Me.btnOpenManageEmployee.TabIndex = 23
-        Me.btnOpenManageEmployee.Text = "Manage Employees"
+        Me.btnOpenManageEmployee.Text = "MANAGE EMPLOYEES"
         Me.btnOpenManageEmployee.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(825, 505)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(329, 53)
+        Me.Button1.TabIndex = 24
+        Me.Button1.Text = "CONFIGURE ENTERTAINMENT"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'AdminDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 703)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnOpenManageEmployee)
         Me.Controls.Add(Me.btnOpenManageUser)
         Me.Controls.Add(Me.DataGridView1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MaximizeBox = False
         Me.Name = "AdminDashboard"
-        Me.Text = "AdminDashboard"
+        Me.Text = "Admin"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -77,4 +90,5 @@ Partial Class AdminDashboard
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnOpenManageUser As Button
     Friend WithEvents btnOpenManageEmployee As Button
+    Friend WithEvents Button1 As Button
 End Class
