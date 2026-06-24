@@ -30,10 +30,10 @@ Partial Class TransactionManager
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.btnWithdraw = New System.Windows.Forms.Button()
+        Me.btnBonus = New System.Windows.Forms.Button()
+        Me.btnAdjust = New System.Windows.Forms.Button()
+        Me.btnPayment = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -100,41 +100,41 @@ Partial Class TransactionManager
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Username"
         '
-        'Button1
+        'btnWithdraw
         '
-        Me.Button1.Location = New System.Drawing.Point(720, 312)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(126, 40)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Withdraw"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnWithdraw.Location = New System.Drawing.Point(720, 312)
+        Me.btnWithdraw.Name = "btnWithdraw"
+        Me.btnWithdraw.Size = New System.Drawing.Size(126, 40)
+        Me.btnWithdraw.TabIndex = 9
+        Me.btnWithdraw.Text = "Withdraw"
+        Me.btnWithdraw.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnBonus
         '
-        Me.Button2.Location = New System.Drawing.Point(881, 312)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(126, 40)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "Bonus"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnBonus.Location = New System.Drawing.Point(881, 312)
+        Me.btnBonus.Name = "btnBonus"
+        Me.btnBonus.Size = New System.Drawing.Size(126, 40)
+        Me.btnBonus.TabIndex = 10
+        Me.btnBonus.Text = "Bonus"
+        Me.btnBonus.UseVisualStyleBackColor = True
         '
-        'Button3
+        'btnAdjust
         '
-        Me.Button3.Location = New System.Drawing.Point(1045, 312)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(126, 40)
-        Me.Button3.TabIndex = 11
-        Me.Button3.Text = "Adjust"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnAdjust.Location = New System.Drawing.Point(1045, 312)
+        Me.btnAdjust.Name = "btnAdjust"
+        Me.btnAdjust.Size = New System.Drawing.Size(126, 40)
+        Me.btnAdjust.TabIndex = 11
+        Me.btnAdjust.Text = "Adjust"
+        Me.btnAdjust.UseVisualStyleBackColor = True
         '
-        'Button4
+        'btnPayment
         '
-        Me.Button4.Location = New System.Drawing.Point(564, 390)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(126, 40)
-        Me.Button4.TabIndex = 12
-        Me.Button4.Text = "Payment"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btnPayment.Location = New System.Drawing.Point(564, 390)
+        Me.btnPayment.Name = "btnPayment"
+        Me.btnPayment.Size = New System.Drawing.Size(126, 40)
+        Me.btnPayment.TabIndex = 12
+        Me.btnPayment.Text = "Payment"
+        Me.btnPayment.UseVisualStyleBackColor = True
         '
         'Button5
         '
@@ -175,10 +175,10 @@ Partial Class TransactionManager
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnPayment)
+        Me.Controls.Add(Me.btnAdjust)
+        Me.Controls.Add(Me.btnBonus)
+        Me.Controls.Add(Me.btnWithdraw)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -206,10 +206,10 @@ Partial Class TransactionManager
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents btnWithdraw As Button
+    Friend WithEvents btnBonus As Button
+    Friend WithEvents btnAdjust As Button
+    Friend WithEvents btnPayment As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label3 As Label
