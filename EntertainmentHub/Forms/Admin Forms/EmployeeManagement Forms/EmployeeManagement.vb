@@ -4,6 +4,8 @@ Public Class EmployeeManagement
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadEmployees()
         LoadRolesFilter()
+
+        FormatGrid()
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         Dim frm As New RegisterEmployee()
