@@ -13,6 +13,8 @@
 
         Timer1.Start()
         lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
+
+        DatabaseInitializerModule.SeedDatabase()
     End Sub
 
 #Region "Button Hover effects"
