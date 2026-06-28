@@ -182,6 +182,14 @@ Public Class UpdateEmployee
             txtboxContactNum.Text = row.Cells("ContactNumber").Value.ToString()
             ' Note: txtboxEmail is not populated because 'employee' table has no Email column
 
+            ' --- ADDED: Populate BirthDate safely ---
+            If Not IsDBNull(row.Cells("BirthDate").Value) Then
+                Dim parsedDate As DateTime
+                If DateTime.TryParse(row.Cells("BirthDate").Value.ToString(), parsedDate) Then
+                    dtpBirthDate.Value = parsedDate
+                End If
+            End If
+
             ' Set the Role ComboBox to match the selected employee's role
             Dim roleName As String = row.Cells("RoleName").Value.ToString()
             Dim index = cmbboxRoleUpd.FindStringExact(roleName)
@@ -230,12 +238,14 @@ Public Class UpdateEmployee
                 Using transaction = conn.BeginTransaction()
                     Try
                         ' 1. UPDATE EMPLOYEE TABLE
-                        Dim queryEmp As String = "UPDATE employee SET FirstName = @fname, LastName = @lname, ContactNumber = @cnum, RolesID = @role, updated_at = NOW() WHERE EmployeeID = @empId"
+                        Dim queryEmp As String = "UPDATE employee SET FirstName = @fname, LastName = @lname, BirthDate = @bdate, ContactNumber = @cnum, RolesID = @role, updated_at = NOW() WHERE EmployeeID = @empId"
                         Using cmdEmp As New MySqlCommand(queryEmp, conn, transaction)
                             cmdEmp.Parameters.AddWithValue("@fname", txtboxFirstName.Text.Trim())
                             cmdEmp.Parameters.AddWithValue("@lname", txtboxLastName.Text.Trim())
                             cmdEmp.Parameters.AddWithValue("@cnum", txtboxContactNum.Text.Trim())
                             cmdEmp.Parameters.AddWithValue("@role", Convert.ToInt32(cmbboxRoleUpd.SelectedValue))
+
+                            cmdEmp.Parameters.AddWithValue("@bdate", dtpBirthDate.Value.ToString("yyyy-MM-dd"))
                             cmdEmp.Parameters.AddWithValue("@empId", empId)
                             ' If you add an Email column later, add it to the query string and add the parameter here:
                             ' cmdEmp.Parameters.AddWithValue("@email", txtboxEmail.Text.Trim())
@@ -306,5 +316,9 @@ Public Class UpdateEmployee
         Dim frm As New EmployeeManagement()
         frm.Show()
         Me.Close()
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

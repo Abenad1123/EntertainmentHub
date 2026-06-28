@@ -27,7 +27,6 @@ Partial Class UpdateEmployee
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -37,7 +36,6 @@ Partial Class UpdateEmployee
         Me.txtboxUsername = New System.Windows.Forms.TextBox()
         Me.cmbboxRoleUpd = New System.Windows.Forms.ComboBox()
         Me.txtboxContactNum = New System.Windows.Forms.TextBox()
-        Me.txtboxEmail = New System.Windows.Forms.TextBox()
         Me.txtboxLastName = New System.Windows.Forms.TextBox()
         Me.txtboxFirstName = New System.Windows.Forms.TextBox()
         Me.lblRole = New System.Windows.Forms.Label()
@@ -47,6 +45,8 @@ Partial Class UpdateEmployee
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.dtpBirthDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -61,14 +61,15 @@ Partial Class UpdateEmployee
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(574, 284)
+        Me.DataGridView1.Size = New System.Drawing.Size(574, 348)
         Me.DataGridView1.TabIndex = 0
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label8)
+        Me.Panel1.Controls.Add(Me.dtpBirthDate)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -78,7 +79,6 @@ Partial Class UpdateEmployee
         Me.Panel1.Controls.Add(Me.txtboxUsername)
         Me.Panel1.Controls.Add(Me.cmbboxRoleUpd)
         Me.Panel1.Controls.Add(Me.txtboxContactNum)
-        Me.Panel1.Controls.Add(Me.txtboxEmail)
         Me.Panel1.Controls.Add(Me.txtboxLastName)
         Me.Panel1.Controls.Add(Me.txtboxFirstName)
         Me.Panel1.Controls.Add(Me.lblRole)
@@ -89,13 +89,13 @@ Partial Class UpdateEmployee
         Me.Panel1.Location = New System.Drawing.Point(613, 13)
         Me.Panel1.Name = "Panel1"
         Me.TableLayoutPanel1.SetRowSpan(Me.Panel1, 3)
-        Me.Panel1.Size = New System.Drawing.Size(574, 584)
+        Me.Panel1.Size = New System.Drawing.Size(574, 712)
         Me.Panel1.TabIndex = 20
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(23, 339)
+        Me.Label7.Location = New System.Drawing.Point(23, 323)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(154, 25)
         Me.Label7.TabIndex = 21
@@ -104,25 +104,16 @@ Partial Class UpdateEmployee
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(79, 462)
+        Me.Label6.Location = New System.Drawing.Point(79, 496)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(98, 25)
         Me.Label6.TabIndex = 20
         Me.Label6.Text = "Password"
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(117, 303)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(60, 25)
-        Me.Label5.TabIndex = 19
-        Me.Label5.Text = "Email"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(71, 412)
+        Me.Label4.Location = New System.Drawing.Point(71, 446)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(102, 25)
         Me.Label4.TabIndex = 18
@@ -159,7 +150,7 @@ Partial Class UpdateEmployee
         '
         Me.btnUpdate.BackColor = System.Drawing.Color.White
         Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.Location = New System.Drawing.Point(222, 514)
+        Me.btnUpdate.Location = New System.Drawing.Point(222, 592)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(238, 49)
         Me.btnUpdate.TabIndex = 14
@@ -169,7 +160,7 @@ Partial Class UpdateEmployee
         'txtboxPassword
         '
         Me.txtboxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxPassword.Location = New System.Drawing.Point(183, 460)
+        Me.txtboxPassword.Location = New System.Drawing.Point(183, 494)
         Me.txtboxPassword.Name = "txtboxPassword"
         Me.txtboxPassword.Size = New System.Drawing.Size(322, 30)
         Me.txtboxPassword.TabIndex = 13
@@ -177,7 +168,7 @@ Partial Class UpdateEmployee
         'txtboxUsername
         '
         Me.txtboxUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxUsername.Location = New System.Drawing.Point(183, 410)
+        Me.txtboxUsername.Location = New System.Drawing.Point(183, 444)
         Me.txtboxUsername.Name = "txtboxUsername"
         Me.txtboxUsername.Size = New System.Drawing.Size(322, 30)
         Me.txtboxUsername.TabIndex = 12
@@ -194,18 +185,10 @@ Partial Class UpdateEmployee
         'txtboxContactNum
         '
         Me.txtboxContactNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxContactNum.Location = New System.Drawing.Point(183, 337)
+        Me.txtboxContactNum.Location = New System.Drawing.Point(183, 321)
         Me.txtboxContactNum.Name = "txtboxContactNum"
         Me.txtboxContactNum.Size = New System.Drawing.Size(322, 30)
         Me.txtboxContactNum.TabIndex = 10
-        '
-        'txtboxEmail
-        '
-        Me.txtboxEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxEmail.Location = New System.Drawing.Point(183, 301)
-        Me.txtboxEmail.Name = "txtboxEmail"
-        Me.txtboxEmail.Size = New System.Drawing.Size(322, 30)
-        Me.txtboxEmail.TabIndex = 9
         '
         'txtboxLastName
         '
@@ -264,7 +247,7 @@ Partial Class UpdateEmployee
         '
         Me.Button3.BackColor = System.Drawing.Color.White
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(13, 637)
+        Me.Button3.Location = New System.Drawing.Point(13, 772)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(123, 40)
         Me.Button3.TabIndex = 19
@@ -294,25 +277,41 @@ Partial Class UpdateEmployee
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.5!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 853)
         Me.TableLayoutPanel1.TabIndex = 21
         '
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(13, 313)
+        Me.DataGridView2.Location = New System.Drawing.Point(13, 377)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(574, 284)
+        Me.DataGridView2.Size = New System.Drawing.Size(574, 348)
         Me.DataGridView2.TabIndex = 21
+        '
+        'dtpBirthDate
+        '
+        Me.dtpBirthDate.Location = New System.Drawing.Point(183, 366)
+        Me.dtpBirthDate.Name = "dtpBirthDate"
+        Me.dtpBirthDate.Size = New System.Drawing.Size(322, 30)
+        Me.dtpBirthDate.TabIndex = 22
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(76, 366)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(97, 25)
+        Me.Label8.TabIndex = 23
+        Me.Label8.Text = "Birth Date"
         '
         'UpdateEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1200, 703)
+        Me.ClientSize = New System.Drawing.Size(1200, 853)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -342,16 +341,16 @@ Partial Class UpdateEmployee
     Friend WithEvents txtboxUsername As TextBox
     Friend WithEvents cmbboxRoleUpd As ComboBox
     Friend WithEvents txtboxContactNum As TextBox
-    Friend WithEvents txtboxEmail As TextBox
     Friend WithEvents txtboxLastName As TextBox
     Friend WithEvents txtboxFirstName As TextBox
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents btnUpdate As Button
+    Friend WithEvents dtpBirthDate As DateTimePicker
+    Friend WithEvents Label8 As Label
 End Class
