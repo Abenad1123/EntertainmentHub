@@ -14,6 +14,7 @@ Module DatabaseInitializerModule
                 SeedEntertainmentTypes(conn)
                 SeedEntertainmentTiers(conn)
                 seedproducts(conn)
+                SeedEntertainmentItems(conn)
 
             End Using
         Catch ex As Exception
@@ -109,25 +110,24 @@ Module DatabaseInitializerModule
 #End Region
 
 #Region "Entertainment Types"
-
     Private Sub SeedEntertainmentTypes(conn As MySqlConnection)
-
-        SeedEntertainmentType(conn, "PC")
-        SeedEntertainmentType(conn, "Console")
-        SeedEntertainmentType(conn, "VR")
+        ' Updated to match your latest database snapshot
+        SeedEntertainmentType(conn, "PC Gaming")
+        SeedEntertainmentType(conn, "Virtual Reality (VR)")
         SeedEntertainmentType(conn, "Billiards")
+        SeedEntertainmentType(conn, "Ping Pong")
+        SeedEntertainmentType(conn, "Gaming Consoles")
     End Sub
 
     Private Sub SeedEntertainmentType(conn As MySqlConnection, EntertainmentTypeName As String)
         Dim checkSql As String =
-           "SELECT COUNT(*) 
+        "SELECT COUNT(*) 
          FROM EntertainmentType
          WHERE EntertainmentTypeName = @EntertainmentTypeName"
 
         Using cmd As New MySqlCommand(checkSql, conn)
             cmd.Parameters.AddWithValue("@EntertainmentTypeName", EntertainmentTypeName)
-            Dim count As Integer =
-            Convert.ToInt32(cmd.ExecuteScalar())
+            Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
             If count = 0 Then
                 Dim insertSql As String =
                 "INSERT INTO EntertainmentType
@@ -140,35 +140,44 @@ Module DatabaseInitializerModule
                 End Using
             End If
         End Using
-
-
     End Sub
 #End Region
 
 #Region "Entertainment Tiers"
-
     Private Sub SeedEntertainmentTiers(conn As MySqlConnection)
+        ' Updated explicitly to match your exact data snapshot rates and type associations
+        ' 1: PC Gaming, 2: VR, 3: Billiards, 4: Ping Pong, 5: Gaming Consoles
 
+        ' PC Gaming Tiers
+        SeedEntertainmentTier(conn, "PC Standard Tier", 60D, 1)
+        SeedEntertainmentTier(conn, "PC VIP (RTX 4090) Tier", 100D, 1)
 
-        ' Seed Entertainment Tiers for PC and Console 1- pc, 2- console, 3- VR, 4- Billiards
-        SeedEntertainmentTier(conn, "Standard PC", 50D, 1)
-        SeedEntertainmentTier(conn, "High-End PC", 80D, 1)
-        SeedEntertainmentTier(conn, "PS5", 70D, 2)
-        SeedEntertainmentTier(conn, "Oculus Quest 2", 60D, 3)
-        SeedEntertainmentTier(conn, "8-Ball Pool", 40D, 4)
+        ' VR Tiers
+        SeedEntertainmentTier(conn, "VR Standard Booth", 150D, 2)
+        SeedEntertainmentTier(conn, "VR Premium Omni-Directional", 250D, 2)
 
+        ' Billiards Tiers
+        SeedEntertainmentTier(conn, "Billiards Standard Table", 120D, 3)
+        SeedEntertainmentTier(conn, "Billiards Tournament Table", 180D, 3)
+
+        ' Ping Pong Tiers
+        SeedEntertainmentTier(conn, "Ping Pong Standard Table", 80D, 4)
+
+        ' Gaming Consoles Tiers
+        SeedEntertainmentTier(conn, "Console Lounge (PS5/Xbox)", 90D, 5)
+        SeedEntertainmentTier(conn, "Console Private Room", 140D, 5)
     End Sub
+
     Private Sub SeedEntertainmentTier(conn As MySqlConnection, EntertainmentTierName As String, HourlyRate As Decimal, EntertainmentTypeID As Integer)
         Dim checkSql As String =
-           "SELECT COUNT(*) 
+        "SELECT COUNT(*) 
          FROM EntertainmentTier
          WHERE EntertainmentTierName = @EntertainmentTierName AND EntertainmentTypeID = @EntertainmentTypeID"
 
         Using cmd As New MySqlCommand(checkSql, conn)
             cmd.Parameters.AddWithValue("@EntertainmentTierName", EntertainmentTierName)
             cmd.Parameters.AddWithValue("@EntertainmentTypeID", EntertainmentTypeID)
-            Dim count As Integer =
-            Convert.ToInt32(cmd.ExecuteScalar())
+            Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
             If count = 0 Then
                 Dim insertSql As String =
                 "INSERT INTO EntertainmentTier
@@ -183,7 +192,6 @@ Module DatabaseInitializerModule
                 End Using
             End If
         End Using
-
     End Sub
 #End Region
 
@@ -223,4 +231,74 @@ Module DatabaseInitializerModule
     End Sub
 
 #End Region
+
+#Region "Entertainment"
+    Private Sub SeedEntertainmentItems(conn As MySqlConnection)
+        ' Seeding individual units into the Entertainment table matching your schema
+
+        ' PC Gaming - Standard Tier (TierID: 1)
+        SeedEntertainment(conn, 1, "PC Station 01", "Available")
+        SeedEntertainment(conn, 1, "PC Station 02", "Available")
+        SeedEntertainment(conn, 1, "PC Station 03", "Available")
+        SeedEntertainment(conn, 1, "PC Station 04", "InUse")
+
+        ' PC Gaming - VIP Lounge (TierID: 2)
+        SeedEntertainment(conn, 2, "VIP PC Station 05", "Available")
+        SeedEntertainment(conn, 2, "VIP PC Station 06", "Available")
+
+        ' VR - Standard Booth (TierID: 3)
+        SeedEntertainment(conn, 3, "VR Booth 01", "Available")
+        SeedEntertainment(conn, 3, "VR Booth 02", "Available")
+
+        ' VR - Premium Omni Treadmill (TierID: 4)
+        SeedEntertainment(conn, 4, "VR Omni Treadmill 01", "Maintenance")
+
+        ' Billiards - Standard Table (TierID: 5)
+        SeedEntertainment(conn, 5, "Billiards Table 01", "Available")
+        SeedEntertainment(conn, 5, "Billiards Table 02", "Available")
+
+        ' Billiards - Tournament Table (TierID: 6)
+        SeedEntertainment(conn, 6, "Tournament Billiards Table 03", "Available")
+
+        ' Table Tennis - Standard Table (TierID: 7)
+        SeedEntertainment(conn, 7, "Ping Pong Table 01", "Available")
+        SeedEntertainment(conn, 7, "Ping Pong Table 02", "Available")
+
+        ' Gaming Consoles - Console Lounge Couch (TierID: 8)
+        SeedEntertainment(conn, 8, "Console Lounge 01 (PS5)", "Available")
+        SeedEntertainment(conn, 8, "Console Lounge 02 (Xbox)", "Available")
+
+        ' Gaming Consoles - Private Console Room (TierID: 9)
+        SeedEntertainment(conn, 9, "Private Console Room A", "InUse")
+    End Sub
+
+    Private Sub SeedEntertainment(conn As MySqlConnection, EntertainmentTierID As Integer, EntertainmentName As String, Status As String)
+        ' Checks uniqueness against EntertainmentName per your UNIQUE constraint
+        Dim checkSql As String =
+        "SELECT COUNT(*) 
+         FROM Entertainment
+         WHERE EntertainmentName = @EntertainmentName"
+
+        Using cmd As New MySqlCommand(checkSql, conn)
+            cmd.Parameters.AddWithValue("@EntertainmentName", EntertainmentName)
+            Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+            If count = 0 Then
+                Dim insertSql As String =
+                "INSERT INTO Entertainment
+                 (EntertainmentTierID, EntertainmentName, Status)
+                 VALUES
+                 (@EntertainmentTierID, @EntertainmentName, @Status)"
+
+                Using insertCmd As New MySqlCommand(insertSql, conn)
+                    insertCmd.Parameters.AddWithValue("@EntertainmentTierID", EntertainmentTierID)
+                    insertCmd.Parameters.AddWithValue("@EntertainmentName", EntertainmentName)
+                    insertCmd.Parameters.AddWithValue("@Status", Status)
+                    insertCmd.ExecuteNonQuery()
+                End Using
+            End If
+        End Using
+    End Sub
+#End Region
 End Module
+

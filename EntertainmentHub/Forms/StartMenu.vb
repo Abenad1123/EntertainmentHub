@@ -13,6 +13,17 @@
 
         Timer1.Start()
         lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
+
+        Try
+
+            SeedDatabase()
+
+        Catch ex As Exception
+
+            MessageBox.Show("Error seeding database: " & ex.Message)
+
+        End Try
+
     End Sub
 
 #Region "Button Hover effects"
@@ -62,4 +73,6 @@
         frm.Show()
         Me.Close()
     End Sub
+
+
 End Class
