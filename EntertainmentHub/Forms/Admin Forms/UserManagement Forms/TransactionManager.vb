@@ -23,6 +23,10 @@ Public Class TransactionManager
         ProcessTransaction("Adjustment")
     End Sub
 
+    Private Sub btnPayment_Click(sender As Object, e As EventArgs) Handles btnPayment.Click
+        ProcessTransaction("Payment")
+    End Sub
+
     ' --- Central Transaction Processor ---
     Private Sub ProcessTransaction(transactionType As String)
         Dim targetUsername As String = txtboxUsernameInput.Text.Trim()
@@ -40,42 +44,59 @@ Public Class TransactionManager
             Return
         End If
 
-        ' Enforce positive amounts for everything EXCEPT Adjustments
-        If transactionType <> "Adjustment" AndAlso transactionAmount <= 0 Then
-            MessageBox.Show("Amount must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' --- FIXED LOGIC FOR NEGATIVE NUMBERS ---
+        ' If it's a Withdrawal, the user likely types a positive number (e.g., 50).
+        ' We automatically force it to be negative so it saves properly.
+        If transactionType = "Withdrawal" AndAlso transactionAmount > 0 Then
+            transactionAmount = -transactionAmount
+        End If
+
+        If transactionType = "Payment" AndAlso transactionAmount > 0 Then
+            transactionAmount = -transactionAmount
+        End If
+
+        ' Adjustments are allowed to be negative or positive.
+        ' Deposits and Bonuses MUST be greater than zero.
+        If (transactionType = "Deposit" Or transactionType = "Bonus") AndAlso transactionAmount <= 0 Then
+            MessageBox.Show("Amount must be greater than zero for Deposits and Bonuses.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
+                '2. Get Admin Username for Logging
+                Dim employeeid As Integer = If(String.IsNullOrEmpty(AccountData.AdminUsername), 0, AccountData.AdminId)
 
-                ' 2. Look up AccountID based on Username
+                ' 2.1 Look up AccountID based on Username
                 Dim accountId As Integer = GetAccountIdByUsername(targetUsername, conn)
                 If accountId = 0 Then
                     MessageBox.Show("Username not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
 
-                ' 3. If Withdrawal, check if they have enough balance
+                ' 3. If Withdrawal, check if they have enough balance 
+                ' (Note: transactionAmount is now negative, so we check against Math.Abs)
                 If transactionType = "Withdrawal" Then
                     Dim currentBalance As Decimal = GetCurrentBalance(accountId, conn)
-                    If currentBalance < transactionAmount Then
+                    If currentBalance < Math.Abs(transactionAmount) Then
                         MessageBox.Show($"Insufficient funds. Current balance is: ${currentBalance:F2}", "Withdrawal Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Return
                     End If
                 End If
 
-                ' 4. Insert the Transaction (Updated to wallettransactions)
-                Dim insertQuery As String = "INSERT INTO wallettransactions (AccountID, Amount, TransactionType) VALUES (@accId, @amount, @type)"
+                ' 4. Insert the Transaction 
+                Dim insertQuery As String = "INSERT INTO wallettransactions (AccountID, Amount, TransactionType, EmployeeID) VALUES (@accId, @amount, @type, @employeeid)"
                 Using cmd As New MySqlCommand(insertQuery, conn)
                     cmd.Parameters.AddWithValue("@accId", accountId)
-                    cmd.Parameters.AddWithValue("@amount", transactionAmount)
+                    cmd.Parameters.AddWithValue("@amount", transactionAmount) ' This will successfully pass negative values
                     cmd.Parameters.AddWithValue("@type", transactionType)
+                    cmd.Parameters.AddWithValue("@employeeid", employeeid)
                     cmd.ExecuteNonQuery()
                 End Using
 
-                MessageBox.Show($"{transactionType} of ${Math.Abs(transactionAmount):F2} was successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ' --- FIXED: Removed Math.Abs so you can physically see the negative sign in your success alert ---
+                MessageBox.Show($"{transactionType} of ${transactionAmount:F2} was successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 ' --- NEW LOGIC: Update Action Log ---
                 LogAction(transactionType, transactionAmount, targetUsername)
@@ -94,16 +115,9 @@ Public Class TransactionManager
 
     ' --- NEW HELPER: Append to Textbox Action Log ---
     Private Sub LogAction(transactionType As String, amount As Decimal, targetUser As String)
-        ' Use the stored admin username (fallback to "System" if empty for some reason)
         Dim adminName As String = If(String.IsNullOrEmpty(AccountData.AdminUsername), "System", AccountData.AdminUsername)
-
-        ' Format a clean log message
         Dim logMessage As String = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Admin '{adminName}' processed a {transactionType} of ${amount:F2} for user '{targetUser}'."
-
-        ' Append text with a new line
         txtActionLog.AppendText(logMessage & Environment.NewLine)
-
-        ' Scroll the textbox to the bottom so the newest log is always visible
         txtActionLog.SelectionStart = txtActionLog.Text.Length
         txtActionLog.ScrollToCaret()
     End Sub
@@ -121,16 +135,13 @@ Public Class TransactionManager
         Return 0
     End Function
 
-    ' --- Helper: Calculate Balance (Updated to wallettransactions) ---
+    ' --- Helper: Calculate Balance (FIXED PATTERN) ---
     Private Function GetCurrentBalance(accountId As Integer, conn As MySqlConnection) As Decimal
+        ' --- FIXED SQL LOGIC ---
+        ' Since Withdrawal and Negative Adjustments are now natively saved as negative numbers, 
+        ' we just SUM the amount directly without manually negating it via ' -Amount '.
         Dim query As String = "
-            SELECT COALESCE(SUM(
-                CASE 
-                    WHEN TransactionType IN ('Deposit', 'Bonus', 'Refund') THEN Amount
-                    WHEN TransactionType IN ('Payment', 'Withdrawal') THEN -Amount
-                    WHEN TransactionType = 'Adjustment' THEN Amount
-                    ELSE 0 
-                END), 0) AS Balance
+            SELECT COALESCE(SUM(Amount), 0) AS Balance
             FROM wallettransactions 
             WHERE AccountID = @accId"
 
@@ -144,7 +155,7 @@ Public Class TransactionManager
         Return 0D
     End Function
 
-    ' --- Helper: Refresh DataGridView1 (Updated to wallettransactions) ---
+    ' --- Helper: Refresh DataGridView1 ---
     Private Sub LoadWalletTransactions()
         Using conn = DBConnection.GetConnection()
             Try
@@ -183,4 +194,6 @@ Public Class TransactionManager
         frm.Show()
         Me.Close()
     End Sub
+
+
 End Class

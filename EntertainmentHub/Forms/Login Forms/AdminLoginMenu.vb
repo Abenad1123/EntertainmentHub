@@ -64,6 +64,7 @@ Public Class AdminLoginMenu
                 If Not String.IsNullOrEmpty(storedHash) AndAlso BCrypt.Net.BCrypt.Verify(password, storedHash) Then
 
                     AccountData.AdminUsername = username
+                    AccountData.AdminId = employeeId
 
                     MessageBox.Show("Employee login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
