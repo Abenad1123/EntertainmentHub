@@ -7,6 +7,11 @@ Public Class AdminDashboard
     ' =========================
     Private Sub MainMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.Background
+
+        lblTitle.ForeColor = Color.FromArgb(255, 255, 255)
+        lblTitle.Font = AppFonts.VenusRising(22)
+
+        Label1.ForeColor = Color.FromArgb(255, 255, 255)
     End Sub
 
     Private Sub OpenUserManager(sender As Object, e As EventArgs) Handles btnOpenManageUser.Click
