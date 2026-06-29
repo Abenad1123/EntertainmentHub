@@ -25,6 +25,8 @@ Partial Class UpdateEmployee
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateEmployee))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.dtpBirthDate = New System.Windows.Forms.DateTimePicker()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -45,8 +47,6 @@ Partial Class UpdateEmployee
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.dtpBirthDate = New System.Windows.Forms.DateTimePicker()
-        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -91,6 +91,22 @@ Partial Class UpdateEmployee
         Me.TableLayoutPanel1.SetRowSpan(Me.Panel1, 3)
         Me.Panel1.Size = New System.Drawing.Size(574, 712)
         Me.Panel1.TabIndex = 20
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(76, 366)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(97, 25)
+        Me.Label8.TabIndex = 23
+        Me.Label8.Text = "Birth Date"
+        '
+        'dtpBirthDate
+        '
+        Me.dtpBirthDate.Location = New System.Drawing.Point(183, 366)
+        Me.dtpBirthDate.Name = "dtpBirthDate"
+        Me.dtpBirthDate.Size = New System.Drawing.Size(322, 30)
+        Me.dtpBirthDate.TabIndex = 22
         '
         'Label7
         '
@@ -291,22 +307,6 @@ Partial Class UpdateEmployee
         Me.DataGridView2.Size = New System.Drawing.Size(574, 348)
         Me.DataGridView2.TabIndex = 21
         '
-        'dtpBirthDate
-        '
-        Me.dtpBirthDate.Location = New System.Drawing.Point(183, 366)
-        Me.dtpBirthDate.Name = "dtpBirthDate"
-        Me.dtpBirthDate.Size = New System.Drawing.Size(322, 30)
-        Me.dtpBirthDate.TabIndex = 22
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(76, 366)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(97, 25)
-        Me.Label8.TabIndex = 23
-        Me.Label8.Text = "Birth Date"
-        '
         'UpdateEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -318,7 +318,7 @@ Partial Class UpdateEmployee
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "UpdateEmployee"
-        Me.Text = "UpdateEmployee"
+        Me.Text = "Admin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)

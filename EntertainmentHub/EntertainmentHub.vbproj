@@ -161,10 +161,22 @@
     <Compile Include="Forms\Admin Forms\SystemSetting.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\RegisterUser.Designer.vb">
+      <DependentUpon>RegisterUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\RegisterUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.Designer.vb">
       <DependentUpon>TransactionManager.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\UpdateUser.Designer.vb">
+      <DependentUpon>UpdateUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\UserManagement Forms\UpdateUser.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\UserManagement Forms\UserManagement.Designer.vb">
@@ -243,8 +255,14 @@
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
       <DependentUpon>SystemSetting.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\RegisterUser.resx">
+      <DependentUpon>RegisterUser.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\TransactionManager.resx">
       <DependentUpon>TransactionManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\UpdateUser.resx">
+      <DependentUpon>UpdateUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\UserManagement Forms\UserManagement.resx">
       <DependentUpon>UserManagement.vb</DependentUpon>
