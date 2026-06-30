@@ -24,12 +24,12 @@ Module DatabaseInitializerModule
 #Region "Membership Levels"
     Private Sub SeedMembershipLevels(conn As MySqlConnection)
 
-        SeedMembershipLevel(conn, "Basic", 100D)
-        SeedMembershipLevel(conn, "Premium", 250D)
-        SeedMembershipLevel(conn, "VIP", 500D)
+        SeedMembershipLevel(conn, "Basic", 1000D, 5)
+        SeedMembershipLevel(conn, "Premium", 2500D, 10)
+        SeedMembershipLevel(conn, "VIP", 5000D, 15)
 
     End Sub
-    Private Sub SeedMembershipLevel(conn As MySqlConnection, MembershipLevelName As String, Price As Decimal)
+    Private Sub SeedMembershipLevel(conn As MySqlConnection, MembershipLevelName As String, Price As Decimal, Benefits As Integer)
 
 
         Dim checkSql As String =
@@ -48,15 +48,15 @@ Module DatabaseInitializerModule
 
                 Dim insertSql As String =
                 "INSERT INTO MembershipLevel
-                 (MembershipLevelName, Price)
+                 (MembershipLevelName, Price,Benefits)
                  VALUES
-                 (@Name, @Price)"
+                 (@Name, @Price, @Benefits)"
 
                 Using insertCmd As New MySqlCommand(insertSql, conn)
 
                     insertCmd.Parameters.AddWithValue("@Name", MembershipLevelName)
                     insertCmd.Parameters.AddWithValue("@Price", Price)
-
+                    insertCmd.Parameters.AddWithValue("@Benefits", Benefits)
                     insertCmd.ExecuteNonQuery()
 
                 End Using
