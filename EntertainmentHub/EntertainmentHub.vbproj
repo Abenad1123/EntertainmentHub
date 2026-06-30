@@ -149,12 +149,6 @@
     <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\InventoryManagement.Designer.vb">
-      <DependentUpon>InventoryManagement.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\InventoryManagement.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductDashboard.Designer.vb">
       <DependentUpon>ProductDashboard.vb</DependentUpon>
     </Compile>
@@ -266,9 +260,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.resx">
       <DependentUpon>EntertainmentConfiguration.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\InventoryManagement.resx">
-      <DependentUpon>InventoryManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductDashboard.resx">
       <DependentUpon>ProductDashboard.vb</DependentUpon>

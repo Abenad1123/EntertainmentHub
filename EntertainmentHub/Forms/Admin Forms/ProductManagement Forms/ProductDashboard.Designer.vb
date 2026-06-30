@@ -29,9 +29,14 @@ Partial Class ProductDashboard
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -44,6 +49,7 @@ Partial Class ProductDashboard
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Button1, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 2, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
@@ -72,7 +78,7 @@ Partial Class ProductDashboard
         '
         Me.Button3.BackColor = System.Drawing.Color.White
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(191, 201)
+        Me.Button3.Location = New System.Drawing.Point(191, 76)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(234, 42)
         Me.Button3.TabIndex = 2
@@ -83,7 +89,7 @@ Partial Class ProductDashboard
         '
         Me.Button2.BackColor = System.Drawing.Color.White
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(191, 76)
+        Me.Button2.Location = New System.Drawing.Point(191, 141)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(234, 42)
         Me.Button2.TabIndex = 1
@@ -113,6 +119,36 @@ Partial Class ProductDashboard
         Me.Button1.Text = "Go back"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Button4)
+        Me.Panel2.Controls.Add(Me.NumericUpDown1)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(600, 351)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(590, 204)
+        Me.Panel2.TabIndex = 3
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.White
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(307, 37)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(175, 30)
+        Me.Button4.TabIndex = 4
+        Me.Button4.Text = "Update stock"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(88, 37)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(213, 30)
+        Me.NumericUpDown1.TabIndex = 3
+        Me.NumericUpDown1.ThousandsSeparator = True
+        '
         'ProductDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -129,6 +165,8 @@ Partial Class ProductDashboard
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -139,4 +177,7 @@ Partial Class ProductDashboard
     Friend WithEvents Button2 As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Button1 As Button
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Button4 As Button
 End Class
