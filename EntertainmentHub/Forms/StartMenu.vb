@@ -52,14 +52,7 @@
         Me.Close()
     End Sub
 
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim frm As New MainMenu()
-        frm.Show()
-        Me.Close()
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub lblTime_Click(sender As Object, e As EventArgs) Handles lblTime.Click
         Dim frm As New AdminDashboard()
         frm.Show()
         Me.Close()

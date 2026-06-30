@@ -149,22 +149,16 @@
     <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductDashboard.Designer.vb">
-      <DependentUpon>ProductDashboard.vb</DependentUpon>
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductManagement.Designer.vb">
+      <DependentUpon>ProductManagement.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductDashboard.vb">
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductManagement.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.Designer.vb">
       <DependentUpon>ProductPOS.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.Designer.vb">
-      <DependentUpon>UpdateProduct.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\SystemSetting.Designer.vb">
@@ -228,6 +222,12 @@
     <Compile Include="Forms\User Forms\CountdownTimer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\User Forms\UserMenu.Designer.vb">
+      <DependentUpon>UserMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User Forms\UserMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -261,14 +261,11 @@
     <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.resx">
       <DependentUpon>EntertainmentConfiguration.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductDashboard.resx">
-      <DependentUpon>ProductDashboard.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductManagement.resx">
+      <DependentUpon>ProductManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.resx">
       <DependentUpon>ProductPOS.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.resx">
-      <DependentUpon>UpdateProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
       <DependentUpon>SystemSetting.vb</DependentUpon>
@@ -299,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\User Forms\CountdownTimer.resx">
       <DependentUpon>CountdownTimer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User Forms\UserMenu.resx">
+      <DependentUpon>UserMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

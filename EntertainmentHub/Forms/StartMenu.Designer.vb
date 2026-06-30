@@ -34,8 +34,6 @@ Partial Class StartMenu
         Me.lblTime = New System.Windows.Forms.Label()
         Me.btnUserLogin = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -55,8 +53,6 @@ Partial Class StartMenu
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Button3, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Button4, 2, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
@@ -165,24 +161,6 @@ Partial Class StartMenu
         Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
         '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(847, 186)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "Main Menu"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(847, 3)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 5
-        Me.Button4.Text = "Admin"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
         'Timer1
         '
         Me.Timer1.Enabled = True
@@ -224,9 +202,7 @@ Partial Class StartMenu
     Friend WithEvents lblTime As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents lblnotice As Label
-    Friend WithEvents Button3 As Button
     Friend WithEvents lblTitle As Label
-    Friend WithEvents Button4 As Button
     Friend WithEvents btnUserLogin As PictureBox
     Friend WithEvents btnAdminLogin As PictureBox
 End Class

@@ -11,6 +11,13 @@ Public Class AdminDashboard
         Label1.ForeColor = Color.FromArgb(255, 255, 255)
         Label2.ForeColor = Color.FromArgb(255, 255, 255)
 
+        lblStatus.ForeColor = Color.FromArgb(255, 255, 255)
+        lblStatus.Font = AppFonts.Hwygoth(16)
+        lblEntertainment.ForeColor = Color.FromArgb(255, 255, 255)
+        lblEntertainment.Font = AppFonts.Hwygoth(16)
+
+        Button4.Font = AppFonts.Hwygoth(16)
+
         txtboxSearchBox.Font = AppFonts.Hwygoth(16)
 
         btnOpenManageEntertainment.Font = AppFonts.Hwygoth(16)
@@ -43,7 +50,7 @@ Public Class AdminDashboard
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnOpenManageProduct.Click
-        Dim frm As New ProductDashboard()
+        Dim frm As New ProductManagement()
         frm.Show()
         Me.Close()
     End Sub
