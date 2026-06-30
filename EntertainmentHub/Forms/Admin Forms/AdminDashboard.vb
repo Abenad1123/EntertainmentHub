@@ -12,6 +12,9 @@ Public Class AdminDashboard
         lblTitle.Font = AppFonts.VenusRising(22)
 
         Label1.ForeColor = Color.FromArgb(255, 255, 255)
+
+        Me.BackgroundImage = My.Resources.background3
+        Me.BackgroundImageLayout = ImageLayout.Stretch
     End Sub
 
     Private Sub OpenUserManager(sender As Object, e As EventArgs) Handles btnOpenManageUser.Click

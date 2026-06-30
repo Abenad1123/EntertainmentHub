@@ -167,6 +167,12 @@
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.Designer.vb">
+      <DependentUpon>UpdateProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\SystemSetting.Designer.vb">
       <DependentUpon>SystemSetting.vb</DependentUpon>
     </Compile>
@@ -270,6 +276,9 @@
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.resx">
       <DependentUpon>ProductPOS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\UpdateProduct.resx">
+      <DependentUpon>UpdateProduct.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
       <DependentUpon>SystemSetting.vb</DependentUpon>
     </EmbeddedResource>
@@ -338,6 +347,7 @@
     <None Include="Assets\Images\admin_login_btn_state_2.png" />
     <Content Include="Assets\Images\background1.png" />
     <Content Include="Assets\Images\background2.png" />
+    <None Include="Assets\Images\background3.jpg" />
     <Content Include="Assets\Images\login_panel.png" />
     <Content Include="Assets\Images\logo2048.png" />
     <Content Include="Assets\Images\logo256.ico" />

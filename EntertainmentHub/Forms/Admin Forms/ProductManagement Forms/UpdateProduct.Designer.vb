@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ProductDashboard
+Partial Class UpdateProduct
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,14 +22,11 @@ Partial Class ProductDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProductDashboard))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateProduct))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,36 +49,16 @@ Partial Class ProductDashboard
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
-        Me.TableLayoutPanel1.TabIndex = 1
+        Me.TableLayoutPanel1.TabIndex = 2
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(600, 10)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(590, 341)
         Me.Panel1.TabIndex = 0
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(191, 76)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(234, 42)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Delete Product"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(191, 201)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(234, 42)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "Edit Product"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -91,25 +68,25 @@ Partial Class ProductDashboard
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
+        Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 2)
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(590, 341)
+        Me.DataGridView1.Size = New System.Drawing.Size(590, 682)
         Me.DataGridView1.TabIndex = 1
         '
-        'ProductDashboard
+        'UpdateProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 703)
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MinimizeBox = False
-        Me.Name = "ProductDashboard"
-        Me.Text = "Admin"
+        Me.MaximizeBox = False
+        Me.Name = "UpdateProduct"
+        Me.Text = "UpdateProduct"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -117,7 +94,5 @@ Partial Class ProductDashboard
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
     Friend WithEvents DataGridView1 As DataGridView
 End Class
