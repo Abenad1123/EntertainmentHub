@@ -339,6 +339,11 @@
     <Content Include="Assets\Images\background1.png" />
     <Content Include="Assets\Images\background2.png" />
     <None Include="Assets\Images\background3.jpg" />
+    <Content Include="Assets\Images\background4.jpg" />
+    <Content Include="Assets\Images\entertainment_management_background.png" />
+    <Content Include="Assets\Images\go_back_state_1 - Copy.png" />
+    <Content Include="Assets\Images\go_back_state_1.png" />
+    <Content Include="Assets\Images\go_back_state_2.png" />
     <Content Include="Assets\Images\login_panel.png" />
     <Content Include="Assets\Images\logo2048.png" />
     <Content Include="Assets\Images\logo256.ico" />

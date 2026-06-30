@@ -25,6 +25,11 @@ Partial Class ProductManagement
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProductManagement))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.btnUpdateProd = New System.Windows.Forms.Button()
+        Me.nudStockControl = New System.Windows.Forms.NumericUpDown()
+        Me.btnDeleteProd = New System.Windows.Forms.Button()
         Me.txtboxName = New System.Windows.Forms.TextBox()
         Me.cmbboxCategory = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -35,19 +40,15 @@ Partial Class ProductManagement
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.nudStockControl = New System.Windows.Forms.NumericUpDown()
-        Me.btnDeleteProd = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnUpdateProd = New System.Windows.Forms.Button()
-        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -57,9 +58,9 @@ Partial Class ProductManagement
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Button1, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 2, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
@@ -96,6 +97,61 @@ Partial Class ProductManagement
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(731, 403)
         Me.Panel1.TabIndex = 0
+        '
+        'lblTitle
+        '
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTitle.Location = New System.Drawing.Point(191, 18)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(404, 36)
+        Me.lblTitle.TabIndex = 12
+        Me.lblTitle.Text = "PRODUCT MANAGEMENT"
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnUpdate.FlatAppearance.BorderSize = 0
+        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdate.Location = New System.Drawing.Point(460, 312)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(247, 39)
+        Me.btnUpdate.TabIndex = 5
+        Me.btnUpdate.Text = "Update stock"
+        Me.btnUpdate.UseVisualStyleBackColor = False
+        '
+        'btnUpdateProd
+        '
+        Me.btnUpdateProd.BackColor = System.Drawing.Color.DodgerBlue
+        Me.btnUpdateProd.FlatAppearance.BorderSize = 0
+        Me.btnUpdateProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdateProd.Location = New System.Drawing.Point(460, 186)
+        Me.btnUpdateProd.Name = "btnUpdateProd"
+        Me.btnUpdateProd.Size = New System.Drawing.Size(247, 39)
+        Me.btnUpdateProd.TabIndex = 11
+        Me.btnUpdateProd.Text = "Update Product"
+        Me.btnUpdateProd.UseVisualStyleBackColor = False
+        '
+        'nudStockControl
+        '
+        Me.nudStockControl.Location = New System.Drawing.Point(166, 312)
+        Me.nudStockControl.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudStockControl.Name = "nudStockControl"
+        Me.nudStockControl.Size = New System.Drawing.Size(247, 30)
+        Me.nudStockControl.TabIndex = 3
+        Me.nudStockControl.ThousandsSeparator = True
+        '
+        'btnDeleteProd
+        '
+        Me.btnDeleteProd.BackColor = System.Drawing.Color.DarkRed
+        Me.btnDeleteProd.FlatAppearance.BorderSize = 0
+        Me.btnDeleteProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeleteProd.Location = New System.Drawing.Point(460, 141)
+        Me.btnDeleteProd.Name = "btnDeleteProd"
+        Me.btnDeleteProd.Size = New System.Drawing.Size(247, 39)
+        Me.btnDeleteProd.TabIndex = 1
+        Me.btnDeleteProd.Text = "Delete Product"
+        Me.btnDeleteProd.UseVisualStyleBackColor = False
         '
         'txtboxName
         '
@@ -195,17 +251,6 @@ Partial Class ProductManagement
         Me.DataGridView1.Size = New System.Drawing.Size(731, 645)
         Me.DataGridView1.TabIndex = 1
         '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(13, 658)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(158, 43)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Go back"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'Panel2
         '
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -215,60 +260,15 @@ Partial Class ProductManagement
         Me.Panel2.Size = New System.Drawing.Size(731, 242)
         Me.Panel2.TabIndex = 3
         '
-        'nudStockControl
+        'btnGoBack
         '
-        Me.nudStockControl.Location = New System.Drawing.Point(166, 312)
-        Me.nudStockControl.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.nudStockControl.Name = "nudStockControl"
-        Me.nudStockControl.Size = New System.Drawing.Size(247, 30)
-        Me.nudStockControl.TabIndex = 3
-        Me.nudStockControl.ThousandsSeparator = True
-        '
-        'btnDeleteProd
-        '
-        Me.btnDeleteProd.BackColor = System.Drawing.Color.DarkRed
-        Me.btnDeleteProd.FlatAppearance.BorderSize = 0
-        Me.btnDeleteProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeleteProd.Location = New System.Drawing.Point(460, 141)
-        Me.btnDeleteProd.Name = "btnDeleteProd"
-        Me.btnDeleteProd.Size = New System.Drawing.Size(247, 39)
-        Me.btnDeleteProd.TabIndex = 1
-        Me.btnDeleteProd.Text = "Delete Product"
-        Me.btnDeleteProd.UseVisualStyleBackColor = False
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnUpdate.FlatAppearance.BorderSize = 0
-        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.Location = New System.Drawing.Point(460, 312)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(247, 39)
-        Me.btnUpdate.TabIndex = 5
-        Me.btnUpdate.Text = "Update stock"
-        Me.btnUpdate.UseVisualStyleBackColor = False
-        '
-        'btnUpdateProd
-        '
-        Me.btnUpdateProd.BackColor = System.Drawing.Color.DodgerBlue
-        Me.btnUpdateProd.FlatAppearance.BorderSize = 0
-        Me.btnUpdateProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdateProd.Location = New System.Drawing.Point(460, 186)
-        Me.btnUpdateProd.Name = "btnUpdateProd"
-        Me.btnUpdateProd.Size = New System.Drawing.Size(247, 39)
-        Me.btnUpdateProd.TabIndex = 11
-        Me.btnUpdateProd.Text = "Update Product"
-        Me.btnUpdateProd.UseVisualStyleBackColor = False
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.Location = New System.Drawing.Point(191, 18)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(404, 36)
-        Me.lblTitle.TabIndex = 12
-        Me.lblTitle.Text = "PRODUCT MANAGEMENT"
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(13, 658)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 5
+        Me.btnGoBack.TabStop = False
         '
         'ProductManagement
         '
@@ -286,10 +286,11 @@ Partial Class ProductManagement
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -298,7 +299,6 @@ Partial Class ProductManagement
     Friend WithEvents Panel1 As Panel
     Friend WithEvents btnDeleteProd As Button
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button1 As Button
     Friend WithEvents nudStockControl As NumericUpDown
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label2 As Label
@@ -313,4 +313,5 @@ Partial Class ProductManagement
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnUpdateProd As Button
     Friend WithEvents lblTitle As Label
+    Friend WithEvents btnGoBack As PictureBox
 End Class
