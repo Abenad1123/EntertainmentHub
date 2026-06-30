@@ -26,24 +26,26 @@ Partial Class AdminDashboard
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.btnOpenManageUser = New System.Windows.Forms.Button()
         Me.btnOpenManageEmployee = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnOpenManageEntertainment = New System.Windows.Forms.Button()
+        Me.btnOpenManageProduct = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lblEntertainment = New System.Windows.Forms.Label()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnOpenProductPOS = New System.Windows.Forms.Button()
+        Me.txtboxSearchBox = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -81,27 +83,27 @@ Partial Class AdminDashboard
         Me.btnOpenManageEmployee.Text = "EMPLOYEE"
         Me.btnOpenManageEmployee.UseVisualStyleBackColor = False
         '
-        'Button1
+        'btnOpenManageEntertainment
         '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(12, 110)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(240, 39)
-        Me.Button1.TabIndex = 24
-        Me.Button1.Text = "ENTERTAINMENT"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnOpenManageEntertainment.BackColor = System.Drawing.Color.White
+        Me.btnOpenManageEntertainment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOpenManageEntertainment.Location = New System.Drawing.Point(12, 110)
+        Me.btnOpenManageEntertainment.Name = "btnOpenManageEntertainment"
+        Me.btnOpenManageEntertainment.Size = New System.Drawing.Size(240, 39)
+        Me.btnOpenManageEntertainment.TabIndex = 24
+        Me.btnOpenManageEntertainment.Text = "ENTERTAINMENT"
+        Me.btnOpenManageEntertainment.UseVisualStyleBackColor = False
         '
-        'Button2
+        'btnOpenManageProduct
         '
-        Me.Button2.BackColor = System.Drawing.Color.White
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(12, 155)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(240, 39)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "PRODUCT"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btnOpenManageProduct.BackColor = System.Drawing.Color.White
+        Me.btnOpenManageProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOpenManageProduct.Location = New System.Drawing.Point(12, 155)
+        Me.btnOpenManageProduct.Name = "btnOpenManageProduct"
+        Me.btnOpenManageProduct.Size = New System.Drawing.Size(240, 39)
+        Me.btnOpenManageProduct.TabIndex = 25
+        Me.btnOpenManageProduct.Text = "PRODUCT"
+        Me.btnOpenManageProduct.UseVisualStyleBackColor = False
         '
         'TableLayoutPanel1
         '
@@ -144,18 +146,102 @@ Partial Class AdminDashboard
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.lblEntertainment)
         Me.Panel1.Controls.Add(Me.lblStatus)
         Me.Panel1.Controls.Add(Me.ComboBox2)
         Me.Panel1.Controls.Add(Me.ComboBox1)
         Me.Panel1.Controls.Add(Me.Button4)
-        Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(600, 85)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(570, 304)
         Me.Panel1.TabIndex = 29
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.txtboxSearchBox)
+        Me.Panel3.Location = New System.Drawing.Point(19, 21)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Padding = New System.Windows.Forms.Padding(0, 0, 0, 3)
+        Me.Panel3.Size = New System.Drawing.Size(381, 33)
+        Me.Panel3.TabIndex = 6
+        '
+        'lblEntertainment
+        '
+        Me.lblEntertainment.AutoSize = True
+        Me.lblEntertainment.Location = New System.Drawing.Point(14, 119)
+        Me.lblEntertainment.Name = "lblEntertainment"
+        Me.lblEntertainment.Size = New System.Drawing.Size(132, 25)
+        Me.lblEntertainment.TabIndex = 5
+        Me.lblEntertainment.Text = "Entertainment"
+        '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Location = New System.Drawing.Point(78, 76)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(68, 25)
+        Me.lblStatus.TabIndex = 4
+        Me.lblStatus.Text = "Status"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(152, 116)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(119, 33)
+        Me.ComboBox2.TabIndex = 3
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(152, 73)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 33)
+        Me.ComboBox1.TabIndex = 2
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.ForeColor = System.Drawing.Color.Black
+        Me.Button4.Location = New System.Drawing.Point(416, 21)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(101, 34)
+        Me.Button4.TabIndex = 1
+        Me.Button4.Text = "Search"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.btnOpenManageEntertainment)
+        Me.Panel2.Controls.Add(Me.btnOpenProductPOS)
+        Me.Panel2.Controls.Add(Me.btnOpenManageEmployee)
+        Me.Panel2.Controls.Add(Me.btnOpenManageUser)
+        Me.Panel2.Controls.Add(Me.btnOpenManageProduct)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(600, 389)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(570, 304)
+        Me.Panel2.TabIndex = 30
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.Location = New System.Drawing.Point(399, 69)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 29)
+        Me.Label2.TabIndex = 27
+        Me.Label2.Text = "Menu"
         '
         'Label1
         '
@@ -167,95 +253,29 @@ Partial Class AdminDashboard
         Me.Label1.TabIndex = 26
         Me.Label1.Text = "Management Tools"
         '
-        'Panel2
+        'btnOpenProductPOS
         '
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.Button3)
-        Me.Panel2.Controls.Add(Me.btnOpenManageEmployee)
-        Me.Panel2.Controls.Add(Me.btnOpenManageUser)
-        Me.Panel2.Controls.Add(Me.Button2)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(600, 389)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(570, 304)
-        Me.Panel2.TabIndex = 30
+        Me.btnOpenProductPOS.BackColor = System.Drawing.Color.White
+        Me.btnOpenProductPOS.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnOpenProductPOS.Location = New System.Drawing.Point(316, 110)
+        Me.btnOpenProductPOS.Name = "btnOpenProductPOS"
+        Me.btnOpenProductPOS.Size = New System.Drawing.Size(240, 39)
+        Me.btnOpenProductPOS.TabIndex = 26
+        Me.btnOpenProductPOS.Text = "Product POS"
+        Me.btnOpenProductPOS.UseVisualStyleBackColor = False
         '
-        'Button3
+        'txtboxSearchBox
         '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(316, 110)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(240, 39)
-        Me.Button3.TabIndex = 26
-        Me.Button3.Text = "Product POS"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Location = New System.Drawing.Point(29, 24)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(396, 30)
-        Me.TextBox1.TabIndex = 0
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.White
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(431, 24)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(101, 30)
-        Me.Button4.TabIndex = 1
-        Me.Button4.Text = "Search"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(152, 73)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 33)
-        Me.ComboBox1.TabIndex = 2
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(152, 116)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(119, 33)
-        Me.ComboBox2.TabIndex = 3
-        '
-        'lblStatus
-        '
-        Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(78, 76)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(68, 25)
-        Me.lblStatus.TabIndex = 4
-        Me.lblStatus.Text = "Status"
-        '
-        'lblEntertainment
-        '
-        Me.lblEntertainment.AutoSize = True
-        Me.lblEntertainment.Location = New System.Drawing.Point(14, 119)
-        Me.lblEntertainment.Name = "lblEntertainment"
-        Me.lblEntertainment.Size = New System.Drawing.Size(132, 25)
-        Me.lblEntertainment.TabIndex = 5
-        Me.lblEntertainment.Text = "Entertainment"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(399, 69)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(80, 29)
-        Me.Label2.TabIndex = 27
-        Me.Label2.Text = "Menu"
+        Me.txtboxSearchBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.txtboxSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxSearchBox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtboxSearchBox.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        Me.txtboxSearchBox.Location = New System.Drawing.Point(0, 0)
+        Me.txtboxSearchBox.Margin = New System.Windows.Forms.Padding(0)
+        Me.txtboxSearchBox.Multiline = True
+        Me.txtboxSearchBox.Name = "txtboxSearchBox"
+        Me.txtboxSearchBox.Size = New System.Drawing.Size(381, 30)
+        Me.txtboxSearchBox.TabIndex = 0
         '
         'AdminDashboard
         '
@@ -275,6 +295,8 @@ Partial Class AdminDashboard
         Me.TableLayoutPanel1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
@@ -283,19 +305,20 @@ Partial Class AdminDashboard
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnOpenManageUser As Button
     Friend WithEvents btnOpenManageEmployee As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnOpenManageEntertainment As Button
+    Friend WithEvents btnOpenManageProduct As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents lblTitle As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button3 As Button
+    Friend WithEvents btnOpenProductPOS As Button
     Friend WithEvents lblEntertainment As Label
     Friend WithEvents lblStatus As Label
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Button4 As Button
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents txtboxSearchBox As TextBox
 End Class

@@ -1,5 +1,7 @@
 ﻿Public Class ProductDashboard
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim frm As New AdminDashboard()
+        frm.Show()
+        Me.Close()
     End Sub
 End Class

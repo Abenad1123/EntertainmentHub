@@ -26,6 +26,7 @@ Partial Class UpdateProduct
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,14 +40,16 @@ Partial Class UpdateProduct
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Button1, 1, 3)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 4
+        Me.TableLayoutPanel1.RowCount = 5
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.45454!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.45454!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
         Me.TableLayoutPanel1.TabIndex = 2
@@ -57,7 +60,7 @@ Partial Class UpdateProduct
         Me.Panel1.Location = New System.Drawing.Point(600, 10)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(590, 341)
+        Me.Panel1.Size = New System.Drawing.Size(590, 310)
         Me.Panel1.TabIndex = 0
         '
         'DataGridView1
@@ -70,8 +73,19 @@ Partial Class UpdateProduct
         Me.DataGridView1.RowHeadersWidth = 51
         Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 2)
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(590, 682)
+        Me.DataGridView1.Size = New System.Drawing.Size(590, 620)
         Me.DataGridView1.TabIndex = 1
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(13, 633)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(187, 37)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Go back"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'UpdateProduct
         '
@@ -84,7 +98,7 @@ Partial Class UpdateProduct
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaximizeBox = False
         Me.Name = "UpdateProduct"
-        Me.Text = "UpdateProduct"
+        Me.Text = "Admin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -95,4 +109,5 @@ Partial Class UpdateProduct
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Button1 As Button
 End Class
