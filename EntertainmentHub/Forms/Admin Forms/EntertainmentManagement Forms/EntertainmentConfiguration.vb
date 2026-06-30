@@ -20,7 +20,7 @@ Public Class EntertainmentConfiguration
         loadInMaintenance()
         LoadInUse()
 
-        ' Clear selection variables after refresh to avoid accidental toggles
+
         selectedEntertainmentName = ""
         status = ""
     End Sub
@@ -208,23 +208,20 @@ Public Class EntertainmentConfiguration
     Private Sub Panel_ToRent_Click(sender As Object, e As EventArgs) Handles Panel_ToRent.Click
         Dim targetUsername As String = TextBox1.Text.Trim()
 
-        ' 1. Validate input
+
         If String.IsNullOrWhiteSpace(targetUsername) Then
             MessageBox.Show("Please type the customer's Username in TextBox1 first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' 2. Ensure an AVAILABLE device is selected from DataGridAvailable
         If String.IsNullOrWhiteSpace(selectedEntertainmentName) OrElse status <> "Available" Then
             MessageBox.Show("Please select an available device from the 'Available' grid first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' 3. Confirm Rental
         Dim confirm As DialogResult = MessageBox.Show($"Rent '{selectedEntertainmentName}' to user '{targetUsername}'?", "Confirm Rental", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If confirm <> DialogResult.Yes Then Return
 
-        ' 4. Process the rental insertion
         StartRentSession(targetUsername, selectedEntertainmentName)
     End Sub
 
@@ -235,7 +232,6 @@ Public Class EntertainmentConfiguration
 
                 Using transaction As MySqlTransaction = conn.BeginTransaction()
 
-                    ' STEP 1: Get the AccountID from the username
                     Dim getAccountSql As String = "SELECT AccountID FROM AccountLogin WHERE UserName = @user LIMIT 1;"
                     Dim accountId As Integer = 0
 
@@ -251,7 +247,7 @@ Public Class EntertainmentConfiguration
                         End If
                     End Using
 
-                    ' STEP 2: Get the EntertainmentID and the HourlyRate from the selected device name
+
                     Dim getDeviceSql As String = "
                     SELECT ent.EntertainmentID, entt.HourlyRate 
                     FROM Entertainment ent
@@ -276,7 +272,6 @@ Public Class EntertainmentConfiguration
                         End Using
                     End Using
 
-                    ' STEP 3: Insert new active record into EntertainmentSession
                     Dim insertSessionSql As String = "
                     INSERT INTO EntertainmentSession (AccountID, EntertainmentID, LoginTime, Status, RateApplied) 
                     VALUES (@accId, @devId, NOW(), 'Active', @rate);"
@@ -288,14 +283,13 @@ Public Class EntertainmentConfiguration
                         cmdInsert.ExecuteNonQuery()
                     End Using
 
-                    ' STEP 4: Change the device status in the Entertainment table to 'InUse'
                     Dim updateDeviceSql As String = "UPDATE Entertainment SET Status = 'InUse' WHERE EntertainmentID = @devId;"
                     Using cmdUpdate As New MySqlCommand(updateDeviceSql, conn, transaction)
                         cmdUpdate.Parameters.AddWithValue("@devId", deviceId)
                         cmdUpdate.ExecuteNonQuery()
                     End Using
 
-                    ' Commit transaction completely
+
                     transaction.Commit()
 
                     MessageBox.Show($"Device '{deviceName}' successfully rented to '{userName}'!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -309,14 +303,13 @@ Public Class EntertainmentConfiguration
             End Try
         End Using
 
-        ' Automatically refresh the UI layouts to move the device into the "In Use" grid
+
         RefreshGrids()
     End Sub
-    ' UPDATED: Added safety check ensuring a grid item from DataGridInUse is chosen
+
     Private Sub Panel_ManualOff_Click(sender As Object, e As EventArgs) Handles Panel_ManualOff.Click
         Dim targetUsername As String = TextBox1.Text.Trim()
 
-        ' 1. Basic Validation
         If String.IsNullOrWhiteSpace(targetUsername) Then
             MessageBox.Show("Please enter a username or select an active device row.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -327,25 +320,23 @@ Public Class EntertainmentConfiguration
             Return
         End If
 
-        ' 2. Confirm Action
         Dim confirm As DialogResult = MessageBox.Show($"Are you sure you want to end session for device '{selectedEntertainmentName}' assigned to user '{targetUsername}'?", "Confirm Manual Off", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If confirm <> DialogResult.Yes Then Return
 
-        ' 3. Process the complete rent termination using BOTH device name and username
+
         ProcessRentTermination(targetUsername, selectedEntertainmentName)
     End Sub
 
-    ' --- Central Rent Processing Engine ---
-    ' UPDATED: Now receives and queries via deviceName to perfectly link up with grid click selection
+
     Private Sub ProcessRentTermination(targetUsername As String, deviceName As String)
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
 
-                ' Start a Database Transaction to ensure all or nothing changes apply
+
                 Using transaction As MySqlTransaction = conn.BeginTransaction()
 
-                    ' 1. Find the active EntertainmentSessionID for BOTH this specific Username AND Device Name
+
                     Dim findSessionSql As String = "
                         SELECT es.EntertainmentSessionID 
                         FROM EntertainmentSession es 
@@ -371,7 +362,7 @@ Public Class EntertainmentConfiguration
                         End If
                     End Using
 
-                    ' 2. Close out the active session by setting LogoutTime to current timestamp
+
                     Dim updateSessionSql As String = "
                         UPDATE EntertainmentSession 
                         SET LogoutTime = NOW(), Status = 'Completed' 
@@ -382,7 +373,6 @@ Public Class EntertainmentConfiguration
                         cmdUpdate.ExecuteNonQuery()
                     End Using
 
-                    ' NEW STEP: Update the Entertainment device status itself back to 'Available' 
                     Dim updateDeviceSql As String = "
                         UPDATE Entertainment 
                         SET Status = 'Available' 
@@ -393,7 +383,7 @@ Public Class EntertainmentConfiguration
                         cmdDevice.ExecuteNonQuery()
                     End Using
 
-                    ' 3. Retrieve the AccountID and the calculated cost using TIMESTAMPDIFF
+
                     Dim getCostSql As String = "
                         SELECT AccountID, 
                                (TIMESTAMPDIFF(SECOND, LoginTime, LogoutTime) / 3600.0) * RateApplied AS CalculatedCost 
@@ -413,13 +403,12 @@ Public Class EntertainmentConfiguration
                         End Using
                     End Using
 
-                    ' Enforce floor valuation (prevent negative costs due to rapid logouts)
                     If calculatedCost < 0 Then calculatedCost = 0
 
-                    ' 4. Pull current global Admin details
+
                     Dim employeeId As Integer = If(String.IsNullOrEmpty(AccountData.AdminUsername), 0, AccountData.AdminId)
 
-                    ' 5. Insert the negative Cost amount into WalletTransactions as a 'Payment'
+
                     Dim insertTransactionSql As String = "
                         INSERT INTO WalletTransactions (EntertainmentSessionID, AccountID, Amount, TransactionType, EmployeeID, TransactionDate) 
                         VALUES (@SessionID, @accId, @amount, 'Payment', @employeeid, NOW());"
@@ -427,21 +416,19 @@ Public Class EntertainmentConfiguration
                     Using cmdInsertTx As New MySqlCommand(insertTransactionSql, conn, transaction)
                         cmdInsertTx.Parameters.AddWithValue("@SessionID", sessionID)
                         cmdInsertTx.Parameters.AddWithValue("@accId", accountId)
-                        cmdInsertTx.Parameters.AddWithValue("@amount", -calculatedCost) ' Saved negatively to deduct balance
+                        cmdInsertTx.Parameters.AddWithValue("@amount", -calculatedCost)
                         cmdInsertTx.Parameters.AddWithValue("@employeeid", employeeId)
                         cmdInsertTx.ExecuteNonQuery()
                     End Using
 
-                    ' Commit all changes cleanly
+
                     transaction.Commit()
 
-                    ' 6. Display Success Alert matching your structural logging rules
+
                     MessageBox.Show($"Payment of ${calculatedCost:F2} for session #{sessionID} was successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    ' 7. Append to text log component
                     LogAction("Payment", -calculatedCost, targetUsername)
 
-                    ' 8. UI Reset
                     TextBox1.Clear()
 
                 End Using
@@ -453,11 +440,10 @@ Public Class EntertainmentConfiguration
             End Try
         End Using
 
-        ' Refresh all UI layout grids automatically
+
         RefreshGrids()
     End Sub
 
-    ' --- Action Logger Integration ---
     Private Sub LogAction(transactionType As String, amount As Decimal, targetUser As String)
         Dim adminName As String = If(String.IsNullOrEmpty(AccountData.AdminUsername), "System", AccountData.AdminUsername)
         Dim logMessage As String = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Admin '{adminName}' processed a {transactionType} of ${amount:F2} for user '{targetUser}'."

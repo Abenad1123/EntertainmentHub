@@ -11,20 +11,20 @@ Public Class UpdateUser
     Private currentAccountID As Integer = 0
 
     Private Sub CustomerAccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' 1. Populate the Filter Dropdowns (Feature 3)
+
         LoadFilterMembership()
         LoadFilterStatus()
 
-        ' 2. Populate the Edit Dropdowns (Feature 2)
+
         LoadEditMembership()
         LoadEditStatus()
 
-        ' 3. Initialize grid arrays
+
         RefreshGrids()
         txtboxPassword.PasswordChar = "*"c
     End Sub
 
-    ' --- Dropdown Initializers ---
+
 
     Private Sub LoadFilterMembership()
         Using conn = DBConnection.GetConnection()
@@ -34,7 +34,6 @@ Public Class UpdateUser
                 Dim dt As New DataTable()
                 adapter.Fill(dt)
 
-                ' Insert a structural default row for unfiltered states
                 Dim dr As DataRow = dt.NewRow()
                 dr("MembershipLevelID") = 0
                 dr("MembershipLevelName") = "-- All Memberships --"
@@ -72,7 +71,7 @@ Public Class UpdateUser
                 cmbboxEditMembership.DisplayMember = "MembershipLevelName"
                 cmbboxEditMembership.ValueMember = "MembershipLevelID"
             Catch ex As Exception
-                ' Handled via application error mapping
+
             End Try
         End Using
     End Sub
@@ -83,11 +82,11 @@ Public Class UpdateUser
         cmbboxEditStatus.SelectedIndex = 0
     End Sub
 
-    ' --- Feature 1 & 3: Unified Data Load (Combines Search + Filters) ---
+
     Private Sub RefreshGrids()
         Dim searchInput As String = txtboxSearchBox.Text.Trim()
 
-        ' Read values from filter controls
+
         Dim filterMembershipID As Integer = 0
         If cmbboxMembership.SelectedValue IsNot Nothing Then
             Integer.TryParse(cmbboxMembership.SelectedValue.ToString(), filterMembershipID)
@@ -98,8 +97,7 @@ Public Class UpdateUser
             Try
                 conn.Open()
 
-                ' --- 1. POPULATE DATAGRIEVIEW1 (customerinfo) ---
-                ' To filter customerinfo by membership/status, we LEFT JOIN the account tables here
+
                 Dim queryCust As String = "
                     SELECT DISTINCT c.CustomerID, c.FirstName, c.LastName, c.EmailAddress, c.PhoneNumber, c.created_at, c.updated_at 
                     FROM customerinfo c
@@ -128,8 +126,7 @@ Public Class UpdateUser
                 End Using
 
 
-                ' --- 2. POPULATE DATAGRIEVIEW2 (Joined accounts) ---
-                ' FIXED: Removed FirstName and LastName from the SELECT clause entirely
+
                 Dim queryAcc As String = "
                     SELECT a.AccountID, a.CustomerID, m.MembershipLevelName, a.Status, al.UserName, a.updated_at 
                     FROM account a
@@ -168,7 +165,7 @@ Public Class UpdateUser
         End Using
     End Sub
 
-    ' Wire callers up to unified processing system
+
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         RefreshGrids()
     End Sub
@@ -177,9 +174,7 @@ Public Class UpdateUser
         RefreshGrids()
     End Sub
 
-    ' --- Feature 2: Control Mapping From Selection ---
 
-    ' DataGridView1 selection maps tracking
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
@@ -194,14 +189,12 @@ Public Class UpdateUser
         End If
     End Sub
 
-    ' DataGridView2 selection maps tracking
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
             currentCustomerID = Convert.ToInt32(row.Cells("CustomerID").Value)
             currentAccountID = Convert.ToInt32(row.Cells("AccountID").Value)
 
-            ' Fetch background fields missing on joined tables setup
             Using conn = DBConnection.GetConnection()
                 Try
                     conn.Open()
@@ -228,7 +221,7 @@ Public Class UpdateUser
         End If
     End Sub
 
-    ' Inner query sync logic matching DataGridView1 targets
+
     Private Sub FetchLinkedAccountDetails(custId As Integer)
         Using conn = DBConnection.GetConnection()
             Try
@@ -261,7 +254,7 @@ Public Class UpdateUser
         End Using
     End Sub
 
-    ' --- Master Update Core Transaction ---
+
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If currentCustomerID = 0 Then
             MessageBox.Show("Please click on a record inside the data views first.", "Selection Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -273,7 +266,7 @@ Public Class UpdateUser
                 conn.Open()
                 Using transaction = conn.BeginTransaction()
                     Try
-                        ' Step 1: Push updates to customerinfo
+
                         Dim queryCust As String = "UPDATE customerinfo SET FirstName=@fn, LastName=@ln, EmailAddress=@email, PhoneNumber=@phone, updated_at=NOW() WHERE CustomerID=@cid"
                         Using cmdCust As New MySqlCommand(queryCust, conn, transaction)
                             cmdCust.Parameters.AddWithValue("@fn", txtboxFirstName.Text.Trim())
@@ -284,7 +277,7 @@ Public Class UpdateUser
                             cmdCust.ExecuteNonQuery()
                         End Using
 
-                        ' Step 2: Push changes to system configuration records if valid profiles exist
+
                         If currentAccountID > 0 Then
                             Dim queryAcc As String = "UPDATE account SET MembershipLevelID=@mid, Status=@status, updated_at=NOW() WHERE AccountID=@aid"
                             Using cmdAcc As New MySqlCommand(queryAcc, conn, transaction)
@@ -294,7 +287,7 @@ Public Class UpdateUser
                                 cmdAcc.ExecuteNonQuery()
                             End Using
 
-                            ' Run conditional updates on security hashes
+
                             Dim queryLogin As String = "UPDATE accountlogin SET UserName=@uname"
                             Dim plainPass As String = txtboxPassword.Text
                             If Not String.IsNullOrEmpty(plainPass) Then queryLogin &= ", PasswordHash=@hash"

@@ -2,9 +2,6 @@
 
 Public Class AdminDashboard
 
-    ' =========================
-    ' FORM LOAD
-    ' =========================
     Private Sub MainMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = AppColors.Background
 
