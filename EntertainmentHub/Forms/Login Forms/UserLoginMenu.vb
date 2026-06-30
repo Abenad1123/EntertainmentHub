@@ -83,7 +83,6 @@ Public Class UserLoginMenu
         End Using
     End Sub
 
-    ' --- Helper Method: Update Last Login ---
     Private Sub UpdateLastLogin(accountId As Integer, conn As MySqlConnection)
         Dim updateQuery As String = "UPDATE accountlogin SET LastLogin = NOW() WHERE AccountID = @accId"
         Using updateCmd As New MySqlCommand(updateQuery, conn)

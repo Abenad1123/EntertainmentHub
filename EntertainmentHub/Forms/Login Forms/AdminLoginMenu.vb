@@ -33,7 +33,6 @@ Public Class AdminLoginMenu
         Dim username As String = txtboxUsername.Text.Trim()
         Dim password As String = txtboxPassword.Text
 
-        ' 1. Basic Input Validation
         If String.IsNullOrWhiteSpace(username) OrElse String.IsNullOrWhiteSpace(password) Then
             MessageBox.Show("Please enter both username and password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -43,7 +42,6 @@ Public Class AdminLoginMenu
             Try
                 conn.Open()
 
-                ' 2. Retrieve the stored hash and EmployeeID from the database
                 Dim query As String = "SELECT EmployeeID, PasswordHash FROM employeelogin WHERE UserName = @user"
                 Dim storedHash As String = String.Empty
                 Dim employeeId As Integer = 0
@@ -59,8 +57,6 @@ Public Class AdminLoginMenu
                     End Using
                 End Using
 
-                ' 3. Verify the password
-                ' If storedHash is empty, it means the username doesn't exist in the database.
                 If Not String.IsNullOrEmpty(storedHash) AndAlso BCrypt.Net.BCrypt.Verify(password, storedHash) Then
 
                     AccountData.AdminUsername = username
@@ -68,7 +64,6 @@ Public Class AdminLoginMenu
 
                     MessageBox.Show("Employee login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    ' Update the LastLogin timestamp
                     UpdateLastLogin(employeeId, conn)
 
                     Dim frm As New AdminDashboard()
@@ -76,7 +71,6 @@ Public Class AdminLoginMenu
                     Me.Close()
 
                 Else
-                    ' Use a generic error message to prevent user enumeration
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     txtboxPassword.Clear()
                     txtboxPassword.Focus()
@@ -90,7 +84,6 @@ Public Class AdminLoginMenu
         End Using
     End Sub
 
-    ' --- Helper Method: Update Last Login ---
     Private Sub UpdateLastLogin(employeeId As Integer, conn As MySqlConnection)
         Dim updateQuery As String = "UPDATE employeelogin SET LastLogin = NOW() WHERE EmployeeID = @empId"
         Using updateCmd As New MySqlCommand(updateQuery, conn)
