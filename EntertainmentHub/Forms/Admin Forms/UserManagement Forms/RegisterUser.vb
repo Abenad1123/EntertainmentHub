@@ -5,11 +5,10 @@ Public Class RegisterUser
         LoadCustomerData()
         LoadMembershipLevels()
 
-        ' Mask the password textbox for security
+
         TextBox5.PasswordChar = "*"c
     End Sub
 
-    ' --- Helper: Load Customer Info into DataGridView ---
     Private Sub LoadCustomerData()
         Using conn = DBConnection.GetConnection()
             Dim query As String = "SELECT CustomerID, FirstName, LastName, EmailAddress, created_at, updated_at FROM customerinfo"
@@ -22,7 +21,7 @@ Public Class RegisterUser
         End Using
     End Sub
 
-    ' --- Helper: Load ComboBox with Membership Levels ---
+
     Private Sub LoadMembershipLevels()
         Using conn = DBConnection.GetConnection()
             Dim query As String = "SELECT MembershipLevelID, MembershipLevelName FROM membershiplevel"
@@ -31,17 +30,17 @@ Public Class RegisterUser
                 Dim dt As New DataTable()
                 adapter.Fill(dt)
 
-                ' Bind data to ComboBox1
+
                 ComboBox1.DataSource = dt
-                ComboBox1.DisplayMember = "MembershipLevelName" ' What the user sees
-                ComboBox1.ValueMember = "MembershipLevelID"     ' The underlying ID we use for insertion
+                ComboBox1.DisplayMember = "MembershipLevelName"
+                ComboBox1.ValueMember = "MembershipLevelID"
             End Using
         End Using
     End Sub
 
-    ' --- Button 2: Insert New Customer ---
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ' Basic validation
+
         If String.IsNullOrWhiteSpace(TextBox1.Text) OrElse String.IsNullOrWhiteSpace(TextBox2.Text) OrElse String.IsNullOrWhiteSpace(TextBox3.Text) Then
             MessageBox.Show("Please fill out First Name, Last Name, and Email.")
             Return
@@ -60,7 +59,7 @@ Public Class RegisterUser
 
                 MessageBox.Show("Customer added successfully!")
 
-                ' Clear textboxes and refresh grid
+
                 TextBox1.Clear()
                 TextBox2.Clear()
                 TextBox3.Clear()
@@ -72,9 +71,9 @@ Public Class RegisterUser
         End Using
     End Sub
 
-    ' --- Button 1: Create Account & Account Login ---
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' 1. Validate Selections and Inputs
+
         If DataGridView1.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a customer from the grid by clicking the row header.")
             Return
@@ -85,34 +84,33 @@ Public Class RegisterUser
             Return
         End If
 
-        ' 2. Extract Data
+
         Dim customerId As Integer = Convert.ToInt32(DataGridView1.SelectedRows(0).Cells("CustomerID").Value)
         Dim membershipId As Integer = Convert.ToInt32(ComboBox1.SelectedValue)
         Dim userName As String = TextBox4.Text.Trim()
         Dim plainTextPassword As String = TextBox5.Text
 
-        ' 3. Hash the password using BCrypt
+
         Dim passwordHash As String = BCrypt.Net.BCrypt.HashPassword(plainTextPassword)
 
-        ' 4. Database Transaction
+
         Using conn = DBConnection.GetConnection()
             conn.Open()
-            ' Start a transaction so if the login creation fails, the account creation is rolled back
+
             Using transaction = conn.BeginTransaction()
                 Try
-                    ' --- Step A: Insert into account table ---
-                    ' We use SELECT LAST_INSERT_ID() to immediately grab the new AccountID
+
                     Dim queryAccount As String = "INSERT INTO account (CustomerID, MembershipLevelID, Status) VALUES (@custId, @memId, 'Active'); SELECT LAST_INSERT_ID();"
                     Dim newAccountId As Integer
 
                     Using cmdAccount As New MySqlCommand(queryAccount, conn, transaction)
                         cmdAccount.Parameters.AddWithValue("@custId", customerId)
                         cmdAccount.Parameters.AddWithValue("@memId", membershipId)
-                        ' ExecuteScalar returns the result of LAST_INSERT_ID()
+
                         newAccountId = Convert.ToInt32(cmdAccount.ExecuteScalar())
                     End Using
 
-                    ' --- Step B: Insert into accountlogin table ---
+
                     Dim queryLogin As String = "INSERT INTO accountlogin (AccountID, UserName, PasswordHash) VALUES (@accId, @user, @hash)"
 
                     Using cmdLogin As New MySqlCommand(queryLogin, conn, transaction)
@@ -122,18 +120,18 @@ Public Class RegisterUser
                         cmdLogin.ExecuteNonQuery()
                     End Using
 
-                    ' Commit both inserts
+
                     transaction.Commit()
                     MessageBox.Show("Account and login created securely!")
 
-                    ' Clear fields
+
                     TextBox4.Clear()
                     TextBox5.Clear()
 
                 Catch ex As MySqlException
-                    ' Roll back if something goes wrong (e.g., duplicate username/email)
+
                     transaction.Rollback()
-                    If ex.Number = 1062 Then ' MySQL error code for duplicate entry
+                    If ex.Number = 1062 Then '
                         MessageBox.Show("Error: That Username or Account might already exist.")
                     Else
                         MessageBox.Show("Database Error: " & ex.Message)

@@ -6,7 +6,7 @@ Public Class TransactionManager
         LoadWalletTransactions()
     End Sub
 
-    ' --- Button Events: Call the central processor with the specific type ---
+
     Private Sub btnDeposit_Click(sender As Object, e As EventArgs) Handles btnDeposit.Click
         ProcessTransaction("Deposit")
     End Sub
@@ -27,13 +27,13 @@ Public Class TransactionManager
         ProcessTransaction("Payment")
     End Sub
 
-    ' --- Central Transaction Processor ---
+
     Private Sub ProcessTransaction(transactionType As String)
         Dim targetUsername As String = txtboxUsernameInput.Text.Trim()
         Dim amountText As String = txtboxAmount.Text.Trim()
         Dim transactionAmount As Decimal
 
-        ' 1. Basic Validation
+
         If String.IsNullOrWhiteSpace(targetUsername) Then
             MessageBox.Show("Please enter a username.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -44,9 +44,7 @@ Public Class TransactionManager
             Return
         End If
 
-        ' --- FIXED LOGIC FOR NEGATIVE NUMBERS ---
-        ' If it's a Withdrawal, the user likely types a positive number (e.g., 50).
-        ' We automatically force it to be negative so it saves properly.
+
         If transactionType = "Withdrawal" AndAlso transactionAmount > 0 Then
             transactionAmount = -transactionAmount
         End If
@@ -55,8 +53,7 @@ Public Class TransactionManager
             transactionAmount = -transactionAmount
         End If
 
-        ' Adjustments are allowed to be negative or positive.
-        ' Deposits and Bonuses MUST be greater than zero.
+
         If (transactionType = "Deposit" Or transactionType = "Bonus") AndAlso transactionAmount <= 0 Then
             MessageBox.Show("Amount must be greater than zero for Deposits and Bonuses.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -65,18 +62,16 @@ Public Class TransactionManager
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                '2. Get Admin Username for Logging
+
                 Dim employeeid As Integer = If(String.IsNullOrEmpty(AccountData.AdminUsername), 0, AccountData.AdminId)
 
-                ' 2.1 Look up AccountID based on Username
                 Dim accountId As Integer = GetAccountIdByUsername(targetUsername, conn)
                 If accountId = 0 Then
                     MessageBox.Show("Username not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
 
-                ' 3. If Withdrawal, check if they have enough balance 
-                ' (Note: transactionAmount is now negative, so we check against Math.Abs)
+
                 If transactionType = "Withdrawal" Then
                     Dim currentBalance As Decimal = GetCurrentBalance(accountId, conn)
                     If currentBalance < Math.Abs(transactionAmount) Then
@@ -85,23 +80,22 @@ Public Class TransactionManager
                     End If
                 End If
 
-                ' 4. Insert the Transaction 
+
                 Dim insertQuery As String = "INSERT INTO wallettransactions (AccountID, Amount, TransactionType, EmployeeID) VALUES (@accId, @amount, @type, @employeeid)"
                 Using cmd As New MySqlCommand(insertQuery, conn)
                     cmd.Parameters.AddWithValue("@accId", accountId)
-                    cmd.Parameters.AddWithValue("@amount", transactionAmount) ' This will successfully pass negative values
+                    cmd.Parameters.AddWithValue("@amount", transactionAmount)
                     cmd.Parameters.AddWithValue("@type", transactionType)
                     cmd.Parameters.AddWithValue("@employeeid", employeeid)
                     cmd.ExecuteNonQuery()
                 End Using
 
-                ' --- FIXED: Removed Math.Abs so you can physically see the negative sign in your success alert ---
+
                 MessageBox.Show($"{transactionType} of ${transactionAmount:F2} was successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ' --- NEW LOGIC: Update Action Log ---
+
                 LogAction(transactionType, transactionAmount, targetUsername)
 
-                ' 5. Clear inputs and Refresh Grid
                 txtboxAmount.Clear()
                 LoadWalletTransactions()
 
@@ -113,7 +107,7 @@ Public Class TransactionManager
         End Using
     End Sub
 
-    ' --- NEW HELPER: Append to Textbox Action Log ---
+
     Private Sub LogAction(transactionType As String, amount As Decimal, targetUser As String)
         Dim adminName As String = If(String.IsNullOrEmpty(AccountData.AdminUsername), "System", AccountData.AdminUsername)
         Dim logMessage As String = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Admin '{adminName}' processed a {transactionType} of ${amount:F2} for user '{targetUser}'."
@@ -122,7 +116,7 @@ Public Class TransactionManager
         txtActionLog.ScrollToCaret()
     End Sub
 
-    ' --- Helper: Get AccountID ---
+
     Private Function GetAccountIdByUsername(username As String, conn As MySqlConnection) As Integer
         Dim query As String = "SELECT AccountID FROM accountlogin WHERE UserName = @user LIMIT 1"
         Using cmd As New MySqlCommand(query, conn)
@@ -135,11 +129,9 @@ Public Class TransactionManager
         Return 0
     End Function
 
-    ' --- Helper: Calculate Balance (FIXED PATTERN) ---
+
     Private Function GetCurrentBalance(accountId As Integer, conn As MySqlConnection) As Decimal
-        ' --- FIXED SQL LOGIC ---
-        ' Since Withdrawal and Negative Adjustments are now natively saved as negative numbers, 
-        ' we just SUM the amount directly without manually negating it via ' -Amount '.
+
         Dim query As String = "
             SELECT COALESCE(SUM(Amount), 0) AS Balance
             FROM wallettransactions 
@@ -155,7 +147,7 @@ Public Class TransactionManager
         Return 0D
     End Function
 
-    ' --- Helper: Refresh DataGridView1 ---
+
     Private Sub LoadWalletTransactions()
         Using conn = DBConnection.GetConnection()
             Try

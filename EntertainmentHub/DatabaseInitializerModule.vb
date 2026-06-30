@@ -3,7 +3,7 @@
 Module DatabaseInitializerModule
     Public Sub SeedDatabase()
 
-        'Initialize the database with default values for MembershipLevel, Roles, EntertainmentTypes, and EntertainmentTiers
+
         Try
             Using conn As MySqlConnection = DBConnection.GetConnection()
 
@@ -103,7 +103,7 @@ Module DatabaseInitializerModule
             End If
         End Using
 
-        ' Check and insert Admin, Cashier, Staff
+
 
     End Sub
 
@@ -111,7 +111,7 @@ Module DatabaseInitializerModule
 
 #Region "Entertainment Types"
     Private Sub SeedEntertainmentTypes(conn As MySqlConnection)
-        ' Updated to match your latest database snapshot
+
         SeedEntertainmentType(conn, "PC Gaming")
         SeedEntertainmentType(conn, "Virtual Reality (VR)")
         SeedEntertainmentType(conn, "Billiards")
@@ -145,25 +145,22 @@ Module DatabaseInitializerModule
 
 #Region "Entertainment Tiers"
     Private Sub SeedEntertainmentTiers(conn As MySqlConnection)
-        ' Updated explicitly to match your exact data snapshot rates and type associations
-        ' 1: PC Gaming, 2: VR, 3: Billiards, 4: Ping Pong, 5: Gaming Consoles
 
-        ' PC Gaming Tiers
         SeedEntertainmentTier(conn, "PC Standard Tier", 60D, 1)
         SeedEntertainmentTier(conn, "PC VIP (RTX 4090) Tier", 100D, 1)
 
-        ' VR Tiers
+
         SeedEntertainmentTier(conn, "VR Standard Booth", 150D, 2)
         SeedEntertainmentTier(conn, "VR Premium Omni-Directional", 250D, 2)
 
-        ' Billiards Tiers
+
         SeedEntertainmentTier(conn, "Billiards Standard Table", 120D, 3)
         SeedEntertainmentTier(conn, "Billiards Tournament Table", 180D, 3)
 
-        ' Ping Pong Tiers
+
         SeedEntertainmentTier(conn, "Ping Pong Standard Table", 80D, 4)
 
-        ' Gaming Consoles Tiers
+
         SeedEntertainmentTier(conn, "Console Lounge (PS5/Xbox)", 90D, 5)
         SeedEntertainmentTier(conn, "Console Private Room", 140D, 5)
     End Sub
@@ -234,46 +231,43 @@ Module DatabaseInitializerModule
 
 #Region "Entertainment"
     Private Sub SeedEntertainmentItems(conn As MySqlConnection)
-        ' Seeding individual units into the Entertainment table matching your schema
 
-        ' PC Gaming - Standard Tier (TierID: 1)
         SeedEntertainment(conn, 1, "PC Station 01", "Available")
         SeedEntertainment(conn, 1, "PC Station 02", "Available")
         SeedEntertainment(conn, 1, "PC Station 03", "Available")
         SeedEntertainment(conn, 1, "PC Station 04", "InUse")
 
-        ' PC Gaming - VIP Lounge (TierID: 2)
+
         SeedEntertainment(conn, 2, "VIP PC Station 05", "Available")
         SeedEntertainment(conn, 2, "VIP PC Station 06", "Available")
 
-        ' VR - Standard Booth (TierID: 3)
+
         SeedEntertainment(conn, 3, "VR Booth 01", "Available")
         SeedEntertainment(conn, 3, "VR Booth 02", "Available")
 
-        ' VR - Premium Omni Treadmill (TierID: 4)
+
         SeedEntertainment(conn, 4, "VR Omni Treadmill 01", "Maintenance")
 
-        ' Billiards - Standard Table (TierID: 5)
         SeedEntertainment(conn, 5, "Billiards Table 01", "Available")
         SeedEntertainment(conn, 5, "Billiards Table 02", "Available")
 
-        ' Billiards - Tournament Table (TierID: 6)
+
         SeedEntertainment(conn, 6, "Tournament Billiards Table 03", "Available")
 
-        ' Table Tennis - Standard Table (TierID: 7)
+
         SeedEntertainment(conn, 7, "Ping Pong Table 01", "Available")
         SeedEntertainment(conn, 7, "Ping Pong Table 02", "Available")
 
-        ' Gaming Consoles - Console Lounge Couch (TierID: 8)
+
         SeedEntertainment(conn, 8, "Console Lounge 01 (PS5)", "Available")
         SeedEntertainment(conn, 8, "Console Lounge 02 (Xbox)", "Available")
 
-        ' Gaming Consoles - Private Console Room (TierID: 9)
+
         SeedEntertainment(conn, 9, "Private Console Room A", "InUse")
     End Sub
 
     Private Sub SeedEntertainment(conn As MySqlConnection, EntertainmentTierID As Integer, EntertainmentName As String, Status As String)
-        ' Checks uniqueness against EntertainmentName per your UNIQUE constraint
+        '
         Dim checkSql As String =
         "SELECT COUNT(*) 
          FROM Entertainment
