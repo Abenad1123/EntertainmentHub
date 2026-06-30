@@ -76,7 +76,7 @@ Module DatabaseInitializerModule
 
         SeedRole(conn, "Admin")
         SeedRole(conn, "Cashier")
-        SeedRole(conn, "Staff")
+        SeedRole(conn, "Maintenance Staff")
 
     End Sub
     Private Sub SeedRole(conn As MySqlConnection, RoleName As String)
