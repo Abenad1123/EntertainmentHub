@@ -45,6 +45,11 @@ Partial Class ProductPOS
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnRemoveItem = New System.Windows.Forms.Button()
         Me.btnScanItem = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel7 = New System.Windows.Forms.TableLayoutPanel()
+        Me.txtboxCartTotal = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtboxUserBalance = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnRedo = New System.Windows.Forms.Button()
@@ -66,6 +71,7 @@ Partial Class ProductPOS
         Me.Panel3.SuspendLayout()
         CType(Me.nudProdQuantity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel4.SuspendLayout()
+        Me.TableLayoutPanel7.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,17 +91,17 @@ Partial Class ProductPOS
         Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 2)
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(584, 672)
+        Me.DataGridView1.Size = New System.Drawing.Size(510, 580)
         Me.DataGridView1.TabIndex = 1
         '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.DataGridView2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(594, 480)
+        Me.Panel2.Location = New System.Drawing.Point(520, 423)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(877, 252)
+        Me.Panel2.Size = New System.Drawing.Size(766, 217)
         Me.Panel2.TabIndex = 3
         '
         'DataGridView2
@@ -107,17 +113,17 @@ Partial Class ProductPOS
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(877, 252)
+        Me.DataGridView2.Size = New System.Drawing.Size(766, 217)
         Me.DataGridView2.TabIndex = 0
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.TableLayoutPanel3)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(594, 60)
+        Me.Panel1.Location = New System.Drawing.Point(520, 60)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(877, 420)
+        Me.Panel1.Size = New System.Drawing.Size(766, 363)
         Me.Panel1.TabIndex = 0
         '
         'TableLayoutPanel3
@@ -133,7 +139,7 @@ Partial Class ProductPOS
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(877, 420)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(766, 363)
         Me.TableLayoutPanel3.TabIndex = 18
         '
         'Panel3
@@ -155,7 +161,7 @@ Partial Class ProductPOS
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(877, 336)
+        Me.Panel3.Size = New System.Drawing.Size(766, 290)
         Me.Panel3.TabIndex = 0
         '
         'btnSubtOneQty
@@ -306,13 +312,14 @@ Partial Class ProductPOS
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel4.Controls.Add(Me.btnRemoveItem, 1, 0)
         Me.TableLayoutPanel4.Controls.Add(Me.btnScanItem, 0, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel7, 2, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 336)
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 290)
         Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(877, 84)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(766, 73)
         Me.TableLayoutPanel4.TabIndex = 1
         '
         'btnRemoveItem
@@ -321,9 +328,9 @@ Partial Class ProductPOS
         Me.btnRemoveItem.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemoveItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRemoveItem.Location = New System.Drawing.Point(222, 3)
+        Me.btnRemoveItem.Location = New System.Drawing.Point(194, 3)
         Me.btnRemoveItem.Name = "btnRemoveItem"
-        Me.btnRemoveItem.Size = New System.Drawing.Size(213, 78)
+        Me.btnRemoveItem.Size = New System.Drawing.Size(185, 67)
         Me.btnRemoveItem.TabIndex = 22
         Me.btnRemoveItem.Text = "REMOVE ITEM"
         Me.btnRemoveItem.UseVisualStyleBackColor = False
@@ -336,10 +343,74 @@ Partial Class ProductPOS
         Me.btnScanItem.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnScanItem.Location = New System.Drawing.Point(3, 3)
         Me.btnScanItem.Name = "btnScanItem"
-        Me.btnScanItem.Size = New System.Drawing.Size(213, 78)
+        Me.btnScanItem.Size = New System.Drawing.Size(185, 67)
         Me.btnScanItem.TabIndex = 21
         Me.btnScanItem.Text = "SCAN ITEM"
         Me.btnScanItem.UseVisualStyleBackColor = False
+        '
+        'TableLayoutPanel7
+        '
+        Me.TableLayoutPanel7.ColumnCount = 2
+        Me.TableLayoutPanel4.SetColumnSpan(Me.TableLayoutPanel7, 2)
+        Me.TableLayoutPanel7.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.24771!))
+        Me.TableLayoutPanel7.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.75229!))
+        Me.TableLayoutPanel7.Controls.Add(Me.txtboxCartTotal, 1, 1)
+        Me.TableLayoutPanel7.Controls.Add(Me.Label8, 0, 0)
+        Me.TableLayoutPanel7.Controls.Add(Me.Label9, 0, 1)
+        Me.TableLayoutPanel7.Controls.Add(Me.txtboxUserBalance, 1, 0)
+        Me.TableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel7.Location = New System.Drawing.Point(385, 0)
+        Me.TableLayoutPanel7.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.TableLayoutPanel7.Name = "TableLayoutPanel7"
+        Me.TableLayoutPanel7.RowCount = 2
+        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel7.Size = New System.Drawing.Size(381, 73)
+        Me.TableLayoutPanel7.TabIndex = 23
+        '
+        'txtboxCartTotal
+        '
+        Me.txtboxCartTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxCartTotal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtboxCartTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtboxCartTotal.Location = New System.Drawing.Point(183, 39)
+        Me.txtboxCartTotal.Name = "txtboxCartTotal"
+        Me.txtboxCartTotal.Size = New System.Drawing.Size(195, 34)
+        Me.txtboxCartTotal.TabIndex = 3
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(3, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(174, 36)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "User Balance"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(3, 36)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(174, 37)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "Cart Total"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtboxUserBalance
+        '
+        Me.txtboxUserBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxUserBalance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtboxUserBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtboxUserBalance.Location = New System.Drawing.Point(183, 3)
+        Me.txtboxUserBalance.Name = "txtboxUserBalance"
+        Me.txtboxUserBalance.Size = New System.Drawing.Size(195, 34)
+        Me.txtboxUserBalance.TabIndex = 2
         '
         'TableLayoutPanel1
         '
@@ -365,7 +436,7 @@ Partial Class ProductPOS
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1482, 827)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1297, 724)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'TableLayoutPanel2
@@ -383,12 +454,12 @@ Partial Class ProductPOS
         Me.TableLayoutPanel2.Controls.Add(Me.btnGoBack, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.btnCheckout, 4, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(10, 732)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(10, 640)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1461, 84)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1276, 72)
         Me.TableLayoutPanel2.TabIndex = 5
         '
         'btnRedo
@@ -397,9 +468,9 @@ Partial Class ProductPOS
         Me.btnRedo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnRedo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRedo.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRedo.Location = New System.Drawing.Point(763, 3)
+        Me.btnRedo.Location = New System.Drawing.Point(671, 3)
         Me.btnRedo.Name = "btnRedo"
-        Me.btnRedo.Size = New System.Drawing.Size(344, 78)
+        Me.btnRedo.Size = New System.Drawing.Size(298, 66)
         Me.btnRedo.TabIndex = 8
         Me.btnRedo.Text = "REDO"
         Me.btnRedo.UseVisualStyleBackColor = False
@@ -410,9 +481,9 @@ Partial Class ProductPOS
         Me.btnUndo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnUndo.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUndo.Location = New System.Drawing.Point(413, 3)
+        Me.btnUndo.Location = New System.Drawing.Point(367, 3)
         Me.btnUndo.Name = "btnUndo"
-        Me.btnUndo.Size = New System.Drawing.Size(344, 78)
+        Me.btnUndo.Size = New System.Drawing.Size(298, 66)
         Me.btnUndo.TabIndex = 7
         Me.btnUndo.Text = "UNDO"
         Me.btnUndo.UseVisualStyleBackColor = False
@@ -425,7 +496,7 @@ Partial Class ProductPOS
         Me.btnReset.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReset.Location = New System.Drawing.Point(63, 3)
         Me.btnReset.Name = "btnReset"
-        Me.btnReset.Size = New System.Drawing.Size(344, 78)
+        Me.btnReset.Size = New System.Drawing.Size(298, 66)
         Me.btnReset.TabIndex = 6
         Me.btnReset.Text = "RESET"
         Me.btnReset.UseVisualStyleBackColor = False
@@ -446,9 +517,9 @@ Partial Class ProductPOS
         Me.btnCheckout.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnCheckout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCheckout.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCheckout.Location = New System.Drawing.Point(1113, 3)
+        Me.btnCheckout.Location = New System.Drawing.Point(975, 3)
         Me.btnCheckout.Name = "btnCheckout"
-        Me.btnCheckout.Size = New System.Drawing.Size(345, 78)
+        Me.btnCheckout.Size = New System.Drawing.Size(298, 66)
         Me.btnCheckout.TabIndex = 5
         Me.btnCheckout.Text = "CHECKOUT"
         Me.btnCheckout.UseVisualStyleBackColor = False
@@ -461,13 +532,13 @@ Partial Class ProductPOS
         Me.TableLayoutPanel5.Controls.Add(Me.Label4, 0, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.txtboxCustomerUsername, 1, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(594, 10)
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(520, 10)
         Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(877, 50)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(766, 50)
         Me.TableLayoutPanel5.TabIndex = 6
         '
         'Label4
@@ -478,7 +549,7 @@ Partial Class ProductPOS
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Margin = New System.Windows.Forms.Padding(0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(315, 50)
+        Me.Label4.Size = New System.Drawing.Size(275, 50)
         Me.Label4.TabIndex = 20
         Me.Label4.Text = "lblCustomerUsername"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -488,10 +559,10 @@ Partial Class ProductPOS
         Me.txtboxCustomerUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtboxCustomerUsername.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtboxCustomerUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtboxCustomerUsername.Location = New System.Drawing.Point(318, 3)
+        Me.txtboxCustomerUsername.Location = New System.Drawing.Point(278, 3)
         Me.txtboxCustomerUsername.Multiline = True
         Me.txtboxCustomerUsername.Name = "txtboxCustomerUsername"
-        Me.txtboxCustomerUsername.Size = New System.Drawing.Size(556, 44)
+        Me.txtboxCustomerUsername.Size = New System.Drawing.Size(485, 44)
         Me.txtboxCustomerUsername.TabIndex = 21
         '
         'TableLayoutPanel6
@@ -508,7 +579,7 @@ Partial Class ProductPOS
         Me.TableLayoutPanel6.RowCount = 1
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(584, 50)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(510, 50)
         Me.TableLayoutPanel6.TabIndex = 7
         '
         'lblEmployeeUsernameFill
@@ -516,9 +587,9 @@ Partial Class ProductPOS
         Me.lblEmployeeUsernameFill.AutoSize = True
         Me.lblEmployeeUsernameFill.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblEmployeeUsernameFill.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployeeUsernameFill.Location = New System.Drawing.Point(295, 0)
+        Me.lblEmployeeUsernameFill.Location = New System.Drawing.Point(258, 0)
         Me.lblEmployeeUsernameFill.Name = "lblEmployeeUsernameFill"
-        Me.lblEmployeeUsernameFill.Size = New System.Drawing.Size(286, 50)
+        Me.lblEmployeeUsernameFill.Size = New System.Drawing.Size(249, 50)
         Me.lblEmployeeUsernameFill.TabIndex = 1
         Me.lblEmployeeUsernameFill.Text = "NULL"
         Me.lblEmployeeUsernameFill.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -530,7 +601,7 @@ Partial Class ProductPOS
         Me.lblEmployeeUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEmployeeUsername.Location = New System.Drawing.Point(3, 0)
         Me.lblEmployeeUsername.Name = "lblEmployeeUsername"
-        Me.lblEmployeeUsername.Size = New System.Drawing.Size(286, 50)
+        Me.lblEmployeeUsername.Size = New System.Drawing.Size(249, 50)
         Me.lblEmployeeUsername.TabIndex = 0
         Me.lblEmployeeUsername.Text = "EMPLOYEE USERNAME : "
         Me.lblEmployeeUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -539,7 +610,7 @@ Partial Class ProductPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1482, 827)
+        Me.ClientSize = New System.Drawing.Size(1297, 724)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -557,6 +628,8 @@ Partial Class ProductPOS
         Me.Panel3.PerformLayout()
         CType(Me.nudProdQuantity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel4.ResumeLayout(False)
+        Me.TableLayoutPanel7.ResumeLayout(False)
+        Me.TableLayoutPanel7.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
@@ -603,4 +676,9 @@ Partial Class ProductPOS
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
     Friend WithEvents lblEmployeeUsernameFill As Label
     Friend WithEvents lblEmployeeUsername As Label
+    Friend WithEvents TableLayoutPanel7 As TableLayoutPanel
+    Friend WithEvents txtboxCartTotal As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtboxUserBalance As TextBox
 End Class
