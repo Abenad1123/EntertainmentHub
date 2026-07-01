@@ -72,6 +72,12 @@
     <Reference Include="BCrypt-Net-Next, Version=4.2.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>..\packages\BCrypt.Net-Next.4.2.0\lib\net472\BCrypt-Net-Next.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=9.7.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector NET 9.7\MySql.Data.dll</HintPath>
@@ -165,6 +171,12 @@
       <DependentUpon>ProductPOS.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ReceiptManager.Designer.vb">
+      <DependentUpon>ReceiptManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\ProductManagement Forms\ReceiptManager.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\SystemSetting.Designer.vb">
@@ -275,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductPOS.resx">
       <DependentUpon>ProductPOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ReceiptManager.resx">
+      <DependentUpon>ReceiptManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
       <DependentUpon>SystemSetting.vb</DependentUpon>

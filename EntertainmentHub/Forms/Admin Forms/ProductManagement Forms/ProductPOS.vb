@@ -1,6 +1,14 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Drawing
 
 Public Class ProductPOS
+
+    Private cartTable As New DataTable()
+    Private undoStack As New Stack(Of DataTable)()
+    Private redoStack As New Stack(Of DataTable)()
+    Private selectedProductID As Integer = 0
+    Private selectedCostPrice As Decimal = 0D
+    Private currentAvailableStock As Integer = 0
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
         Dim frm As New AdminDashboard()
@@ -16,12 +24,6 @@ Public Class ProductPOS
         btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 
-    Private cartTable As New DataTable()
-    Private undoStack As New Stack(Of DataTable)()
-    Private redoStack As New Stack(Of DataTable)()
-    Private selectedProductID As Integer = 0
-    Private selectedCostPrice As Decimal = 0D
-
     Private Sub PointOfSaleManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitializeCartTable()
         LoadEmployeeData()
@@ -30,6 +32,9 @@ Public Class ProductPOS
         txtboxProdCategory.ReadOnly = True
         txtboxProdUnitPrice.ReadOnly = True
         txtboxProdLineTotal.ReadOnly = True
+        txtboxUserBalance.ReadOnly = True
+        txtboxCartTotal.ReadOnly = True
+        txtboxCartTotal.Text = (0D).ToString("C2")
     End Sub
 
     Private Sub InitializeCartTable()
@@ -43,6 +48,7 @@ Public Class ProductPOS
 
         DataGridView2.DataSource = cartTable
         FormatCartGrid()
+        UpdateCartTotalDisplay()
     End Sub
 
     Private Sub LoadEmployeeData()
@@ -67,14 +73,11 @@ Public Class ProductPOS
 
                 If DataGridView1.Columns.Count > 0 Then
                     DataGridView1.Columns("ProductID").Visible = False
-
                     DataGridView1.Columns("CostPrice").DisplayIndex = 3
                     DataGridView1.Columns("UnitPrice").DisplayIndex = 4
-
                     DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
                     DataGridView1.Columns("CostPrice").DefaultCellStyle.Format = "C2"
                     DataGridView1.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
-
                     ApplyProductGridFormatting()
                 End If
             Catch ex As Exception
@@ -87,7 +90,7 @@ Public Class ProductPOS
         For Each row As DataGridViewRow In DataGridView1.Rows
             If Not row.IsNewRow AndAlso row.Cells("QuantityInStock").Value IsNot Nothing Then
                 Dim stock As Integer = Convert.ToInt32(row.Cells("QuantityInStock").Value)
-                If stock = 0 Then
+                If stock <= 0 Then
                     row.DefaultCellStyle.BackColor = Color.Maroon
                     row.DefaultCellStyle.ForeColor = Color.White
                 Else
@@ -117,12 +120,22 @@ Public Class ProductPOS
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
             selectedProductID = Convert.ToInt32(row.Cells("ProductID").Value)
             selectedCostPrice = Convert.ToDecimal(row.Cells("CostPrice").Value)
+            currentAvailableStock = Convert.ToInt32(row.Cells("QuantityInStock").Value)
 
             txtboxProdName.Text = row.Cells("ProductName").Value.ToString()
             txtboxProdCategory.Text = row.Cells("Category").Value.ToString()
             txtboxProdUnitPrice.Text = Convert.ToDecimal(row.Cells("UnitPrice").Value).ToString("F2")
 
-            nudProdQuantity.Value = 1
+            nudProdQuantity.Minimum = 0
+
+            If currentAvailableStock > 0 Then
+                nudProdQuantity.Maximum = currentAvailableStock
+                nudProdQuantity.Value = 1
+            Else
+                nudProdQuantity.Maximum = 0
+                nudProdQuantity.Value = 0
+            End If
+
             CalculateLineTotal()
         End If
     End Sub
@@ -147,7 +160,9 @@ Public Class ProductPOS
     End Sub
 
     Private Sub btnPlusOneQty_Click(sender As Object, e As EventArgs) Handles btnPlusOneQty.Click
-        nudProdQuantity.Value += 1
+        If nudProdQuantity.Value < nudProdQuantity.Maximum Then
+            nudProdQuantity.Value += 1
+        End If
     End Sub
 
     Private Sub SaveCartState()
@@ -155,8 +170,68 @@ Public Class ProductPOS
         redoStack.Clear()
     End Sub
 
+    Private Sub UpdateCartTotalDisplay()
+        Dim total As Decimal = 0
+        For Each row As DataRow In cartTable.Rows
+            total += Convert.ToDecimal(row("LineTotal"))
+        Next
+        txtboxCartTotal.Text = total.ToString("C2")
+    End Sub
+
+    Private Sub txtboxCustomerUsername_TextChanged(sender As Object, e As EventArgs) Handles txtboxCustomerUsername.TextChanged
+        FetchUserBalance()
+    End Sub
+
+    Private Sub FetchUserBalance()
+        Dim username As String = txtboxCustomerUsername.Text.Trim()
+        If String.IsNullOrEmpty(username) Then
+            txtboxUserBalance.Text = (0D).ToString("C2")
+            Return
+        End If
+
+        Using conn = DBConnection.GetConnection()
+            Try
+                conn.Open()
+                Dim accId As Integer = 0
+                Dim queryAcc As String = "SELECT AccountID FROM accountlogin WHERE UserName = @uname"
+                Using cmdAcc As New MySqlCommand(queryAcc, conn)
+                    cmdAcc.Parameters.AddWithValue("@uname", username)
+                    Dim res = cmdAcc.ExecuteScalar()
+                    If res IsNot Nothing Then
+                        accId = Convert.ToInt32(res)
+                    End If
+                End Using
+
+                If accId > 0 Then
+                    Dim queryBal As String = "SELECT COALESCE(SUM(CASE WHEN TransactionType IN ('Deposit', 'Bonus', 'Refund', 'Adjustment') THEN Amount WHEN TransactionType IN ('Payment', 'Withdrawal') THEN -Amount ELSE 0 END), 0) FROM wallettransactions WHERE AccountID = @acc"
+                    Using cmdBal As New MySqlCommand(queryBal, conn)
+                        cmdBal.Parameters.AddWithValue("@acc", accId)
+                        Dim bal As Decimal = Convert.ToDecimal(cmdBal.ExecuteScalar())
+                        txtboxUserBalance.Text = bal.ToString("C2")
+                    End Using
+                Else
+                    txtboxUserBalance.Text = "Not Found"
+                End If
+            Catch ex As Exception
+                txtboxUserBalance.Text = "Error"
+            End Try
+        End Using
+    End Sub
+
     Private Sub btnScanItem_Click(sender As Object, e As EventArgs) Handles btnScanItem.Click
         If selectedProductID = 0 OrElse nudProdQuantity.Value = 0 Then
+            Return
+        End If
+
+        Dim currentCartQty As Integer = 0
+        For Each r As DataRow In cartTable.Rows
+            If Convert.ToInt32(r("ProductID")) = selectedProductID Then
+                currentCartQty += Convert.ToInt32(r("Quantity"))
+            End If
+        Next
+
+        If currentCartQty + nudProdQuantity.Value > currentAvailableStock Then
+            MessageBox.Show("Cannot add more to the cart than what is currently in stock.", "Stock Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
@@ -173,15 +248,18 @@ Public Class ProductPOS
 
         cartTable.Rows.Add(newRow)
         ResetSelection()
+        UpdateCartTotalDisplay()
     End Sub
 
     Private Sub ResetSelection()
         selectedProductID = 0
         selectedCostPrice = 0D
+        currentAvailableStock = 0
         txtboxProdName.Clear()
         txtboxProdCategory.Clear()
         txtboxProdUnitPrice.Clear()
         txtboxProdLineTotal.Clear()
+        nudProdQuantity.Maximum = 0
         nudProdQuantity.Value = 0
     End Sub
 
@@ -191,6 +269,7 @@ Public Class ProductPOS
             Dim viewRow As DataRowView = DirectCast(DataGridView2.SelectedRows(0).DataBoundItem, DataRowView)
             viewRow.Row.Delete()
             cartTable.AcceptChanges()
+            UpdateCartTotalDisplay()
         End If
     End Sub
 
@@ -200,6 +279,7 @@ Public Class ProductPOS
             cartTable = undoStack.Pop()
             DataGridView2.DataSource = cartTable
             FormatCartGrid()
+            UpdateCartTotalDisplay()
         End If
     End Sub
 
@@ -209,6 +289,7 @@ Public Class ProductPOS
             cartTable = redoStack.Pop()
             DataGridView2.DataSource = cartTable
             FormatCartGrid()
+            UpdateCartTotalDisplay()
         End If
     End Sub
 
@@ -216,6 +297,7 @@ Public Class ProductPOS
         If cartTable.Rows.Count > 0 Then
             SaveCartState()
             cartTable.Clear()
+            UpdateCartTotalDisplay()
         End If
     End Sub
 
@@ -241,6 +323,34 @@ Public Class ProductPOS
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
+
+                Dim stockCheck As New Dictionary(Of Integer, Integer)
+                For Each row As DataRow In cartTable.Rows
+                    Dim pid As Integer = Convert.ToInt32(row("ProductID"))
+                    Dim qty As Integer = Convert.ToInt32(row("Quantity"))
+                    If stockCheck.ContainsKey(pid) Then
+                        stockCheck(pid) += qty
+                    Else
+                        stockCheck.Add(pid, qty)
+                    End If
+                Next
+
+                For Each kvp In stockCheck
+                    Dim queryStock As String = "SELECT ProductName, QuantityInStock FROM products WHERE ProductID = @pid"
+                    Using cmdStock As New MySqlCommand(queryStock, conn)
+                        cmdStock.Parameters.AddWithValue("@pid", kvp.Key)
+                        Using reader = cmdStock.ExecuteReader()
+                            If reader.Read() Then
+                                Dim dbStock As Integer = Convert.ToInt32(reader("QuantityInStock"))
+                                If dbStock < kvp.Value Then
+                                    MessageBox.Show($"Checkout failed. '{reader("ProductName")}' only has {dbStock} left in stock.", "Out of Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                                    Return
+                                End If
+                            End If
+                        End Using
+                    End Using
+                Next
+
                 Dim targetAccountID As Integer = 0
                 Dim queryAcc As String = "SELECT AccountID FROM accountlogin WHERE UserName = @uname"
                 Using cmdAcc As New MySqlCommand(queryAcc, conn)
@@ -319,10 +429,23 @@ Public Class ProductPOS
                         transaction.Commit()
                         MessageBox.Show("Checkout successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+                        Dim receiptData As New Dictionary(Of String, Object)
+                        receiptData.Add("CustomerUsername", customerUsername)
+                        receiptData.Add("EmployeeUsername", employeeUsername)
+                        receiptData.Add("CartItems", cartTable.Copy())
+                        receiptData.Add("TotalAmount", totalAmount)
+                        receiptData.Add("TransactionDate", DateTime.Now)
+                        AccountData.ReceiptLog = receiptData
+
                         cartTable.Clear()
                         undoStack.Clear()
                         redoStack.Clear()
+                        UpdateCartTotalDisplay()
                         RefreshProductsGrid()
+                        FetchUserBalance()
+
+                        Dim frm As New ReceiptManager()
+                        frm.Show()
 
                     Catch ex As Exception
                         transaction.Rollback()
