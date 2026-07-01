@@ -149,6 +149,12 @@
     <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentManagement.Designer.vb">
+      <DependentUpon>EntertainmentManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ProductManagement.Designer.vb">
       <DependentUpon>ProductManagement.vb</DependentUpon>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.resx">
       <DependentUpon>EntertainmentConfiguration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentManagement.resx">
+      <DependentUpon>EntertainmentManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ProductManagement.resx">
       <DependentUpon>ProductManagement.vb</DependentUpon>

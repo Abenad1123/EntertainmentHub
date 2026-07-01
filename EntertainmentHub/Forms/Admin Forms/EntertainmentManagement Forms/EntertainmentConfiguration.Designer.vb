@@ -32,6 +32,7 @@ Partial Class EntertainmentConfiguration
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel_ManualOff = New System.Windows.Forms.Panel()
         Me.Panel_ChangeStatus = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridInUse, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridAvailable, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +65,7 @@ Partial Class EntertainmentConfiguration
         Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 3, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel_ManualOff, 8, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel_ChangeStatus, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.Button1, 11, 3)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -165,6 +167,15 @@ Partial Class EntertainmentConfiguration
         Me.Panel_ChangeStatus.Size = New System.Drawing.Size(256, 39)
         Me.Panel_ChangeStatus.TabIndex = 7
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(835, 521)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'EntertainmentConfiguration
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -198,4 +209,5 @@ Partial Class EntertainmentConfiguration
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Panel_ManualOff As Panel
     Friend WithEvents Panel_ChangeStatus As Panel
+    Friend WithEvents Button1 As Button
 End Class
