@@ -39,18 +39,19 @@ Partial Class AdminDashboard
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnOpenProductPOS = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -249,6 +250,18 @@ Partial Class AdminDashboard
         Me.Panel2.Size = New System.Drawing.Size(570, 304)
         Me.Panel2.TabIndex = 30
         '
+        'Panel5
+        '
+        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel5.Controls.Add(Me.Button1)
+        Me.Panel5.Controls.Add(Me.Label2)
+        Me.Panel5.Controls.Add(Me.btnOpenProductPOS)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel5.Location = New System.Drawing.Point(290, 0)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(280, 304)
+        Me.Panel5.TabIndex = 29
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -259,22 +272,12 @@ Partial Class AdminDashboard
         Me.Label2.TabIndex = 27
         Me.Label2.Text = "Menu"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(3, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(246, 29)
-        Me.Label1.TabIndex = 26
-        Me.Label1.Text = "Management Tools"
-        '
         'btnOpenProductPOS
         '
         Me.btnOpenProductPOS.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
         Me.btnOpenProductPOS.FlatAppearance.BorderSize = 0
         Me.btnOpenProductPOS.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOpenProductPOS.Location = New System.Drawing.Point(5, 57)
+        Me.btnOpenProductPOS.Location = New System.Drawing.Point(18, 57)
         Me.btnOpenProductPOS.Name = "btnOpenProductPOS"
         Me.btnOpenProductPOS.Size = New System.Drawing.Size(240, 39)
         Me.btnOpenProductPOS.TabIndex = 26
@@ -295,16 +298,27 @@ Partial Class AdminDashboard
         Me.Panel4.Size = New System.Drawing.Size(280, 304)
         Me.Panel4.TabIndex = 28
         '
-        'Panel5
+        'Label1
         '
-        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel5.Controls.Add(Me.Label2)
-        Me.Panel5.Controls.Add(Me.btnOpenProductPOS)
-        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel5.Location = New System.Drawing.Point(290, 0)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(280, 304)
-        Me.Panel5.TabIndex = 29
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Location = New System.Drawing.Point(3, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(246, 29)
+        Me.Label1.TabIndex = 26
+        Me.Label1.Text = "Management Tools"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(18, 102)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(240, 39)
+        Me.Button1.TabIndex = 28
+        Me.Button1.Text = "Revenue Report"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'AdminDashboard
         '
@@ -327,10 +341,10 @@ Partial Class AdminDashboard
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -355,4 +369,5 @@ Partial Class AdminDashboard
     Friend WithEvents txtboxSearchBox As TextBox
     Friend WithEvents Panel5 As Panel
     Friend WithEvents Panel4 As Panel
+    Friend WithEvents Button1 As Button
 End Class

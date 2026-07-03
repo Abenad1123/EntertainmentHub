@@ -60,4 +60,10 @@ Public Class AdminDashboard
         frm.Show()
         Me.Close()
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim frm As New RevenueReport()
+        frm.Show()
+        Me.Close()
+    End Sub
 End Class
