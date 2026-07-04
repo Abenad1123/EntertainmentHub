@@ -25,6 +25,7 @@ Public Class AdminDashboard
         btnOpenManageUser.Font = AppFonts.Hwygoth(16)
         btnOpenManageEmployee.Font = AppFonts.Hwygoth(16)
 
+        Button1.Font = AppFonts.Hwygoth(16)
         btnOpenProductPOS.Font = AppFonts.Hwygoth(16)
 
         Me.BackgroundImage = My.Resources.background3
