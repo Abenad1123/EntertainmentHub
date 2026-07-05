@@ -129,7 +129,7 @@ Public Class EmployeeManagement
         LoadEmployees()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
         Dim frm As New AdminDashboard()
         frm.Show()
         Me.Close()
