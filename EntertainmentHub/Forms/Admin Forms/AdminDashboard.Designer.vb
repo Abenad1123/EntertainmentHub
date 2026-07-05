@@ -40,12 +40,13 @@ Partial Class AdminDashboard
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnOpenProductPOS = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -254,6 +255,7 @@ Partial Class AdminDashboard
         'Panel5
         '
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel5.Controls.Add(Me.Button3)
         Me.Panel5.Controls.Add(Me.Button2)
         Me.Panel5.Controls.Add(Me.Button1)
         Me.Panel5.Controls.Add(Me.Label2)
@@ -263,6 +265,18 @@ Partial Class AdminDashboard
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(280, 304)
         Me.Panel5.TabIndex = 29
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(18, 147)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(240, 39)
+        Me.Button2.TabIndex = 29
+        Me.Button2.Text = "Analytics"
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'Button1
         '
@@ -322,17 +336,17 @@ Partial Class AdminDashboard
         Me.Label1.TabIndex = 26
         Me.Label1.Text = "Management Tools"
         '
-        'Button2
+        'Button3
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(18, 147)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(240, 39)
-        Me.Button2.TabIndex = 29
-        Me.Button2.Text = "Analytics"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(7, Byte), Integer))
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(18, 192)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(240, 39)
+        Me.Button3.TabIndex = 30
+        Me.Button3.Text = "Settings"
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'AdminDashboard
         '
@@ -385,4 +399,5 @@ Partial Class AdminDashboard
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

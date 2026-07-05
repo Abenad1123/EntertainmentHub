@@ -8,20 +8,8 @@ Public Class UserManagement
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
         Label1.Font = AppFonts.Hwygoth(30)
-        LoadCustomerData()
         StyleDataGridView()
-    End Sub
-
-    Private Sub LoadCustomerData()
-        Using conn = DBConnection.GetConnection()
-            Dim query As String = "SELECT CustomerID, FirstName, LastName, EmailAddress, created_at, updated_at FROM customerinfo"
-            Using cmd As New MySqlCommand(query, conn)
-                Dim adapter As New MySqlDataAdapter(cmd)
-                Dim dt As New DataTable()
-                adapter.Fill(dt)
-                DataGridView1.DataSource = dt
-            End Using
-        End Using
+        LoadCustomerData()
     End Sub
 
     Private Sub StyleDataGridView()
@@ -54,30 +42,67 @@ Public Class UserManagement
 
         DataGridView1.RowTemplate.Height = 35
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
 
+    Private Sub FormatColumns()
         If DataGridView1.Columns.Count > 0 Then
             DataGridView1.Columns("CustomerID").HeaderText = "ID"
-            DataGridView1.Columns("CustomerID").Width = 60
+            DataGridView1.Columns("CustomerID").AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            DataGridView1.Columns("CustomerID").Width = 50
             DataGridView1.Columns("CustomerID").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             DataGridView1.Columns("CustomerID").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             DataGridView1.Columns("FirstName").HeaderText = "First Name"
-            DataGridView1.Columns("FirstName").Width = 150
+            DataGridView1.Columns("FirstName").FillWeight = 25
 
             DataGridView1.Columns("LastName").HeaderText = "Last Name"
-            DataGridView1.Columns("LastName").Width = 150
+            DataGridView1.Columns("LastName").FillWeight = 25
 
             DataGridView1.Columns("EmailAddress").HeaderText = "Email Address"
-            DataGridView1.Columns("EmailAddress").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            DataGridView1.Columns("EmailAddress").FillWeight = 50
 
             DataGridView1.Columns("created_at").HeaderText = "Date Created"
-            DataGridView1.Columns("created_at").Width = 160
-            DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy hh:mm tt"
+            DataGridView1.Columns("created_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy"
 
             DataGridView1.Columns("updated_at").HeaderText = "Last Updated"
-            DataGridView1.Columns("updated_at").Width = 160
-            DataGridView1.Columns("updated_at").DefaultCellStyle.Format = "MMM dd, yyyy hh:mm tt"
+            DataGridView1.Columns("updated_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            DataGridView1.Columns("updated_at").DefaultCellStyle.Format = "MMM dd, yyyy"
         End If
+    End Sub
+
+    Private Sub LoadCustomerData(Optional searchTerm As String = "")
+        Using conn = DBConnection.GetConnection()
+            Try
+                conn.Open()
+                Dim query As String = "SELECT CustomerID, FirstName, LastName, EmailAddress, created_at, updated_at FROM customerinfo"
+
+                If Not String.IsNullOrWhiteSpace(searchTerm) Then
+                    query &= " WHERE CONCAT(FirstName, ' ', LastName) LIKE @search"
+                End If
+
+                Using cmd As New MySqlCommand(query, conn)
+                    If Not String.IsNullOrWhiteSpace(searchTerm) Then
+                        cmd.Parameters.AddWithValue("@search", "%" & searchTerm.Trim() & "%")
+                    End If
+
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    adapter.Fill(dt)
+                    DataGridView1.DataSource = dt
+                End Using
+
+                FormatColumns()
+
+            Catch ex As Exception
+                MessageBox.Show("Error loading customer data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        LoadCustomerData(TextBox1.Text)
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -108,7 +133,7 @@ Public Class UserManagement
                     End Using
 
                     MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    LoadCustomerData()
+                    LoadCustomerData(TextBox1.Text)
 
                 Catch ex As MySqlException
                     If ex.Number = 1451 Then
