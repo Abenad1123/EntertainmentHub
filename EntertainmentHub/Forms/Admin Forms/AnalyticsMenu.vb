@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Drawing
 Imports System.Reflection.Emit
 Imports System.Windows.Forms.DataVisualization.Charting
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
@@ -6,12 +7,104 @@ Imports MySql.Data.MySqlClient
 
 Public Class AnalyticsMenu
 
-    Private ReadOnly connString As String = "server=localhost;user id=root;database=entertainmenthub"
-
-    Private Sub UsageAnalytics_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub AnalyticsMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StyleDataGridViews()
         LoadTypeFilter()
         SetDatePickerBounds()
         InitializeUI()
+    End Sub
+
+    Private Sub StyleDataGridViews()
+        Dim grids = {DataGridView1, DataGridView2, DataGridView3}
+
+        For Each dgv In grids
+            dgv.AllowUserToAddRows = False
+            dgv.AllowUserToDeleteRows = False
+            dgv.AllowUserToResizeRows = False
+            dgv.ReadOnly = True
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgv.MultiSelect = False
+            dgv.RowHeadersVisible = False
+
+            dgv.BackgroundColor = Color.White
+            dgv.BorderStyle = BorderStyle.None
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+
+            dgv.EnableHeadersVisualStyles = False
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48)
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+            dgv.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgv.ColumnHeadersHeight = 40
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+            dgv.DefaultCellStyle.BackColor = Color.White
+            dgv.DefaultCellStyle.ForeColor = Color.Black
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(230, 240, 255)
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black
+            dgv.DefaultCellStyle.Font = New Font("Segoe UI", 9)
+            dgv.DefaultCellStyle.Padding = New Padding(5, 0, 5, 0)
+
+            dgv.RowTemplate.Height = 35
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        Next
+    End Sub
+
+    Private Sub StyleCharts()
+        Dim charts = {Chart1, Chart2}
+        For Each cht In charts
+            If cht.ChartAreas.Count > 0 Then
+                Dim ca = cht.ChartAreas(0)
+                ca.BackColor = Color.White
+                ca.AxisX.MajorGrid.Enabled = False
+                ca.AxisY.MajorGrid.LineColor = Color.FromArgb(235, 235, 235)
+                ca.AxisX.LabelStyle.Font = New Font("Segoe UI", 8)
+                ca.AxisY.LabelStyle.Font = New Font("Segoe UI", 8)
+                ca.AxisX.LineColor = Color.FromArgb(200, 200, 200)
+                ca.AxisY.LineColor = Color.FromArgb(200, 200, 200)
+            End If
+        Next
+    End Sub
+
+    Private Sub FormatColumns()
+        If DataGridView1.Columns.Count > 0 Then
+            DataGridView1.Columns("Terminal").FillWeight = 30
+            DataGridView1.Columns("Type").FillWeight = 25
+
+            DataGridView1.Columns("Total Sessions").FillWeight = 15
+            DataGridView1.Columns("Total Sessions").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("Total Sessions").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            DataGridView1.Columns("Total Hours").FillWeight = 15
+            DataGridView1.Columns("Total Hours").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("Total Hours").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            DataGridView1.Columns("Utilization %").FillWeight = 15
+            DataGridView1.Columns("Utilization %").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("Utilization %").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        End If
+
+        If DataGridView2.Columns.Count > 0 Then
+            DataGridView2.Columns("Day").FillWeight = 20
+            DataGridView2.Columns("Time Block").FillWeight = 50
+
+            DataGridView2.Columns("Total Sessions").FillWeight = 30
+            DataGridView2.Columns("Total Sessions").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView2.Columns("Total Sessions").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        End If
+
+        If DataGridView3.Columns.Count > 0 Then
+            DataGridView3.Columns("Tier").FillWeight = 40
+
+            DataGridView3.Columns("Total Sessions").FillWeight = 30
+            DataGridView3.Columns("Total Sessions").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView3.Columns("Total Sessions").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            DataGridView3.Columns("Total Hours").FillWeight = 30
+            DataGridView3.Columns("Total Hours").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView3.Columns("Total Hours").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        End If
     End Sub
 
     Private Sub InitializeUI()
@@ -22,6 +115,7 @@ Public Class AnalyticsMenu
 
         Chart1.Series.Clear()
         Chart2.Series.Clear()
+        StyleCharts()
 
         AddHandler DateTimePicker1.ValueChanged, AddressOf EnforceDateOrder
         AddHandler DateTimePicker2.ValueChanged, AddressOf EnforceDateOrder
@@ -35,7 +129,7 @@ Public Class AnalyticsMenu
 
         dt.Rows.Add(0, "All")
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand("SELECT EntertainmentTypeID, EntertainmentTypeName FROM entertainmenttype ORDER BY EntertainmentTypeName", conn)
@@ -56,7 +150,7 @@ Public Class AnalyticsMenu
     End Sub
 
     Private Sub SetDatePickerBounds()
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand("SELECT MIN(LoginTime), MAX(LoginTime) FROM entertainmentsession", conn)
@@ -115,7 +209,7 @@ Public Class AnalyticsMenu
         Dim totalSessions As Integer = 0
         Dim totalMinutes As Double = 0
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand(qryStats, conn)
@@ -161,16 +255,24 @@ Public Class AnalyticsMenu
 
         Dim s1 As New Series("Total Hours")
         s1.ChartType = SeriesChartType.Column
+        s1.Color = Color.FromArgb(41, 128, 185)
+        s1.IsValueShownAsLabel = True
+        s1.Font = New Font("Segoe UI", 8, FontStyle.Bold)
+        s1.LabelForeColor = Color.FromArgb(64, 64, 64)
         Chart1.Series.Add(s1)
 
         Dim s2 As New Series("Logins")
         s2.ChartType = SeriesChartType.SplineArea
+        s2.Color = Color.FromArgb(46, 204, 113)
+        s2.BackSecondaryColor = Color.FromArgb(200, 235, 210)
+        s2.BackGradientStyle = GradientStyle.TopBottom
+        s2.BorderWidth = 2
         Chart2.Series.Add(s2)
 
         Dim qryTerminal As String = "SELECT e.EntertainmentName, COALESCE(SUM(TIMESTAMPDIFF(MINUTE, es.LoginTime, COALESCE(es.LogoutTime, NOW()))) / 60.0, 0) as Hrs FROM entertainmentsession es JOIN entertainment e ON es.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE es.LoginTime >= @d1 AND es.LoginTime <= @d2 AND (@typeId = 0 OR et.EntertainmentTypeID = @typeId) GROUP BY e.EntertainmentID ORDER BY Hrs DESC LIMIT 10"
         Dim qryHours As String = "SELECT HOUR(es.LoginTime) as Hr, COUNT(es.EntertainmentSessionID) FROM entertainmentsession es JOIN entertainment e ON es.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE es.LoginTime >= @d1 AND es.LoginTime <= @d2 AND (@typeId = 0 OR et.EntertainmentTypeID = @typeId) GROUP BY Hr ORDER BY Hr"
 
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand(qryTerminal, conn)
@@ -203,19 +305,29 @@ Public Class AnalyticsMenu
     Private Sub LoadGrids(d1 As DateTime, d2 As DateTime, typeId As Integer, totalDays As Double)
         If totalDays < 1 Then totalDays = 1
 
-        Dim maxPossibleHours As Double = totalDays * 24.0
+        Dim openingHour As Double = 8.0
+        Dim closingHour As Double = 24.0
+
+        Dim dailyOperatingHours As Double = closingHour - openingHour
+        If dailyOperatingHours <= 0 Or dailyOperatingHours > 24 Then
+            dailyOperatingHours = 24.0
+        End If
+
+        Dim maxPossibleHours As Double = totalDays * dailyOperatingHours
 
         Dim qryGrid1 As String = $"SELECT e.EntertainmentName AS 'Terminal', etype.EntertainmentTypeName AS 'Type', COUNT(es.EntertainmentSessionID) AS 'Total Sessions', ROUND(COALESCE(SUM(TIMESTAMPDIFF(MINUTE, es.LoginTime, COALESCE(es.LogoutTime, NOW()))), 0) / 60.0, 2) AS 'Total Hours', CONCAT(ROUND((COALESCE(SUM(TIMESTAMPDIFF(MINUTE, es.LoginTime, COALESCE(es.LogoutTime, NOW()))), 0) / 60.0) / {maxPossibleHours} * 100, 2), '%') AS 'Utilization %' FROM entertainment e JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID JOIN entertainmenttype etype ON et.EntertainmentTypeID = etype.EntertainmentTypeID LEFT JOIN entertainmentsession es ON e.EntertainmentID = es.EntertainmentID AND es.LoginTime >= @d1 AND es.LoginTime <= @d2 WHERE (@typeId = 0 OR etype.EntertainmentTypeID = @typeId) GROUP BY e.EntertainmentID ORDER BY 'Total Hours' DESC"
         Dim qryGrid2 As String = "SELECT DAYNAME(es.LoginTime) AS 'Day', CONCAT(DATE_FORMAT(es.LoginTime, '%h:00 %p'), ' - ', DATE_FORMAT(DATE_ADD(es.LoginTime, INTERVAL 1 HOUR), '%h:00 %p')) AS 'Time Block', COUNT(es.EntertainmentSessionID) AS 'Total Sessions' FROM entertainmentsession es JOIN entertainment e ON es.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE es.LoginTime >= @d1 AND es.LoginTime <= @d2 AND (@typeId = 0 OR et.EntertainmentTypeID = @typeId) GROUP BY DAYOFWEEK(es.LoginTime), HOUR(es.LoginTime) ORDER BY COUNT(es.EntertainmentSessionID) DESC"
-        Dim qryGrid3 As String = "SELECT et.EntertainmentTierName AS 'Tier', COUNT(es.EntertainmentSessionID) AS 'Total Sessions', ROUND(COALESCE(SUM(TIMESTAMPDIFF(MINUTE, es.LoginTime, COALESCE(es.LogoutTime, NOW()))), 0) / 60.0, 2) AS 'Total Hours' FROM entertainmentsession es JOIN entertainment e ON es.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE es.LoginTime >= @d1 AND es.LoginTime <= @d2 AND (@typeId = 0 OR et.EntertainmentTypeID = @typeId) GROUP BY et.EntertainmentTierID ORDER BY COUNT(es.EntertainmentSessionID) DESC"
+        Dim qryGrid3 As String = "SELECT et.EntertainmentTierName AS 'Tier', COUNT(es.EntertainmentSessionID) AS 'Total Sessions', ROUND(COALESCE(SUM(TIMESTAMPDIFF(MINUTE, es.LoginTime, COALESCE(es.LogoutTime, NOW()))), 0) / 60.0, 2) AS 'Total Hours' FROM entertainmentsession es JOIN entertainment e ON e.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE es.LoginTime >= @d1 AND es.LoginTime <= @d2 AND (@typeId = 0 OR et.EntertainmentTypeID = @typeId) GROUP BY et.EntertainmentTierID ORDER BY COUNT(es.EntertainmentSessionID) DESC"
 
         BindGrid(DataGridView1, qryGrid1, d1, d2, typeId)
         BindGrid(DataGridView2, qryGrid2, d1, d2, typeId)
         BindGrid(DataGridView3, qryGrid3, d1, d2, typeId)
+
+        FormatColumns()
     End Sub
 
     Private Sub BindGrid(dgv As DataGridView, qry As String, d1 As DateTime, d2 As DateTime, typeId As Integer)
-        Using conn As New MySqlConnection(connString)
+        Using conn As MySqlConnection = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand(qry, conn)
@@ -226,11 +338,15 @@ Public Class AnalyticsMenu
                     Dim dt As New DataTable()
                     adapter.Fill(dt)
                     dgv.DataSource = dt
-                    dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
                 End Using
             Catch ex As Exception
             End Try
         End Using
     End Sub
 
+    Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
+        Dim frm As New AdminDashboard()
+        frm.Show()
+        Me.Close()
+    End Sub
 End Class

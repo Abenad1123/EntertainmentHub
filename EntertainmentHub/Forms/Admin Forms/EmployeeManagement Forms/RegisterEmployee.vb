@@ -1,11 +1,86 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Data
+Imports System.Drawing
+Imports System.Windows.Forms
+Imports BCrypt.Net
+Imports MySql.Data.MySqlClient
 
 Public Class RegisterEmployee
     Private Sub RegisterEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadRoles()
-        LoadEmployeeData()
-
+        Label8.Font = AppFonts.Hwygoth(30)
         TextBox3.PasswordChar = "*"c
+
+        LoadRoles()
+        StyleDataGridView()
+        LoadEmployeeData()
+    End Sub
+
+    Private Sub StyleDataGridView()
+        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.AllowUserToDeleteRows = False
+        DataGridView1.AllowUserToResizeRows = False
+        DataGridView1.ReadOnly = True
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.MultiSelect = False
+        DataGridView1.RowHeadersVisible = False
+
+        DataGridView1.BackgroundColor = Color.White
+        DataGridView1.BorderStyle = BorderStyle.None
+        DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+
+        DataGridView1.EnableHeadersVisualStyles = False
+        DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48)
+        DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+        DataGridView1.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+        DataGridView1.ColumnHeadersHeight = 40
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+        DataGridView1.DefaultCellStyle.BackColor = Color.White
+        DataGridView1.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(230, 240, 255)
+        DataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.Font = New Font("Segoe UI", 9)
+        DataGridView1.DefaultCellStyle.Padding = New Padding(5, 0, 5, 0)
+
+        DataGridView1.RowTemplate.Height = 35
+        DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
+
+    Private Sub FormatColumns()
+        If DataGridView1.Columns.Count > 0 Then
+            DataGridView1.Columns("EmployeeID").HeaderText = "ID"
+            DataGridView1.Columns("EmployeeID").AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            DataGridView1.Columns("EmployeeID").Width = 50
+            DataGridView1.Columns("EmployeeID").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("EmployeeID").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            DataGridView1.Columns("FirstName").HeaderText = "First Name"
+            DataGridView1.Columns("FirstName").FillWeight = 20
+
+            DataGridView1.Columns("LastName").HeaderText = "Last Name"
+            DataGridView1.Columns("LastName").FillWeight = 20
+
+            DataGridView1.Columns("BirthDate").HeaderText = "Birth Date"
+            DataGridView1.Columns("BirthDate").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            DataGridView1.Columns("BirthDate").DefaultCellStyle.Format = "MMM dd, yyyy"
+
+            DataGridView1.Columns("ContactNumber").HeaderText = "Contact Number"
+            DataGridView1.Columns("ContactNumber").FillWeight = 20
+
+            DataGridView1.Columns("RoleName").HeaderText = "Role"
+            DataGridView1.Columns("RoleName").FillWeight = 15
+
+            DataGridView1.Columns("created_at").HeaderText = "Date Created"
+            DataGridView1.Columns("created_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy"
+
+            If DataGridView1.Columns.Contains("updated_at") Then
+                DataGridView1.Columns("updated_at").HeaderText = "Last Updated"
+                DataGridView1.Columns("updated_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                DataGridView1.Columns("updated_at").DefaultCellStyle.Format = "MMM dd, yyyy"
+            End If
+        End If
     End Sub
 
     Private Sub LoadRoles()
@@ -32,17 +107,16 @@ Public Class RegisterEmployee
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "SELECT EmployeeID, FirstName, LastName, BirthDate, ContactNumber, RolesID, created_at, updated_at FROM employee"
+                Dim query As String = "SELECT e.EmployeeID, e.FirstName, e.LastName, e.BirthDate, e.ContactNumber, r.RoleName, e.created_at, e.updated_at FROM employee e LEFT JOIN roles r ON e.RolesID = r.RolesID ORDER BY e.EmployeeID ASC"
                 Using cmd As New MySqlCommand(query, conn)
                     Dim adapter As New MySqlDataAdapter(cmd)
                     Dim dt As New DataTable()
                     adapter.Fill(dt)
                     DataGridView1.DataSource = dt
-
-                    If DataGridView1.Columns.Contains("BirthDate") Then
-                        DataGridView1.Columns("BirthDate").DefaultCellStyle.Format = "yyyy-MM-dd"
-                    End If
                 End Using
+
+                FormatColumns()
+
             Catch ex As MySqlException
                 MessageBox.Show("Error loading employees: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -51,7 +125,7 @@ Public Class RegisterEmployee
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If String.IsNullOrWhiteSpace(TextBox1.Text) OrElse String.IsNullOrWhiteSpace(TextBox2.Text) OrElse String.IsNullOrWhiteSpace(TextBox4.Text) OrElse ComboBox1.SelectedValue Is Nothing Then
-            MessageBox.Show("Please fill out First Name, Last Name, Contact Number, and select a Role.")
+            MessageBox.Show("Please fill out First Name, Last Name, Contact Number, and select a Role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
@@ -86,7 +160,7 @@ Public Class RegisterEmployee
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If DataGridView1.SelectedRows.Count = 0 Then
-            MessageBox.Show("Please select an employee from the grid by clicking the row header on the left.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please select an employee from the table to assign an account.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
@@ -132,7 +206,7 @@ Public Class RegisterEmployee
         End Using
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
         Dim frm As New EmployeeManagement()
         frm.Show()
         Me.Close()

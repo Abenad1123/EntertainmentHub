@@ -122,27 +122,36 @@ Partial Class AnalyticsMenu
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(13, 520)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(155, 25)
+        Me.Label3.Size = New System.Drawing.Size(1260, 30)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Detailed Reports"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(13, 190)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(178, 25)
+        Me.Label2.Size = New System.Drawing.Size(1260, 30)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Data Visualizations"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(13, 60)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(293, 25)
+        Me.Label1.Size = New System.Drawing.Size(1260, 30)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Key Performance Indicator (KPI)"
         '
@@ -258,7 +267,7 @@ Partial Class AnalyticsMenu
         '
         Me.ComboBox1.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(828, 13)
+        Me.ComboBox1.Location = New System.Drawing.Point(828, 8)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(186, 33)
         Me.ComboBox1.TabIndex = 10
@@ -346,7 +355,7 @@ Partial Class AnalyticsMenu
         Me.TabPage1.Location = New System.Drawing.Point(4, 34)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1252, 208)
+        Me.TabPage1.Size = New System.Drawing.Size(1258, 214)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Terminal Utilization"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -360,7 +369,7 @@ Partial Class AnalyticsMenu
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1246, 202)
+        Me.DataGridView1.Size = New System.Drawing.Size(1252, 208)
         Me.DataGridView1.TabIndex = 0
         '
         'TabPage2
@@ -391,7 +400,7 @@ Partial Class AnalyticsMenu
         Me.TabPage3.Controls.Add(Me.DataGridView3)
         Me.TabPage3.Location = New System.Drawing.Point(4, 34)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(1252, 208)
+        Me.TabPage3.Size = New System.Drawing.Size(1258, 214)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Tier Performance"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -405,7 +414,7 @@ Partial Class AnalyticsMenu
         Me.DataGridView3.Name = "DataGridView3"
         Me.DataGridView3.RowHeadersWidth = 51
         Me.DataGridView3.RowTemplate.Height = 24
-        Me.DataGridView3.Size = New System.Drawing.Size(1252, 208)
+        Me.DataGridView3.Size = New System.Drawing.Size(1258, 214)
         Me.DataGridView3.TabIndex = 0
         '
         'FlowLayoutPanel1

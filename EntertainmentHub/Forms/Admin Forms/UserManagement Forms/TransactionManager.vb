@@ -181,13 +181,10 @@ Public Class TransactionManager
         End Using
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
+
         Dim frm As New UserManagement()
         frm.Show()
         Me.Close()
-    End Sub
-
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-
     End Sub
 End Class
