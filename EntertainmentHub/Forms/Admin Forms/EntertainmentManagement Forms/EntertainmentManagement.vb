@@ -39,7 +39,7 @@ Public Class EntertainmentManagement
 #Region "Event Handlers"
 
     Private Sub RefreshTrackedUserMetrics()
-        ' If no user is being actively tracked, clear dashboard labels and exit
+       
         If String.IsNullOrEmpty(currentTrackedUser) Then
             LabelBalance.Text = "Balance: --"
             LabelEntertainment.Text = "Device: --"
@@ -67,20 +67,20 @@ Public Class EntertainmentManagement
 
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
-                            ' 1. Safely Parse Balance
+
                             Dim balance As Decimal = 0D
                             If Not IsDBNull(reader("Balance")) Then
                                 balance = Convert.ToDecimal(reader("Balance"))
                             End If
                             LabelBalance.Text = "Balance: " & balance.ToString("C2")
 
-                            ' 2. Safely Parse Session Status
+
                             Dim sessionStatus As String = ""
                             If Not IsDBNull(reader("SessionStatus")) Then
                                 sessionStatus = reader("SessionStatus").ToString()
                             End If
 
-                            ' Check for active session match strings
+
                             If sessionStatus.Equals("Active", StringComparison.OrdinalIgnoreCase) OrElse
                            sessionStatus.Equals("InUse", StringComparison.OrdinalIgnoreCase) Then
 
@@ -90,7 +90,6 @@ Public Class EntertainmentManagement
                                 End If
                                 LabelEntertainment.Text = "Device: " & deviceName
 
-                                ' 3. Calculate Live Ticking Duration
                                 If Not IsDBNull(reader("LoginTime")) Then
                                     Dim loginTime As DateTime = Convert.ToDateTime(reader("LoginTime"))
                                     Dim duration As TimeSpan = DateTime.Now - loginTime
@@ -103,12 +102,12 @@ Public Class EntertainmentManagement
                                     LabelDuration.Text = "Duration: No Login Time"
                                 End If
                             Else
-                                ' Fallback indicators if a user has no active play session
+
                                 LabelEntertainment.Text = "Device: No Active Session"
                                 LabelDuration.Text = "Duration: 00:00:00"
                             End If
                         Else
-                            ' User record missing completely from database table 
+
                             LabelBalance.Text = "Balance: User Not Found"
                             LabelEntertainment.Text = "Device: --"
                             LabelDuration.Text = "Duration: --"
