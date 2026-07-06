@@ -1,5 +1,8 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Data
 Imports System.Drawing
+Imports System.Windows.Forms
+Imports System.Collections.Generic
+Imports MySql.Data.MySqlClient
 
 Public Class ProductPOS
 
@@ -10,24 +13,12 @@ Public Class ProductPOS
     Private selectedCostPrice As Decimal = 0D
     Private currentAvailableStock As Integer = 0
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
-    End Sub
-
-    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
-        btnGoBack.Image = My.Resources.go_back_state_2
-    End Sub
-
-    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
-        btnGoBack.Image = My.Resources.go_back_state_1
-    End Sub
-
     Private Sub PointOfSaleManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StyleDataGridViews()
         InitializeCartTable()
         LoadEmployeeData()
         RefreshProductsGrid()
+
         txtboxProdName.ReadOnly = True
         txtboxProdCategory.ReadOnly = True
         txtboxProdUnitPrice.ReadOnly = True
@@ -35,6 +26,119 @@ Public Class ProductPOS
         txtboxUserBalance.ReadOnly = True
         txtboxCartTotal.ReadOnly = True
         txtboxCartTotal.Text = (0D).ToString("C2")
+    End Sub
+
+    Private Sub StyleDataGridViews()
+        Dim grids = {DataGridView1, DataGridView2}
+
+        For Each dgv In grids
+            dgv.AllowUserToAddRows = False
+            dgv.AllowUserToDeleteRows = False
+            dgv.AllowUserToResizeRows = False
+            dgv.ReadOnly = True
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgv.MultiSelect = False
+            dgv.RowHeadersVisible = False
+
+            dgv.BackgroundColor = Color.White
+            dgv.BorderStyle = BorderStyle.None
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+
+            dgv.EnableHeadersVisualStyles = False
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48)
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+            dgv.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgv.ColumnHeadersHeight = 40
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+            dgv.DefaultCellStyle.BackColor = Color.White
+            dgv.DefaultCellStyle.ForeColor = Color.Black
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(230, 240, 255)
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black
+            dgv.DefaultCellStyle.Font = New Font("Segoe UI", 9)
+            dgv.DefaultCellStyle.Padding = New Padding(5, 0, 5, 0)
+
+            dgv.RowTemplate.Height = 35
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        Next
+    End Sub
+
+    Private Sub FormatColumns()
+        If DataGridView1.Columns.Count > 0 Then
+            If DataGridView1.Columns.Contains("ProductID") Then
+                DataGridView1.Columns("ProductID").Visible = False
+            End If
+
+            DataGridView1.Columns("ProductName").HeaderText = "Product Name"
+            DataGridView1.Columns("ProductName").FillWeight = 30
+
+            DataGridView1.Columns("Category").HeaderText = "Category"
+            DataGridView1.Columns("Category").FillWeight = 20
+
+            If DataGridView1.Columns.Contains("CostPrice") Then
+                DataGridView1.Columns("CostPrice").HeaderText = "Cost Price"
+                DataGridView1.Columns("CostPrice").FillWeight = 15
+                DataGridView1.Columns("CostPrice").DefaultCellStyle.Format = "C2"
+                DataGridView1.Columns("CostPrice").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End If
+
+            If DataGridView1.Columns.Contains("UnitPrice") Then
+                DataGridView1.Columns("UnitPrice").HeaderText = "Unit Price"
+                DataGridView1.Columns("UnitPrice").FillWeight = 15
+                DataGridView1.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
+                DataGridView1.Columns("UnitPrice").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End If
+
+            If DataGridView1.Columns.Contains("QuantityInStock") Then
+                DataGridView1.Columns("QuantityInStock").HeaderText = "Stock"
+                DataGridView1.Columns("QuantityInStock").FillWeight = 10
+                DataGridView1.Columns("QuantityInStock").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                DataGridView1.Columns("QuantityInStock").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+        End If
+
+        If DataGridView2.Columns.Count > 0 Then
+            If DataGridView2.Columns.Contains("ProductID") Then
+                DataGridView2.Columns("ProductID").Visible = False
+            End If
+
+            If DataGridView2.Columns.Contains("CostPrice") Then
+                DataGridView2.Columns("CostPrice").Visible = False
+            End If
+
+            If DataGridView2.Columns.Contains("Name") Then
+                DataGridView2.Columns("Name").HeaderText = "Product Name"
+                DataGridView2.Columns("Name").FillWeight = 30
+            End If
+
+            If DataGridView2.Columns.Contains("Category") Then
+                DataGridView2.Columns("Category").HeaderText = "Category"
+                DataGridView2.Columns("Category").FillWeight = 20
+            End If
+
+            If DataGridView2.Columns.Contains("Quantity") Then
+                DataGridView2.Columns("Quantity").HeaderText = "Qty"
+                DataGridView2.Columns("Quantity").FillWeight = 10
+                DataGridView2.Columns("Quantity").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                DataGridView2.Columns("Quantity").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End If
+
+            If DataGridView2.Columns.Contains("UnitPrice") Then
+                DataGridView2.Columns("UnitPrice").HeaderText = "Unit Price"
+                DataGridView2.Columns("UnitPrice").FillWeight = 15
+                DataGridView2.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
+                DataGridView2.Columns("UnitPrice").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End If
+
+            If DataGridView2.Columns.Contains("LineTotal") Then
+                DataGridView2.Columns("LineTotal").HeaderText = "Line Total"
+                DataGridView2.Columns("LineTotal").FillWeight = 20
+                DataGridView2.Columns("LineTotal").DefaultCellStyle.Format = "C2"
+                DataGridView2.Columns("LineTotal").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End If
+        End If
     End Sub
 
     Private Sub InitializeCartTable()
@@ -47,7 +151,7 @@ Public Class ProductPOS
         cartTable.Columns.Add("LineTotal", GetType(Decimal))
 
         DataGridView2.DataSource = cartTable
-        FormatCartGrid()
+        FormatColumns()
         UpdateCartTotalDisplay()
     End Sub
 
@@ -71,47 +175,26 @@ Public Class ProductPOS
                     DataGridView1.DataSource = dt
                 End Using
 
-                If DataGridView1.Columns.Count > 0 Then
-                    DataGridView1.Columns("ProductID").Visible = False
-                    DataGridView1.Columns("CostPrice").DisplayIndex = 3
-                    DataGridView1.Columns("UnitPrice").DisplayIndex = 4
-                    DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-                    DataGridView1.Columns("CostPrice").DefaultCellStyle.Format = "C2"
-                    DataGridView1.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
-                    ApplyProductGridFormatting()
-                End If
+                FormatColumns()
+
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
 
-    Private Sub ApplyProductGridFormatting()
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            If Not row.IsNewRow AndAlso row.Cells("QuantityInStock").Value IsNot Nothing Then
-                Dim stock As Integer = Convert.ToInt32(row.Cells("QuantityInStock").Value)
-                If stock <= 0 Then
-                    row.DefaultCellStyle.BackColor = Color.Maroon
-                    row.DefaultCellStyle.ForeColor = Color.White
-                Else
-                    row.DefaultCellStyle.BackColor = DataGridView1.DefaultCellStyle.BackColor
-                    row.DefaultCellStyle.ForeColor = DataGridView1.DefaultCellStyle.ForeColor
+    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
+        If e.RowIndex >= 0 Then
+            Dim stockVal = DataGridView1.Rows(e.RowIndex).Cells("QuantityInStock").Value
+            If stockVal IsNot Nothing AndAlso Not IsDBNull(stockVal) Then
+                Dim stockCount As Integer = Convert.ToInt32(stockVal)
+                If stockCount <= 0 Then
+                    e.CellStyle.BackColor = Color.FromArgb(255, 235, 238)
+                    e.CellStyle.ForeColor = Color.FromArgb(183, 28, 28)
+                    e.CellStyle.SelectionBackColor = Color.FromArgb(239, 154, 154)
+                    e.CellStyle.SelectionForeColor = Color.FromArgb(183, 28, 28)
                 End If
             End If
-        Next
-    End Sub
-
-    Private Sub DataGridView1_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles DataGridView1.DataBindingComplete
-        ApplyProductGridFormatting()
-    End Sub
-
-    Private Sub FormatCartGrid()
-        If DataGridView2.Columns.Count > 0 Then
-            DataGridView2.Columns("ProductID").Visible = False
-            DataGridView2.Columns("CostPrice").Visible = False
-            DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            DataGridView2.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
-            DataGridView2.Columns("LineTotal").DefaultCellStyle.Format = "C2"
         End If
     End Sub
 
@@ -278,7 +361,7 @@ Public Class ProductPOS
             redoStack.Push(cartTable.Copy())
             cartTable = undoStack.Pop()
             DataGridView2.DataSource = cartTable
-            FormatCartGrid()
+            FormatColumns()
             UpdateCartTotalDisplay()
         End If
     End Sub
@@ -288,7 +371,7 @@ Public Class ProductPOS
             undoStack.Push(cartTable.Copy())
             cartTable = redoStack.Pop()
             DataGridView2.DataSource = cartTable
-            FormatCartGrid()
+            FormatColumns()
             UpdateCartTotalDisplay()
         End If
     End Sub
@@ -457,4 +540,19 @@ Public Class ProductPOS
             End Try
         End Using
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
+        Dim frm As New AdminDashboard()
+        frm.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
+    End Sub
+
 End Class

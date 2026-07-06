@@ -9,16 +9,9 @@ Public Class AdminDashboard
         lblTitle.Font = AppFonts.VenusRising(22)
 
         Label1.ForeColor = Color.FromArgb(255, 255, 255)
+        Label1.Font = AppFonts.Hwygwde(25)
         Label2.ForeColor = Color.FromArgb(255, 255, 255)
-
-        lblStatus.ForeColor = Color.FromArgb(255, 255, 255)
-        lblStatus.Font = AppFonts.Hwygoth(16)
-        lblEntertainment.ForeColor = Color.FromArgb(255, 255, 255)
-        lblEntertainment.Font = AppFonts.Hwygoth(16)
-
-        Button4.Font = AppFonts.Hwygoth(16)
-
-        txtboxSearchBox.Font = AppFonts.Hwygoth(16)
+        Label2.Font = AppFonts.Hwygwde(25)
 
         btnOpenManageEntertainment.Font = AppFonts.Hwygoth(16)
         btnOpenManageProduct.Font = AppFonts.Hwygoth(16)
@@ -27,6 +20,9 @@ Public Class AdminDashboard
 
         Button1.Font = AppFonts.Hwygoth(16)
         btnOpenProductPOS.Font = AppFonts.Hwygoth(16)
+
+        Button2.Font = AppFonts.Hwygoth(16)
+        Button3.Font = AppFonts.Hwygoth(16)
 
         Me.BackgroundImage = My.Resources.background3
         Me.BackgroundImageLayout = ImageLayout.Stretch
