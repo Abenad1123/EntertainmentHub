@@ -36,7 +36,6 @@ Partial Class MainMenu
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.PanelHideBalance = New System.Windows.Forms.Panel()
         Me.DataGridViewActivity = New System.Windows.Forms.DataGridView()
-        Me.LabelBalance = New System.Windows.Forms.Label()
         Me.ComboBoxType = New System.Windows.Forms.ComboBox()
         Me.PanelDeposit = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -45,12 +44,15 @@ Partial Class MainMenu
         Me.LabelInUse = New System.Windows.Forms.Label()
         Me.LabelInMaintenance = New System.Windows.Forms.Label()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LabelBalance = New System.Windows.Forms.Label()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.DataGridViewActivity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'LiveDurationTimer
@@ -201,17 +203,17 @@ Partial Class MainMenu
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.151261!))
         Me.TableLayoutPanel2.Controls.Add(Me.PanelHideBalance, 3, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.DataGridViewActivity, 1, 4)
-        Me.TableLayoutPanel2.Controls.Add(Me.LabelBalance, 1, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.ComboBoxType, 2, 7)
         Me.TableLayoutPanel2.Controls.Add(Me.PanelDeposit, 5, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Panel2, 1, 2)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 138)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 9
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.159132!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.871609!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.594937!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.434!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.199643!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.60784!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.57522!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.3273!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.893309!))
@@ -241,18 +243,6 @@ Partial Class MainMenu
         Me.DataGridViewActivity.Size = New System.Drawing.Size(431, 212)
         Me.DataGridViewActivity.TabIndex = 1
         '
-        'LabelBalance
-        '
-        Me.LabelBalance.AutoSize = True
-        Me.LabelBalance.BackColor = System.Drawing.Color.White
-        Me.LabelBalance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBalance.ForeColor = System.Drawing.Color.DarkGreen
-        Me.LabelBalance.Location = New System.Drawing.Point(36, 61)
-        Me.LabelBalance.Name = "LabelBalance"
-        Me.LabelBalance.Size = New System.Drawing.Size(213, 42)
-        Me.LabelBalance.TabIndex = 2
-        '
         'ComboBoxType
         '
         Me.TableLayoutPanel2.SetColumnSpan(Me.ComboBoxType, 4)
@@ -270,7 +260,7 @@ Partial Class MainMenu
         Me.PanelDeposit.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDeposit.Location = New System.Drawing.Point(350, 64)
         Me.PanelDeposit.Name = "PanelDeposit"
-        Me.PanelDeposit.Size = New System.Drawing.Size(117, 36)
+        Me.PanelDeposit.Size = New System.Drawing.Size(117, 40)
         Me.PanelDeposit.TabIndex = 4
         '
         'TableLayoutPanel1
@@ -386,6 +376,28 @@ Partial Class MainMenu
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(1200, 702)
         Me.TableLayoutPanel3.TabIndex = 2
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.LabelBalance)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(36, 64)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(213, 40)
+        Me.Panel2.TabIndex = 5
+        '
+        'LabelBalance
+        '
+        Me.LabelBalance.BackColor = System.Drawing.Color.White
+        Me.LabelBalance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBalance.ForeColor = System.Drawing.Color.DarkGreen
+        Me.LabelBalance.Location = New System.Drawing.Point(0, 0)
+        Me.LabelBalance.Margin = New System.Windows.Forms.Padding(0, 0, 0, 0)
+        Me.LabelBalance.Name = "LabelBalance"
+        Me.LabelBalance.Size = New System.Drawing.Size(213, 40)
+        Me.LabelBalance.TabIndex = 0
+        Me.LabelBalance.Text = "Label1"
+        '
         'MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -406,11 +418,11 @@ Partial Class MainMenu
         Me.TableLayoutPanel4.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
-        Me.TableLayoutPanel2.PerformLayout()
         CType(Me.DataGridViewActivity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -425,7 +437,6 @@ Partial Class MainMenu
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents PanelHideBalance As Panel
     Friend WithEvents DataGridViewActivity As DataGridView
-    Friend WithEvents LabelBalance As Label
     Friend WithEvents ComboBoxType As ComboBox
     Friend WithEvents PanelDeposit As Panel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
@@ -435,4 +446,6 @@ Partial Class MainMenu
     Friend WithEvents LabelInUse As Label
     Friend WithEvents LabelInMaintenance As Label
     Friend WithEvents LabelTier As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents LabelBalance As Label
 End Class

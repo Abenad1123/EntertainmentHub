@@ -194,16 +194,16 @@ Module DatabaseInitializerModule
 
 #Region "Products"
     Private Sub seedproducts(conn As MySqlConnection)
-        SeedProduct(conn, "Ramen", 80D)
-        SeedProduct(conn, "Coke Kasalo", 40D)
-        SeedProduct(conn, "Energy Drink", 50D)
-        SeedProduct(conn, "Snack Bar", 30D)
-        SeedProduct(conn, "Gaming Headset", 500D)
-        SeedProduct(conn, "Gaming Mouse", 300D)
-        SeedProduct(conn, "Gaming Keyboard", 400D)
-        SeedProduct(conn, "VR Controller", 6000D)
+        SeedProduct(conn, "Ramen", 80D, 48D, "Food")
+        SeedProduct(conn, "Coke Kasalo", 40D, 24D, "Beverage")
+        SeedProduct(conn, "Energy Drink", 50D, 30D, "Beverage")
+        SeedProduct(conn, "Snack Bar", 30D, 18D, "Food")
+        SeedProduct(conn, "Gaming Headset", 500D, 300D, "Electronics")
+        SeedProduct(conn, "Gaming Mouse", 300D, 180D, "Electronics")
+        SeedProduct(conn, "Gaming Keyboard", 400D, 240D, "Electronics")
+        SeedProduct(conn, "VR Controller", 6000D, 3600D, "Electronics")
     End Sub
-    Private Sub SeedProduct(conn As MySqlConnection, ProductName As String, UnitPrice As Decimal)
+    Private Sub SeedProduct(conn As MySqlConnection, ProductName As String, UnitPrice As Decimal, CostPrice As Decimal, Category As String)
         Dim checkSql As String =
            "SELECT COUNT(*) 
          FROM Products
@@ -215,12 +215,15 @@ Module DatabaseInitializerModule
             If count = 0 Then
                 Dim insertSql As String =
                 "INSERT INTO Products
-                 (ProductName, UnitPrice)
+                 (ProductName, CostPrice, UnitPrice, QuantityInStock, Category)
                  VALUES
-                 (@ProductName, @UnitPrice)"
+                 (@ProductName, @CostPrice, @UnitPrice, @QuantityInStock, @Category)"
                 Using insertCmd As New MySqlCommand(insertSql, conn)
                     insertCmd.Parameters.AddWithValue("@ProductName", ProductName)
+                    insertCmd.Parameters.AddWithValue("@CostPrice", CostPrice)
                     insertCmd.Parameters.AddWithValue("@UnitPrice", UnitPrice)
+                    insertCmd.Parameters.AddWithValue("@QuantityInStock", 100)
+                    insertCmd.Parameters.AddWithValue("@Category", Category)
                     insertCmd.ExecuteNonQuery()
                 End Using
             End If

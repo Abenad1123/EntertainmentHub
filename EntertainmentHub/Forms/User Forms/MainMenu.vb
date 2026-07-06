@@ -111,9 +111,21 @@ Public Class MainMenu
 
     Private Sub PanelHideBalance_Click(sender As Object, e As EventArgs) Handles PanelHideBalance.Click
         _isBalanceHidden = Not _isBalanceHidden
+
         If LabelBalance.Tag IsNot Nothing AndAlso TypeOf LabelBalance.Tag Is Decimal Then
-            RenderBalanceUI(CType(LabelBalance.Tag, Decimal))
+            Try
+
+                TableLayoutPanel2.SuspendLayout()
+
+
+                RenderBalanceUI(CType(LabelBalance.Tag, Decimal))
+
+            Finally
+
+                TableLayoutPanel2.ResumeLayout(True)
+            End Try
         End If
+
     End Sub
 #End Region
 
