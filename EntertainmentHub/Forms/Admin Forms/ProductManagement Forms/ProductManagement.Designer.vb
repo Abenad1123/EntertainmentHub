@@ -92,8 +92,8 @@ Partial Class ProductManagement
         Me.TableLayoutPanel1.RowCount = 5
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.65012!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.349876!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1482, 827)
         Me.TableLayoutPanel1.TabIndex = 1
@@ -101,9 +101,10 @@ Partial Class ProductManagement
         'btnGoBack
         '
         Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(13, 792)
+        Me.btnGoBack.Location = New System.Drawing.Point(10, 766)
+        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(0)
         Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 21)
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
         Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.btnGoBack.TabIndex = 5
         Me.btnGoBack.TabStop = False
@@ -128,7 +129,7 @@ Partial Class ProductManagement
         Me.Panel1.Location = New System.Drawing.Point(741, 10)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(731, 403)
+        Me.Panel1.Size = New System.Drawing.Size(731, 378)
         Me.Panel1.TabIndex = 0
         '
         'lblTitle
@@ -281,7 +282,7 @@ Partial Class ProductManagement
         Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 2)
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(731, 779)
+        Me.DataGridView1.Size = New System.Drawing.Size(731, 756)
         Me.DataGridView1.TabIndex = 1
         '
         'Panel2
@@ -304,10 +305,10 @@ Partial Class ProductManagement
         Me.Panel2.Controls.Add(Me.Label6)
         Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(741, 413)
+        Me.Panel2.Location = New System.Drawing.Point(741, 388)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(731, 376)
+        Me.Panel2.Size = New System.Drawing.Size(731, 378)
         Me.Panel2.TabIndex = 3
         '
         'Button2
