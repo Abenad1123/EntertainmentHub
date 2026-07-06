@@ -37,14 +37,15 @@ Partial Class TransactionManager
         Me.Button5 = New System.Windows.Forms.Button()
         Me.txtActionLog = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -196,16 +197,6 @@ Partial Class TransactionManager
         Me.Label3.Text = "ACTION LOG"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(701, 548)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(123, 40)
-        Me.Button3.TabIndex = 18
-        Me.Button3.Text = "Go back"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -230,9 +221,9 @@ Partial Class TransactionManager
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 2, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Button3, 2, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txtActionLog, 1, 4)
@@ -272,6 +263,16 @@ Partial Class TransactionManager
         Me.Panel1.Size = New System.Drawing.Size(688, 495)
         Me.Panel1.TabIndex = 16
         '
+        'btnGoBack
+        '
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(701, 548)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 27
+        Me.btnGoBack.TabStop = False
+        '
         'TransactionManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -290,6 +291,7 @@ Partial Class TransactionManager
         Me.TableLayoutPanel1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -308,9 +310,9 @@ Partial Class TransactionManager
     Friend WithEvents Button5 As Button
     Friend WithEvents txtActionLog As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button3 As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnGoBack As PictureBox
 End Class

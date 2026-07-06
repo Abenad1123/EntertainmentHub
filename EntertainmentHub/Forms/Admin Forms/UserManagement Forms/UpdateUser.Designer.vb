@@ -23,7 +23,6 @@ Partial Class UpdateUser
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateUser))
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -51,22 +50,13 @@ Partial Class UpdateUser
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtboxEmail = New System.Windows.Forms.TextBox()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(13, 730)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(123, 40)
-        Me.Button3.TabIndex = 19
-        Me.Button3.Text = "Go back"
-        Me.Button3.UseVisualStyleBackColor = False
         '
         'DataGridView2
         '
@@ -76,7 +66,8 @@ Partial Class UpdateUser
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(574, 328)
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView2.Size = New System.Drawing.Size(823, 328)
         Me.DataGridView2.TabIndex = 21
         '
         'Label7
@@ -220,18 +211,19 @@ Partial Class UpdateUser
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(574, 328)
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(823, 328)
         Me.DataGridView1.TabIndex = 0
         '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Button3, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 3, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView2, 1, 3)
@@ -246,7 +238,7 @@ Partial Class UpdateUser
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.5!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 808)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1422, 808)
         Me.TableLayoutPanel1.TabIndex = 22
         '
         'Panel1
@@ -275,10 +267,10 @@ Partial Class UpdateUser
         Me.Panel1.Controls.Add(Me.btnSearch)
         Me.Panel1.Controls.Add(Me.txtboxSearchBox)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(613, 13)
+        Me.Panel1.Location = New System.Drawing.Point(862, 13)
         Me.Panel1.Name = "Panel1"
         Me.TableLayoutPanel1.SetRowSpan(Me.Panel1, 3)
-        Me.Panel1.Size = New System.Drawing.Size(574, 672)
+        Me.Panel1.Size = New System.Drawing.Size(546, 672)
         Me.Panel1.TabIndex = 20
         '
         'cmbboxEditStatus
@@ -349,11 +341,21 @@ Partial Class UpdateUser
         Me.txtboxEmail.Size = New System.Drawing.Size(339, 30)
         Me.txtboxEmail.TabIndex = 24
         '
+        'btnGoBack
+        '
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(13, 730)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 32
+        Me.btnGoBack.TabStop = False
+        '
         'UpdateUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1200, 808)
+        Me.ClientSize = New System.Drawing.Size(1422, 808)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -367,11 +369,10 @@ Partial Class UpdateUser
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents Button3 As Button
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
@@ -399,4 +400,5 @@ Partial Class UpdateUser
     Friend WithEvents Label5 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents cmbboxEditMembership As ComboBox
+    Friend WithEvents btnGoBack As PictureBox
 End Class

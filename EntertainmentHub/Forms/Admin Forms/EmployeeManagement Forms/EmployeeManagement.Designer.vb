@@ -25,8 +25,8 @@ Partial Class EmployeeManagement
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EmployeeManagement))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.btnDelete = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblRole = New System.Windows.Forms.Label()
         Me.cmbboxRoles = New System.Windows.Forms.ComboBox()
@@ -36,6 +36,7 @@ Partial Class EmployeeManagement
         Me.btnRegister = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,7 +48,8 @@ Partial Class EmployeeManagement
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(574, 548)
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(882, 548)
         Me.DataGridView1.TabIndex = 0
         '
         'btnDelete
@@ -56,30 +58,20 @@ Partial Class EmployeeManagement
         Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDelete.Location = New System.Drawing.Point(31, 326)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(325, 47)
+        Me.btnDelete.Size = New System.Drawing.Size(492, 47)
         Me.btnDelete.TabIndex = 1
         Me.btnDelete.Text = "Delete Employee"
         Me.btnDelete.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(13, 636)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(123, 40)
-        Me.Button3.TabIndex = 19
-        Me.Button3.Text = "Go back"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Button3, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 3, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -91,8 +83,18 @@ Partial Class EmployeeManagement
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1520, 703)
         Me.TableLayoutPanel1.TabIndex = 20
+        '
+        'btnGoBack
+        '
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(13, 636)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 27
+        Me.btnGoBack.TabStop = False
         '
         'Panel1
         '
@@ -104,9 +106,9 @@ Partial Class EmployeeManagement
         Me.Panel1.Controls.Add(Me.btnRegister)
         Me.Panel1.Controls.Add(Me.btnDelete)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(613, 13)
+        Me.Panel1.Location = New System.Drawing.Point(921, 13)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(574, 548)
+        Me.Panel1.Size = New System.Drawing.Size(586, 548)
         Me.Panel1.TabIndex = 20
         '
         'lblRole
@@ -152,7 +154,7 @@ Partial Class EmployeeManagement
         Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnUpdate.Location = New System.Drawing.Point(31, 461)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(325, 47)
+        Me.btnUpdate.Size = New System.Drawing.Size(492, 47)
         Me.btnUpdate.TabIndex = 2
         Me.btnUpdate.Text = "Update Employee Information"
         Me.btnUpdate.UseVisualStyleBackColor = False
@@ -163,7 +165,7 @@ Partial Class EmployeeManagement
         Me.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRegister.Location = New System.Drawing.Point(31, 394)
         Me.btnRegister.Name = "btnRegister"
-        Me.btnRegister.Size = New System.Drawing.Size(325, 47)
+        Me.btnRegister.Size = New System.Drawing.Size(492, 47)
         Me.btnRegister.TabIndex = 1
         Me.btnRegister.Text = "Register Employee"
         Me.btnRegister.UseVisualStyleBackColor = False
@@ -172,7 +174,7 @@ Partial Class EmployeeManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1200, 703)
+        Me.ClientSize = New System.Drawing.Size(1520, 703)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -183,6 +185,7 @@ Partial Class EmployeeManagement
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -191,7 +194,6 @@ Partial Class EmployeeManagement
 
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnDelete As Button
-    Friend WithEvents Button3 As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents btnRegister As Button
@@ -200,4 +202,5 @@ Partial Class EmployeeManagement
     Friend WithEvents btnUpdate As Button
     Friend WithEvents lblRole As Label
     Friend WithEvents cmbboxRoles As ComboBox
+    Friend WithEvents btnGoBack As PictureBox
 End Class

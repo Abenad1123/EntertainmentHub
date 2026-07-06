@@ -1,64 +1,131 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Data
 Imports System.Drawing
+Imports System.Windows.Forms
+Imports MySql.Data.MySqlClient
 
 Public Class ProductManagement
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
-    End Sub
-
-    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
-        btnGoBack.Image = My.Resources.go_back_state_2
-    End Sub
-
-    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
-        btnGoBack.Image = My.Resources.go_back_state_1
-    End Sub
-
     Private selectedProductID As Integer = 0
 
-    Private Sub ProductInventoryManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        InitializeCategoryDropdown()
-        RefreshProductsGrid()
+    Private Sub ProductManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitializeCategories()
+        StyleDataGridView()
+        ResetFilters()
     End Sub
 
-    Private Sub InitializeCategoryDropdown()
+    Private Sub StyleDataGridView()
+        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.AllowUserToDeleteRows = False
+        DataGridView1.AllowUserToResizeRows = False
+        DataGridView1.ReadOnly = True
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.MultiSelect = False
+        DataGridView1.RowHeadersVisible = False
+
+        DataGridView1.BackgroundColor = Color.White
+        DataGridView1.BorderStyle = BorderStyle.None
+        DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+
+        DataGridView1.EnableHeadersVisualStyles = False
+        DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48)
+        DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+        DataGridView1.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+        DataGridView1.ColumnHeadersHeight = 40
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+        DataGridView1.DefaultCellStyle.BackColor = Color.White
+        DataGridView1.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(230, 240, 255)
+        DataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.Font = New Font("Segoe UI", 9)
+        DataGridView1.DefaultCellStyle.Padding = New Padding(5, 0, 5, 0)
+
+        DataGridView1.RowTemplate.Height = 35
+        DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
+
+    Private Sub FormatColumns()
+        If DataGridView1.Columns.Count > 0 Then
+            If DataGridView1.Columns.Contains("ProductID") Then
+                DataGridView1.Columns("ProductID").Visible = False
+            End If
+
+            DataGridView1.Columns("ProductName").HeaderText = "Product Name"
+            DataGridView1.Columns("ProductName").FillWeight = 30
+
+            DataGridView1.Columns("Category").HeaderText = "Category"
+            DataGridView1.Columns("Category").FillWeight = 20
+
+            DataGridView1.Columns("CostPrice").HeaderText = "Cost Price"
+            DataGridView1.Columns("CostPrice").FillWeight = 15
+            DataGridView1.Columns("CostPrice").DefaultCellStyle.Format = "C2"
+            DataGridView1.Columns("CostPrice").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            DataGridView1.Columns("UnitPrice").HeaderText = "Unit Price"
+            DataGridView1.Columns("UnitPrice").FillWeight = 15
+            DataGridView1.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
+            DataGridView1.Columns("UnitPrice").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            DataGridView1.Columns("QuantityInStock").HeaderText = "Stock"
+            DataGridView1.Columns("QuantityInStock").FillWeight = 10
+            DataGridView1.Columns("QuantityInStock").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("QuantityInStock").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+        End If
+    End Sub
+
+    Private Sub InitializeCategories()
         cmbboxCategory.Items.Clear()
+        ComboBox1.Items.Clear()
+
         Dim categories As String() = {"Drinks", "Easy to eat", "Miscellaneous", "Pastries"}
+
         cmbboxCategory.Items.AddRange(categories)
         cmbboxCategory.SelectedItem = "Miscellaneous"
+
+        ComboBox1.Items.Add("All")
+        ComboBox1.Items.AddRange(categories)
+        ComboBox1.SelectedItem = "All"
     End Sub
 
     Private Sub RefreshProductsGrid()
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "SELECT ProductID, ProductName, Category, CostPrice, UnitPrice, QuantityInStock FROM products"
+                Dim query As String = "SELECT ProductID, ProductName, Category, CostPrice, UnitPrice, QuantityInStock FROM products WHERE 1=1"
+
+                Dim searchName As String = TextBox1.Text.Trim()
+                Dim searchCategory As String = ComboBox1.SelectedItem?.ToString()
+                Dim minCost As Decimal = NumericUpDown1.Value
+                Dim maxCost As Decimal = NumericUpDown2.Value
+                Dim minUnit As Decimal = NumericUpDown4.Value
+                Dim maxUnit As Decimal = NumericUpDown3.Value
+                Dim maxStock As Decimal = NumericUpDown5.Value
+
+                If Not String.IsNullOrEmpty(searchName) Then query &= " AND ProductName LIKE @name"
+                If Not String.IsNullOrEmpty(searchCategory) AndAlso searchCategory <> "All" Then query &= " AND Category = @cat"
+                If minCost > 0 Then query &= " AND CostPrice >= @minCost"
+                If maxCost > 0 Then query &= " AND CostPrice <= @maxCost"
+                If minUnit > 0 Then query &= " AND UnitPrice >= @minUnit"
+                If maxUnit > 0 Then query &= " AND UnitPrice <= @maxUnit"
+                If maxStock > 0 Then query &= " AND QuantityInStock <= @stock"
 
                 Using cmd As New MySqlCommand(query, conn)
+                    If Not String.IsNullOrEmpty(searchName) Then cmd.Parameters.AddWithValue("@name", "%" & searchName & "%")
+                    If Not String.IsNullOrEmpty(searchCategory) AndAlso searchCategory <> "All" Then cmd.Parameters.AddWithValue("@cat", searchCategory)
+                    If minCost > 0 Then cmd.Parameters.AddWithValue("@minCost", minCost)
+                    If maxCost > 0 Then cmd.Parameters.AddWithValue("@maxCost", maxCost)
+                    If minUnit > 0 Then cmd.Parameters.AddWithValue("@minUnit", minUnit)
+                    If maxUnit > 0 Then cmd.Parameters.AddWithValue("@maxUnit", maxUnit)
+                    If maxStock > 0 Then cmd.Parameters.AddWithValue("@stock", maxStock)
+
                     Dim adapter As New MySqlDataAdapter(cmd)
                     Dim dt As New DataTable()
                     adapter.Fill(dt)
                     DataGridView1.DataSource = dt
                 End Using
 
-                If DataGridView1.Columns.Count > 0 Then
-                    If DataGridView1.Columns.Contains("ProductID") Then
-                        DataGridView1.Columns("ProductID").Visible = False
-                    End If
-
-                    DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-
-                    If DataGridView1.Columns.Contains("CostPrice") Then
-                        DataGridView1.Columns("CostPrice").DefaultCellStyle.Format = "C2"
-                    End If
-                    If DataGridView1.Columns.Contains("UnitPrice") Then
-                        DataGridView1.Columns("UnitPrice").DefaultCellStyle.Format = "C2"
-                    End If
-
-                    ApplyGridRowFormatting()
-                End If
+                FormatColumns()
 
             Catch ex As Exception
                 MessageBox.Show("Error rendering products view: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -66,24 +133,38 @@ Public Class ProductManagement
         End Using
     End Sub
 
-    Private Sub ApplyGridRowFormatting()
-        For Each row As DataGridViewRow In DataGridView1.Rows
-            If row.Cells("QuantityInStock").Value IsNot Nothing AndAlso Not row.IsNewRow Then
-                Dim stockCount As Integer = Convert.ToInt32(row.Cells("QuantityInStock").Value)
-
-                If stockCount = 0 Then
-                    row.DefaultCellStyle.BackColor = Color.Maroon
-                    row.DefaultCellStyle.ForeColor = Color.White
-                Else
-                    row.DefaultCellStyle.BackColor = DataGridView1.DefaultCellStyle.BackColor
-                    row.DefaultCellStyle.ForeColor = DataGridView1.DefaultCellStyle.ForeColor
+    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
+        If e.RowIndex >= 0 Then
+            Dim stockVal = DataGridView1.Rows(e.RowIndex).Cells("QuantityInStock").Value
+            If stockVal IsNot Nothing AndAlso Not IsDBNull(stockVal) Then
+                Dim stockCount As Integer = Convert.ToInt32(stockVal)
+                If stockCount <= 0 Then
+                    e.CellStyle.BackColor = Color.FromArgb(255, 235, 238)
+                    e.CellStyle.ForeColor = Color.FromArgb(183, 28, 28)
+                    e.CellStyle.SelectionBackColor = Color.FromArgb(239, 154, 154)
+                    e.CellStyle.SelectionForeColor = Color.FromArgb(183, 28, 28)
                 End If
             End If
-        Next
+        End If
     End Sub
 
-    Private Sub DataGridView1_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles DataGridView1.DataBindingComplete
-        ApplyGridRowFormatting()
+    Private Sub Button1_Click_Search(sender As Object, e As EventArgs) Handles Button1.Click
+        RefreshProductsGrid()
+    End Sub
+
+    Private Sub Button2_Click_ResetFilters(sender As Object, e As EventArgs) Handles Button2.Click
+        ResetFilters()
+    End Sub
+
+    Private Sub ResetFilters()
+        TextBox1.Clear()
+        ComboBox1.SelectedItem = "All"
+        NumericUpDown1.Value = 0
+        NumericUpDown2.Value = 0
+        NumericUpDown4.Value = 0
+        NumericUpDown3.Value = 0
+        NumericUpDown5.Value = 0
+        RefreshProductsGrid()
     End Sub
 
     Private Sub ResetInputs()
@@ -91,6 +172,7 @@ Public Class ProductManagement
         txtboxName.Clear()
         nudCostPrice.Value = nudCostPrice.Minimum
         nudUnitPrice.Value = nudUnitPrice.Minimum
+        nudStockControl.Value = nudStockControl.Minimum
         cmbboxCategory.SelectedItem = "Miscellaneous"
     End Sub
 
@@ -245,7 +327,7 @@ Public Class ProductManagement
         End If
     End Sub
 
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs)
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If selectedProductID = 0 Then
             MessageBox.Show("Please select a target row item inside the data view grid view first.", "Selection Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -273,4 +355,17 @@ Public Class ProductManagement
         End Using
     End Sub
 
+    Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
+        Dim frm As New AdminDashboard()
+        frm.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
+    End Sub
 End Class

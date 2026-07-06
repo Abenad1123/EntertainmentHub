@@ -132,6 +132,12 @@
     <Compile Include="Forms\Admin Forms\AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin Forms\AnalyticsMenu.Designer.vb">
+      <DependentUpon>AnalyticsMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\AnalyticsMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.Designer.vb">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
     </Compile>
@@ -180,10 +186,10 @@
     <Compile Include="Forms\Admin Forms\ProductManagement Forms\ReceiptManager.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\ReportManagement Forms\RevenueReport.Designer.vb">
+    <Compile Include="Forms\Admin Forms\RevenueReport.Designer.vb">
       <DependentUpon>RevenueReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin Forms\ReportManagement Forms\RevenueReport.vb">
+    <Compile Include="Forms\Admin Forms\RevenueReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin Forms\SystemSetting.Designer.vb">
@@ -274,6 +280,9 @@
     <EmbeddedResource Include="Forms\Admin Forms\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\AnalyticsMenu.resx">
+      <DependentUpon>AnalyticsMenu.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
     </EmbeddedResource>
@@ -298,7 +307,7 @@
     <EmbeddedResource Include="Forms\Admin Forms\ProductManagement Forms\ReceiptManager.resx">
       <DependentUpon>ReceiptManager.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\ReportManagement Forms\RevenueReport.resx">
+    <EmbeddedResource Include="Forms\Admin Forms\RevenueReport.resx">
       <DependentUpon>RevenueReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\SystemSetting.resx">
