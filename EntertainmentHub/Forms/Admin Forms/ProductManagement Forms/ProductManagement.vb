@@ -200,22 +200,36 @@ Public Class ProductManagement
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "INSERT INTO products (ProductName, CostPrice, UnitPrice, QuantityInStock, Category) VALUES (@name, @cost, @unit, 0, @cat)"
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "INSERT INTO products (ProductName, CostPrice, UnitPrice, QuantityInStock, Category) VALUES (@name, @cost, @unit, 0, @cat)"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@name", productName)
+                            cmd.Parameters.AddWithValue("@cost", costPrice)
+                            cmd.Parameters.AddWithValue("@unit", unitPrice)
+                            cmd.Parameters.AddWithValue("@cat", selectedCategory)
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", productName)
-                    cmd.Parameters.AddWithValue("@cost", costPrice)
-                    cmd.Parameters.AddWithValue("@unit", unitPrice)
-                    cmd.Parameters.AddWithValue("@cat", selectedCategory)
-                    cmd.ExecuteNonQuery()
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Insert')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show($"'{productName}' successfully saved to catalog!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ResetInputs()
+                        RefreshProductsGrid()
+
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("An item with this product name already exists in the catalog system.", "Duplicate Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show($"'{productName}' successfully saved to catalog!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ResetInputs()
-                RefreshProductsGrid()
-
-            Catch ex As MySqlException When ex.Number = 1062
-                MessageBox.Show("An item with this product name already exists in the catalog system.", "Duplicate Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Catch ex As Exception
                 MessageBox.Show("Save operations aborted: " & ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -272,23 +286,37 @@ Public Class ProductManagement
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "UPDATE products SET ProductName = @name, CostPrice = @cost, UnitPrice = @unit, Category = @cat WHERE ProductID = @pid"
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "UPDATE products SET ProductName = @name, CostPrice = @cost, UnitPrice = @unit, Category = @cat WHERE ProductID = @pid"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@name", productName)
+                            cmd.Parameters.AddWithValue("@cost", costPrice)
+                            cmd.Parameters.AddWithValue("@unit", unitPrice)
+                            cmd.Parameters.AddWithValue("@cat", selectedCategory)
+                            cmd.Parameters.AddWithValue("@pid", selectedProductID)
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", productName)
-                    cmd.Parameters.AddWithValue("@cost", costPrice)
-                    cmd.Parameters.AddWithValue("@unit", unitPrice)
-                    cmd.Parameters.AddWithValue("@cat", selectedCategory)
-                    cmd.Parameters.AddWithValue("@pid", selectedProductID)
-                    cmd.ExecuteNonQuery()
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Update')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Product successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ResetInputs()
+                        RefreshProductsGrid()
+
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("Another product with this name already exists.", "Duplicate Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show("Product successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ResetInputs()
-                RefreshProductsGrid()
-
-            Catch ex As MySqlException When ex.Number = 1062
-                MessageBox.Show("Another product with this name already exists.", "Duplicate Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Catch ex As Exception
                 MessageBox.Show("Update aborted: " & ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -307,19 +335,33 @@ Public Class ProductManagement
             Using conn = DBConnection.GetConnection()
                 Try
                     conn.Open()
-                    Dim query As String = "DELETE FROM products WHERE ProductID = @pid"
+                    Using transaction = conn.BeginTransaction()
+                        Try
+                            Dim query As String = "DELETE FROM products WHERE ProductID = @pid"
+                            Using cmd As New MySqlCommand(query, conn, transaction)
+                                cmd.Parameters.AddWithValue("@pid", selectedProductID)
+                                cmd.ExecuteNonQuery()
+                            End Using
 
-                    Using cmd As New MySqlCommand(query, conn)
-                        cmd.Parameters.AddWithValue("@pid", selectedProductID)
-                        cmd.ExecuteNonQuery()
+                            Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Delete')"
+                            Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAudit.ExecuteNonQuery()
+                            End Using
+
+                            transaction.Commit()
+                            MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            ResetInputs()
+                            RefreshProductsGrid()
+
+                        Catch ex As MySqlException When ex.Number = 1451
+                            transaction.Rollback()
+                            MessageBox.Show("Cannot delete this product because it has existing sales or transaction records attached to it.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Catch ex As Exception
+                            transaction.Rollback()
+                            Throw ex
+                        End Try
                     End Using
-
-                    MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    ResetInputs()
-                    RefreshProductsGrid()
-
-                Catch ex As MySqlException When ex.Number = 1451
-                    MessageBox.Show("Cannot delete this product because it has existing sales or transaction records attached to it.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Catch ex As Exception
                     MessageBox.Show("Deletion error: " & ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
@@ -338,17 +380,30 @@ Public Class ProductManagement
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "UPDATE products SET QuantityInStock = @stock WHERE ProductID = @pid"
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "UPDATE products SET QuantityInStock = @stock WHERE ProductID = @pid"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@stock", newStockTarget)
+                            cmd.Parameters.AddWithValue("@pid", selectedProductID)
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@stock", newStockTarget)
-                    cmd.Parameters.AddWithValue("@pid", selectedProductID)
-                    cmd.ExecuteNonQuery()
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Update')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Inventory balance successfully adjusted!", "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        RefreshProductsGrid()
+
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show("Inventory balance successfully adjusted!", "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                RefreshProductsGrid()
-
             Catch ex As Exception
                 MessageBox.Show("Database update error: " & ex.Message, "Execution Failure", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try

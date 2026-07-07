@@ -13,8 +13,6 @@ Public Class SystemSetting
         StyleDataGridViews()
         LoadComboBoxes()
         LoadGrids()
-
-        Label9.Font = AppFonts.Hwygoth(30)
     End Sub
 
     Private Sub StyleDataGridViews()
@@ -178,21 +176,36 @@ Public Class SystemSetting
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "UPDATE membershiplevel SET MembershipLevelName = @name, Price = @price, Benefits = @benefits WHERE MembershipLevelID = @id"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", TextBox1.Text.Trim())
-                    cmd.Parameters.AddWithValue("@price", NumericUpDown1.Value)
-                    cmd.Parameters.AddWithValue("@benefits", NumericUpDown2.Value)
-                    cmd.Parameters.AddWithValue("@id", selectedMembershipID)
-                    cmd.ExecuteNonQuery()
-                End Using
 
-                MessageBox.Show("Membership details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                LoadGrids()
-            Catch ex As MySqlException When ex.Number = 1062
-                MessageBox.Show("A membership level with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "UPDATE membershiplevel SET MembershipLevelName = @name, Price = @price, Benefits = @benefits WHERE MembershipLevelID = @id"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@name", TextBox1.Text.Trim())
+                            cmd.Parameters.AddWithValue("@price", NumericUpDown1.Value)
+                            cmd.Parameters.AddWithValue("@benefits", NumericUpDown2.Value)
+                            cmd.Parameters.AddWithValue("@id", selectedMembershipID)
+                            cmd.ExecuteNonQuery()
+                        End Using
+
+                        Using cmdAudit As New MySqlCommand(GetAuditQuery("membershiplevel"), conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@empId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Membership details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LoadGrids()
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("A membership level with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End Using
             Catch ex As Exception
-                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Database Connection Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
@@ -228,20 +241,34 @@ Public Class SystemSetting
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "UPDATE entertainment SET EntertainmentName = @name, EntertainmentTierID = @tierId WHERE EntertainmentID = @id"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", TextBox3.Text.Trim())
-                    cmd.Parameters.AddWithValue("@tierId", Convert.ToInt32(ComboBox2.SelectedValue))
-                    cmd.Parameters.AddWithValue("@id", selectedEntertainmentID)
-                    cmd.ExecuteNonQuery()
-                End Using
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "UPDATE entertainment SET EntertainmentName = @name, EntertainmentTierID = @tierId WHERE EntertainmentID = @id"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@name", TextBox3.Text.Trim())
+                            cmd.Parameters.AddWithValue("@tierId", Convert.ToInt32(ComboBox2.SelectedValue))
+                            cmd.Parameters.AddWithValue("@id", selectedEntertainmentID)
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                MessageBox.Show("Terminal details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                LoadGrids()
-            Catch ex As MySqlException When ex.Number = 1062
-                MessageBox.Show("A terminal with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Using cmdAudit As New MySqlCommand(GetAuditQuery("entertainment"), conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@empId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Terminal details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LoadGrids()
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("A terminal with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End Using
             Catch ex As Exception
-                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Database Connection Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
@@ -278,25 +305,43 @@ Public Class SystemSetting
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "UPDATE entertainmenttier SET EntertainmentTierName = @name, HourlyRate = @rate, EntertainmentTypeID = @typeId WHERE EntertainmentTierID = @id"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", TextBox2.Text.Trim())
-                    cmd.Parameters.AddWithValue("@rate", NumericUpDown3.Value)
-                    cmd.Parameters.AddWithValue("@typeId", Convert.ToInt32(ComboBox1.SelectedValue))
-                    cmd.Parameters.AddWithValue("@id", selectedTierID)
-                    cmd.ExecuteNonQuery()
-                End Using
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "UPDATE entertainmenttier SET EntertainmentTierName = @name, HourlyRate = @rate, EntertainmentTypeID = @typeId WHERE EntertainmentTierID = @id"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@name", TextBox2.Text.Trim())
+                            cmd.Parameters.AddWithValue("@rate", NumericUpDown3.Value)
+                            cmd.Parameters.AddWithValue("@typeId", Convert.ToInt32(ComboBox1.SelectedValue))
+                            cmd.Parameters.AddWithValue("@id", selectedTierID)
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                MessageBox.Show("Hardware tier details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                LoadGrids()
-                LoadComboBoxes()
-            Catch ex As MySqlException When ex.Number = 1062
-                MessageBox.Show("A hardware tier with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Using cmdAudit As New MySqlCommand(GetAuditQuery("entertainmenttier"), conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@empId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Hardware tier details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LoadGrids()
+                        LoadComboBoxes()
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("A hardware tier with this name already exists.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+                End Using
             Catch ex As Exception
-                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Database Connection Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
+
+    Private Function GetAuditQuery(tableName As String) As String
+        Return $"INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@empId, '{tableName}', 'Update')"
+    End Function
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
         Dim frm As New AdminDashboard()

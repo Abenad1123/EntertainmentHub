@@ -267,7 +267,7 @@ Partial Class AnalyticsMenu
         '
         Me.ComboBox1.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(828, 8)
+        Me.ComboBox1.Location = New System.Drawing.Point(828, 13)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(186, 33)
         Me.ComboBox1.TabIndex = 10
@@ -275,9 +275,10 @@ Partial Class AnalyticsMenu
         'btnGoBack
         '
         Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(13, 805)
+        Me.btnGoBack.Location = New System.Drawing.Point(10, 802)
+        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(0)
         Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
         Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.btnGoBack.TabIndex = 26
         Me.btnGoBack.TabStop = False

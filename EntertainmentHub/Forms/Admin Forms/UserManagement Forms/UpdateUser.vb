@@ -329,6 +329,12 @@ Public Class UpdateUser
                             cmdCust.ExecuteNonQuery()
                         End Using
 
+                        Dim auditCustQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Update')"
+                        Using cmdAuditCust As New MySqlCommand(auditCustQuery, conn, transaction)
+                            cmdAuditCust.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAuditCust.ExecuteNonQuery()
+                        End Using
+
                         If currentAccountID > 0 Then
                             Dim queryAcc As String = "UPDATE account SET MembershipLevelID=@mid, Status=@status, updated_at=NOW() WHERE AccountID=@aid"
                             Using cmdAcc As New MySqlCommand(queryAcc, conn, transaction)
@@ -336,6 +342,12 @@ Public Class UpdateUser
                                 cmdAcc.Parameters.AddWithValue("@status", cmbboxEditStatus.SelectedItem.ToString())
                                 cmdAcc.Parameters.AddWithValue("@aid", currentAccountID)
                                 cmdAcc.ExecuteNonQuery()
+                            End Using
+
+                            Dim auditAccQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'account', 'Update')"
+                            Using cmdAuditAcc As New MySqlCommand(auditAccQuery, conn, transaction)
+                                cmdAuditAcc.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAuditAcc.ExecuteNonQuery()
                             End Using
 
                             Dim queryLogin As String = "UPDATE accountlogin SET UserName=@uname"

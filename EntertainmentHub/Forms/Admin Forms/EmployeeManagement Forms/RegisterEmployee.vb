@@ -132,28 +132,42 @@ Public Class RegisterEmployee
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "INSERT INTO employee (FirstName, LastName, BirthDate, ContactNumber, RolesID) VALUES (@fname, @lname, @bdate, @cnum, @roleId)"
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "INSERT INTO employee (FirstName, LastName, BirthDate, ContactNumber, RolesID) VALUES (@fname, @lname, @bdate, @cnum, @roleId)"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
+                            cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
+                            cmd.Parameters.AddWithValue("@bdate", DateTimePicker1.Value.ToString("yyyy-MM-dd"))
+                            cmd.Parameters.AddWithValue("@cnum", TextBox4.Text.Trim())
+                            cmd.Parameters.AddWithValue("@roleId", Convert.ToInt32(ComboBox1.SelectedValue))
+                            cmd.ExecuteNonQuery()
+                        End Using
 
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
-                    cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
-                    cmd.Parameters.AddWithValue("@bdate", DateTimePicker1.Value.ToString("yyyy-MM-dd"))
-                    cmd.Parameters.AddWithValue("@cnum", TextBox4.Text.Trim())
-                    cmd.Parameters.AddWithValue("@roleId", Convert.ToInt32(ComboBox1.SelectedValue))
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Insert')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
 
-                    cmd.ExecuteNonQuery()
+                        transaction.Commit()
+                        MessageBox.Show("Employee added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                        TextBox1.Clear()
+                        TextBox2.Clear()
+                        TextBox4.Clear()
+                        DateTimePicker1.Value = DateTime.Now
+                        LoadEmployeeData()
+
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show("Employee added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                TextBox1.Clear()
-                TextBox2.Clear()
-                TextBox4.Clear()
-                DateTimePicker1.Value = DateTime.Now
-                LoadEmployeeData()
-
             Catch ex As MySqlException
                 MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
@@ -178,28 +192,38 @@ Public Class RegisterEmployee
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim queryLogin As String = "INSERT INTO employeelogin (EmployeeID, UserName, PasswordHash) VALUES (@empId, @user, @hash)"
+                        Using cmdLogin As New MySqlCommand(queryLogin, conn, transaction)
+                            cmdLogin.Parameters.AddWithValue("@empId", employeeId)
+                            cmdLogin.Parameters.AddWithValue("@user", userName)
+                            cmdLogin.Parameters.AddWithValue("@hash", passwordHash)
+                            cmdLogin.ExecuteNonQuery()
+                        End Using
 
-                Dim queryLogin As String = "INSERT INTO employeelogin (EmployeeID, UserName, PasswordHash) VALUES (@empId, @user, @hash)"
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employeelogin', 'Insert')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
 
-                Using cmdLogin As New MySqlCommand(queryLogin, conn)
-                    cmdLogin.Parameters.AddWithValue("@empId", employeeId)
-                    cmdLogin.Parameters.AddWithValue("@user", userName)
-                    cmdLogin.Parameters.AddWithValue("@hash", passwordHash)
+                        transaction.Commit()
+                        MessageBox.Show("Employee login credentials created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    cmdLogin.ExecuteNonQuery()
+                        TextBox5.Clear()
+                        TextBox3.Clear()
+
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("Error: That Username is already taken, or this Employee already has a login account.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show("Employee login credentials created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                TextBox5.Clear()
-                TextBox3.Clear()
-
             Catch ex As MySqlException
-                If ex.Number = 1062 Then
-                    MessageBox.Show("Error: That Username is already taken, or this Employee already has a login account.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Else
-                    MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
+                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Catch ex As Exception
                 MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try

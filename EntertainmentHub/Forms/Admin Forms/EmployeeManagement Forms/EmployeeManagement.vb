@@ -208,6 +208,12 @@ Public Class EmployeeManagement
                                 cmdEmployee.ExecuteNonQuery()
                             End Using
 
+                            Dim queryAudit As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Delete')"
+                            Using cmdAudit As New MySqlCommand(queryAudit, conn, transaction)
+                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAudit.ExecuteNonQuery()
+                            End Using
+
                             transaction.Commit()
                             MessageBox.Show("Employee and associated login deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             LoadEmployees()

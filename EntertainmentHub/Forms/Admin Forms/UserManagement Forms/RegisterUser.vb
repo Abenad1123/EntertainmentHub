@@ -7,21 +7,26 @@ Imports MySql.Data.MySqlClient
 Public Class RegisterUser
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        StyleDataGridView()
         LoadCustomerData()
         LoadMembershipLevels()
-        StyleDataGridView()
         TextBox5.PasswordChar = "*"c
     End Sub
 
     Private Sub LoadCustomerData()
         Using conn = DBConnection.GetConnection()
-            Dim query As String = "SELECT CustomerID, FirstName, LastName, EmailAddress, created_at, updated_at FROM customerinfo"
-            Using cmd As New MySqlCommand(query, conn)
-                Dim adapter As New MySqlDataAdapter(cmd)
-                Dim dt As New DataTable()
-                adapter.Fill(dt)
-                DataGridView1.DataSource = dt
-            End Using
+            Try
+                Dim query As String = "SELECT CustomerID, FirstName, LastName, EmailAddress, created_at, updated_at FROM customerinfo"
+                Using cmd As New MySqlCommand(query, conn)
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    adapter.Fill(dt)
+                    DataGridView1.DataSource = dt
+                End Using
+                FormatColumns()
+            Catch ex As Exception
+                MessageBox.Show("Error loading customer data: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End Using
     End Sub
 
@@ -55,10 +60,11 @@ Public Class RegisterUser
 
         DataGridView1.RowTemplate.Height = 35
         DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
 
+    Private Sub FormatColumns()
         If DataGridView1.Columns.Count > 0 Then
-            DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-
             DataGridView1.Columns("CustomerID").HeaderText = "ID"
             DataGridView1.Columns("CustomerID").AutoSizeMode = DataGridViewAutoSizeColumnMode.None
             DataGridView1.Columns("CustomerID").Width = 50
@@ -76,26 +82,30 @@ Public Class RegisterUser
 
             DataGridView1.Columns("created_at").HeaderText = "Date Created"
             DataGridView1.Columns("created_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy hh:mm tt"
+            DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy"
 
             DataGridView1.Columns("updated_at").HeaderText = "Last Updated"
             DataGridView1.Columns("updated_at").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            DataGridView1.Columns("updated_at").DefaultCellStyle.Format = "MMM dd, yyyy hh:mm tt"
+            DataGridView1.Columns("updated_at").DefaultCellStyle.Format = "MMM dd, yyyy"
         End If
     End Sub
 
     Private Sub LoadMembershipLevels()
         Using conn = DBConnection.GetConnection()
-            Dim query As String = "SELECT MembershipLevelID, MembershipLevelName FROM membershiplevel"
-            Using cmd As New MySqlCommand(query, conn)
-                Dim adapter As New MySqlDataAdapter(cmd)
-                Dim dt As New DataTable()
-                adapter.Fill(dt)
+            Try
+                Dim query As String = "SELECT MembershipLevelID, MembershipLevelName FROM membershiplevel"
+                Using cmd As New MySqlCommand(query, conn)
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    adapter.Fill(dt)
 
-                ComboBox1.DataSource = dt
-                ComboBox1.DisplayMember = "MembershipLevelName"
-                ComboBox1.ValueMember = "MembershipLevelID"
-            End Using
+                    ComboBox1.DataSource = dt
+                    ComboBox1.DisplayMember = "MembershipLevelName"
+                    ComboBox1.ValueMember = "MembershipLevelID"
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading membership levels: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End Using
     End Sub
 
@@ -108,23 +118,42 @@ Public Class RegisterUser
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "INSERT INTO customerinfo (FirstName, LastName, EmailAddress) VALUES (@fname, @lname, @email)"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
-                    cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
-                    cmd.Parameters.AddWithValue("@email", TextBox3.Text.Trim())
-                    cmd.ExecuteNonQuery()
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim query As String = "INSERT INTO customerinfo (FirstName, LastName, EmailAddress) VALUES (@fname, @lname, @email)"
+                        Using cmd As New MySqlCommand(query, conn, transaction)
+                            cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
+                            cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
+                            cmd.Parameters.AddWithValue("@email", TextBox3.Text.Trim())
+                            cmd.ExecuteNonQuery()
+                        End Using
+
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Insert')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
+                        transaction.Commit()
+                        MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                        TextBox1.Clear()
+                        TextBox2.Clear()
+                        TextBox3.Clear()
+                        LoadCustomerData()
+
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("An item with this email address already exists.", "Duplicate Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
                 End Using
-
-                MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                TextBox1.Clear()
-                TextBox2.Clear()
-                TextBox3.Clear()
-                LoadCustomerData()
-
-            Catch ex As MySqlException
-                MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch MySqlEx As MySqlException
+                MessageBox.Show("Database Error: " & MySqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End Using
     End Sub
@@ -148,46 +177,55 @@ Public Class RegisterUser
         Dim passwordHash As String = BCrypt.Net.BCrypt.HashPassword(plainTextPassword)
 
         Using conn = DBConnection.GetConnection()
-            conn.Open()
+            Try
+                conn.Open()
+                Using transaction = conn.BeginTransaction()
+                    Try
+                        Dim queryAccount As String = "INSERT INTO account (CustomerID, MembershipLevelID, Status) VALUES (@custId, @memId, 'Active')"
+                        Using cmdAccount As New MySqlCommand(queryAccount, conn, transaction)
+                            cmdAccount.Parameters.AddWithValue("@custId", customerId)
+                            cmdAccount.Parameters.AddWithValue("@memId", membershipId)
+                            cmdAccount.ExecuteNonQuery()
+                        End Using
 
-            Using transaction = conn.BeginTransaction()
-                Try
-                    Dim queryAccount As String = "INSERT INTO account (CustomerID, MembershipLevelID, Status) VALUES (@custId, @memId, 'Active'); SELECT LAST_INSERT_ID();"
-                    Dim newAccountId As Integer
+                        Dim newAccountId As Integer = 0
+                        Using cmdId As New MySqlCommand("SELECT LAST_INSERT_ID()", conn, transaction)
+                            newAccountId = Convert.ToInt32(cmdId.ExecuteScalar())
+                        End Using
 
-                    Using cmdAccount As New MySqlCommand(queryAccount, conn, transaction)
-                        cmdAccount.Parameters.AddWithValue("@custId", customerId)
-                        cmdAccount.Parameters.AddWithValue("@memId", membershipId)
-                        newAccountId = Convert.ToInt32(cmdAccount.ExecuteScalar())
-                    End Using
+                        Dim queryLogin As String = "INSERT INTO accountlogin (AccountID, UserName, PasswordHash) VALUES (@accId, @user, @hash)"
+                        Using cmdLogin As New MySqlCommand(queryLogin, conn, transaction)
+                            cmdLogin.Parameters.AddWithValue("@accId", newAccountId)
+                            cmdLogin.Parameters.AddWithValue("@user", userName)
+                            cmdLogin.Parameters.AddWithValue("@hash", passwordHash)
+                            cmdLogin.ExecuteNonQuery()
+                        End Using
 
-                    Dim queryLogin As String = "INSERT INTO accountlogin (AccountID, UserName, PasswordHash) VALUES (@accId, @user, @hash)"
+                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'account', 'Insert')"
+                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
 
-                    Using cmdLogin As New MySqlCommand(queryLogin, conn, transaction)
-                        cmdLogin.Parameters.AddWithValue("@accId", newAccountId)
-                        cmdLogin.Parameters.AddWithValue("@user", userName)
-                        cmdLogin.Parameters.AddWithValue("@hash", passwordHash)
-                        cmdLogin.ExecuteNonQuery()
-                    End Using
+                        transaction.Commit()
+                        MessageBox.Show("Account and login created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    transaction.Commit()
-                    MessageBox.Show("Account and login created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        TextBox4.Clear()
+                        TextBox5.Clear()
 
-                    TextBox4.Clear()
-                    TextBox5.Clear()
-
-                Catch ex As MySqlException
-                    transaction.Rollback()
-                    If ex.Number = 1062 Then
-                        MessageBox.Show("Error: That Username or Account might already exist.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Else
-                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
-                Catch ex As Exception
-                    transaction.Rollback()
-                    MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Try
-            End Using
+                    Catch ex As MySqlException When ex.Number = 1062
+                        transaction.Rollback()
+                        MessageBox.Show("Error: That Username or Account might already exist.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Catch ex As Exception
+                        transaction.Rollback()
+                        Throw ex
+                    End Try
+                End Using
+            Catch MySqlEx As MySqlException
+                MessageBox.Show("Database Error: " & MySqlEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End Using
     End Sub
 

@@ -125,22 +125,34 @@ Public Class UserManagement
             Using conn = DBConnection.GetConnection()
                 Try
                     conn.Open()
-                    Dim query As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
+                    Using transaction = conn.BeginTransaction()
+                        Try
+                            Dim query As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
+                            Using cmd As New MySqlCommand(query, conn, transaction)
+                                cmd.Parameters.AddWithValue("@custId", customerId)
+                                cmd.ExecuteNonQuery()
+                            End Using
 
-                    Using cmd As New MySqlCommand(query, conn)
-                        cmd.Parameters.AddWithValue("@custId", customerId)
-                        cmd.ExecuteNonQuery()
+                            Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Delete')"
+                            Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAudit.ExecuteNonQuery()
+                            End Using
+
+                            transaction.Commit()
+                            MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            LoadCustomerData(TextBox1.Text)
+
+                        Catch ex As MySqlException When ex.Number = 1451
+                            transaction.Rollback()
+                            MessageBox.Show("Cannot delete this customer because they already have an active account or transactions tied to them in the system. You must delete their accounts first.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Catch ex As Exception
+                            transaction.Rollback()
+                            Throw ex
+                        End Try
                     End Using
-
-                    MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    LoadCustomerData(TextBox1.Text)
-
                 Catch ex As MySqlException
-                    If ex.Number = 1451 Then
-                        MessageBox.Show("Cannot delete this customer because they already have an active account or transactions tied to them in the system. You must delete their accounts first.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Else
-                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
+                    MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Catch ex As Exception
                     MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try

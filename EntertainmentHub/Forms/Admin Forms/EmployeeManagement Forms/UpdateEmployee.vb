@@ -293,6 +293,12 @@ Public Class UpdateEmployee
                             cmdEmp.ExecuteNonQuery()
                         End Using
 
+                        Dim auditEmpQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Update')"
+                        Using cmdAuditEmp As New MySqlCommand(auditEmpQuery, conn, transaction)
+                            cmdAuditEmp.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAuditEmp.ExecuteNonQuery()
+                        End Using
+
                         Dim uname As String = txtboxUsername.Text.Trim()
                         Dim plainPass As String = txtboxPassword.Text
 
@@ -312,6 +318,12 @@ Public Class UpdateEmployee
                                 End If
 
                                 cmdLog.ExecuteNonQuery()
+                            End Using
+
+                            Dim auditLogQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employeelogin', 'Update')"
+                            Using cmdAuditLog As New MySqlCommand(auditLogQuery, conn, transaction)
+                                cmdAuditLog.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAuditLog.ExecuteNonQuery()
                             End Using
                         End If
 

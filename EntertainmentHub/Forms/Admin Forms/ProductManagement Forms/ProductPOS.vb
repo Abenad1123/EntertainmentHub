@@ -509,6 +509,12 @@ Public Class ProductPOS
                             End Using
                         Next
 
+                        Dim insertAudit As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@auditEmp, 'sale', 'Sale')"
+                        Using cmdAudit As New MySqlCommand(insertAudit, conn, transaction)
+                            cmdAudit.Parameters.AddWithValue("@auditEmp", targetEmployeeID)
+                            cmdAudit.ExecuteNonQuery()
+                        End Using
+
                         transaction.Commit()
                         MessageBox.Show("Checkout successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 

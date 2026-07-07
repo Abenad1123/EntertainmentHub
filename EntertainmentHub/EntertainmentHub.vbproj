@@ -138,6 +138,12 @@
     <Compile Include="Forms\Admin Forms\AnalyticsMenu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin Forms\AuditLog.Designer.vb">
+      <DependentUpon>AuditLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin Forms\AuditLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.Designer.vb">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\AnalyticsMenu.resx">
       <DependentUpon>AnalyticsMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin Forms\AuditLog.resx">
+      <DependentUpon>AuditLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement Forms\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.vb</DependentUpon>
