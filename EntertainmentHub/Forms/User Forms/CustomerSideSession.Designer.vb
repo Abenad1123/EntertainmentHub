@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class CustomerSideSession
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class EntertainmentManagement
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,12 @@ Partial Class CustomerSideSession
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.ButtonManualOff = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.FlowEntertainmentCards = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'ButtonManualOff
@@ -54,15 +55,23 @@ Partial Class CustomerSideSession
         Me.Button3.Text = "Button3"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'CustomerSideSession
+        'FlowEntertainmentCards
+        '
+        Me.FlowEntertainmentCards.Location = New System.Drawing.Point(76, 69)
+        Me.FlowEntertainmentCards.Name = "FlowEntertainmentCards"
+        Me.FlowEntertainmentCards.Size = New System.Drawing.Size(250, 236)
+        Me.FlowEntertainmentCards.TabIndex = 3
+        '
+        'EntertainmentManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.FlowEntertainmentCards)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ButtonManualOff)
-        Me.Name = "CustomerSideSession"
+        Me.Name = "EntertainmentManagement"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CustomerSideSession"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -73,4 +82,5 @@ Partial Class CustomerSideSession
     Friend WithEvents ButtonManualOff As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents FlowEntertainmentCards As FlowLayoutPanel
 End Class
