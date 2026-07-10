@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -9,6 +10,9 @@ Public Class UpdateUser
     Private currentAccountID As Integer = 0
 
     Private Sub CustomerAccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -331,6 +335,11 @@ Public Class UpdateUser
             Return
         End If
 
+        Dim fn As String = txtboxFirstName.Text.Trim()
+        Dim ln As String = txtboxLastName.Text.Trim()
+        Dim email As String = txtboxEmail.Text.Trim()
+        Dim phone As String = txtboxContactNum.Text.Trim()
+
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
@@ -338,19 +347,16 @@ Public Class UpdateUser
                     Try
                         Dim queryCust As String = "UPDATE customerinfo SET FirstName=@fn, LastName=@ln, EmailAddress=@email, PhoneNumber=@phone, updated_at=NOW() WHERE CustomerID=@cid"
                         Using cmdCust As New MySqlCommand(queryCust, conn, transaction)
-                            cmdCust.Parameters.AddWithValue("@fn", txtboxFirstName.Text.Trim())
-                            cmdCust.Parameters.AddWithValue("@ln", txtboxLastName.Text.Trim())
-                            cmdCust.Parameters.AddWithValue("@email", txtboxEmail.Text.Trim())
-                            cmdCust.Parameters.AddWithValue("@phone", txtboxContactNum.Text.Trim())
+                            cmdCust.Parameters.AddWithValue("@fn", fn)
+                            cmdCust.Parameters.AddWithValue("@ln", ln)
+                            cmdCust.Parameters.AddWithValue("@email", email)
+                            cmdCust.Parameters.AddWithValue("@phone", phone)
                             cmdCust.Parameters.AddWithValue("@cid", currentCustomerID)
                             cmdCust.ExecuteNonQuery()
                         End Using
 
-                        Dim auditCustQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Update')"
-                        Using cmdAuditCust As New MySqlCommand(auditCustQuery, conn, transaction)
-                            cmdAuditCust.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAuditCust.ExecuteNonQuery()
-                        End Using
+                        Dim logDescCust As String = $"Updated profile information for Customer ID {currentCustomerID} ({fn} {ln})."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "customerinfo", "Update", logDescCust)
 
                         If currentAccountID > 0 Then
                             Dim queryAcc As String = "UPDATE account SET MembershipLevelID=@mid, Status=@status, updated_at=NOW() WHERE AccountID=@aid"
@@ -361,11 +367,8 @@ Public Class UpdateUser
                                 cmdAcc.ExecuteNonQuery()
                             End Using
 
-                            Dim auditAccQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'account', 'Update')"
-                            Using cmdAuditAcc As New MySqlCommand(auditAccQuery, conn, transaction)
-                                cmdAuditAcc.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                                cmdAuditAcc.ExecuteNonQuery()
-                            End Using
+                            Dim logDescAcc As String = $"Modified account status and membership level for Account ID {currentAccountID}."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "account", "Update", logDescAcc)
 
                             Dim queryLogin As String = "UPDATE accountlogin SET UserName=@uname"
                             Dim plainPass As String = txtboxPassword.Text
@@ -380,6 +383,9 @@ Public Class UpdateUser
                                 End If
                                 cmdLogin.ExecuteNonQuery()
                             End Using
+
+                            Dim logDescLogin As String = $"Modified authentication credentials for Account ID {currentAccountID}."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "accountlogin", "Update", logDescLogin)
                         End If
 
                         transaction.Commit()
@@ -405,8 +411,14 @@ Public Class UpdateUser
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New UserManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UserManagement())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class

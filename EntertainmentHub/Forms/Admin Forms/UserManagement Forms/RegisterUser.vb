@@ -8,6 +8,9 @@ Imports MySql.Data.MySqlClient
 Public Class RegisterUser
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -133,6 +136,10 @@ Public Class RegisterUser
             Return
         End If
 
+        Dim fname As String = TextBox1.Text.Trim()
+        Dim lname As String = TextBox2.Text.Trim()
+        Dim email As String = TextBox3.Text.Trim()
+
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
@@ -140,17 +147,14 @@ Public Class RegisterUser
                     Try
                         Dim query As String = "INSERT INTO customerinfo (FirstName, LastName, EmailAddress) VALUES (@fname, @lname, @email)"
                         Using cmd As New MySqlCommand(query, conn, transaction)
-                            cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
-                            cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
-                            cmd.Parameters.AddWithValue("@email", TextBox3.Text.Trim())
+                            cmd.Parameters.AddWithValue("@fname", fname)
+                            cmd.Parameters.AddWithValue("@lname", lname)
+                            cmd.Parameters.AddWithValue("@email", email)
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Registered new customer record for '{fname} {lname}' with email '{email}'."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "customerinfo", "Insert", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -219,11 +223,8 @@ Public Class RegisterUser
                             cmdLogin.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'account', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Provisioned new active account (ID {newAccountId}) and login credentials for Customer ID {customerId}."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "account", "Insert", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Account and login created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -248,8 +249,14 @@ Public Class RegisterUser
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New UserManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UserManagement())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class

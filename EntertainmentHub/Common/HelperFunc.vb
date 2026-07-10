@@ -1,6 +1,8 @@
-﻿Imports System.Drawing
+﻿Imports System.Collections.Generic
+Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
-Imports System.Collections.Generic
+Imports MySql.Data.MySqlClient
 
 Public Class HelperFunc
 
@@ -15,14 +17,26 @@ Public Class HelperFunc
     End Enum
 
     Private Shared ReadOnly ThemeColor As Color = Color.FromArgb(134, 255, 7)
-    Private Shared ReadOnly DarkSurfaceColor As Color = Color.FromArgb(45, 45, 48)
+    Private Shared ReadOnly DarkSurfaceColor As Color = Color.FromArgb(31, 31, 34)
     Private Shared ReadOnly BorderThickness As Integer = 1
 
     Private Shared ReadOnly controlBorderConfigs As New Dictionary(Of Control, BorderSides)
+    Private Shared ReadOnly controlRadii As New Dictionary(Of Control, Integer)
     Private Shared ReadOnly buttonDefaultIcons As New Dictionary(Of Button, Image)
     Private Shared ReadOnly buttonHoverIcons As New Dictionary(Of Button, Image)
 
-    Public Shared Sub ApplyBorder(ctrl As Control, Optional sides As BorderSides = BorderSides.All)
+    Private Shared Function GetRoundedPath(rect As Rectangle, radius As Integer) As GraphicsPath
+        Dim path As New GraphicsPath()
+        Dim d As Integer = radius * 2
+        path.AddArc(rect.X, rect.Y, d, d, 180, 90)
+        path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90)
+        path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90)
+        path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90)
+        path.CloseFigure()
+        Return path
+    End Function
+
+    Public Shared Sub ApplyBorder(ctrl As Control, Optional sides As BorderSides = BorderSides.All, Optional borderRadius As Integer = 0)
         If TypeOf ctrl Is TableLayoutPanel Then
             DirectCast(ctrl, TableLayoutPanel).BorderStyle = BorderStyle.None
         ElseIf TypeOf ctrl Is Panel Then
@@ -30,6 +44,7 @@ Public Class HelperFunc
         End If
 
         controlBorderConfigs(ctrl) = sides
+        controlRadii(ctrl) = borderRadius
 
         RemoveHandler ctrl.Paint, AddressOf DrawCustomBorder
         RemoveHandler ctrl.Resize, AddressOf TriggerRedraw
@@ -39,51 +54,72 @@ Public Class HelperFunc
         AddHandler ctrl.Resize, AddressOf TriggerRedraw
         AddHandler ctrl.Disposed, AddressOf Control_Disposed
 
-        ctrl.Invalidate()
+        TriggerRedraw(ctrl, EventArgs.Empty)
     End Sub
 
     Private Shared Sub DrawCustomBorder(sender As Object, e As PaintEventArgs)
         Dim ctrl As Control = DirectCast(sender, Control)
-
         If Not controlBorderConfigs.ContainsKey(ctrl) Then Return
 
         Dim sides As BorderSides = controlBorderConfigs(ctrl)
+        Dim radius As Integer = If(controlRadii.ContainsKey(ctrl), controlRadii(ctrl), 0)
+
+        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias
 
         Using pen As New Pen(ThemeColor, BorderThickness)
             Dim w As Integer = ctrl.Width - 1
             Dim h As Integer = ctrl.Height - 1
 
-            If sides.HasFlag(BorderSides.Top) Then e.Graphics.DrawLine(pen, 0, 0, w, 0)
-            If sides.HasFlag(BorderSides.Right) Then e.Graphics.DrawLine(pen, w, 0, w, h)
-            If sides.HasFlag(BorderSides.Bottom) Then e.Graphics.DrawLine(pen, 0, h, w, h)
-            If sides.HasFlag(BorderSides.Left) Then e.Graphics.DrawLine(pen, 0, 0, 0, h)
+            If radius > 0 Then
+                Dim rect As New Rectangle(0, 0, w, h)
+                Using path = GetRoundedPath(rect, radius)
+                    e.Graphics.DrawPath(pen, path)
+                End Using
+            Else
+                If sides.HasFlag(BorderSides.Top) Then e.Graphics.DrawLine(pen, 0, 0, w, 0)
+                If sides.HasFlag(BorderSides.Right) Then e.Graphics.DrawLine(pen, w, 0, w, h)
+                If sides.HasFlag(BorderSides.Bottom) Then e.Graphics.DrawLine(pen, 0, h, w, h)
+                If sides.HasFlag(BorderSides.Left) Then e.Graphics.DrawLine(pen, 0, 0, 0, h)
+            End If
         End Using
     End Sub
 
     Private Shared Sub TriggerRedraw(sender As Object, e As EventArgs)
         Dim ctrl As Control = DirectCast(sender, Control)
+
+        If controlRadii.ContainsKey(ctrl) AndAlso controlRadii(ctrl) > 0 Then
+            Dim rect As New Rectangle(0, 0, ctrl.Width, ctrl.Height)
+            Using path = GetRoundedPath(rect, controlRadii(ctrl))
+                ctrl.Region = New Region(path)
+            End Using
+        End If
+
         ctrl.Invalidate()
     End Sub
 
     Private Shared Sub Control_Disposed(sender As Object, e As EventArgs)
         Dim ctrl As Control = DirectCast(sender, Control)
-        If controlBorderConfigs.ContainsKey(ctrl) Then
-            controlBorderConfigs.Remove(ctrl)
-        End If
+        If controlBorderConfigs.ContainsKey(ctrl) Then controlBorderConfigs.Remove(ctrl)
+        If controlRadii.ContainsKey(ctrl) Then controlRadii.Remove(ctrl)
     End Sub
 
-    Public Shared Sub ApplyButtonTheme(btn As Button, Optional defaultIcon As Image = Nothing, Optional hoverIcon As Image = Nothing, Optional iconSize As Integer = 28)
+    Public Shared Sub ApplyButtonTheme(btn As Button, Optional defaultIcon As Image = Nothing, Optional hoverIcon As Image = Nothing, Optional iconSize As Integer = 28, Optional borderRadius As Integer = 8)
         btn.FlatStyle = FlatStyle.Flat
         btn.Cursor = Cursors.Hand
-
         btn.BackColor = DarkSurfaceColor
         btn.ForeColor = Color.White
         btn.Font = AppFonts.Coolvetica(16)
 
-        btn.FlatAppearance.BorderColor = ThemeColor
-        btn.FlatAppearance.BorderSize = 1
         btn.FlatAppearance.MouseOverBackColor = ThemeColor
         btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(100, 200, 0)
+
+        If borderRadius > 0 Then
+            btn.FlatAppearance.BorderSize = 0
+            ApplyBorder(btn, BorderSides.All, borderRadius)
+        Else
+            btn.FlatAppearance.BorderColor = ThemeColor
+            btn.FlatAppearance.BorderSize = 1
+        End If
 
         RemoveHandler btn.MouseEnter, AddressOf Button_MouseEnter
         RemoveHandler btn.MouseLeave, AddressOf Button_MouseLeave
@@ -96,13 +132,11 @@ Public Class HelperFunc
 
         If defaultIcon IsNot Nothing Then
             Dim resizedDefault As Image = New Bitmap(defaultIcon, New Size(iconSize, iconSize))
-
             btn.Image = resizedDefault
             btn.TextImageRelation = TextImageRelation.ImageBeforeText
             btn.ImageAlign = ContentAlignment.MiddleCenter
             btn.TextAlign = ContentAlignment.MiddleCenter
             btn.Padding = New Padding(10, 0, 0, 0)
-
             buttonDefaultIcons(btn) = resizedDefault
 
             If hoverIcon IsNot Nothing Then
@@ -124,7 +158,6 @@ Public Class HelperFunc
     Private Shared Sub Button_MouseEnter(sender As Object, e As EventArgs)
         Dim btn As Button = DirectCast(sender, Button)
         btn.ForeColor = Color.Black
-
         If buttonHoverIcons.ContainsKey(btn) Then
             btn.Image = buttonHoverIcons(btn)
         End If
@@ -133,7 +166,6 @@ Public Class HelperFunc
     Private Shared Sub Button_MouseLeave(sender As Object, e As EventArgs)
         Dim btn As Button = DirectCast(sender, Button)
         btn.ForeColor = Color.White
-
         If buttonDefaultIcons.ContainsKey(btn) Then
             btn.Image = buttonDefaultIcons(btn)
         End If
@@ -141,14 +173,12 @@ Public Class HelperFunc
 
     Private Shared Sub Button_MouseDown(sender As Object, e As MouseEventArgs)
         Dim btn As Button = DirectCast(sender, Button)
-
         Dim basePad As Integer = If(buttonDefaultIcons.ContainsKey(btn), 10, 0)
         btn.Padding = New Padding(basePad + 2, 2, 0, 0)
     End Sub
 
     Private Shared Sub Button_MouseUp(sender As Object, e As MouseEventArgs)
         Dim btn As Button = DirectCast(sender, Button)
-
         Dim basePad As Integer = If(buttonDefaultIcons.ContainsKey(btn), 10, 0)
         btn.Padding = New Padding(basePad, 0, 0, 0)
     End Sub
@@ -164,4 +194,46 @@ Public Class HelperFunc
         ctrl.ForeColor = color
     End Sub
 
+    Public Shared Sub Log(conn As MySqlConnection, transaction As MySqlTransaction, empId As Integer, tableName As String, actionType As String, Optional description As String = "")
+        Dim query As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType, Description) VALUES (@empId, @table, @action, @desc)"
+        Using cmd As New MySqlCommand(query, conn, transaction)
+            cmd.Parameters.AddWithValue("@empId", empId)
+            cmd.Parameters.AddWithValue("@table", If(String.IsNullOrWhiteSpace(tableName), DBNull.Value, tableName))
+            cmd.Parameters.AddWithValue("@action", actionType)
+
+            If String.IsNullOrWhiteSpace(description) Then
+                cmd.Parameters.AddWithValue("@desc", DBNull.Value)
+            Else
+                cmd.Parameters.AddWithValue("@desc", description.Trim())
+            End If
+            cmd.ExecuteNonQuery()
+        End Using
+    End Sub
+
+    Public Shared Sub EnableDoubleBuffer(ctrl As Control)
+        Dim propInfo As System.Reflection.PropertyInfo = ctrl.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
+        If propInfo IsNot Nothing Then
+            propInfo.SetValue(ctrl, True, Nothing)
+        End If
+
+        For Each child As Control In ctrl.Controls
+            EnableDoubleBuffer(child)
+        Next
+    End Sub
+
+    Public Shared Async Sub SwitchForm(currentForm As Form, nextForm As Form)
+        nextForm.Opacity = 0
+        nextForm.Show()
+        nextForm.BringToFront()
+
+        For i As Double = 0.0 To 1.0 Step 0.1
+            nextForm.Opacity = i
+            Await Task.Delay(10)
+        Next
+
+        nextForm.Opacity = 1.0
+
+        currentForm.Hide()
+        currentForm.Close()
+    End Sub
 End Class

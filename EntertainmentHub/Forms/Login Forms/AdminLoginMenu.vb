@@ -2,6 +2,9 @@
 
 Public Class AdminLoginMenu
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackColor = AppColors.Background
 
         lblPassword.Font = AppFonts.Hwygoth(14)
@@ -16,9 +19,7 @@ Public Class AdminLoginMenu
     End Sub
 
     Private Sub GoBack(sender As Object, e As EventArgs) Handles lblGoBack.Click
-        Dim frm As New StartMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New StartMenu())
     End Sub
 
     Private Sub GoBackBtnHoverIn(sender As Object, e As EventArgs) Handles lblGoBack.MouseEnter
@@ -30,6 +31,10 @@ Public Class AdminLoginMenu
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        LogAccount(txtboxUsername.Text.Trim(), txtboxPassword.Text)
+    End Sub
+
+    Private Sub LogAccount(usrname As String, psword As String)
         Dim username As String = txtboxUsername.Text.Trim()
         Dim password As String = txtboxPassword.Text
 
@@ -66,9 +71,7 @@ Public Class AdminLoginMenu
 
                     UpdateLastLogin(employeeId, conn)
 
-                    Dim frm As New AdminDashboard()
-                    frm.Show()
-                    Me.Close()
+                    HelperFunc.SwitchForm(Me, New AdminDashboard())
 
                 Else
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -8,6 +8,9 @@ Imports MySql.Data.MySqlClient
 Public Class AnalyticsMenu
 
     Private Sub AnalyticsMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -381,8 +384,14 @@ Public Class AnalyticsMenu
     End Sub
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class

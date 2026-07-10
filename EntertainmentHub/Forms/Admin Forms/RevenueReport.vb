@@ -10,6 +10,9 @@ Public Class RevenueReport
     Private ReadOnly connString As String = "server=localhost;user id=root;database=entertainmenthub"
 
     Private Sub RevenueReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -292,7 +295,7 @@ Public Class RevenueReport
     End Function
 
     Private Function GetCostOfGoodsSold(d1 As DateTime, d2 As DateTime) As Decimal
-        Dim qry As String = "SELECT SUM(si.Quantity * si.CostPrice) FROM wallettransactions wt JOIN salesitem si ON wt.SalesID = si.SalesID WHERE wt.TransactionType = 'Payment' AND wt.TransactionDate >= @d1 AND wt.TransactionDate <= @d2"
+        Dim qry As String = "SELECT SUM(si.Quantity * si.CostPrice) FROM wallettransactions wt JOIN salesitem si ON wt.SaleID = si.SaleID WHERE wt.TransactionType = 'Payment' AND wt.TransactionDate >= @d1 AND wt.TransactionDate <= @d2"
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
@@ -674,8 +677,14 @@ Public Class RevenueReport
     End Class
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class

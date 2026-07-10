@@ -6,6 +6,9 @@ Public Class EntertainmentConfiguration
     Public status As String
 
     Private Sub InitializatizeEntertainment() Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         LoadInUse()
         LoadAvailable()
         loadInMaintenance()
