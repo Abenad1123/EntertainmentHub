@@ -28,14 +28,14 @@ Partial Class UserManagement
         Me.Button4 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnGoBack = New System.Windows.Forms.PictureBox()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,7 +53,7 @@ Partial Class UserManagement
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(783, 556)
+        Me.DataGridView1.Size = New System.Drawing.Size(838, 556)
         Me.DataGridView1.TabIndex = 14
         '
         'btnDeleteAccount
@@ -61,9 +61,9 @@ Partial Class UserManagement
         Me.btnDeleteAccount.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDeleteAccount.BackColor = System.Drawing.Color.White
         Me.btnDeleteAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeleteAccount.Location = New System.Drawing.Point(3, 125)
+        Me.btnDeleteAccount.Location = New System.Drawing.Point(3, 150)
         Me.btnDeleteAccount.Name = "btnDeleteAccount"
-        Me.btnDeleteAccount.Size = New System.Drawing.Size(516, 40)
+        Me.btnDeleteAccount.Size = New System.Drawing.Size(552, 40)
         Me.btnDeleteAccount.TabIndex = 15
         Me.btnDeleteAccount.Text = "Delete Account"
         Me.btnDeleteAccount.UseVisualStyleBackColor = False
@@ -73,15 +73,16 @@ Partial Class UserManagement
         Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button4.BackColor = System.Drawing.Color.White
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(3, 175)
+        Me.Button4.Location = New System.Drawing.Point(3, 200)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(516, 40)
+        Me.Button4.Size = New System.Drawing.Size(552, 40)
         Me.Button4.TabIndex = 16
         Me.Button4.Text = "Transaction Manager"
         Me.Button4.UseVisualStyleBackColor = False
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
@@ -103,7 +104,7 @@ Partial Class UserManagement
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1346, 815)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1438, 815)
         Me.TableLayoutPanel1.TabIndex = 18
         '
         'btnGoBack
@@ -116,30 +117,6 @@ Partial Class UserManagement
         Me.btnGoBack.TabIndex = 27
         Me.btnGoBack.TabStop = False
         '
-        'Button6
-        '
-        Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button6.BackColor = System.Drawing.Color.White
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(3, 75)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(516, 40)
-        Me.Button6.TabIndex = 18
-        Me.Button6.Text = "Register Account"
-        Me.Button6.UseVisualStyleBackColor = False
-        '
-        'Button5
-        '
-        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button5.BackColor = System.Drawing.Color.White
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Location = New System.Drawing.Point(3, 225)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(516, 40)
-        Me.Button5.TabIndex = 17
-        Me.Button5.Text = "Edit Account"
-        Me.Button5.UseVisualStyleBackColor = False
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -148,32 +125,10 @@ Partial Class UserManagement
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!)
         Me.Label1.Location = New System.Drawing.Point(13, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1319, 100)
+        Me.Label1.Size = New System.Drawing.Size(1410, 100)
         Me.Label1.TabIndex = 28
         Me.Label1.Text = "CUSTOMER MANAGEMENT"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Location = New System.Drawing.Point(161, 0)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(200, 30)
-        Me.TextBox1.TabIndex = 19
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.Button1.Location = New System.Drawing.Point(364, 0)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(95, 30)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "Search"
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'TableLayoutPanel2
         '
@@ -185,57 +140,104 @@ Partial Class UserManagement
         Me.TableLayoutPanel2.Controls.Add(Me.Button4, 0, 4)
         Me.TableLayoutPanel2.Controls.Add(Me.Button5, 0, 5)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(813, 110)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(868, 110)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 7
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(522, 556)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(558, 556)
         Me.TableLayoutPanel2.TabIndex = 29
         '
         'TableLayoutPanel3
         '
         Me.TableLayoutPanel3.ColumnCount = 5
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 268.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Button1, 3, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 2, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label2, 1, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.Button1, 3, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(522, 50)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(558, 75)
         Me.TableLayoutPanel3.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.Button1.Location = New System.Drawing.Point(379, 10)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 10, 0, 0)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(141, 39)
+        Me.Button1.TabIndex = 20
+        Me.Button1.Text = "Search"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!)
+        Me.TextBox1.Location = New System.Drawing.Point(108, 10)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0, 10, 0, 0)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(268, 34)
+        Me.TextBox1.TabIndex = 19
         '
         'Label2
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.Label2.Location = New System.Drawing.Point(108, 5)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.Label2.Location = New System.Drawing.Point(55, 10)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(0, 10, 0, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 20)
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Name"
         '
+        'Button6
+        '
+        Me.Button6.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button6.BackColor = System.Drawing.Color.White
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Location = New System.Drawing.Point(3, 100)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(552, 40)
+        Me.Button6.TabIndex = 18
+        Me.Button6.Text = "Register Account"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button5.BackColor = System.Drawing.Color.White
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(3, 250)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(552, 40)
+        Me.Button5.TabIndex = 17
+        Me.Button5.Text = "Edit Account"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
         'UserManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1346, 815)
+        Me.ClientSize = New System.Drawing.Size(1438, 815)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

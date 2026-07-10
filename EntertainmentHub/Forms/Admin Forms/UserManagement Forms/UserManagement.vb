@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -7,7 +8,23 @@ Imports MySql.Data.MySqlClient
 Public Class UserManagement
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label1.Font = AppFonts.Hwygoth(30)
+        Label1.ForeColor = Color.FromArgb(255, 255, 255)
+        Label1.Font = AppFonts.Aero(30)
+
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button4)
+        HelperFunc.ApplyButtonTheme(Button5)
+        HelperFunc.ApplyButtonTheme(btnDeleteAccount)
+        HelperFunc.ApplyButtonTheme(Button6)
+
+        HelperFunc.ApplyBorder(DataGridView1)
+        HelperFunc.ApplyBorder(TableLayoutPanel3)
+
+        HelperFunc.FontDesign(Label2, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+
         StyleDataGridView()
         LoadCustomerData()
     End Sub
@@ -125,22 +142,34 @@ Public Class UserManagement
             Using conn = DBConnection.GetConnection()
                 Try
                     conn.Open()
-                    Dim query As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
+                    Using transaction = conn.BeginTransaction()
+                        Try
+                            Dim query As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
+                            Using cmd As New MySqlCommand(query, conn, transaction)
+                                cmd.Parameters.AddWithValue("@custId", customerId)
+                                cmd.ExecuteNonQuery()
+                            End Using
 
-                    Using cmd As New MySqlCommand(query, conn)
-                        cmd.Parameters.AddWithValue("@custId", customerId)
-                        cmd.ExecuteNonQuery()
+                            Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Delete')"
+                            Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
+                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAudit.ExecuteNonQuery()
+                            End Using
+
+                            transaction.Commit()
+                            MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            LoadCustomerData(TextBox1.Text)
+
+                        Catch ex As MySqlException When ex.Number = 1451
+                            transaction.Rollback()
+                            MessageBox.Show("Cannot delete this customer because they already have an active account or transactions tied to them in the system. You must delete their accounts first.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Catch ex As Exception
+                            transaction.Rollback()
+                            Throw ex
+                        End Try
                     End Using
-
-                    MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    LoadCustomerData(TextBox1.Text)
-
                 Catch ex As MySqlException
-                    If ex.Number = 1451 Then
-                        MessageBox.Show("Cannot delete this customer because they already have an active account or transactions tied to them in the system. You must delete their accounts first.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Else
-                        MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
+                    MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Catch ex As Exception
                     MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try

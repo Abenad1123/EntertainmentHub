@@ -51,6 +51,8 @@ Partial Class RevenueReport
         Me.cmbboxFormat = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -76,11 +78,9 @@ Partial Class RevenueReport
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
-        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.Label36 = New System.Windows.Forms.Label()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -98,23 +98,24 @@ Partial Class RevenueReport
         Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
         Legend1.Name = "Legend1"
         Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(635, 13)
+        Me.Chart1.Location = New System.Drawing.Point(634, 13)
         Me.Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Size = New System.Drawing.Size(755, 392)
+        Me.Chart1.Size = New System.Drawing.Size(754, 392)
         Me.Chart1.TabIndex = 2
         Me.Chart1.Text = "Chart1"
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 4
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 13.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Chart1, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 1, 1)
@@ -134,19 +135,18 @@ Partial Class RevenueReport
         Me.TableLayoutPanel2.ColumnCount = 2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label2, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Panel3, 1, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.Panel1, 0, 1)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(632, 408)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(636, 418)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(5, 10, 5, 5)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(761, 398)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(750, 383)
         Me.TableLayoutPanel2.TabIndex = 10
         '
         'Label4
@@ -154,9 +154,10 @@ Partial Class RevenueReport
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(3, 0)
+        Me.Label4.Location = New System.Drawing.Point(1, 5)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(1, 5, 0, 1)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(455, 30)
+        Me.Label4.Size = New System.Drawing.Size(449, 44)
         Me.Label4.TabIndex = 17
         Me.Label4.Text = "REPORT SETTINGS"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -166,9 +167,10 @@ Partial Class RevenueReport
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(464, 0)
+        Me.Label2.Location = New System.Drawing.Point(450, 5)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(0, 5, 1, 1)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(294, 30)
+        Me.Label2.Size = New System.Drawing.Size(299, 44)
         Me.Label2.TabIndex = 15
         Me.Label2.Text = "GENERATION"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -181,19 +183,19 @@ Partial Class RevenueReport
         Me.Panel3.Controls.Add(Me.btnPrint)
         Me.Panel3.Controls.Add(Me.btnGenerate)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(461, 30)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel3.Location = New System.Drawing.Point(453, 53)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(300, 368)
+        Me.Panel3.Size = New System.Drawing.Size(294, 327)
         Me.Panel3.TabIndex = 12
         '
         'cklsbxRevenueSourceToggle
         '
+        Me.cklsbxRevenueSourceToggle.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.cklsbxRevenueSourceToggle.FormattingEnabled = True
         Me.cklsbxRevenueSourceToggle.Items.AddRange(New Object() {"Product Sales", "Entertainment Sessions"})
-        Me.cklsbxRevenueSourceToggle.Location = New System.Drawing.Point(14, 46)
+        Me.cklsbxRevenueSourceToggle.Location = New System.Drawing.Point(14, 47)
         Me.cklsbxRevenueSourceToggle.Name = "cklsbxRevenueSourceToggle"
-        Me.cklsbxRevenueSourceToggle.Size = New System.Drawing.Size(256, 79)
+        Me.cklsbxRevenueSourceToggle.Size = New System.Drawing.Size(256, 75)
         Me.cklsbxRevenueSourceToggle.TabIndex = 18
         '
         'Label7
@@ -244,10 +246,9 @@ Partial Class RevenueReport
         Me.Panel1.Controls.Add(Me.cmbboxFormat)
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 30)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel1.Location = New System.Drawing.Point(3, 53)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(461, 368)
+        Me.Panel1.Size = New System.Drawing.Size(444, 327)
         Me.Panel1.TabIndex = 18
         '
         'DateTimePicker2
@@ -287,7 +288,7 @@ Partial Class RevenueReport
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(50, 196)
+        Me.Label1.Location = New System.Drawing.Point(50, 191)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(53, 25)
         Me.Label1.TabIndex = 16
@@ -357,7 +358,7 @@ Partial Class RevenueReport
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(30, 230)
+        Me.Label5.Location = New System.Drawing.Point(30, 227)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(73, 25)
         Me.Label5.TabIndex = 12
@@ -368,48 +369,50 @@ Partial Class RevenueReport
         Me.TableLayoutPanel3.ColumnCount = 2
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Label36, 1, 16)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label35, 0, 16)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label29, 1, 4)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label28, 1, 3)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label27, 1, 2)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label26, 1, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label20, 0, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label36, 1, 17)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label35, 0, 17)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label29, 1, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label28, 1, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label27, 1, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label26, 1, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label20, 0, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.Label3, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 0, 8)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 0, 9)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label11, 0, 11)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label12, 1, 6)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label8, 0, 6)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label15, 1, 8)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label16, 1, 9)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label17, 1, 11)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label18, 1, 12)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label21, 0, 2)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label22, 0, 3)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label23, 0, 4)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label24, 0, 12)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label25, 0, 14)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 0, 17)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 19)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label19, 1, 19)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label30, 1, 14)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label31, 1, 17)
-        Me.TableLayoutPanel3.Controls.Add(Me.btnGoBack, 0, 21)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label33, 0, 13)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label34, 1, 13)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label9, 0, 9)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 0, 10)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label11, 0, 12)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label12, 1, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label8, 0, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label15, 1, 9)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label16, 1, 10)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label17, 1, 12)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label18, 1, 13)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label21, 0, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label22, 0, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label23, 0, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label24, 0, 13)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label25, 0, 15)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 0, 18)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label14, 0, 20)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label19, 1, 20)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label30, 1, 15)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label31, 1, 18)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnGoBack, 0, 22)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label33, 0, 14)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label34, 1, 14)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(13, 13)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(30, 20)
+        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(20, 10, 20, 10)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 22
+        Me.TableLayoutPanel3.RowCount = 23
         Me.TableLayoutPanel1.SetRowSpan(Me.TableLayoutPanel3, 2)
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -425,16 +428,39 @@ Partial Class RevenueReport
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(616, 790)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(581, 776)
         Me.TableLayoutPanel3.TabIndex = 11
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label36.Location = New System.Drawing.Point(322, 520)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(256, 30)
+        Me.Label36.TabIndex = 29
+        Me.Label36.Text = "Label36"
+        Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(3, 520)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(313, 30)
+        Me.Label35.TabIndex = 28
+        Me.Label35.Text = "Less: Operating Expenses"
+        Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label29
         '
         Me.Label29.AutoSize = True
         Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label29.Location = New System.Drawing.Point(341, 130)
+        Me.Label29.Location = New System.Drawing.Point(322, 160)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(272, 30)
+        Me.Label29.Size = New System.Drawing.Size(256, 30)
         Me.Label29.TabIndex = 22
         Me.Label29.Text = "Label29"
         '
@@ -442,9 +468,9 @@ Partial Class RevenueReport
         '
         Me.Label28.AutoSize = True
         Me.Label28.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label28.Location = New System.Drawing.Point(341, 100)
+        Me.Label28.Location = New System.Drawing.Point(322, 130)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(272, 30)
+        Me.Label28.Size = New System.Drawing.Size(256, 30)
         Me.Label28.TabIndex = 21
         Me.Label28.Text = "Label28"
         '
@@ -452,9 +478,9 @@ Partial Class RevenueReport
         '
         Me.Label27.AutoSize = True
         Me.Label27.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label27.Location = New System.Drawing.Point(341, 70)
+        Me.Label27.Location = New System.Drawing.Point(322, 100)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(272, 30)
+        Me.Label27.Size = New System.Drawing.Size(256, 30)
         Me.Label27.TabIndex = 20
         Me.Label27.Text = "Label27"
         '
@@ -462,9 +488,9 @@ Partial Class RevenueReport
         '
         Me.Label26.AutoSize = True
         Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label26.Location = New System.Drawing.Point(341, 40)
+        Me.Label26.Location = New System.Drawing.Point(322, 70)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(272, 30)
+        Me.Label26.Size = New System.Drawing.Size(256, 30)
         Me.Label26.TabIndex = 19
         Me.Label26.Text = "Label26"
         '
@@ -473,9 +499,9 @@ Partial Class RevenueReport
         Me.Label20.AutoSize = True
         Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(3, 40)
+        Me.Label20.Location = New System.Drawing.Point(3, 70)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(332, 30)
+        Me.Label20.Size = New System.Drawing.Size(313, 30)
         Me.Label20.TabIndex = 13
         Me.Label20.Text = "Total Cash In (Deposits)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -483,13 +509,13 @@ Partial Class RevenueReport
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TableLayoutPanel3.SetColumnSpan(Me.Label3, 2)
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.Location = New System.Drawing.Point(3, 0)
+        Me.Label3.Location = New System.Drawing.Point(1, 1)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(1, 1, 1, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(610, 40)
+        Me.Label3.Size = New System.Drawing.Size(579, 49)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "CASH FLOW AND WALLET SUMMARY"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -499,9 +525,9 @@ Partial Class RevenueReport
         Me.Label9.AutoSize = True
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(3, 240)
+        Me.Label9.Location = New System.Drawing.Point(3, 280)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(332, 30)
+        Me.Label9.Size = New System.Drawing.Size(313, 30)
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Total Transactions"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -511,9 +537,9 @@ Partial Class RevenueReport
         Me.Label10.AutoSize = True
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(3, 270)
+        Me.Label10.Location = New System.Drawing.Point(3, 310)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(332, 30)
+        Me.Label10.Size = New System.Drawing.Size(313, 30)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "Average Spend"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -523,9 +549,9 @@ Partial Class RevenueReport
         Me.Label11.AutoSize = True
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(3, 330)
+        Me.Label11.Location = New System.Drawing.Point(3, 370)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(332, 30)
+        Me.Label11.Size = New System.Drawing.Size(313, 30)
         Me.Label11.TabIndex = 3
         Me.Label11.Text = "Total Session Sales"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -533,7 +559,7 @@ Partial Class RevenueReport
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(3, 210)
+        Me.Label12.Location = New System.Drawing.Point(3, 250)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(0, 25)
         Me.Label12.TabIndex = 4
@@ -541,13 +567,14 @@ Partial Class RevenueReport
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TableLayoutPanel3.SetColumnSpan(Me.Label8, 2)
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label8.Location = New System.Drawing.Point(3, 170)
+        Me.Label8.Location = New System.Drawing.Point(1, 201)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(1)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(610, 40)
+        Me.Label8.Padding = New System.Windows.Forms.Padding(5)
+        Me.Label8.Size = New System.Drawing.Size(579, 48)
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "REVENUE AND INCOME SUMMARY"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -556,9 +583,9 @@ Partial Class RevenueReport
         '
         Me.Label15.AutoSize = True
         Me.Label15.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label15.Location = New System.Drawing.Point(341, 240)
+        Me.Label15.Location = New System.Drawing.Point(322, 280)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(272, 30)
+        Me.Label15.Size = New System.Drawing.Size(256, 30)
         Me.Label15.TabIndex = 7
         Me.Label15.Text = "Label15"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -567,9 +594,9 @@ Partial Class RevenueReport
         '
         Me.Label16.AutoSize = True
         Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label16.Location = New System.Drawing.Point(341, 270)
+        Me.Label16.Location = New System.Drawing.Point(322, 310)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(272, 30)
+        Me.Label16.Size = New System.Drawing.Size(256, 30)
         Me.Label16.TabIndex = 8
         Me.Label16.Text = "Label16"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -578,9 +605,9 @@ Partial Class RevenueReport
         '
         Me.Label17.AutoSize = True
         Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label17.Location = New System.Drawing.Point(341, 330)
+        Me.Label17.Location = New System.Drawing.Point(322, 370)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(272, 30)
+        Me.Label17.Size = New System.Drawing.Size(256, 30)
         Me.Label17.TabIndex = 9
         Me.Label17.Text = "Label17"
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -589,9 +616,9 @@ Partial Class RevenueReport
         '
         Me.Label18.AutoSize = True
         Me.Label18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label18.Location = New System.Drawing.Point(341, 360)
+        Me.Label18.Location = New System.Drawing.Point(322, 400)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(272, 30)
+        Me.Label18.Size = New System.Drawing.Size(256, 30)
         Me.Label18.TabIndex = 10
         Me.Label18.Text = "Label18"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -601,9 +628,9 @@ Partial Class RevenueReport
         Me.Label21.AutoSize = True
         Me.Label21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(3, 70)
+        Me.Label21.Location = New System.Drawing.Point(3, 100)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(332, 30)
+        Me.Label21.Size = New System.Drawing.Size(313, 30)
         Me.Label21.TabIndex = 14
         Me.Label21.Text = "Total Cash Out (Withdrawals)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -613,9 +640,9 @@ Partial Class RevenueReport
         Me.Label22.AutoSize = True
         Me.Label22.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(3, 100)
+        Me.Label22.Location = New System.Drawing.Point(3, 130)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(332, 30)
+        Me.Label22.Size = New System.Drawing.Size(313, 30)
         Me.Label22.TabIndex = 15
         Me.Label22.Text = "Promotional Bonuses Issued" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Label22.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -625,9 +652,9 @@ Partial Class RevenueReport
         Me.Label23.AutoSize = True
         Me.Label23.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(3, 130)
+        Me.Label23.Location = New System.Drawing.Point(3, 160)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(332, 30)
+        Me.Label23.Size = New System.Drawing.Size(313, 30)
         Me.Label23.TabIndex = 16
         Me.Label23.Text = "Manual Wallet Adjustments"
         Me.Label23.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -637,9 +664,9 @@ Partial Class RevenueReport
         Me.Label24.AutoSize = True
         Me.Label24.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(3, 360)
+        Me.Label24.Location = New System.Drawing.Point(3, 400)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(332, 30)
+        Me.Label24.Size = New System.Drawing.Size(313, 30)
         Me.Label24.TabIndex = 17
         Me.Label24.Text = "Total Product Sales"
         Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -649,9 +676,9 @@ Partial Class RevenueReport
         Me.Label25.AutoSize = True
         Me.Label25.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(3, 420)
+        Me.Label25.Location = New System.Drawing.Point(3, 460)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(332, 30)
+        Me.Label25.Size = New System.Drawing.Size(313, 30)
         Me.Label25.TabIndex = 18
         Me.Label25.Text = "Gross Profit"
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -661,9 +688,9 @@ Partial Class RevenueReport
         Me.Label13.AutoSize = True
         Me.Label13.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(3, 510)
+        Me.Label13.Location = New System.Drawing.Point(3, 550)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(332, 30)
+        Me.Label13.Size = New System.Drawing.Size(313, 30)
         Me.Label13.TabIndex = 5
         Me.Label13.Text = "Less: Refund"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -673,9 +700,9 @@ Partial Class RevenueReport
         Me.Label14.AutoSize = True
         Me.Label14.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(3, 570)
+        Me.Label14.Location = New System.Drawing.Point(3, 610)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(332, 30)
+        Me.Label14.Size = New System.Drawing.Size(313, 30)
         Me.Label14.TabIndex = 6
         Me.Label14.Text = "Net Income"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -684,9 +711,9 @@ Partial Class RevenueReport
         '
         Me.Label19.AutoSize = True
         Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label19.Location = New System.Drawing.Point(341, 570)
+        Me.Label19.Location = New System.Drawing.Point(322, 610)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(272, 30)
+        Me.Label19.Size = New System.Drawing.Size(256, 30)
         Me.Label19.TabIndex = 11
         Me.Label19.Text = "Label19"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -695,9 +722,9 @@ Partial Class RevenueReport
         '
         Me.Label30.AutoSize = True
         Me.Label30.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label30.Location = New System.Drawing.Point(341, 420)
+        Me.Label30.Location = New System.Drawing.Point(322, 460)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(272, 30)
+        Me.Label30.Size = New System.Drawing.Size(256, 30)
         Me.Label30.TabIndex = 23
         Me.Label30.Text = "Label30"
         Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -706,31 +733,21 @@ Partial Class RevenueReport
         '
         Me.Label31.AutoSize = True
         Me.Label31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label31.Location = New System.Drawing.Point(341, 510)
+        Me.Label31.Location = New System.Drawing.Point(322, 550)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(272, 30)
+        Me.Label31.Size = New System.Drawing.Size(256, 30)
         Me.Label31.TabIndex = 24
         Me.Label31.Text = "Label31"
         Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnGoBack
-        '
-        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(3, 743)
-        Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
-        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btnGoBack.TabIndex = 25
-        Me.btnGoBack.TabStop = False
         '
         'Label33
         '
         Me.Label33.AutoSize = True
         Me.Label33.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(3, 390)
+        Me.Label33.Location = New System.Drawing.Point(3, 430)
         Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(332, 30)
+        Me.Label33.Size = New System.Drawing.Size(313, 30)
         Me.Label33.TabIndex = 26
         Me.Label33.Text = "Less: Cost of Goods Sold"
         Me.Label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -739,35 +756,22 @@ Partial Class RevenueReport
         '
         Me.Label34.AutoSize = True
         Me.Label34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label34.Location = New System.Drawing.Point(341, 390)
+        Me.Label34.Location = New System.Drawing.Point(322, 430)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(272, 30)
+        Me.Label34.Size = New System.Drawing.Size(256, 30)
         Me.Label34.TabIndex = 27
         Me.Label34.Text = "Label34"
         Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label35
+        'btnGoBack
         '
-        Me.Label35.AutoSize = True
-        Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(3, 480)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(332, 30)
-        Me.Label35.TabIndex = 28
-        Me.Label35.Text = "Less: Operating Expenses"
-        Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label36.Location = New System.Drawing.Point(341, 480)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(272, 30)
-        Me.Label36.TabIndex = 29
-        Me.Label36.Text = "Label36"
-        Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(3, 729)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 25
+        Me.btnGoBack.TabStop = False
         '
         'RevenueReport
         '

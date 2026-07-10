@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -14,6 +15,18 @@ Public Class UpdateEmployee
         LoadEmployeeLogins()
 
         txtboxPassword.PasswordChar = "*"c
+
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Dim ctrls As Control() = {Label1, Label2, Label3, Label4, Label6, Label7, Label8, lblRole}
+        For Each i In ctrls
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        Next
+
+        HelperFunc.ApplyButtonTheme(btnUpdate)
+        HelperFunc.ApplyButtonTheme(btnSearch)
+
     End Sub
 
     Private Sub StyleDataGridViews()
@@ -293,6 +306,12 @@ Public Class UpdateEmployee
                             cmdEmp.ExecuteNonQuery()
                         End Using
 
+                        Dim auditEmpQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Update')"
+                        Using cmdAuditEmp As New MySqlCommand(auditEmpQuery, conn, transaction)
+                            cmdAuditEmp.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                            cmdAuditEmp.ExecuteNonQuery()
+                        End Using
+
                         Dim uname As String = txtboxUsername.Text.Trim()
                         Dim plainPass As String = txtboxPassword.Text
 
@@ -312,6 +331,12 @@ Public Class UpdateEmployee
                                 End If
 
                                 cmdLog.ExecuteNonQuery()
+                            End Using
+
+                            Dim auditLogQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employeelogin', 'Update')"
+                            Using cmdAuditLog As New MySqlCommand(auditLogQuery, conn, transaction)
+                                cmdAuditLog.Parameters.AddWithValue("@adminId", AccountData.AdminId)
+                                cmdAuditLog.ExecuteNonQuery()
                             End Using
                         End If
 

@@ -24,6 +24,7 @@ Partial Class SystemSetting
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SystemSetting))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
@@ -58,9 +59,9 @@ Partial Class SystemSetting
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
@@ -79,11 +80,11 @@ Partial Class SystemSetting
         Me.TableLayoutPanel3.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -103,6 +104,17 @@ Partial Class SystemSetting
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 703)
         Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'btnGoBack
+        '
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(10, 643)
+        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 26
+        Me.btnGoBack.TabStop = False
         '
         'TabControl1
         '
@@ -183,11 +195,11 @@ Partial Class SystemSetting
         Me.TableLayoutPanel7.ColumnCount = 2
         Me.TableLayoutPanel7.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel7.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
-        Me.TableLayoutPanel7.Controls.Add(Me.Button3, 1, 3)
         Me.TableLayoutPanel7.Controls.Add(Me.ComboBox2, 1, 2)
         Me.TableLayoutPanel7.Controls.Add(Me.TextBox3, 1, 1)
         Me.TableLayoutPanel7.Controls.Add(Me.Label7, 0, 1)
         Me.TableLayoutPanel7.Controls.Add(Me.Label8, 0, 2)
+        Me.TableLayoutPanel7.Controls.Add(Me.Button3, 0, 3)
         Me.TableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel7.Location = New System.Drawing.Point(691, 0)
         Me.TableLayoutPanel7.Margin = New System.Windows.Forms.Padding(0)
@@ -202,7 +214,9 @@ Partial Class SystemSetting
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(187, 123)
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.TableLayoutPanel7.SetColumnSpan(Me.Button3, 2)
+        Me.Button3.Location = New System.Drawing.Point(139, 123)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(182, 43)
         Me.Button3.TabIndex = 0
@@ -227,8 +241,9 @@ Partial Class SystemSetting
         '
         'Label7
         '
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(3, 20)
+        Me.Label7.Location = New System.Drawing.Point(117, 20)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(64, 25)
         Me.Label7.TabIndex = 3
@@ -236,8 +251,9 @@ Partial Class SystemSetting
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(3, 70)
+        Me.Label8.Location = New System.Drawing.Point(135, 70)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(46, 25)
         Me.Label8.TabIndex = 4
@@ -287,13 +303,13 @@ Partial Class SystemSetting
         Me.TableLayoutPanel6.ColumnCount = 2
         Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
-        Me.TableLayoutPanel6.Controls.Add(Me.Button1, 1, 4)
         Me.TableLayoutPanel6.Controls.Add(Me.TextBox2, 1, 1)
         Me.TableLayoutPanel6.Controls.Add(Me.NumericUpDown3, 1, 2)
         Me.TableLayoutPanel6.Controls.Add(Me.ComboBox1, 1, 3)
         Me.TableLayoutPanel6.Controls.Add(Me.Label4, 0, 1)
         Me.TableLayoutPanel6.Controls.Add(Me.Label5, 0, 2)
         Me.TableLayoutPanel6.Controls.Add(Me.Label6, 0, 3)
+        Me.TableLayoutPanel6.Controls.Add(Me.Button1, 0, 4)
         Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel6.Location = New System.Drawing.Point(691, 0)
         Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(0)
@@ -309,9 +325,11 @@ Partial Class SystemSetting
         '
         'Button1
         '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Button1.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel6.SetColumnSpan(Me.Button1, 2)
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(187, 173)
+        Me.Button1.Location = New System.Drawing.Point(139, 173)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(182, 43)
         Me.Button1.TabIndex = 0
@@ -343,8 +361,9 @@ Partial Class SystemSetting
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(3, 20)
+        Me.Label4.Location = New System.Drawing.Point(117, 20)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(64, 25)
         Me.Label4.TabIndex = 4
@@ -352,8 +371,9 @@ Partial Class SystemSetting
         '
         'Label5
         '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(3, 70)
+        Me.Label5.Location = New System.Drawing.Point(68, 70)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(113, 25)
         Me.Label5.TabIndex = 5
@@ -361,8 +381,9 @@ Partial Class SystemSetting
         '
         'Label6
         '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(3, 120)
+        Me.Label6.Location = New System.Drawing.Point(124, 120)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(57, 25)
         Me.Label6.TabIndex = 6
@@ -418,7 +439,7 @@ Partial Class SystemSetting
         Me.TableLayoutPanel3.Controls.Add(Me.NumericUpDown2, 1, 3)
         Me.TableLayoutPanel3.Controls.Add(Me.TextBox1, 1, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Button2, 1, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Button2, 0, 4)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(699, 0)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
@@ -495,25 +516,16 @@ Partial Class SystemSetting
         '
         'Button2
         '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Button2.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel3.SetColumnSpan(Me.Button2, 2)
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(203, 173)
+        Me.Button2.Location = New System.Drawing.Point(142, 173)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(182, 43)
         Me.Button2.TabIndex = 7
         Me.Button2.Text = "Save"
         Me.Button2.UseVisualStyleBackColor = False
-        '
-        'btnGoBack
-        '
-        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(10, 643)
-        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
-        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btnGoBack.TabIndex = 26
-        Me.btnGoBack.TabStop = False
         '
         'Label9
         '
@@ -542,6 +554,7 @@ Partial Class SystemSetting
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
@@ -563,7 +576,6 @@ Partial Class SystemSetting
         Me.TableLayoutPanel3.PerformLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
