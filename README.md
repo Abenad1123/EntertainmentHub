@@ -32,19 +32,20 @@ A centralized software solution designed to streamline the operations of modern 
 *   **Separated Revenue Reporting:** Financial analytics that cleanly split computer runtime revenue from POS product sales.
 *   **Usage Analytics:** Concrete reporting on peak usage hours, overall computer utilization rates, and highly popular terminals.
 *   **Role-Based Access Control (RBAC):** Tailored system permissions restricted by role (`Admin`, `Manager`, `Cashier`).
-*   **Audit Logging & Master Config:** Secure audit trails capturing employee activity logs alongside global system rules (discounts, taxes, rates).
+*   **Centralized Audit Logging:** Secure, transaction-aware audit trails capturing all system activity (INSERT/UPDATE/DELETE) via a centralized log system, capturing detailed event descriptions for every change.
 
 <br><br><br><br>
 
 ## Built With
 
-This desktop application architecture relies on the Windows Forms environment powered by Visual Basic .NET to handle hardware management client operations and real-time terminal synchronization.
+This desktop application architecture relies on the Windows Forms environment powered by Visual Basic .NET.
 
-*   **Language:** Visual Basic (VB.NET)
-*   **UI Framework:** Windows Forms (WinForms)
-*   **Core Platform:** .NET Framework 4.7.2
-*   **Database Engine:** MySQL
-*   **Connectivity:** `MySql.Data` ADO.NET Client Driver
+* **Language:** Visual Basic (VB.NET)
+* **UI Framework:** Windows Forms (WinForms) with custom GDI+ GraphicsPath rendering
+* **Core Platform:** .NET Framework 4.7.2
+* **Database Engine:** MySQL
+* **Connectivity:** `MySql.Data` ADO.NET Client Driver
+* **Security:** `BCrypt.Net` for cryptographically secure password hashing
 
 <br><br><br><br>
 
