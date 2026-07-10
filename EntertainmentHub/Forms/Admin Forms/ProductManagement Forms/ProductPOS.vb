@@ -14,6 +14,16 @@ Public Class ProductPOS
     Private currentAvailableStock As Integer = 0
 
     Private Sub PointOfSaleManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
+        HelperFunc.ApplyButtonTheme(btnScanItem)
+        HelperFunc.ApplyButtonTheme(btnRemoveItem)
+        HelperFunc.ApplyButtonTheme(btnUndo)
+        HelperFunc.ApplyButtonTheme(btnRedo)
+        HelperFunc.ApplyButtonTheme(btnReset)
+        HelperFunc.ApplyButtonTheme(btnCheckout)
+
         StyleDataGridViews()
         InitializeCartTable()
         LoadEmployeeData()
@@ -480,7 +490,7 @@ Public Class ProductPOS
                             newSaleID = Convert.ToInt32(cmdSale.LastInsertedId)
                         End Using
 
-                        Dim insertWallet As String = "INSERT INTO wallettransactions (EmployeeID, AccountID, SalesID, Amount, TransactionType, TransactionDate) VALUES (@emp, @acc, @sid, @amt, 'Payment', NOW())"
+                        Dim insertWallet As String = "INSERT INTO wallettransactions (EmployeeID, AccountID, SaleID, Amount, TransactionType, TransactionDate) VALUES (@emp, @acc, @sid, @amt, 'Payment', NOW())"
                         Using cmdWallet As New MySqlCommand(insertWallet, conn, transaction)
                             cmdWallet.Parameters.AddWithValue("@emp", targetEmployeeID)
                             cmdWallet.Parameters.AddWithValue("@acc", targetAccountID)
@@ -489,7 +499,7 @@ Public Class ProductPOS
                             cmdWallet.ExecuteNonQuery()
                         End Using
 
-                        Dim insertItem As String = "INSERT INTO salesitem (SalesID, ProductID, Quantity, UnitPrice, CostPrice) VALUES (@sid, @pid, @qty, @up, @cp)"
+                        Dim insertItem As String = "INSERT INTO salesitem (SaleID, ProductID, Quantity, UnitPrice, CostPrice) VALUES (@sid, @pid, @qty, @up, @cp)"
                         Dim updateStock As String = "UPDATE products SET QuantityInStock = QuantityInStock - @qty WHERE ProductID = @pid"
 
                         For Each row As DataRow In cartTable.Rows
@@ -509,11 +519,8 @@ Public Class ProductPOS
                             End Using
                         Next
 
-                        Dim insertAudit As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@auditEmp, 'sale', 'Sale')"
-                        Using cmdAudit As New MySqlCommand(insertAudit, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@auditEmp", targetEmployeeID)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Processed POS checkout totaling {totalAmount:C2} for customer '{customerUsername}' ({cartTable.Rows.Count} line items)."
+                        HelperFunc.Log(conn, transaction, targetEmployeeID, "sale", "Sale", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Checkout successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -548,9 +555,7 @@ Public Class ProductPOS
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
     End Sub
 
     Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter

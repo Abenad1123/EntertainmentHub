@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ProductManagement
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ProductManagement
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProductManagement))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
@@ -34,8 +34,6 @@ Partial Class ProductManagement
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -47,9 +45,11 @@ Partial Class ProductManagement
         Me.Label8 = New System.Windows.Forms.Label()
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnUpdateProd = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnDeleteProd = New System.Windows.Forms.Button()
@@ -57,12 +57,12 @@ Partial Class ProductManagement
         Me.btnRegister = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtboxName = New System.Windows.Forms.TextBox()
         Me.cmbboxCategory = New System.Windows.Forms.ComboBox()
         Me.nudUnitPrice = New System.Windows.Forms.NumericUpDown()
         Me.nudCostPrice = New System.Windows.Forms.NumericUpDown()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtboxName = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,26 +151,26 @@ Partial Class ProductManagement
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel5, 1, 5)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label7, 0, 1)
-        Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDown5, 1, 7)
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel5, 1, 6)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label7, 0, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDown5, 1, 8)
         Me.TableLayoutPanel4.Controls.Add(Me.Label5, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label12, 0, 7)
-        Me.TableLayoutPanel4.Controls.Add(Me.TextBox1, 1, 1)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label10, 0, 5)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label6, 0, 2)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label9, 0, 4)
-        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel2, 1, 4)
-        Me.TableLayoutPanel4.Controls.Add(Me.ComboBox1, 1, 2)
-        Me.TableLayoutPanel4.Controls.Add(Me.Button1, 2, 1)
-        Me.TableLayoutPanel4.Controls.Add(Me.Button2, 2, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label12, 0, 8)
+        Me.TableLayoutPanel4.Controls.Add(Me.TextBox1, 1, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label10, 0, 6)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label6, 0, 3)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label9, 0, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel2, 1, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.ComboBox1, 1, 3)
+        Me.TableLayoutPanel4.Controls.Add(Me.Button1, 2, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Button2, 2, 3)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 11
+        Me.TableLayoutPanel4.RowCount = 12
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
@@ -194,7 +194,7 @@ Partial Class ProductManagement
         Me.TableLayoutPanel5.Controls.Add(Me.Label11, 1, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.NumericUpDown3, 2, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(180, 180)
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(180, 200)
         Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
@@ -238,7 +238,7 @@ Partial Class ProductManagement
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(41, 50)
+        Me.Label7.Location = New System.Drawing.Point(41, 70)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(136, 25)
         Me.Label7.TabIndex = 14
@@ -247,34 +247,12 @@ Partial Class ProductManagement
         'NumericUpDown5
         '
         Me.NumericUpDown5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.NumericUpDown5.Location = New System.Drawing.Point(183, 233)
+        Me.NumericUpDown5.Location = New System.Drawing.Point(183, 253)
         Me.NumericUpDown5.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
         Me.NumericUpDown5.Size = New System.Drawing.Size(282, 30)
         Me.NumericUpDown5.TabIndex = 23
         Me.NumericUpDown5.ThousandsSeparator = True
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(507, 53)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(174, 34)
-        Me.Button1.TabIndex = 24
-        Me.Button1.Text = "Search"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(507, 93)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(175, 34)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "Reset"
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'Label5
         '
@@ -294,7 +272,7 @@ Partial Class ProductManagement
         '
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(115, 230)
+        Me.Label12.Location = New System.Drawing.Point(115, 250)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(62, 25)
         Me.Label12.TabIndex = 22
@@ -304,7 +282,7 @@ Partial Class ProductManagement
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(183, 53)
+        Me.TextBox1.Location = New System.Drawing.Point(183, 73)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(282, 30)
         Me.TextBox1.TabIndex = 13
@@ -313,7 +291,7 @@ Partial Class ProductManagement
         '
         Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(82, 180)
+        Me.Label10.Location = New System.Drawing.Point(82, 200)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(95, 25)
         Me.Label10.TabIndex = 18
@@ -323,7 +301,7 @@ Partial Class ProductManagement
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(85, 90)
+        Me.Label6.Location = New System.Drawing.Point(85, 110)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(92, 25)
         Me.Label6.TabIndex = 15
@@ -333,7 +311,7 @@ Partial Class ProductManagement
         '
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(75, 140)
+        Me.Label9.Location = New System.Drawing.Point(75, 160)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(102, 25)
         Me.Label9.TabIndex = 13
@@ -349,7 +327,7 @@ Partial Class ProductManagement
         Me.TableLayoutPanel2.Controls.Add(Me.Label8, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDown2, 2, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(180, 140)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(180, 160)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
@@ -393,10 +371,32 @@ Partial Class ProductManagement
         '
         Me.ComboBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(183, 93)
+        Me.ComboBox1.Location = New System.Drawing.Point(183, 113)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(282, 33)
         Me.ComboBox1.TabIndex = 14
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(507, 73)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(174, 34)
+        Me.Button1.TabIndex = 24
+        Me.Button1.Text = "Search"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(507, 113)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(175, 34)
+        Me.Button2.TabIndex = 25
+        Me.Button2.Text = "Reset"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel3
         '
@@ -414,12 +414,12 @@ Partial Class ProductManagement
         Me.TableLayoutPanel3.Controls.Add(Me.btnRegister, 3, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.Label3, 0, 4)
         Me.TableLayoutPanel3.Controls.Add(Me.Label4, 0, 5)
-        Me.TableLayoutPanel3.Controls.Add(Me.txtboxName, 1, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.cmbboxCategory, 1, 3)
         Me.TableLayoutPanel3.Controls.Add(Me.nudUnitPrice, 1, 5)
         Me.TableLayoutPanel3.Controls.Add(Me.nudCostPrice, 1, 4)
         Me.TableLayoutPanel3.Controls.Add(Me.Label13, 0, 7)
         Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.txtboxName, 1, 2)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(751, 10)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
@@ -437,6 +437,18 @@ Partial Class ProductManagement
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(721, 368)
         Me.TableLayoutPanel3.TabIndex = 13
         '
+        'btnUpdate
+        '
+        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnUpdate.FlatAppearance.BorderSize = 0
+        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdate.Location = New System.Drawing.Point(478, 253)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(240, 34)
+        Me.btnUpdate.TabIndex = 5
+        Me.btnUpdate.Text = "Update stock"
+        Me.btnUpdate.UseVisualStyleBackColor = False
+        '
         'lblTitle
         '
         Me.lblTitle.AutoSize = True
@@ -450,18 +462,6 @@ Partial Class ProductManagement
         Me.lblTitle.TabIndex = 12
         Me.lblTitle.Text = "PRODUCT MANAGEMENT"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnUpdate.FlatAppearance.BorderSize = 0
-        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.Location = New System.Drawing.Point(478, 253)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(240, 34)
-        Me.btnUpdate.TabIndex = 5
-        Me.btnUpdate.Text = "Update stock"
-        Me.btnUpdate.UseVisualStyleBackColor = False
         '
         'btnUpdateProd
         '
@@ -539,14 +539,6 @@ Partial Class ProductManagement
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "Unit Price"
         '
-        'txtboxName
-        '
-        Me.txtboxName.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtboxName.Location = New System.Drawing.Point(178, 73)
-        Me.txtboxName.Name = "txtboxName"
-        Me.txtboxName.Size = New System.Drawing.Size(274, 30)
-        Me.txtboxName.TabIndex = 0
-        '
         'cmbboxCategory
         '
         Me.cmbboxCategory.Dock = System.Windows.Forms.DockStyle.Fill
@@ -597,6 +589,15 @@ Partial Class ProductManagement
         Me.Label1.Size = New System.Drawing.Size(136, 25)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Product Name"
+        '
+        'txtboxName
+        '
+        Me.txtboxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxName.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtboxName.Location = New System.Drawing.Point(178, 73)
+        Me.txtboxName.Name = "txtboxName"
+        Me.txtboxName.Size = New System.Drawing.Size(274, 30)
+        Me.txtboxName.TabIndex = 0
         '
         'ProductManagement
         '

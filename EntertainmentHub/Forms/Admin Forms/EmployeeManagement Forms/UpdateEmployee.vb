@@ -8,6 +8,9 @@ Imports MySql.Data.MySqlClient
 Public Class UpdateEmployee
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         StyleDataGridViews()
         LoadRolesFilter()
         LoadRolesForUpdate()
@@ -289,6 +292,10 @@ Public Class UpdateEmployee
         End If
 
         Dim empId As Integer = Convert.ToInt32(DataGridView1.SelectedRows(0).Cells("EmployeeID").Value)
+        Dim fname As String = txtboxFirstName.Text.Trim()
+        Dim lname As String = txtboxLastName.Text.Trim()
+        Dim roleId As Integer = Convert.ToInt32(cmbboxRoleUpd.SelectedValue)
+        Dim uname As String = txtboxUsername.Text.Trim()
 
         Using conn = DBConnection.GetConnection()
             Try
@@ -297,22 +304,18 @@ Public Class UpdateEmployee
                     Try
                         Dim queryEmp As String = "UPDATE employee SET FirstName = @fname, LastName = @lname, BirthDate = @bdate, ContactNumber = @cnum, RolesID = @role, updated_at = NOW() WHERE EmployeeID = @empId"
                         Using cmdEmp As New MySqlCommand(queryEmp, conn, transaction)
-                            cmdEmp.Parameters.AddWithValue("@fname", txtboxFirstName.Text.Trim())
-                            cmdEmp.Parameters.AddWithValue("@lname", txtboxLastName.Text.Trim())
+                            cmdEmp.Parameters.AddWithValue("@fname", fname)
+                            cmdEmp.Parameters.AddWithValue("@lname", lname)
                             cmdEmp.Parameters.AddWithValue("@cnum", txtboxContactNum.Text.Trim())
-                            cmdEmp.Parameters.AddWithValue("@role", Convert.ToInt32(cmbboxRoleUpd.SelectedValue))
+                            cmdEmp.Parameters.AddWithValue("@role", roleId)
                             cmdEmp.Parameters.AddWithValue("@bdate", dtpBirthDate.Value.ToString("yyyy-MM-dd"))
                             cmdEmp.Parameters.AddWithValue("@empId", empId)
                             cmdEmp.ExecuteNonQuery()
                         End Using
 
-                        Dim auditEmpQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Update')"
-                        Using cmdAuditEmp As New MySqlCommand(auditEmpQuery, conn, transaction)
-                            cmdAuditEmp.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAuditEmp.ExecuteNonQuery()
-                        End Using
+                        Dim empLogDesc As String = $"Updated profile information for Employee ID {empId} ({fname} {lname})."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "employee", "Update", empLogDesc)
 
-                        Dim uname As String = txtboxUsername.Text.Trim()
                         Dim plainPass As String = txtboxPassword.Text
 
                         If Not String.IsNullOrWhiteSpace(uname) Then
@@ -333,11 +336,8 @@ Public Class UpdateEmployee
                                 cmdLog.ExecuteNonQuery()
                             End Using
 
-                            Dim auditLogQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employeelogin', 'Update')"
-                            Using cmdAuditLog As New MySqlCommand(auditLogQuery, conn, transaction)
-                                cmdAuditLog.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                                cmdAuditLog.ExecuteNonQuery()
-                            End Using
+                            Dim logActionDesc As String = $"Modified authentication credentials for Employee ID {empId}."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "employeelogin", "Update", logActionDesc)
                         End If
 
                         transaction.Commit()

@@ -41,20 +41,14 @@
     End Sub
 
     Private Sub UserLoginClick(sender As Object, e As EventArgs) Handles btnUserLogin.Click
-        Dim frm As New UserLoginMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UserLoginMenu())
     End Sub
 
     Private Sub AdminLoginClick(sender As Object, e As EventArgs) Handles btnAdminLogin.Click
-        Dim frm As New AdminLoginMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminLoginMenu())
     End Sub
 
     Private Sub lblTime_Click(sender As Object, e As EventArgs) Handles lblTime.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
     End Sub
 End Class

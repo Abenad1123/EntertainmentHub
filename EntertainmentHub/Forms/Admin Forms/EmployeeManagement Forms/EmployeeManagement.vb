@@ -6,6 +6,9 @@ Imports MySql.Data.MySqlClient
 Public Class EmployeeManagement
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         LoadRolesFilter()
         StyleDataGridView()
         LoadEmployees()
@@ -17,7 +20,6 @@ Public Class EmployeeManagement
 
         TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
         HelperFunc.ApplyBorder(TableLayoutPanel2)
-
 
         Dim ctrls As Control() = {btnDelete, btnRegister, btnSearch, btnUpdate}
 
@@ -97,15 +99,11 @@ Public Class EmployeeManagement
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        Dim frm As New RegisterEmployee()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New RegisterEmployee())
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        Dim frm As New UpdateEmployee()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UpdateEmployee())
     End Sub
 
     Private Sub LoadEmployees()
@@ -192,9 +190,15 @@ Public Class EmployeeManagement
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -224,11 +228,8 @@ Public Class EmployeeManagement
                                 cmdEmployee.ExecuteNonQuery()
                             End Using
 
-                            Dim queryAudit As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Delete')"
-                            Using cmdAudit As New MySqlCommand(queryAudit, conn, transaction)
-                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                                cmdAudit.ExecuteNonQuery()
-                            End Using
+                            Dim logDesc As String = $"Deleted employee ID {employeeId} and all associated login credentials from the system."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "employee", "Delete", logDesc)
 
                             transaction.Commit()
                             MessageBox.Show("Employee and associated login deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

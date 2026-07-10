@@ -5,6 +5,9 @@ Imports MySql.Data.MySqlClient
 Public Class AdminDashboard
 
     Private Sub MainMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -52,64 +55,44 @@ Public Class AdminDashboard
     End Sub
 
     Private Sub OpenUserManager(sender As Object, e As EventArgs) Handles btnOpenManageUser.Click
-        Dim frm As New UserManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UserManagement())
     End Sub
 
     Private Sub OpenEmployeeManager(sender As Object, e As EventArgs) Handles btnOpenManageEmployee.Click
-        Dim frm As New EmployeeManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New EmployeeManagement())
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnOpenManageEntertainment.Click
-        Dim frm As New EntertainmentConfiguration()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New EntertainmentConfiguration())
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnOpenManageProduct.Click
-        Dim frm As New ProductManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New ProductManagement())
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnOpenProductPOS.Click
-        Dim frm As New ProductPOS()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New ProductPOS())
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim frm As New RevenueReport()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New RevenueReport())
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim frm As New AnalyticsMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AnalyticsMenu())
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim frm As New SystemSetting()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New SystemSetting())
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim frm As New StartMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New StartMenu())
         AccountData.AdminId = 0
         AccountData.AdminUsername = ""
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Dim frm As New AuditLog()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AuditLog())
     End Sub
 End Class

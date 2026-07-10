@@ -8,6 +8,9 @@ Imports MySql.Data.MySqlClient
 Public Class UserManagement
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Label1.ForeColor = Color.FromArgb(255, 255, 255)
         Label1.Font = AppFonts.Aero(30)
 
@@ -22,6 +25,7 @@ Public Class UserManagement
 
         HelperFunc.ApplyBorder(DataGridView1)
         HelperFunc.ApplyBorder(TableLayoutPanel3)
+        TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
 
         HelperFunc.FontDesign(Label2, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
 
@@ -123,9 +127,7 @@ Public Class UserManagement
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim frm As New TransactionManager()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New TransactionManager())
     End Sub
 
     Private Sub btnDeleteAccount_Click(sender As Object, e As EventArgs) Handles btnDeleteAccount.Click
@@ -150,11 +152,8 @@ Public Class UserManagement
                                 cmd.ExecuteNonQuery()
                             End Using
 
-                            Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'customerinfo', 'Delete')"
-                            Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                                cmdAudit.ExecuteNonQuery()
-                            End Using
+                            Dim logDesc As String = $"Deleted customer ID {customerId} from the system."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "customerinfo", "Delete", logDesc)
 
                             transaction.Commit()
                             MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -178,21 +177,22 @@ Public Class UserManagement
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Dim frm As New RegisterUser()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New RegisterUser())
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim frm As New UpdateUser()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UpdateUser())
     End Sub
-
 End Class

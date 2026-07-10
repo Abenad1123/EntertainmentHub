@@ -6,6 +6,9 @@ Imports MySql.Data.MySqlClient
 
 Public Class RegisterEmployee
     Private Sub RegisterEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -25,9 +28,59 @@ Public Class RegisterEmployee
 
         TextBox3.PasswordChar = "*"c
 
+        EnsureDefaultAdminExists()
         LoadRoles()
         StyleDataGridView()
         LoadEmployeeData()
+    End Sub
+
+    Private Sub EnsureDefaultAdminExists()
+        Using conn = DBConnection.GetConnection()
+            Try
+                conn.Open()
+                Dim checkLoginsQuery As String = "SELECT COUNT(*) FROM employeelogin"
+                Dim loginCount As Integer
+                Using cmdCheck As New MySqlCommand(checkLoginsQuery, conn)
+                    loginCount = Convert.ToInt32(cmdCheck.ExecuteScalar())
+                End Using
+
+                If loginCount = 0 Then
+                    Using transaction = conn.BeginTransaction()
+                        Try
+                            Dim insertEmpQuery As String = "INSERT INTO employee (FirstName, LastName, BirthDate, ContactNumber, RolesID, created_at, updated_at) " &
+                                                           "VALUES (@fname, @lname, @bdate, @cnum, @roleId, NOW(), NOW())"
+                            Dim defaultEmpId As Integer
+
+                            Using cmdEmp As New MySqlCommand(insertEmpQuery, conn, transaction)
+                                cmdEmp.Parameters.AddWithValue("@fname", "John")
+                                cmdEmp.Parameters.AddWithValue("@lname", "Doe")
+                                cmdEmp.Parameters.AddWithValue("@bdate", "2026-01-01")
+                                cmdEmp.Parameters.AddWithValue("@cnum", "09123456789")
+                                cmdEmp.Parameters.AddWithValue("@roleId", 1)
+                                cmdEmp.ExecuteNonQuery()
+                                defaultEmpId = Convert.ToInt32(cmdEmp.LastInsertedId)
+                            End Using
+
+                            Dim insertLoginQuery As String = "INSERT INTO employeelogin (EmployeeID, UserName, PasswordHash) VALUES (@empId, @user, @hash)"
+                            Dim defaultPasswordHash As String = BCrypt.Net.BCrypt.HashPassword("admin")
+
+                            Using cmdLogin As New MySqlCommand(insertLoginQuery, conn, transaction)
+                                cmdLogin.Parameters.AddWithValue("@empId", defaultEmpId)
+                                cmdLogin.Parameters.AddWithValue("@user", "admin")
+                                cmdLogin.Parameters.AddWithValue("@hash", defaultPasswordHash)
+                                cmdLogin.ExecuteNonQuery()
+                            End Using
+
+                            transaction.Commit()
+                        Catch ex As Exception
+                            transaction.Rollback()
+                        End Try
+                    End Using
+                End If
+
+            Catch ex As Exception
+            End Try
+        End Using
     End Sub
 
     Private Sub StyleDataGridView()
@@ -150,21 +203,22 @@ Public Class RegisterEmployee
                 conn.Open()
                 Using transaction = conn.BeginTransaction()
                     Try
+                        Dim fname As String = TextBox1.Text.Trim()
+                        Dim lname As String = TextBox2.Text.Trim()
+                        Dim roleId As Integer = Convert.ToInt32(ComboBox1.SelectedValue)
+
                         Dim query As String = "INSERT INTO employee (FirstName, LastName, BirthDate, ContactNumber, RolesID) VALUES (@fname, @lname, @bdate, @cnum, @roleId)"
                         Using cmd As New MySqlCommand(query, conn, transaction)
-                            cmd.Parameters.AddWithValue("@fname", TextBox1.Text.Trim())
-                            cmd.Parameters.AddWithValue("@lname", TextBox2.Text.Trim())
+                            cmd.Parameters.AddWithValue("@fname", fname)
+                            cmd.Parameters.AddWithValue("@lname", lname)
                             cmd.Parameters.AddWithValue("@bdate", DateTimePicker1.Value.ToString("yyyy-MM-dd"))
                             cmd.Parameters.AddWithValue("@cnum", TextBox4.Text.Trim())
-                            cmd.Parameters.AddWithValue("@roleId", Convert.ToInt32(ComboBox1.SelectedValue))
+                            cmd.Parameters.AddWithValue("@roleId", roleId)
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employee', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Registered new employee '{fname} {lname}' under Role ID {roleId}."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "employee", "Insert", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Employee added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -218,11 +272,8 @@ Public Class RegisterEmployee
                             cmdLogin.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'employeelogin', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Generated secure login credentials for Employee ID {employeeId} with username '{userName}'."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "employeelogin", "Insert", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Employee login credentials created securely!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

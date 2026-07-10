@@ -2,6 +2,9 @@
 
 Public Class UserLoginMenu
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackColor = AppColors.Background
 
         lblPassword.Font = AppFonts.Hwygoth(14)
@@ -16,9 +19,7 @@ Public Class UserLoginMenu
     End Sub
 
     Private Sub GoBack(sender As Object, e As EventArgs) Handles lblGoBack.Click
-        Dim frm As New StartMenu()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New StartMenu())
     End Sub
 
     Private Sub GoBackBtnHoverIn(sender As Object, e As EventArgs) Handles lblGoBack.MouseEnter
@@ -65,9 +66,7 @@ Public Class UserLoginMenu
 
                     UpdateLastLogin(accountId, conn)
 
-                    Dim frm As New MainMenu()
-                    frm.Show()
-                    Me.Close()
+                    HelperFunc.SwitchForm(Me, New MainMenu())
 
                 Else
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)

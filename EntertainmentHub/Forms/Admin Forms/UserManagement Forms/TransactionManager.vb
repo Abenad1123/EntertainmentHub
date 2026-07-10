@@ -7,6 +7,9 @@ Imports MySql.Data.MySqlClient
 
 Public Class TransactionManager
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -87,11 +90,11 @@ Public Class TransactionManager
             DataGridView1.Columns("UserName").HeaderText = "Username"
             DataGridView1.Columns("UserName").FillWeight = 25
 
-            DataGridView1.Columns("SalesID").HeaderText = "Sale ID"
-            DataGridView1.Columns("SalesID").AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-            DataGridView1.Columns("SalesID").Width = 70
-            DataGridView1.Columns("SalesID").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            DataGridView1.Columns("SalesID").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("SaleID").HeaderText = "Sale ID"
+            DataGridView1.Columns("SaleID").AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            DataGridView1.Columns("SaleID").Width = 70
+            DataGridView1.Columns("SaleID").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridView1.Columns("SaleID").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             DataGridView1.Columns("Amount").HeaderText = "Amount"
             DataGridView1.Columns("Amount").FillWeight = 20
@@ -186,11 +189,8 @@ Public Class TransactionManager
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@empId, 'wallettransactions', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@empId", employeeid)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Processed {transactionType} of {Math.Abs(transactionAmount):C2} for account '{targetUsername}' (ID {accountId})."
+                        HelperFunc.Log(conn, transaction, employeeid, "wallettransactions", "Insert", logDesc)
 
                         transaction.Commit()
 
@@ -250,7 +250,7 @@ Public Class TransactionManager
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "SELECT w.WalletTransactionID, a.UserName, w.SalesID, w.Amount, w.TransactionType, w.TransactionDate FROM wallettransactions w JOIN accountlogin a ON w.AccountID = a.AccountID ORDER BY w.TransactionDate DESC"
+                Dim query As String = "SELECT w.WalletTransactionID, a.UserName, w.SaleID, w.Amount, w.TransactionType, w.TransactionDate FROM wallettransactions w JOIN accountlogin a ON w.AccountID = a.AccountID ORDER BY w.TransactionDate DESC"
 
                 Using cmd As New MySqlCommand(query, conn)
                     Dim adapter As New MySqlDataAdapter(cmd)
@@ -268,8 +268,14 @@ Public Class TransactionManager
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New UserManagement()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New UserManagement())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class

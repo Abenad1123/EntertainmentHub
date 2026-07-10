@@ -7,6 +7,9 @@ Public Class ProductManagement
     Private selectedProductID As Integer = 0
 
     Private Sub ProductManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -15,6 +18,10 @@ Public Class ProductManagement
 
         HelperFunc.ApplyButtonTheme(Button1)
         HelperFunc.ApplyButtonTheme(Button2)
+        HelperFunc.ApplyButtonTheme(btnRegister)
+        HelperFunc.ApplyButtonTheme(btnUpdateProd)
+        HelperFunc.ApplyButtonTheme(btnDeleteProd)
+        HelperFunc.ApplyButtonTheme(btnUpdate)
 
         TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
         HelperFunc.ApplyBorder(TableLayoutPanel3)
@@ -24,6 +31,8 @@ Public Class ProductManagement
 
         HelperFunc.FontDesign(lblTitle, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(18))
         HelperFunc.FontDesign(Label5, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(18))
+        HelperFunc.ApplyBorder(lblTitle, HelperFunc.BorderSides.Bottom)
+        HelperFunc.ApplyBorder(Label5, HelperFunc.BorderSides.Bottom)
 
         Dim labels As Control() = {Label1, Label2, Label3, Label4, Label6, Label7, Label9, Label10, Label12, Label13}
         For Each i In labels
@@ -234,11 +243,8 @@ Public Class ProductManagement
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Insert')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Registered new product '{productName}' under category '{selectedCategory}'."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "products", "Insert", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show($"'{productName}' successfully saved to catalog!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -321,11 +327,8 @@ Public Class ProductManagement
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Update')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Updated product details for ID {selectedProductID} ('{productName}')."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "products", "Update", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Product successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -366,11 +369,8 @@ Public Class ProductManagement
                                 cmd.ExecuteNonQuery()
                             End Using
 
-                            Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Delete')"
-                            Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                                cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                                cmdAudit.ExecuteNonQuery()
-                            End Using
+                            Dim logDesc As String = $"Deleted product ID {selectedProductID} from the catalog."
+                            HelperFunc.Log(conn, transaction, AccountData.AdminId, "products", "Delete", logDesc)
 
                             transaction.Commit()
                             MessageBox.Show("Product deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -412,11 +412,8 @@ Public Class ProductManagement
                             cmd.ExecuteNonQuery()
                         End Using
 
-                        Dim auditQuery As String = "INSERT INTO auditing (EmployeeID, TableName, ActionType) VALUES (@adminId, 'products', 'Update')"
-                        Using cmdAudit As New MySqlCommand(auditQuery, conn, transaction)
-                            cmdAudit.Parameters.AddWithValue("@adminId", AccountData.AdminId)
-                            cmdAudit.ExecuteNonQuery()
-                        End Using
+                        Dim logDesc As String = $"Adjusted inventory stock for product ID {selectedProductID} to {newStockTarget} units."
+                        HelperFunc.Log(conn, transaction, AccountData.AdminId, "products", "Update", logDesc)
 
                         transaction.Commit()
                         MessageBox.Show("Inventory balance successfully adjusted!", "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -434,9 +431,7 @@ Public Class ProductManagement
     End Sub
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
     End Sub
 
     Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter

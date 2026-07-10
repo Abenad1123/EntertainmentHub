@@ -3,6 +3,9 @@ Public Class EntertainmentManagement
     Private currentTrackedUser As String = ""
 
     Private Sub EntertainmentManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Try
             LoadInUse()
             UpdateStatusCounts()

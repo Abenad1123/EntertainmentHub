@@ -10,6 +10,9 @@ Public Class ReceiptManager
     Private WithEvents receiptPrintDoc As New PrintDocument()
 
     Private Sub ReceiptManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         txtboxMainReceipt.Multiline = True
         txtboxMainReceipt.ScrollBars = ScrollBars.Vertical
         txtboxMainReceipt.ReadOnly = True

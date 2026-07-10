@@ -5,6 +5,9 @@ Imports MySql.Data.MySqlClient
 
 Public Class AuditLog
     Private Sub SystemAuditLogs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+        HelperFunc.EnableDoubleBuffer(Me)
+
         Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
@@ -65,13 +68,13 @@ Public Class AuditLog
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
-                Dim query As String = "SELECT a.AuditID, COALESCE(el.UserName, 'System/Unknown') AS AdminUsername, a.TableName, a.ActionType, a.created_at FROM auditing a LEFT JOIN employeelogin el ON a.EmployeeID = el.EmployeeID WHERE 1=1"
+                Dim query As String = "SELECT a.AuditID, COALESCE(el.UserName, 'System/Unknown') AS AdminUsername, a.TableName, a.ActionType, a.Description, a.created_at FROM auditing a LEFT JOIN employeelogin el ON a.EmployeeID = el.EmployeeID WHERE 1=1"
 
                 Dim searchText As String = TextBox1.Text.Trim()
                 Dim selectedAction As String = ComboBox1.SelectedItem?.ToString()
 
                 If Not String.IsNullOrEmpty(searchText) Then
-                    query &= " AND (el.UserName LIKE @search OR a.TableName LIKE @search)"
+                    query &= " AND (el.UserName LIKE @search OR a.TableName LIKE @search OR a.Description LIKE @search)"
                 End If
 
                 If Not String.IsNullOrEmpty(selectedAction) AndAlso selectedAction <> "All Actions" Then
@@ -110,16 +113,21 @@ Public Class AuditLog
             End If
 
             DataGridView1.Columns("AdminUsername").HeaderText = "Admin Username"
-            DataGridView1.Columns("AdminUsername").FillWeight = 25
+            DataGridView1.Columns("AdminUsername").FillWeight = 15
 
             DataGridView1.Columns("TableName").HeaderText = "Target Table"
-            DataGridView1.Columns("TableName").FillWeight = 25
+            DataGridView1.Columns("TableName").FillWeight = 15
 
             DataGridView1.Columns("ActionType").HeaderText = "Action"
-            DataGridView1.Columns("ActionType").FillWeight = 20
+            DataGridView1.Columns("ActionType").FillWeight = 15
+
+            If DataGridView1.Columns.Contains("Description") Then
+                DataGridView1.Columns("Description").HeaderText = "Details"
+                DataGridView1.Columns("Description").FillWeight = 35
+            End If
 
             DataGridView1.Columns("created_at").HeaderText = "Timestamp"
-            DataGridView1.Columns("created_at").FillWeight = 30
+            DataGridView1.Columns("created_at").FillWeight = 20
             DataGridView1.Columns("created_at").DefaultCellStyle.Format = "MMM dd, yyyy hh:mm:ss tt"
         End If
     End Sub
@@ -158,8 +166,14 @@ Public Class AuditLog
     End Sub
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-        Dim frm As New AdminDashboard()
-        frm.Show()
-        Me.Close()
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
+    End Sub
+
+    Private Sub BtnUserLoginEnter(sender As Object, e As EventArgs) Handles btnGoBack.MouseEnter
+        btnGoBack.Image = My.Resources.go_back_state_2
+    End Sub
+
+    Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
+        btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
 End Class
