@@ -8,6 +8,42 @@ Imports MySql.Data.MySqlClient
 Public Class AnalyticsMenu
 
     Private Sub AnalyticsMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        TableLayoutPanel8.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel8, HelperFunc.BorderSides.Left Or HelperFunc.BorderSides.Right Or HelperFunc.BorderSides.Bottom)
+
+        FlowLayoutPanel1.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(FlowLayoutPanel1, HelperFunc.BorderSides.Left Or HelperFunc.BorderSides.Right Or HelperFunc.BorderSides.Bottom)
+
+        TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel3, HelperFunc.BorderSides.Left Or HelperFunc.BorderSides.Right Or HelperFunc.BorderSides.Bottom)
+
+        Label16.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(Label16)
+
+        Label2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(Label2)
+
+        Label3.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(Label3)
+
+        Dim ctrls As Control() = {Label16, Label2, Label3, Label4, Label8, Label9, Label10, Label11}
+        For Each i In ctrls
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        Next
+
+        Dim ctrls1 As Control() = {Label5, Label6, Label7, Label12, Label13, Label14, Label15}
+        For Each i In ctrls1
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(13))
+        Next
+
+        HelperFunc.ApplyButtonTheme(Button1)
+
         StyleDataGridViews()
         LoadTypeFilter()
         SetDatePickerBounds()

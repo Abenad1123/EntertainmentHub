@@ -25,73 +25,83 @@ Partial Class ProductManagement
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProductManagement))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnGoBack = New System.Windows.Forms.PictureBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
+        Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnUpdateProd = New System.Windows.Forms.Button()
-        Me.nudStockControl = New System.Windows.Forms.NumericUpDown()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.btnDeleteProd = New System.Windows.Forms.Button()
-        Me.txtboxName = New System.Windows.Forms.TextBox()
-        Me.cmbboxCategory = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.nudCostPrice = New System.Windows.Forms.NumericUpDown()
-        Me.nudUnitPrice = New System.Windows.Forms.NumericUpDown()
+        Me.nudStockControl = New System.Windows.Forms.NumericUpDown()
         Me.btnRegister = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtboxName = New System.Windows.Forms.TextBox()
+        Me.cmbboxCategory = New System.Windows.Forms.ComboBox()
+        Me.nudUnitPrice = New System.Windows.Forms.NumericUpDown()
+        Me.nudCostPrice = New System.Windows.Forms.NumericUpDown()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.NumericUpDown5 = New System.Windows.Forms.NumericUpDown()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDown4 = New System.Windows.Forms.NumericUpDown()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
-        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel4.SuspendLayout()
+        Me.TableLayoutPanel5.SuspendLayout()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel3.SuspendLayout()
+        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
         '
-        Me.TableLayoutPanel1.ColumnCount = 4
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel2, 3, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 3, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 5
+        Me.TableLayoutPanel1.RowCount = 6
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
@@ -109,167 +119,6 @@ Partial Class ProductManagement
         Me.btnGoBack.TabIndex = 5
         Me.btnGoBack.TabStop = False
         '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.lblTitle)
-        Me.Panel1.Controls.Add(Me.btnUpdate)
-        Me.Panel1.Controls.Add(Me.btnUpdateProd)
-        Me.Panel1.Controls.Add(Me.nudStockControl)
-        Me.Panel1.Controls.Add(Me.btnDeleteProd)
-        Me.Panel1.Controls.Add(Me.txtboxName)
-        Me.Panel1.Controls.Add(Me.cmbboxCategory)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.nudCostPrice)
-        Me.Panel1.Controls.Add(Me.nudUnitPrice)
-        Me.Panel1.Controls.Add(Me.btnRegister)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(741, 10)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(731, 378)
-        Me.Panel1.TabIndex = 0
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.Location = New System.Drawing.Point(191, 18)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(404, 36)
-        Me.lblTitle.TabIndex = 12
-        Me.lblTitle.Text = "PRODUCT MANAGEMENT"
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
-        Me.btnUpdate.FlatAppearance.BorderSize = 0
-        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.Location = New System.Drawing.Point(460, 312)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(247, 39)
-        Me.btnUpdate.TabIndex = 5
-        Me.btnUpdate.Text = "Update stock"
-        Me.btnUpdate.UseVisualStyleBackColor = False
-        '
-        'btnUpdateProd
-        '
-        Me.btnUpdateProd.BackColor = System.Drawing.Color.DodgerBlue
-        Me.btnUpdateProd.FlatAppearance.BorderSize = 0
-        Me.btnUpdateProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdateProd.Location = New System.Drawing.Point(460, 186)
-        Me.btnUpdateProd.Name = "btnUpdateProd"
-        Me.btnUpdateProd.Size = New System.Drawing.Size(247, 39)
-        Me.btnUpdateProd.TabIndex = 11
-        Me.btnUpdateProd.Text = "Update Product"
-        Me.btnUpdateProd.UseVisualStyleBackColor = False
-        '
-        'nudStockControl
-        '
-        Me.nudStockControl.Location = New System.Drawing.Point(166, 312)
-        Me.nudStockControl.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.nudStockControl.Name = "nudStockControl"
-        Me.nudStockControl.Size = New System.Drawing.Size(247, 30)
-        Me.nudStockControl.TabIndex = 3
-        Me.nudStockControl.ThousandsSeparator = True
-        '
-        'btnDeleteProd
-        '
-        Me.btnDeleteProd.BackColor = System.Drawing.Color.DarkRed
-        Me.btnDeleteProd.FlatAppearance.BorderSize = 0
-        Me.btnDeleteProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeleteProd.Location = New System.Drawing.Point(460, 141)
-        Me.btnDeleteProd.Name = "btnDeleteProd"
-        Me.btnDeleteProd.Size = New System.Drawing.Size(247, 39)
-        Me.btnDeleteProd.TabIndex = 1
-        Me.btnDeleteProd.Text = "Delete Product"
-        Me.btnDeleteProd.UseVisualStyleBackColor = False
-        '
-        'txtboxName
-        '
-        Me.txtboxName.Location = New System.Drawing.Point(166, 99)
-        Me.txtboxName.Name = "txtboxName"
-        Me.txtboxName.Size = New System.Drawing.Size(247, 30)
-        Me.txtboxName.TabIndex = 0
-        '
-        'cmbboxCategory
-        '
-        Me.cmbboxCategory.FormattingEnabled = True
-        Me.cmbboxCategory.Location = New System.Drawing.Point(166, 138)
-        Me.cmbboxCategory.Name = "cmbboxCategory"
-        Me.cmbboxCategory.Size = New System.Drawing.Size(247, 33)
-        Me.cmbboxCategory.TabIndex = 1
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(65, 224)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(95, 25)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "Unit Price"
-        '
-        'nudCostPrice
-        '
-        Me.nudCostPrice.DecimalPlaces = 2
-        Me.nudCostPrice.Location = New System.Drawing.Point(166, 181)
-        Me.nudCostPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudCostPrice.Name = "nudCostPrice"
-        Me.nudCostPrice.Size = New System.Drawing.Size(247, 30)
-        Me.nudCostPrice.TabIndex = 5
-        Me.nudCostPrice.ThousandsSeparator = True
-        '
-        'nudUnitPrice
-        '
-        Me.nudUnitPrice.DecimalPlaces = 2
-        Me.nudUnitPrice.Location = New System.Drawing.Point(166, 222)
-        Me.nudUnitPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.nudUnitPrice.Name = "nudUnitPrice"
-        Me.nudUnitPrice.Size = New System.Drawing.Size(247, 30)
-        Me.nudUnitPrice.TabIndex = 9
-        Me.nudUnitPrice.ThousandsSeparator = True
-        '
-        'btnRegister
-        '
-        Me.btnRegister.BackColor = System.Drawing.Color.DarkOrange
-        Me.btnRegister.FlatAppearance.BorderSize = 0
-        Me.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRegister.Location = New System.Drawing.Point(460, 95)
-        Me.btnRegister.Name = "btnRegister"
-        Me.btnRegister.Size = New System.Drawing.Size(247, 40)
-        Me.btnRegister.TabIndex = 5
-        Me.btnRegister.Text = "Register Product"
-        Me.btnRegister.UseVisualStyleBackColor = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(58, 186)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(102, 25)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Cost Price"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 102)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(136, 25)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Product Name"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(68, 141)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 25)
-        Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Category"
-        '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -279,195 +128,475 @@ Partial Class ProductManagement
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
-        Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 2)
+        Me.TableLayoutPanel1.SetRowSpan(Me.DataGridView1, 3)
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(731, 756)
+        Me.DataGridView1.Size = New System.Drawing.Size(721, 756)
         Me.DataGridView1.TabIndex = 1
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.Button2)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.NumericUpDown5)
-        Me.Panel2.Controls.Add(Me.Label12)
-        Me.Panel2.Controls.Add(Me.Label10)
-        Me.Panel2.Controls.Add(Me.Label11)
-        Me.Panel2.Controls.Add(Me.NumericUpDown3)
-        Me.Panel2.Controls.Add(Me.NumericUpDown4)
-        Me.Panel2.Controls.Add(Me.Label9)
-        Me.Panel2.Controls.Add(Me.Label8)
-        Me.Panel2.Controls.Add(Me.NumericUpDown2)
-        Me.Panel2.Controls.Add(Me.NumericUpDown1)
-        Me.Panel2.Controls.Add(Me.TextBox1)
-        Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Controls.Add(Me.ComboBox1)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(741, 388)
+        Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Controls.Add(Me.TableLayoutPanel4)
+        Me.Panel2.Location = New System.Drawing.Point(751, 398)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(731, 378)
+        Me.Panel2.Size = New System.Drawing.Size(721, 368)
         Me.Panel2.TabIndex = 3
         '
-        'Button2
+        'TableLayoutPanel4
         '
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(537, 70)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(170, 40)
-        Me.Button2.TabIndex = 25
-        Me.Button2.Text = "Reset"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.TableLayoutPanel4.ColumnCount = 3
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel5, 1, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label7, 0, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.NumericUpDown5, 1, 7)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label5, 0, 0)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label12, 0, 7)
+        Me.TableLayoutPanel4.Controls.Add(Me.TextBox1, 1, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label10, 0, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label6, 0, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label9, 0, 4)
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel2, 1, 4)
+        Me.TableLayoutPanel4.Controls.Add(Me.ComboBox1, 1, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Button1, 2, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.Button2, 2, 2)
+        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+        Me.TableLayoutPanel4.RowCount = 11
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(721, 368)
+        Me.TableLayoutPanel4.TabIndex = 26
         '
-        'Button1
+        'TableLayoutPanel5
         '
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(236, 313)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(266, 40)
-        Me.Button1.TabIndex = 24
-        Me.Button1.Text = "Search"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.TableLayoutPanel5.ColumnCount = 3
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.Controls.Add(Me.NumericUpDown4, 0, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.Label11, 1, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.NumericUpDown3, 2, 0)
+        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(180, 180)
+        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
+        Me.TableLayoutPanel5.RowCount = 1
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(288, 40)
+        Me.TableLayoutPanel5.TabIndex = 27
         '
-        'NumericUpDown5
+        'NumericUpDown4
         '
-        Me.NumericUpDown5.Location = New System.Drawing.Point(240, 265)
-        Me.NumericUpDown5.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.NumericUpDown5.Name = "NumericUpDown5"
-        Me.NumericUpDown5.Size = New System.Drawing.Size(253, 30)
-        Me.NumericUpDown5.TabIndex = 23
-        Me.NumericUpDown5.ThousandsSeparator = True
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(172, 265)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(62, 25)
-        Me.Label12.TabIndex = 22
-        Me.Label12.Text = "Stock"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(139, 216)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(95, 25)
-        Me.Label10.TabIndex = 18
-        Me.Label10.Text = "Unit Price"
+        Me.NumericUpDown4.DecimalPlaces = 2
+        Me.NumericUpDown4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NumericUpDown4.Location = New System.Drawing.Point(3, 3)
+        Me.NumericUpDown4.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NumericUpDown4.Name = "NumericUpDown4"
+        Me.NumericUpDown4.Size = New System.Drawing.Size(128, 30)
+        Me.NumericUpDown4.TabIndex = 19
+        Me.NumericUpDown4.ThousandsSeparator = True
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(357, 213)
+        Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label11.Location = New System.Drawing.Point(137, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(19, 25)
+        Me.Label11.Size = New System.Drawing.Size(14, 40)
         Me.Label11.TabIndex = 21
         Me.Label11.Text = "-"
         '
         'NumericUpDown3
         '
         Me.NumericUpDown3.DecimalPlaces = 2
-        Me.NumericUpDown3.Location = New System.Drawing.Point(382, 211)
+        Me.NumericUpDown3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NumericUpDown3.Location = New System.Drawing.Point(157, 3)
         Me.NumericUpDown3.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Size = New System.Drawing.Size(111, 30)
+        Me.NumericUpDown3.Size = New System.Drawing.Size(128, 30)
         Me.NumericUpDown3.TabIndex = 20
         Me.NumericUpDown3.ThousandsSeparator = True
         '
-        'NumericUpDown4
+        'Label7
         '
-        Me.NumericUpDown4.DecimalPlaces = 2
-        Me.NumericUpDown4.Location = New System.Drawing.Point(240, 211)
-        Me.NumericUpDown4.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.NumericUpDown4.Name = "NumericUpDown4"
-        Me.NumericUpDown4.Size = New System.Drawing.Size(111, 30)
-        Me.NumericUpDown4.TabIndex = 19
-        Me.NumericUpDown4.ThousandsSeparator = True
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(41, 50)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(136, 25)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = "Product Name"
+        '
+        'NumericUpDown5
+        '
+        Me.NumericUpDown5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NumericUpDown5.Location = New System.Drawing.Point(183, 233)
+        Me.NumericUpDown5.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NumericUpDown5.Name = "NumericUpDown5"
+        Me.NumericUpDown5.Size = New System.Drawing.Size(282, 30)
+        Me.NumericUpDown5.TabIndex = 23
+        Me.NumericUpDown5.ThousandsSeparator = True
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(507, 53)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(174, 34)
+        Me.Button1.TabIndex = 24
+        Me.Button1.Text = "Search"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(507, 93)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(175, 34)
+        Me.Button2.TabIndex = 25
+        Me.Button2.Text = "Reset"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.TableLayoutPanel4.SetColumnSpan(Me.Label5, 4)
+        Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.Label5.Location = New System.Drawing.Point(3, 1)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(715, 48)
+        Me.Label5.TabIndex = 13
+        Me.Label5.Text = "FILTER"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label12
+        '
+        Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(115, 230)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(62, 25)
+        Me.Label12.TabIndex = 22
+        Me.Label12.Text = "Stock"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(183, 53)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(282, 30)
+        Me.TextBox1.TabIndex = 13
+        '
+        'Label10
+        '
+        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(82, 180)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(95, 25)
+        Me.Label10.TabIndex = 18
+        Me.Label10.Text = "Unit Price"
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(85, 90)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(92, 25)
+        Me.Label6.TabIndex = 15
+        Me.Label6.Text = "Category"
         '
         'Label9
         '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(132, 173)
+        Me.Label9.Location = New System.Drawing.Point(75, 140)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(102, 25)
         Me.Label9.TabIndex = 13
         Me.Label9.Text = "Cost Price"
         '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDown1, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label8, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.NumericUpDown2, 2, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(180, 140)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(288, 40)
+        Me.TableLayoutPanel2.TabIndex = 26
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.DecimalPlaces = 2
+        Me.NumericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NumericUpDown1.Location = New System.Drawing.Point(3, 3)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(128, 30)
+        Me.NumericUpDown1.TabIndex = 13
+        Me.NumericUpDown1.ThousandsSeparator = True
+        '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(357, 173)
+        Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label8.Location = New System.Drawing.Point(137, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(19, 25)
+        Me.Label8.Size = New System.Drawing.Size(14, 40)
         Me.Label8.TabIndex = 17
         Me.Label8.Text = "-"
         '
         'NumericUpDown2
         '
         Me.NumericUpDown2.DecimalPlaces = 2
-        Me.NumericUpDown2.Location = New System.Drawing.Point(382, 171)
+        Me.NumericUpDown2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NumericUpDown2.Location = New System.Drawing.Point(157, 3)
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(111, 30)
+        Me.NumericUpDown2.Size = New System.Drawing.Size(128, 30)
         Me.NumericUpDown2.TabIndex = 16
         Me.NumericUpDown2.ThousandsSeparator = True
         '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.DecimalPlaces = 2
-        Me.NumericUpDown1.Location = New System.Drawing.Point(240, 171)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(111, 30)
-        Me.NumericUpDown1.TabIndex = 13
-        Me.NumericUpDown1.ThousandsSeparator = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Location = New System.Drawing.Point(241, 67)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(247, 30)
-        Me.TextBox1.TabIndex = 13
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(99, 70)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(136, 25)
-        Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Product Name"
-        '
         'ComboBox1
         '
+        Me.ComboBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(240, 103)
+        Me.ComboBox1.Location = New System.Drawing.Point(183, 93)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(247, 33)
+        Me.ComboBox1.Size = New System.Drawing.Size(282, 33)
         Me.ComboBox1.TabIndex = 14
         '
-        'Label6
+        'TableLayoutPanel3
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(142, 106)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(92, 25)
-        Me.Label6.TabIndex = 15
-        Me.Label6.Text = "Category"
+        Me.TableLayoutPanel3.ColumnCount = 4
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.btnUpdate, 3, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.lblTitle, 0, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnUpdateProd, 3, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label2, 0, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnDeleteProd, 3, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.nudStockControl, 1, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnRegister, 3, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label3, 0, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label4, 0, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.txtboxName, 1, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.cmbboxCategory, 1, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.nudUnitPrice, 1, 5)
+        Me.TableLayoutPanel3.Controls.Add(Me.nudCostPrice, 1, 4)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label13, 0, 7)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 2)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(751, 10)
+        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 9
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(721, 368)
+        Me.TableLayoutPanel3.TabIndex = 13
         '
-        'Label5
+        'lblTitle
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.Label5.Location = New System.Drawing.Point(321, 20)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(124, 36)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "FILTER"
+        Me.lblTitle.AutoSize = True
+        Me.TableLayoutPanel3.SetColumnSpan(Me.lblTitle, 4)
+        Me.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTitle.Location = New System.Drawing.Point(3, 1)
+        Me.lblTitle.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(715, 48)
+        Me.lblTitle.TabIndex = 12
+        Me.lblTitle.Text = "PRODUCT MANAGEMENT"
+        Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.BackColor = System.Drawing.Color.Chartreuse
+        Me.btnUpdate.FlatAppearance.BorderSize = 0
+        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdate.Location = New System.Drawing.Point(478, 253)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(240, 34)
+        Me.btnUpdate.TabIndex = 5
+        Me.btnUpdate.Text = "Update stock"
+        Me.btnUpdate.UseVisualStyleBackColor = False
+        '
+        'btnUpdateProd
+        '
+        Me.btnUpdateProd.BackColor = System.Drawing.Color.DodgerBlue
+        Me.btnUpdateProd.FlatAppearance.BorderSize = 0
+        Me.btnUpdateProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdateProd.Location = New System.Drawing.Point(478, 153)
+        Me.btnUpdateProd.Name = "btnUpdateProd"
+        Me.btnUpdateProd.Size = New System.Drawing.Size(240, 34)
+        Me.btnUpdateProd.TabIndex = 11
+        Me.btnUpdateProd.Text = "Update Product"
+        Me.btnUpdateProd.UseVisualStyleBackColor = False
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(80, 110)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(92, 25)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Category"
+        '
+        'btnDeleteProd
+        '
+        Me.btnDeleteProd.BackColor = System.Drawing.Color.DarkRed
+        Me.btnDeleteProd.FlatAppearance.BorderSize = 0
+        Me.btnDeleteProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeleteProd.Location = New System.Drawing.Point(478, 113)
+        Me.btnDeleteProd.Name = "btnDeleteProd"
+        Me.btnDeleteProd.Size = New System.Drawing.Size(240, 34)
+        Me.btnDeleteProd.TabIndex = 1
+        Me.btnDeleteProd.Text = "Delete Product"
+        Me.btnDeleteProd.UseVisualStyleBackColor = False
+        '
+        'nudStockControl
+        '
+        Me.nudStockControl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.nudStockControl.Location = New System.Drawing.Point(178, 253)
+        Me.nudStockControl.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.nudStockControl.Name = "nudStockControl"
+        Me.nudStockControl.Size = New System.Drawing.Size(274, 30)
+        Me.nudStockControl.TabIndex = 3
+        Me.nudStockControl.ThousandsSeparator = True
+        '
+        'btnRegister
+        '
+        Me.btnRegister.BackColor = System.Drawing.Color.DarkOrange
+        Me.btnRegister.FlatAppearance.BorderSize = 0
+        Me.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRegister.Location = New System.Drawing.Point(478, 73)
+        Me.btnRegister.Name = "btnRegister"
+        Me.btnRegister.Size = New System.Drawing.Size(240, 34)
+        Me.btnRegister.TabIndex = 5
+        Me.btnRegister.Text = "Register Product"
+        Me.btnRegister.UseVisualStyleBackColor = False
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(70, 150)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(102, 25)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Cost Price"
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(77, 190)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(95, 25)
+        Me.Label4.TabIndex = 10
+        Me.Label4.Text = "Unit Price"
+        '
+        'txtboxName
+        '
+        Me.txtboxName.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtboxName.Location = New System.Drawing.Point(178, 73)
+        Me.txtboxName.Name = "txtboxName"
+        Me.txtboxName.Size = New System.Drawing.Size(274, 30)
+        Me.txtboxName.TabIndex = 0
+        '
+        'cmbboxCategory
+        '
+        Me.cmbboxCategory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmbboxCategory.FormattingEnabled = True
+        Me.cmbboxCategory.Location = New System.Drawing.Point(178, 113)
+        Me.cmbboxCategory.Name = "cmbboxCategory"
+        Me.cmbboxCategory.Size = New System.Drawing.Size(274, 33)
+        Me.cmbboxCategory.TabIndex = 1
+        '
+        'nudUnitPrice
+        '
+        Me.nudUnitPrice.DecimalPlaces = 2
+        Me.nudUnitPrice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.nudUnitPrice.Location = New System.Drawing.Point(178, 193)
+        Me.nudUnitPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.nudUnitPrice.Name = "nudUnitPrice"
+        Me.nudUnitPrice.Size = New System.Drawing.Size(274, 30)
+        Me.nudUnitPrice.TabIndex = 9
+        Me.nudUnitPrice.ThousandsSeparator = True
+        '
+        'nudCostPrice
+        '
+        Me.nudCostPrice.DecimalPlaces = 2
+        Me.nudCostPrice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.nudCostPrice.Location = New System.Drawing.Point(178, 153)
+        Me.nudCostPrice.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.nudCostPrice.Name = "nudCostPrice"
+        Me.nudCostPrice.Size = New System.Drawing.Size(274, 30)
+        Me.nudCostPrice.TabIndex = 5
+        Me.nudCostPrice.ThousandsSeparator = True
+        '
+        'Label13
+        '
+        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(32, 250)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(140, 25)
+        Me.Label13.TabIndex = 13
+        Me.Label13.Text = "Stock Quantity"
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(36, 70)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(136, 25)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "Product Name"
         '
         'ProductManagement
         '
@@ -478,31 +607,35 @@ Partial Class ProductManagement
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MinimizeBox = False
+        Me.MaximizeBox = False
         Me.Name = "ProductManagement"
         Me.Text = "Admin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel4.ResumeLayout(False)
+        Me.TableLayoutPanel4.PerformLayout()
+        Me.TableLayoutPanel5.ResumeLayout(False)
+        Me.TableLayoutPanel5.PerformLayout()
         CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.TableLayoutPanel3.PerformLayout()
+        CType(Me.nudStockControl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudUnitPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudCostPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents btnDeleteProd As Button
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents nudStockControl As NumericUpDown
@@ -537,4 +670,9 @@ Partial Class ProductManagement
     Friend WithEvents NumericUpDown4 As NumericUpDown
     Friend WithEvents Label9 As Label
     Friend WithEvents Button2 As Button
+    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
 End Class

@@ -202,6 +202,7 @@ Partial Class ProductPOS
         '
         'txtboxProdUnitPrice
         '
+        Me.txtboxProdUnitPrice.BackColor = System.Drawing.Color.White
         Me.txtboxProdUnitPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtboxProdUnitPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtboxProdUnitPrice.Location = New System.Drawing.Point(299, 174)
@@ -223,6 +224,7 @@ Partial Class ProductPOS
         '
         'txtboxProdLineTotal
         '
+        Me.txtboxProdLineTotal.BackColor = System.Drawing.Color.White
         Me.txtboxProdLineTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtboxProdLineTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtboxProdLineTotal.Location = New System.Drawing.Point(299, 214)
@@ -265,6 +267,7 @@ Partial Class ProductPOS
         '
         'txtboxProdName
         '
+        Me.txtboxProdName.BackColor = System.Drawing.Color.White
         Me.txtboxProdName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtboxProdName.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtboxProdName.Location = New System.Drawing.Point(299, 74)
@@ -294,6 +297,7 @@ Partial Class ProductPOS
         '
         'txtboxProdCategory
         '
+        Me.txtboxProdCategory.BackColor = System.Drawing.Color.White
         Me.txtboxProdCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtboxProdCategory.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtboxProdCategory.Location = New System.Drawing.Point(299, 114)
@@ -551,7 +555,7 @@ Partial Class ProductPOS
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(275, 50)
         Me.Label4.TabIndex = 20
-        Me.Label4.Text = "lblCustomerUsername"
+        Me.Label4.Text = "Customer Username"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtboxCustomerUsername

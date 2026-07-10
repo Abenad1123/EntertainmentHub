@@ -26,10 +26,10 @@ Partial Class AuditLog
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -39,20 +39,22 @@ Partial Class AuditLog
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 3)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 6
+        Me.TableLayoutPanel1.RowCount = 7
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
@@ -74,16 +76,16 @@ Partial Class AuditLog
         'TableLayoutPanel2
         '
         Me.TableLayoutPanel2.ColumnCount = 6
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 366.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TextBox1, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Button2, 4, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ComboBox1, 3, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 5, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(10, 10)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
@@ -93,26 +95,20 @@ Partial Class AuditLog
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(1180, 75)
         Me.TableLayoutPanel2.TabIndex = 28
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(3, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(194, 44)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Refresh"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'TextBox1
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Location = New System.Drawing.Point(223, 3)
+        Me.TextBox1.Location = New System.Drawing.Point(157, 10)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 10, 3, 3)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(294, 30)
+        Me.TextBox1.Size = New System.Drawing.Size(360, 30)
         Me.TextBox1.TabIndex = 1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(723, 3)
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(723, 10)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(3, 10, 3, 3)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(194, 44)
         Me.Button2.TabIndex = 2
@@ -122,21 +118,33 @@ Partial Class AuditLog
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(523, 3)
+        Me.ComboBox1.Location = New System.Drawing.Point(523, 10)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 10, 3, 3)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(194, 33)
         Me.ComboBox1.TabIndex = 3
+        '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(923, 10)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 10, 3, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(194, 44)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Refresh"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(10, 85)
+        Me.DataGridView1.Location = New System.Drawing.Point(10, 105)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1180, 508)
+        Me.DataGridView1.Size = New System.Drawing.Size(1180, 488)
         Me.DataGridView1.TabIndex = 29
         '
         'AuditLog

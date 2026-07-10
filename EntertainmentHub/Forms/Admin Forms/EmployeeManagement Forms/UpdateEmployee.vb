@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -14,6 +15,18 @@ Public Class UpdateEmployee
         LoadEmployeeLogins()
 
         txtboxPassword.PasswordChar = "*"c
+
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Dim ctrls As Control() = {Label1, Label2, Label3, Label4, Label6, Label7, Label8, lblRole}
+        For Each i In ctrls
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        Next
+
+        HelperFunc.ApplyButtonTheme(btnUpdate)
+        HelperFunc.ApplyButtonTheme(btnSearch)
+
     End Sub
 
     Private Sub StyleDataGridViews()

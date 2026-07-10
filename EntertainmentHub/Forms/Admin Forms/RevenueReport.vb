@@ -10,6 +10,54 @@ Public Class RevenueReport
     Private ReadOnly connString As String = "server=localhost;user id=root;database=entertainmenthub"
 
     Private Sub RevenueReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel3)
+
+        cklsbxRevenueSourceToggle.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.FontDesign(cklsbxRevenueSourceToggle, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(12))
+
+        HelperFunc.FontDesign(grpbxReportRange, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(12))
+
+        Dim ctrls1 As Control() = {Label2, Label3, Label4, Label8}
+        For Each i In ctrls1
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(16))
+        Next
+
+        HelperFunc.ApplyBorder(Label4, HelperFunc.BorderSides.Bottom)
+        HelperFunc.ApplyBorder(Label2, HelperFunc.BorderSides.Bottom)
+
+        HelperFunc.ApplyBorder(Label3, HelperFunc.BorderSides.Bottom)
+        HelperFunc.ApplyBorder(Label8, HelperFunc.BorderSides.Top Or HelperFunc.BorderSides.Bottom)
+
+        Dim ctrls2 As Control() = {
+            Label1, Label5, Label6, Label7, Label9,
+            Label10, Label11, Label12, Label13, Label14,
+            Label20, Label21, Label22, Label23, Label24,
+            Label25, Label32, Label33, Label35
+        }
+        For Each i In ctrls2
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(16))
+        Next
+
+        Dim ctrls3 As Control() = {
+            Label26, Label27, Label28, Label29, Label30, Label31,
+            Label15, Label16, Label17, Label18, Label34, Label36,
+            Label19
+        }
+        For Each i In ctrls3
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(16))
+        Next
+
+        HelperFunc.ApplyButtonTheme(btnLoad)
+        HelperFunc.ApplyButtonTheme(btnGenerate)
+        HelperFunc.ApplyButtonTheme(btnPrint)
+
         InitializeControls()
         SetYearPickerBounds()
         CheckRevenueSourceState()

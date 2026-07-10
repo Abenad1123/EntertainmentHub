@@ -24,8 +24,8 @@ Partial Class RegisterUser
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RegisterUser))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnGoBack = New System.Windows.Forms.PictureBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -40,15 +40,17 @@ Partial Class RegisterUser
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.btnGoBack = New System.Windows.Forms.PictureBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -56,62 +58,49 @@ Partial Class RegisterUser
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 3, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 3, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 1, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 5
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.88889!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1200, 790)
         Me.TableLayoutPanel1.TabIndex = 19
+        '
+        'btnGoBack
+        '
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(13, 708)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 27
+        Me.btnGoBack.TabStop = False
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(10, 10)
+        Me.DataGridView1.Location = New System.Drawing.Point(10, 110)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(580, 616)
+        Me.DataGridView1.Size = New System.Drawing.Size(580, 595)
         Me.DataGridView1.TabIndex = 14
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Controls.Add(Me.TextBox2)
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.TextBox3)
-        Me.Panel1.Controls.Add(Me.Label5)
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.ComboBox1)
-        Me.Panel1.Controls.Add(Me.TextBox5)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.TextBox4)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(610, 10)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel1.Name = "Panel1"
-        Me.TableLayoutPanel1.SetRowSpan(Me.Panel1, 2)
-        Me.Panel1.Size = New System.Drawing.Size(580, 693)
-        Me.Panel1.TabIndex = 15
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(39, 39)
+        Me.Label1.Location = New System.Drawing.Point(111, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(106, 25)
         Me.Label1.TabIndex = 2
@@ -120,33 +109,38 @@ Partial Class RegisterUser
         'TextBox1
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Location = New System.Drawing.Point(168, 36)
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(223, 23)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(227, 30)
+        Me.TextBox1.Size = New System.Drawing.Size(294, 30)
         Me.TextBox1.TabIndex = 0
         '
         'TextBox2
         '
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Location = New System.Drawing.Point(168, 85)
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox2.Location = New System.Drawing.Point(223, 63)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(227, 30)
+        Me.TextBox2.Size = New System.Drawing.Size(294, 30)
         Me.TextBox2.TabIndex = 1
         '
         'Button2
         '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TableLayoutPanel2.SetColumnSpan(Me.Button2, 2)
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(168, 205)
+        Me.Button2.Location = New System.Drawing.Point(156, 183)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(227, 46)
+        Me.Button2.Size = New System.Drawing.Size(227, 44)
         Me.Button2.TabIndex = 13
         Me.Button2.Text = "Register Customer"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(39, 90)
+        Me.Label2.Location = New System.Drawing.Point(111, 60)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(106, 25)
         Me.Label2.TabIndex = 3
@@ -154,8 +148,9 @@ Partial Class RegisterUser
         '
         'Label6
         '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(43, 347)
+        Me.Label6.Location = New System.Drawing.Point(119, 320)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(98, 25)
         Me.Label6.TabIndex = 12
@@ -164,15 +159,17 @@ Partial Class RegisterUser
         'TextBox3
         '
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox3.Location = New System.Drawing.Point(168, 153)
+        Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox3.Location = New System.Drawing.Point(223, 123)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(227, 30)
+        Me.TextBox3.Size = New System.Drawing.Size(294, 30)
         Me.TextBox3.TabIndex = 4
         '
         'Label5
         '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(39, 301)
+        Me.Label5.Location = New System.Drawing.Point(115, 280)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(102, 25)
         Me.Label5.TabIndex = 11
@@ -180,8 +177,9 @@ Partial Class RegisterUser
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 156)
+        Me.Label3.Location = New System.Drawing.Point(79, 120)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(138, 25)
         Me.Label3.TabIndex = 5
@@ -189,34 +187,39 @@ Partial Class RegisterUser
         '
         'Button1
         '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TableLayoutPanel2.SetColumnSpan(Me.Button1, 2)
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(168, 449)
+        Me.Button1.Location = New System.Drawing.Point(156, 423)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(227, 46)
+        Me.Button1.Size = New System.Drawing.Size(227, 44)
         Me.Button1.TabIndex = 10
         Me.Button1.Text = "Register Account"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'ComboBox1
         '
+        Me.ComboBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(168, 393)
+        Me.ComboBox1.Location = New System.Drawing.Point(223, 363)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(227, 33)
+        Me.ComboBox1.Size = New System.Drawing.Size(294, 33)
         Me.ComboBox1.TabIndex = 6
         '
         'TextBox5
         '
         Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox5.Location = New System.Drawing.Point(168, 344)
+        Me.TextBox5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox5.Location = New System.Drawing.Point(223, 323)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(227, 30)
+        Me.TextBox5.Size = New System.Drawing.Size(294, 30)
         Me.TextBox5.TabIndex = 9
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(21, 393)
+        Me.Label4.Location = New System.Drawing.Point(97, 360)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(120, 25)
         Me.Label4.TabIndex = 7
@@ -225,20 +228,67 @@ Partial Class RegisterUser
         'TextBox4
         '
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox4.Location = New System.Drawing.Point(168, 298)
+        Me.TextBox4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox4.Location = New System.Drawing.Point(223, 283)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(227, 30)
+        Me.TextBox4.Size = New System.Drawing.Size(294, 30)
         Me.TextBox4.TabIndex = 8
         '
-        'btnGoBack
+        'TableLayoutPanel2
         '
-        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(13, 706)
-        Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
-        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btnGoBack.TabIndex = 27
-        Me.btnGoBack.TabStop = False
+        Me.TableLayoutPanel2.ColumnCount = 4
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.Label1, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label6, 1, 9)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label4, 1, 10)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button2, 1, 6)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label5, 1, 8)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox2, 2, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label2, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.ComboBox1, 2, 10)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox3, 2, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox5, 2, 9)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label3, 1, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox1, 2, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.TextBox4, 2, 8)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button1, 1, 12)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(615, 110)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 14
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(570, 595)
+        Me.TableLayoutPanel2.TabIndex = 14
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.TableLayoutPanel1.SetColumnSpan(Me.Label7, 3)
+        Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(13, 10)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(1174, 100)
+        Me.Label7.TabIndex = 28
+        Me.Label7.Text = "User Registration"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RegisterUser
         '
@@ -254,17 +304,17 @@ Partial Class RegisterUser
         Me.Text = "Admin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.TableLayoutPanel1.PerformLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
@@ -280,4 +330,6 @@ Partial Class RegisterUser
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents btnGoBack As PictureBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents Label7 As Label
 End Class

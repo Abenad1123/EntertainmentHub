@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -7,7 +8,23 @@ Imports MySql.Data.MySqlClient
 Public Class UserManagement
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label1.Font = AppFonts.Hwygoth(30)
+        Label1.ForeColor = Color.FromArgb(255, 255, 255)
+        Label1.Font = AppFonts.Aero(30)
+
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button4)
+        HelperFunc.ApplyButtonTheme(Button5)
+        HelperFunc.ApplyButtonTheme(btnDeleteAccount)
+        HelperFunc.ApplyButtonTheme(Button6)
+
+        HelperFunc.ApplyBorder(DataGridView1)
+        HelperFunc.ApplyBorder(TableLayoutPanel3)
+
+        HelperFunc.FontDesign(Label2, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+
         StyleDataGridView()
         LoadCustomerData()
     End Sub

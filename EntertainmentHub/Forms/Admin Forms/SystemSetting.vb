@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
@@ -10,6 +11,23 @@ Public Class SystemSetting
     Private selectedTierID As Integer = 0
 
     Private Sub PricingConfiguration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Label9.ForeColor = Color.FromArgb(255, 255, 255)
+        Label9.Font = AppFonts.Aero(30)
+
+        TabControl1.BackColor = Color.FromArgb(37, 36, 39)
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button2)
+        HelperFunc.ApplyButtonTheme(Button3)
+
+        Dim ctrls As Control() = {Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8}
+        For Each i In ctrls
+            HelperFunc.FontDesign(i, Color.FromArgb(0, 0, 0), AppFonts.Coolvetica(16))
+        Next
+
         StyleDataGridViews()
         LoadComboBoxes()
         LoadGrids()

@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports BCrypt.Net
 Imports MySql.Data.MySqlClient
@@ -7,6 +8,23 @@ Imports MySql.Data.MySqlClient
 Public Class RegisterUser
 
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Label7.ForeColor = Color.FromArgb(255, 255, 255)
+        Label7.Font = AppFonts.Aero(30)
+
+        Dim labels As Control() = {Label1, Label2, Label3, Label4, Label5, Label6}
+        For Each i In labels
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        Next
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button2)
+
         StyleDataGridView()
         LoadCustomerData()
         LoadMembershipLevels()

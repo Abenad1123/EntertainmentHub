@@ -6,7 +6,23 @@ Imports MySql.Data.MySqlClient
 
 Public Class RegisterEmployee
     Private Sub RegisterEmployee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Label8.Font = AppFonts.Hwygoth(30)
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Label8.ForeColor = Color.FromArgb(255, 255, 255)
+        Label8.Font = AppFonts.Aero(30)
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button2)
+
+        Dim labels As Control() = {Label1, Label2, Label3, Label4, Label5, Label6, Label7}
+        For Each i In labels
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        Next
+
         TextBox3.PasswordChar = "*"c
 
         LoadRoles()

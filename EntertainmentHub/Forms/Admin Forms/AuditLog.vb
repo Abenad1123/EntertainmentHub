@@ -5,6 +5,17 @@ Imports MySql.Data.MySqlClient
 
 Public Class AuditLog
     Private Sub SystemAuditLogs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button2)
+
+        HelperFunc.ApplyBorder(DataGridView1)
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
         InitializeComboBox()
         StyleDataGridView()
         LoadAuditData()

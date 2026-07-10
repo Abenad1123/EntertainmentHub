@@ -9,6 +9,23 @@ Public Class UpdateUser
     Private currentAccountID As Integer = 0
 
     Private Sub CustomerAccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        HelperFunc.ApplyBorder(DataGridView1)
+        HelperFunc.ApplyBorder(DataGridView2)
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        Dim labels As Control() = {lblRole, lblStatus, Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8}
+        For Each i In labels
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(17))
+        Next
+
+        HelperFunc.ApplyButtonTheme(btnSearch)
+        HelperFunc.ApplyButtonTheme(btnUpdate)
+
         LoadFilterMembership()
         LoadFilterStatus()
         LoadEditMembership()

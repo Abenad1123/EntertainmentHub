@@ -1,37 +1,27 @@
 ﻿Imports System.Drawing
+Imports System.Reflection.Emit
 Imports MySql.Data.MySqlClient
 
 Public Class AdminDashboard
 
     Private Sub MainMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = AppColors.Background
-
-        lblTitle.ForeColor = Color.FromArgb(255, 255, 255)
-        lblTitle.Font = AppFonts.VenusRising(22)
-
-        Label1.ForeColor = Color.FromArgb(255, 255, 255)
-        Label1.Font = AppFonts.Hwygwde(25)
-        Label2.ForeColor = Color.FromArgb(255, 255, 255)
-        Label2.Font = AppFonts.Hwygwde(25)
-
-        Label3.ForeColor = Color.FromArgb(255, 255, 255)
-        Label3.Font = AppFonts.Hwygwde(18)
-
-        btnOpenManageEntertainment.Font = AppFonts.Hwygoth(16)
-        btnOpenManageProduct.Font = AppFonts.Hwygoth(16)
-        btnOpenManageUser.Font = AppFonts.Hwygoth(16)
-        btnOpenManageEmployee.Font = AppFonts.Hwygoth(16)
-
-        Button1.Font = AppFonts.Hwygoth(16)
-        btnOpenProductPOS.Font = AppFonts.Hwygoth(16)
-
-        Button2.Font = AppFonts.Hwygoth(16)
-        Button3.Font = AppFonts.Hwygoth(16)
-        Button6.Font = AppFonts.Hwygoth(16)
-
-        Me.BackgroundImage = My.Resources.background3
+        Me.BackgroundImage = AccountData.AdminCommonBackground
         Me.BackgroundImageLayout = ImageLayout.Stretch
 
+        lblTitle.ForeColor = Color.FromArgb(255, 255, 255)
+        Label1.ForeColor = Color.FromArgb(255, 255, 255)
+        Label2.ForeColor = Color.FromArgb(255, 255, 255)
+        Label3.ForeColor = Color.FromArgb(255, 255, 255)
+
+        lblTitle.Font = AppFonts.Aero(30)
+        Label2.Font = AppFonts.VenusRising(20)
+        Label1.Font = AppFonts.VenusRising(20)
+        Label3.Font = AppFonts.Hwygwde(18)
+
+        Dim ctrls As Control() = {btnOpenManageEntertainment, btnOpenManageProduct, btnOpenManageUser, btnOpenManageEmployee, btnOpenProductPOS, Button1, Button2, Button3, Button4, Button6}
+        For Each i In ctrls
+            HelperFunc.ApplyButtonTheme(i)
+        Next
         LoadAdminGreeting()
     End Sub
 

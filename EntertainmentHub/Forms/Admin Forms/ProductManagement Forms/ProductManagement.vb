@@ -7,6 +7,29 @@ Public Class ProductManagement
     Private selectedProductID As Integer = 0
 
     Private Sub ProductManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        DataGridView1.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(DataGridView1)
+
+        HelperFunc.ApplyButtonTheme(Button1)
+        HelperFunc.ApplyButtonTheme(Button2)
+
+        TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel3)
+
+        TableLayoutPanel4.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel4)
+
+        HelperFunc.FontDesign(lblTitle, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(18))
+        HelperFunc.FontDesign(Label5, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(18))
+
+        Dim labels As Control() = {Label1, Label2, Label3, Label4, Label6, Label7, Label9, Label10, Label12, Label13}
+        For Each i In labels
+            HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(16))
+        Next
+
         InitializeCategories()
         StyleDataGridView()
         ResetFilters()

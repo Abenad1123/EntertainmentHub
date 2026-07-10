@@ -1,11 +1,44 @@
 ﻿Imports System.Data
 Imports System.Drawing
+Imports System.Reflection.Emit
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports MySql.Data.MySqlClient
 
 Public Class TransactionManager
     Private Sub Initialization(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        Dim ctrls As Control() = {btnAdjust, btnBonus, btnDeposit, btnPayment, btnWithdraw, Button5}
+        For Each i In ctrls
+            HelperFunc.ApplyButtonTheme(i)
+        Next
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+        Label7.ForeColor = Color.FromArgb(255, 255, 255)
+        Label7.Font = AppFonts.Aero(30)
+
+        Label2.ForeColor = Color.FromArgb(255, 255, 255)
+        Label2.Font = AppFonts.VenusRising(15)
+
+        Label3.ForeColor = Color.FromArgb(255, 255, 255)
+        Label3.Font = AppFonts.VenusRising(15)
+
+        Label5.ForeColor = Color.FromArgb(255, 255, 255)
+        Label5.Font = AppFonts.VenusRising(15)
+
+        Label6.ForeColor = Color.FromArgb(255, 255, 255)
+        Label6.Font = AppFonts.VenusRising(15)
+
+        HelperFunc.ApplyBorder(DataGridView1)
+        HelperFunc.ApplyBorder(txtActionLog)
+
+        HelperFunc.FontDesign(Label4, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+        HelperFunc.FontDesign(Label1, Color.FromArgb(255, 255, 255), AppFonts.Coolvetica(18))
+
         StyleDataGridView()
         LoadWalletTransactions()
     End Sub

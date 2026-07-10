@@ -32,7 +32,6 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -66,6 +65,8 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel7 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,76 +85,70 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel5.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
         Me.TableLayoutPanel7.SuspendLayout()
+        Me.TableLayoutPanel8.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.TableLayoutPanel1.ColumnCount = 3
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label1, 1, 2)
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 1, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.TabControl1, 1, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.FlowLayoutPanel1, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 1, 11)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label16, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 1, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.FlowLayoutPanel1, 1, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel8, 1, 10)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 10
+        Me.TableLayoutPanel1.RowCount = 13
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1286, 862)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(13, 520)
+        Me.Label3.Location = New System.Drawing.Point(20, 540)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(1260, 30)
+        Me.Label3.Size = New System.Drawing.Size(1246, 40)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Detailed Reports"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 190)
+        Me.Label2.Location = New System.Drawing.Point(20, 190)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(1260, 30)
+        Me.Label2.Size = New System.Drawing.Size(1246, 40)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Data Visualizations"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(13, 60)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1260, 30)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Key Performance Indicator (KPI)"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TableLayoutPanel2
         '
@@ -180,12 +175,12 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 8, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.ComboBox1, 9, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(10, 10)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(20, 10)
         Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1266, 50)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1246, 50)
         Me.TableLayoutPanel2.TabIndex = 3
         '
         'Label4
@@ -193,9 +188,10 @@ Partial Class AnalyticsMenu
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(3, 0)
+        Me.Label4.Location = New System.Drawing.Point(3, 1)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(119, 50)
+        Me.Label4.Size = New System.Drawing.Size(119, 48)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Filter"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -204,9 +200,10 @@ Partial Class AnalyticsMenu
         '
         Me.Label5.AutoSize = True
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label5.Location = New System.Drawing.Point(148, 0)
+        Me.Label5.Location = New System.Drawing.Point(148, 1)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(74, 50)
+        Me.Label5.Size = New System.Drawing.Size(74, 48)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "From"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -224,9 +221,10 @@ Partial Class AnalyticsMenu
         '
         Me.Label6.AutoSize = True
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label6.Location = New System.Drawing.Point(448, 0)
+        Me.Label6.Location = New System.Drawing.Point(448, 1)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(74, 50)
+        Me.Label6.Size = New System.Drawing.Size(74, 48)
         Me.Label6.TabIndex = 6
         Me.Label6.Text = "To"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -245,7 +243,7 @@ Partial Class AnalyticsMenu
         Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(1075, 6)
+        Me.Button1.Location = New System.Drawing.Point(1055, 6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(172, 37)
         Me.Button1.TabIndex = 8
@@ -256,9 +254,10 @@ Partial Class AnalyticsMenu
         '
         Me.Label7.AutoSize = True
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label7.Location = New System.Drawing.Point(748, 0)
+        Me.Label7.Location = New System.Drawing.Point(748, 1)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(74, 50)
+        Me.Label7.Size = New System.Drawing.Size(74, 48)
         Me.Label7.TabIndex = 9
         Me.Label7.Text = "Label7"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -275,7 +274,7 @@ Partial Class AnalyticsMenu
         'btnGoBack
         '
         Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(10, 802)
+        Me.btnGoBack.Location = New System.Drawing.Point(20, 802)
         Me.btnGoBack.Margin = New System.Windows.Forms.Padding(0)
         Me.btnGoBack.Name = "btnGoBack"
         Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
@@ -291,12 +290,12 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel3.Controls.Add(Me.Chart2, 1, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Chart1, 0, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(10, 220)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(20, 230)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1266, 300)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1246, 300)
         Me.TableLayoutPanel3.TabIndex = 27
         '
         'Chart2
@@ -308,13 +307,13 @@ Partial Class AnalyticsMenu
         Me.Chart2.Dock = System.Windows.Forms.DockStyle.Fill
         Legend1.Name = "Legend1"
         Me.Chart2.Legends.Add(Legend1)
-        Me.Chart2.Location = New System.Drawing.Point(636, 3)
+        Me.Chart2.Location = New System.Drawing.Point(626, 3)
         Me.Chart2.Name = "Chart2"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         Me.Chart2.Series.Add(Series1)
-        Me.Chart2.Size = New System.Drawing.Size(627, 294)
+        Me.Chart2.Size = New System.Drawing.Size(617, 294)
         Me.Chart2.TabIndex = 1
         Me.Chart2.Text = "Chart2"
         '
@@ -333,7 +332,7 @@ Partial Class AnalyticsMenu
         Series2.Legend = "Legend1"
         Series2.Name = "Series1"
         Me.Chart1.Series.Add(Series2)
-        Me.Chart1.Size = New System.Drawing.Size(627, 294)
+        Me.Chart1.Size = New System.Drawing.Size(617, 294)
         Me.Chart1.TabIndex = 0
         Me.Chart1.Text = "Chart1"
         '
@@ -343,11 +342,11 @@ Partial Class AnalyticsMenu
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(10, 550)
+        Me.TabControl1.Location = New System.Drawing.Point(1, 1)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1266, 252)
+        Me.TabControl1.Size = New System.Drawing.Size(1244, 220)
         Me.TabControl1.TabIndex = 28
         '
         'TabPage1
@@ -356,7 +355,7 @@ Partial Class AnalyticsMenu
         Me.TabPage1.Location = New System.Drawing.Point(4, 34)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1258, 214)
+        Me.TabPage1.Size = New System.Drawing.Size(1236, 182)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Terminal Utilization"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -370,7 +369,7 @@ Partial Class AnalyticsMenu
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1252, 208)
+        Me.DataGridView1.Size = New System.Drawing.Size(1230, 176)
         Me.DataGridView1.TabIndex = 0
         '
         'TabPage2
@@ -425,10 +424,10 @@ Partial Class AnalyticsMenu
         Me.FlowLayoutPanel1.Controls.Add(Me.TableLayoutPanel6)
         Me.FlowLayoutPanel1.Controls.Add(Me.TableLayoutPanel7)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(10, 90)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(20, 110)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1266, 100)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1246, 70)
         Me.FlowLayoutPanel1.TabIndex = 29
         '
         'TableLayoutPanel4
@@ -440,15 +439,15 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 2
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(250, 94)
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(250, 58)
         Me.TableLayoutPanel4.TabIndex = 30
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(3, 28)
+        Me.Label12.Location = New System.Drawing.Point(3, 29)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(82, 25)
         Me.Label12.TabIndex = 1
@@ -473,15 +472,15 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(259, 3)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 2
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(250, 94)
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(250, 58)
         Me.TableLayoutPanel5.TabIndex = 31
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(3, 28)
+        Me.Label13.Location = New System.Drawing.Point(3, 29)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(82, 25)
         Me.Label13.TabIndex = 2
@@ -506,15 +505,15 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel6.Location = New System.Drawing.Point(515, 3)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 2
-        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(250, 94)
+        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(250, 58)
         Me.TableLayoutPanel6.TabIndex = 32
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(3, 28)
+        Me.Label14.Location = New System.Drawing.Point(3, 29)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(82, 25)
         Me.Label14.TabIndex = 2
@@ -539,15 +538,15 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel7.Location = New System.Drawing.Point(771, 3)
         Me.TableLayoutPanel7.Name = "TableLayoutPanel7"
         Me.TableLayoutPanel7.RowCount = 2
-        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
-        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.0!))
-        Me.TableLayoutPanel7.Size = New System.Drawing.Size(250, 94)
+        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel7.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel7.Size = New System.Drawing.Size(250, 58)
         Me.TableLayoutPanel7.TabIndex = 33
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(3, 28)
+        Me.Label15.Location = New System.Drawing.Point(3, 29)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(82, 25)
         Me.Label15.TabIndex = 2
@@ -562,6 +561,34 @@ Partial Class AnalyticsMenu
         Me.Label11.Size = New System.Drawing.Size(112, 26)
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "Top Term"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.Location = New System.Drawing.Point(20, 70)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(1246, 40)
+        Me.Label16.TabIndex = 34
+        Me.Label16.Text = "Key Performance Indicator (KPI)"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanel8
+        '
+        Me.TableLayoutPanel8.ColumnCount = 1
+        Me.TableLayoutPanel8.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel8.Controls.Add(Me.TabControl1, 0, 0)
+        Me.TableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel8.Location = New System.Drawing.Point(20, 580)
+        Me.TableLayoutPanel8.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
+        Me.TableLayoutPanel8.Padding = New System.Windows.Forms.Padding(1)
+        Me.TableLayoutPanel8.RowCount = 1
+        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(1246, 222)
+        Me.TableLayoutPanel8.TabIndex = 35
         '
         'AnalyticsMenu
         '
@@ -600,6 +627,7 @@ Partial Class AnalyticsMenu
         Me.TableLayoutPanel6.PerformLayout()
         Me.TableLayoutPanel7.ResumeLayout(False)
         Me.TableLayoutPanel7.PerformLayout()
+        Me.TableLayoutPanel8.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -607,7 +635,6 @@ Partial Class AnalyticsMenu
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
@@ -641,4 +668,6 @@ Partial Class AnalyticsMenu
     Friend WithEvents TableLayoutPanel7 As TableLayoutPanel
     Friend WithEvents Label15 As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents TableLayoutPanel8 As TableLayoutPanel
 End Class

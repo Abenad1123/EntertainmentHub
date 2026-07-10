@@ -9,6 +9,22 @@ Public Class EmployeeManagement
         LoadRolesFilter()
         StyleDataGridView()
         LoadEmployees()
+
+        Me.BackgroundImage = AccountData.AdminCommonBackground
+        Me.BackgroundImageLayout = ImageLayout.Stretch
+
+        lblRole.ForeColor = Color.FromArgb(255, 255, 255)
+
+        TableLayoutPanel2.BackColor = Color.FromArgb(37, 36, 39)
+        HelperFunc.ApplyBorder(TableLayoutPanel2)
+
+
+        Dim ctrls As Control() = {btnDelete, btnRegister, btnSearch, btnUpdate}
+
+        For Each i In ctrls
+            HelperFunc.FontDesign(i, Color.FromArgb(0, 0, 0), AppFonts.CdSaver(14))
+            HelperFunc.ApplyButtonTheme(i)
+        Next
     End Sub
 
     Private Sub StyleDataGridView()

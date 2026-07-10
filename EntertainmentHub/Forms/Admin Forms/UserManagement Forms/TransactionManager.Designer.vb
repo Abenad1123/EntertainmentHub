@@ -23,216 +23,291 @@ Partial Class TransactionManager
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TransactionManager))
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.txtboxUsernameInput = New System.Windows.Forms.TextBox()
-        Me.txtboxAmount = New System.Windows.Forms.TextBox()
-        Me.btnDeposit = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnWithdraw = New System.Windows.Forms.Button()
-        Me.btnBonus = New System.Windows.Forms.Button()
-        Me.btnAdjust = New System.Windows.Forms.Button()
-        Me.btnPayment = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.txtActionLog = New System.Windows.Forms.TextBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnGoBack = New System.Windows.Forms.PictureBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnWithdraw = New System.Windows.Forms.Button()
+        Me.btnDeposit = New System.Windows.Forms.Button()
+        Me.btnAdjust = New System.Windows.Forms.Button()
+        Me.btnBonus = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtboxAmount = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.btnPayment = New System.Windows.Forms.Button()
+        Me.txtboxUsernameInput = New System.Windows.Forms.TextBox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(13, 33)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowHeadersWidth = 51
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(682, 489)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'txtboxUsernameInput
-        '
-        Me.txtboxUsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxUsernameInput.Location = New System.Drawing.Point(166, 15)
-        Me.txtboxUsernameInput.Name = "txtboxUsernameInput"
-        Me.txtboxUsernameInput.Size = New System.Drawing.Size(338, 30)
-        Me.txtboxUsernameInput.TabIndex = 1
-        '
-        'txtboxAmount
-        '
-        Me.txtboxAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtboxAmount.Location = New System.Drawing.Point(166, 51)
-        Me.txtboxAmount.Name = "txtboxAmount"
-        Me.txtboxAmount.Size = New System.Drawing.Size(338, 30)
-        Me.txtboxAmount.TabIndex = 2
-        '
-        'btnDeposit
-        '
-        Me.btnDeposit.BackColor = System.Drawing.Color.White
-        Me.btnDeposit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeposit.Location = New System.Drawing.Point(163, 151)
-        Me.btnDeposit.Name = "btnDeposit"
-        Me.btnDeposit.Size = New System.Drawing.Size(311, 40)
-        Me.btnDeposit.TabIndex = 4
-        Me.btnDeposit.Text = "Deposit"
-        Me.btnDeposit.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(78, 54)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(80, 25)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Amount"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 10)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(682, 20)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "WALLET TRANSACTION"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(58, 18)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(102, 25)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Username"
-        '
-        'btnWithdraw
-        '
-        Me.btnWithdraw.BackColor = System.Drawing.Color.White
-        Me.btnWithdraw.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnWithdraw.Location = New System.Drawing.Point(163, 197)
-        Me.btnWithdraw.Name = "btnWithdraw"
-        Me.btnWithdraw.Size = New System.Drawing.Size(311, 40)
-        Me.btnWithdraw.TabIndex = 9
-        Me.btnWithdraw.Text = "Withdraw"
-        Me.btnWithdraw.UseVisualStyleBackColor = False
-        '
-        'btnBonus
-        '
-        Me.btnBonus.BackColor = System.Drawing.Color.White
-        Me.btnBonus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBonus.Location = New System.Drawing.Point(163, 289)
-        Me.btnBonus.Name = "btnBonus"
-        Me.btnBonus.Size = New System.Drawing.Size(311, 40)
-        Me.btnBonus.TabIndex = 10
-        Me.btnBonus.Text = "Bonus"
-        Me.btnBonus.UseVisualStyleBackColor = False
-        '
-        'btnAdjust
-        '
-        Me.btnAdjust.BackColor = System.Drawing.Color.White
-        Me.btnAdjust.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdjust.Location = New System.Drawing.Point(163, 243)
-        Me.btnAdjust.Name = "btnAdjust"
-        Me.btnAdjust.Size = New System.Drawing.Size(311, 40)
-        Me.btnAdjust.TabIndex = 11
-        Me.btnAdjust.Text = "Adjust"
-        Me.btnAdjust.UseVisualStyleBackColor = False
-        '
-        'btnPayment
-        '
-        Me.btnPayment.BackColor = System.Drawing.Color.White
-        Me.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPayment.Location = New System.Drawing.Point(163, 424)
-        Me.btnPayment.Name = "btnPayment"
-        Me.btnPayment.Size = New System.Drawing.Size(311, 40)
-        Me.btnPayment.TabIndex = 12
-        Me.btnPayment.Text = "Payment"
-        Me.btnPayment.UseVisualStyleBackColor = False
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.Color.White
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Location = New System.Drawing.Point(163, 378)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(311, 40)
-        Me.Button5.TabIndex = 13
-        Me.Button5.Text = "Refund"
-        Me.Button5.UseVisualStyleBackColor = False
         '
         'txtActionLog
         '
         Me.txtActionLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtActionLog.CausesValidation = False
         Me.txtActionLog.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtActionLog.Location = New System.Drawing.Point(13, 548)
+        Me.txtActionLog.Location = New System.Drawing.Point(13, 578)
         Me.txtActionLog.Multiline = True
         Me.txtActionLog.Name = "txtActionLog"
         Me.txtActionLog.ShortcutsEnabled = False
-        Me.txtActionLog.Size = New System.Drawing.Size(682, 324)
+        Me.txtActionLog.Size = New System.Drawing.Size(672, 294)
         Me.txtActionLog.TabIndex = 14
         Me.txtActionLog.TabStop = False
         Me.txtActionLog.WordWrap = False
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(13, 108)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersWidth = 51
+        Me.DataGridView1.RowTemplate.Height = 24
+        Me.DataGridView1.Size = New System.Drawing.Size(672, 444)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(13, 85)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(672, 20)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "WALLET TRANSACTION"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(13, 525)
+        Me.Label3.Location = New System.Drawing.Point(13, 555)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(682, 20)
+        Me.Label3.Size = New System.Drawing.Size(672, 20)
         Me.Label3.TabIndex = 15
         Me.Label3.Text = "ACTION LOG"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label5
+        'btnGoBack
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(243, 350)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(166, 25)
-        Me.Label5.TabIndex = 19
-        Me.Label5.Text = "SALE BUTTONS"
+        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
+        Me.btnGoBack.Location = New System.Drawing.Point(1, 519)
+        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(1, 0, 0, 1)
+        Me.btnGoBack.Name = "btnGoBack"
+        Me.btnGoBack.Size = New System.Drawing.Size(50, 50)
+        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.btnGoBack.TabIndex = 27
+        Me.btnGoBack.TabStop = False
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.95349!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.04651!))
+        Me.TableLayoutPanel2.Controls.Add(Me.txtboxUsernameInput, 1, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnPayment, 0, 12)
+        Me.TableLayoutPanel2.Controls.Add(Me.Button5, 0, 11)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label5, 0, 10)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label6, 0, 4)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.txtboxAmount, 1, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnBonus, 0, 8)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnAdjust, 0, 7)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnDeposit, 0, 6)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnWithdraw, 0, 5)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnGoBack, 0, 14)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(708, 105)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0, 0, 0, 200)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 15
+        Me.TableLayoutPanel1.SetRowSpan(Me.TableLayoutPanel2, 3)
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(678, 570)
+        Me.TableLayoutPanel2.TabIndex = 21
+        '
+        'btnWithdraw
+        '
+        Me.btnWithdraw.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnWithdraw.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.btnWithdraw, 2)
+        Me.btnWithdraw.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnWithdraw.Location = New System.Drawing.Point(163, 163)
+        Me.btnWithdraw.Name = "btnWithdraw"
+        Me.btnWithdraw.Size = New System.Drawing.Size(352, 34)
+        Me.btnWithdraw.TabIndex = 9
+        Me.btnWithdraw.Text = "Withdraw"
+        Me.btnWithdraw.UseVisualStyleBackColor = False
+        '
+        'btnDeposit
+        '
+        Me.btnDeposit.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnDeposit.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.btnDeposit, 2)
+        Me.btnDeposit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeposit.Location = New System.Drawing.Point(163, 203)
+        Me.btnDeposit.Name = "btnDeposit"
+        Me.btnDeposit.Size = New System.Drawing.Size(352, 34)
+        Me.btnDeposit.TabIndex = 4
+        Me.btnDeposit.Text = "Deposit"
+        Me.btnDeposit.UseVisualStyleBackColor = False
+        '
+        'btnAdjust
+        '
+        Me.btnAdjust.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnAdjust.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.btnAdjust, 2)
+        Me.btnAdjust.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAdjust.Location = New System.Drawing.Point(163, 243)
+        Me.btnAdjust.Name = "btnAdjust"
+        Me.btnAdjust.Size = New System.Drawing.Size(352, 34)
+        Me.btnAdjust.TabIndex = 11
+        Me.btnAdjust.Text = "Adjust"
+        Me.btnAdjust.UseVisualStyleBackColor = False
+        '
+        'btnBonus
+        '
+        Me.btnBonus.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnBonus.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.btnBonus, 2)
+        Me.btnBonus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBonus.Location = New System.Drawing.Point(163, 283)
+        Me.btnBonus.Name = "btnBonus"
+        Me.btnBonus.Size = New System.Drawing.Size(352, 34)
+        Me.btnBonus.TabIndex = 10
+        Me.btnBonus.Text = "Bonus"
+        Me.btnBonus.UseVisualStyleBackColor = False
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(181, 60)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 25)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Amount"
+        '
+        'txtboxAmount
+        '
+        Me.txtboxAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxAmount.Location = New System.Drawing.Point(267, 63)
+        Me.txtboxAmount.Name = "txtboxAmount"
+        Me.txtboxAmount.Size = New System.Drawing.Size(310, 30)
+        Me.txtboxAmount.TabIndex = 2
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(159, 20)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(102, 25)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Username"
         '
         'Label6
         '
+        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(227, 123)
+        Me.TableLayoutPanel2.SetColumnSpan(Me.Label6, 2)
+        Me.Label6.Location = New System.Drawing.Point(241, 120)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(196, 25)
         Me.Label6.TabIndex = 20
         Me.Label6.Text = "WALLET BUTTONS"
         '
+        'Label5
+        '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Label5.AutoSize = True
+        Me.TableLayoutPanel2.SetColumnSpan(Me.Label5, 2)
+        Me.Label5.Location = New System.Drawing.Point(256, 340)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(166, 25)
+        Me.Label5.TabIndex = 19
+        Me.Label5.Text = "SALE BUTTONS"
+        '
+        'Button5
+        '
+        Me.Button5.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button5.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.Button5, 2)
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(163, 383)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(352, 34)
+        Me.Button5.TabIndex = 13
+        Me.Button5.Text = "Refund"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'btnPayment
+        '
+        Me.btnPayment.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.btnPayment.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel2.SetColumnSpan(Me.btnPayment, 2)
+        Me.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPayment.Location = New System.Drawing.Point(163, 423)
+        Me.btnPayment.Name = "btnPayment"
+        Me.btnPayment.Size = New System.Drawing.Size(352, 34)
+        Me.btnPayment.TabIndex = 12
+        Me.btnPayment.Text = "Payment"
+        Me.btnPayment.UseVisualStyleBackColor = False
+        '
+        'txtboxUsernameInput
+        '
+        Me.txtboxUsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtboxUsernameInput.Location = New System.Drawing.Point(267, 23)
+        Me.txtboxUsernameInput.Name = "txtboxUsernameInput"
+        Me.txtboxUsernameInput.Size = New System.Drawing.Size(310, 30)
+        Me.txtboxUsernameInput.TabIndex = 1
+        '
         'TableLayoutPanel1
         '
-        Me.TableLayoutPanel1.ColumnCount = 4
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.TableLayoutPanel1.ColumnCount = 5
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnGoBack, 2, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtActionLog, 1, 4)
-        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 2)
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.txtActionLog, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 3, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 6
+        Me.TableLayoutPanel1.RowCount = 7
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
@@ -242,36 +317,18 @@ Partial Class TransactionManager
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1397, 885)
         Me.TableLayoutPanel1.TabIndex = 21
         '
-        'Panel1
+        'Label7
         '
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.txtboxUsernameInput)
-        Me.Panel1.Controls.Add(Me.Label5)
-        Me.Panel1.Controls.Add(Me.txtboxAmount)
-        Me.Panel1.Controls.Add(Me.btnDeposit)
-        Me.Panel1.Controls.Add(Me.Button5)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.btnPayment)
-        Me.Panel1.Controls.Add(Me.btnWithdraw)
-        Me.Panel1.Controls.Add(Me.btnAdjust)
-        Me.Panel1.Controls.Add(Me.btnBonus)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(698, 30)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(688, 495)
-        Me.Panel1.TabIndex = 16
-        '
-        'btnGoBack
-        '
-        Me.btnGoBack.Image = Global.EntertainmentHub.My.Resources.Resources.go_back_state_1
-        Me.btnGoBack.Location = New System.Drawing.Point(701, 548)
-        Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(50, 44)
-        Me.btnGoBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.btnGoBack.TabIndex = 27
-        Me.btnGoBack.TabStop = False
+        Me.Label7.AutoSize = True
+        Me.TableLayoutPanel1.SetColumnSpan(Me.Label7, 3)
+        Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 30.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(13, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(1370, 75)
+        Me.Label7.TabIndex = 28
+        Me.Label7.Text = "Transaction Manager"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TransactionManager
         '
@@ -287,32 +344,33 @@ Partial Class TransactionManager
         Me.Text = "Admin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
-        CType(Me.btnGoBack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents txtActionLog As TextBox
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents txtboxUsernameInput As TextBox
-    Friend WithEvents txtboxAmount As TextBox
-    Friend WithEvents btnDeposit As Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents btnWithdraw As Button
-    Friend WithEvents btnBonus As Button
-    Friend WithEvents btnAdjust As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents btnGoBack As PictureBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents txtboxUsernameInput As TextBox
     Friend WithEvents btnPayment As Button
     Friend WithEvents Button5 As Button
-    Friend WithEvents txtActionLog As TextBox
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtboxAmount As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnBonus As Button
+    Friend WithEvents btnAdjust As Button
+    Friend WithEvents btnDeposit As Button
+    Friend WithEvents btnWithdraw As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents btnGoBack As PictureBox
+    Friend WithEvents Label7 As Label
 End Class

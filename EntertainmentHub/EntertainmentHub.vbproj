@@ -124,6 +124,7 @@
     <Compile Include="Common\AccountData.vb" />
     <Compile Include="Common\AppColors.vb" />
     <Compile Include="Common\AppFonts.vb" />
+    <Compile Include="Common\HelperFunc.vb" />
     <Compile Include="DatabaseInitializerModule.vb" />
     <Compile Include="Database\DBConnection.vb" />
     <Compile Include="Forms\Admin Forms\AdminDashboard.Designer.vb">
@@ -354,9 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +365,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Fonts\HWYGWDE.TTF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Aero.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Coolvetica Rg Cond.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Coolvetica Rg.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\CodeSaver-Regular.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Assets\Fonts\Typodermic Desktop EULA 2023.pdf" />
@@ -392,10 +405,28 @@
     <Content Include="Assets\Images\background2.png" />
     <None Include="Assets\Images\background3.jpg" />
     <Content Include="Assets\Images\background4.jpg" />
+    <None Include="Assets\Images\background5.png" />
+    <None Include="Assets\Images\background6.png" />
+    <None Include="Assets\Images\background7.png" />
     <Content Include="Assets\Images\entertainment_management_background.png" />
     <Content Include="Assets\Images\go_back_state_1 - Copy.png" />
     <Content Include="Assets\Images\go_back_state_1.png" />
     <Content Include="Assets\Images\go_back_state_2.png" />
+    <None Include="Assets\Images\Icons\admin_hover.png" />
+    <None Include="Assets\Images\Icons\admin_normal.png" />
+    <None Include="Assets\Images\Icons\download_hover.png" />
+    <None Include="Assets\Images\Icons\download_normal.png" />
+    <None Include="Assets\Images\Icons\entertainment_hover.png" />
+    <None Include="Assets\Images\Icons\entertainment_normal.png" />
+    <None Include="Assets\Images\Icons\load_hover.png" />
+    <None Include="Assets\Images\Icons\load_normal.png" />
+    <None Include="Assets\Images\Icons\pos_hover.png" />
+    <None Include="Assets\Images\Icons\print_hover.png" />
+    <None Include="Assets\Images\Icons\print_normal.png" />
+    <None Include="Assets\Images\Icons\product_hover.png" />
+    <None Include="Assets\Images\Icons\product_normal.png" />
+    <None Include="Assets\Images\Icons\user_hover.png" />
+    <None Include="Assets\Images\Icons\user_normal.png" />
     <Content Include="Assets\Images\login_panel.png" />
     <Content Include="Assets\Images\logo2048.png" />
     <Content Include="Assets\Images\logo256.ico" />
