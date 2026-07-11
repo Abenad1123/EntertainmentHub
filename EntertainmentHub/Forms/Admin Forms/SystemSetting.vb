@@ -375,4 +375,5 @@ Public Class SystemSetting
     Private Sub BtnUserLoginLeave(sender As Object, e As EventArgs) Handles btnGoBack.MouseLeave
         btnGoBack.Image = My.Resources.go_back_state_1
     End Sub
+
 End Class
