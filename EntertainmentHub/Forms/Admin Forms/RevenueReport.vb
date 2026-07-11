@@ -22,21 +22,23 @@ Public Class RevenueReport
         TableLayoutPanel3.BackColor = Color.FromArgb(37, 36, 39)
         HelperFunc.ApplyBorder(TableLayoutPanel3)
 
+        TabPage3.BackColor = Color.FromArgb(37, 36, 39)
+        Panel1.BackColor = Color.FromArgb(37, 36, 39)
+
         cklsbxRevenueSourceToggle.BackColor = Color.FromArgb(37, 36, 39)
         HelperFunc.FontDesign(cklsbxRevenueSourceToggle, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(12))
 
         HelperFunc.FontDesign(grpbxReportRange, Color.FromArgb(255, 255, 255), AppFonts.CdSaver(12))
 
-        Dim ctrls1 As Control() = {Label2, Label3, Label4, Label8}
+        Dim ctrls1 As Control() = {Label2, Label3, Label8}
         For Each i In ctrls1
             HelperFunc.FontDesign(i, Color.FromArgb(255, 255, 255), AppFonts.VenusRising(16))
         Next
 
-        HelperFunc.ApplyBorder(Label4, HelperFunc.BorderSides.Bottom)
         HelperFunc.ApplyBorder(Label2, HelperFunc.BorderSides.Bottom)
-
         HelperFunc.ApplyBorder(Label3, HelperFunc.BorderSides.Bottom)
         HelperFunc.ApplyBorder(Label8, HelperFunc.BorderSides.Top Or HelperFunc.BorderSides.Bottom)
+        HelperFunc.ApplyBorder(TabControl2, HelperFunc.BorderSides.Right)
 
         Dim ctrls2 As Control() = {
             Label1, Label5, Label6, Label7, Label9,
@@ -61,10 +63,44 @@ Public Class RevenueReport
         HelperFunc.ApplyButtonTheme(btnGenerate)
         HelperFunc.ApplyButtonTheme(btnPrint)
 
+        StyleDataGridView()
         InitializeControls()
         SetYearPickerBounds()
         CheckRevenueSourceState()
         SetDefaultLabels()
+    End Sub
+
+    Private Sub StyleDataGridView()
+        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.AllowUserToDeleteRows = False
+        DataGridView1.AllowUserToResizeRows = False
+        DataGridView1.ReadOnly = True
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        DataGridView1.MultiSelect = False
+        DataGridView1.RowHeadersVisible = False
+
+        DataGridView1.BackgroundColor = Color.White
+        DataGridView1.BorderStyle = BorderStyle.None
+        DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+
+        DataGridView1.EnableHeadersVisualStyles = False
+        DataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        DataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 48)
+        DataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+        DataGridView1.ColumnHeadersDefaultCellStyle.Font = New System.Drawing.Font("Segoe UI", 10, FontStyle.Bold)
+        DataGridView1.ColumnHeadersHeight = 40
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+        DataGridView1.DefaultCellStyle.BackColor = Color.White
+        DataGridView1.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(230, 240, 255)
+        DataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black
+        DataGridView1.DefaultCellStyle.Font = New System.Drawing.Font("Segoe UI", 9)
+        DataGridView1.DefaultCellStyle.Padding = New Padding(5, 0, 5, 0)
+
+        DataGridView1.RowTemplate.Height = 35
+        DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245)
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
     End Sub
 
     Private Sub InitializeControls()
@@ -253,6 +289,7 @@ Public Class RevenueReport
                     If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return Convert.ToDecimal(res)
                 End Using
             Catch ex As Exception
+                MessageBox.Show("GetTotalByTransactionType Error: " & ex.Message)
             End Try
         End Using
         Return 0
@@ -271,6 +308,7 @@ Public Class RevenueReport
                     If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return Convert.ToInt32(res)
                 End Using
             Catch ex As Exception
+                MessageBox.Show("GetTransactionCount Error: " & ex.Message)
             End Try
         End Using
         Return 0
@@ -286,9 +324,10 @@ Public Class RevenueReport
                     cmd.Parameters.AddWithValue("@d1", d1)
                     cmd.Parameters.AddWithValue("@d2", d2)
                     Dim res = cmd.ExecuteScalar()
-                    If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return Convert.ToDecimal(res)
+                    If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return Math.Abs(Convert.ToDecimal(res))
                 End Using
             Catch ex As Exception
+                MessageBox.Show("GetRevenueBySource Error: " & ex.Message)
             End Try
         End Using
         Return 0
@@ -306,13 +345,14 @@ Public Class RevenueReport
                     If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return Convert.ToDecimal(res)
                 End Using
             Catch ex As Exception
+                MessageBox.Show("GetCostOfGoodsSold Error: " & ex.Message)
             End Try
         End Using
         Return 0
     End Function
 
     Private Function GetPeakEarningPeriod(d1 As DateTime, d2 As DateTime) As String
-        Dim qry As String = "SELECT CONCAT(DAYNAME(TransactionDate), ', ', DATE_FORMAT(TransactionDate, '%h:00 %p')) FROM wallettransactions WHERE TransactionType = 'Payment' AND TransactionDate >= @d1 AND TransactionDate <= @d2 GROUP BY DAYNAME(TransactionDate), HOUR(TransactionDate) ORDER BY SUM(Amount) DESC LIMIT 1"
+        Dim qry As String = "SELECT CONCAT(DAYNAME(TransactionDate), ', ', DATE_FORMAT(TransactionDate, '%h:00 %p')) FROM wallettransactions WHERE TransactionType = 'Payment' AND TransactionDate >= @d1 AND TransactionDate <= @d2 GROUP BY DAYNAME(TransactionDate), HOUR(TransactionDate) ORDER BY SUM(Amount) ASC LIMIT 1"
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
@@ -323,6 +363,7 @@ Public Class RevenueReport
                     If res IsNot Nothing AndAlso Not IsDBNull(res) Then Return res.ToString()
                 End Using
             Catch ex As Exception
+                MessageBox.Show("GetPeakEarningPeriod Error: " & ex.Message)
             End Try
         End Using
         Return "N/A"
@@ -342,11 +383,17 @@ Public Class RevenueReport
 
     Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         If Not ValidateSelections() Then Return
-        LoadChartData()
-        UpdateFinancialSummary()
+        Dim d1 As DateTime = GetStartDate()
+        Dim d2 As DateTime = GetEndDate()
+
+        LoadChartData(d1, d2)
+        LoadTransactionGrid(d1, d2)
+        LoadEntertainmentChart(d1, d2)
+        LoadProductChart(d1, d2)
+        UpdateFinancialSummary(d1, d2)
     End Sub
 
-    Private Sub LoadChartData()
+    Private Sub LoadChartData(d1 As DateTime, d2 As DateTime)
         Chart1.Series.Clear()
         Dim chartType As SeriesChartType = SeriesChartType.Column
         Select Case cmbboxFormat.SelectedItem.ToString()
@@ -357,8 +404,6 @@ Public Class RevenueReport
         End Select
 
         Dim dateGroup As String = GetDateGrouping()
-        Dim d1 As DateTime = GetStartDate()
-        Dim d2 As DateTime = GetEndDate()
 
         For Each item In cklsbxRevenueSourceToggle.CheckedItems
             Dim isSession As Boolean = (item.ToString() = "Entertainment Sessions")
@@ -373,7 +418,7 @@ Public Class RevenueReport
                 filter &= " AND EntertainmentSessionID IS NULL"
             End If
 
-            Dim qry As String = $"SELECT {dateGroup} as period, SUM(Amount) as total, MIN(TransactionDate) as sortOrder FROM wallettransactions WHERE {filter} GROUP BY period ORDER BY sortOrder"
+            Dim qry As String = $"SELECT {dateGroup} as period, SUM(ABS(Amount)) as total, MIN(TransactionDate) as sortOrder FROM wallettransactions WHERE {filter} GROUP BY period ORDER BY sortOrder"
 
             Using conn As New MySqlConnection(connString)
                 Try
@@ -388,21 +433,128 @@ Public Class RevenueReport
                         End Using
                     End Using
                 Catch ex As Exception
+                    MessageBox.Show("LoadChartData Error: " & ex.Message)
                 End Try
             End Using
         Next
     End Sub
 
-    Private Sub UpdateFinancialSummary()
-        Dim d1 As DateTime = GetStartDate()
-        Dim d2 As DateTime = GetEndDate()
+    Private Sub LoadTransactionGrid(d1 As DateTime, d2 As DateTime)
+        Dim dateGroup As String = GetDateGrouping()
+        Dim qry As String = $"SELECT {dateGroup} AS Period, SUM(ABS(Amount)) AS TotalAmount, COUNT(WalletTransactionID) AS TotalTransactions, (SUM(ABS(Amount)) / COUNT(WalletTransactionID)) AS MeanTransaction FROM wallettransactions WHERE TransactionType = 'Payment' AND TransactionDate >= @d1 AND TransactionDate <= @d2 GROUP BY period ORDER BY MIN(TransactionDate)"
 
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Using cmd As New MySqlCommand(qry, conn)
+                    cmd.Parameters.AddWithValue("@d1", d1)
+                    cmd.Parameters.AddWithValue("@d2", d2)
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    adapter.Fill(dt)
+                    DataGridView1.DataSource = dt
+                End Using
+
+                If DataGridView1.Columns.Count > 0 Then
+                    DataGridView1.Columns("Period").HeaderText = "Time Period"
+                    DataGridView1.Columns("TotalAmount").HeaderText = "Total Revenue"
+                    DataGridView1.Columns("TotalAmount").DefaultCellStyle.Format = "C2"
+                    DataGridView1.Columns("TotalTransactions").HeaderText = "Total Transactions"
+                    DataGridView1.Columns("MeanTransaction").HeaderText = "Average Spend"
+                    DataGridView1.Columns("MeanTransaction").DefaultCellStyle.Format = "C2"
+                End If
+            Catch ex As Exception
+                MessageBox.Show("LoadTransactionGrid Error: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadEntertainmentChart(d1 As DateTime, d2 As DateTime)
+        Chart2.Series.Clear()
+        Dim s As New Series("Entertainment")
+        s.ChartType = SeriesChartType.Pie
+        s.IsValueShownAsLabel = True
+        s.Label = "#PERCENT{P1}"
+        s.LegendText = "#VALX"
+        Chart2.Series.Add(s)
+
+        Dim qry As String = "SELECT et.EntertainmentTierName, SUM(ABS(wt.Amount)) as TotalVal FROM wallettransactions wt JOIN entertainmentsession es ON wt.EntertainmentSessionID = es.EntertainmentSessionID JOIN entertainment e ON es.EntertainmentID = e.EntertainmentID JOIN entertainmenttier et ON e.EntertainmentTierID = et.EntertainmentTierID WHERE wt.TransactionType = 'Payment' AND wt.TransactionDate >= @d1 AND wt.TransactionDate <= @d2 GROUP BY et.EntertainmentTierID, et.EntertainmentTierName ORDER BY TotalVal DESC"
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Using cmd As New MySqlCommand(qry, conn)
+                    cmd.Parameters.AddWithValue("@d1", d1)
+                    cmd.Parameters.AddWithValue("@d2", d2)
+                    Using reader = cmd.ExecuteReader()
+                        Dim count As Integer = 0
+                        Dim otherTotal As Double = 0
+                        While reader.Read()
+                            Dim val As Double = Convert.ToDouble(reader("TotalVal"))
+                            If count < 10 Then
+                                s.Points.AddXY(reader("EntertainmentTierName").ToString(), val)
+                            Else
+                                otherTotal += val
+                            End If
+                            count += 1
+                        End While
+                        If otherTotal > 0 Then
+                            s.Points.AddXY("Other", otherTotal)
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Chart Error: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadProductChart(d1 As DateTime, d2 As DateTime)
+        Chart3.Series.Clear()
+        Dim s As New Series("Products")
+        s.ChartType = SeriesChartType.Pie
+        s.IsValueShownAsLabel = True
+        s.Label = "#PERCENT{P1}"
+        s.LegendText = "#VALX"
+        Chart3.Series.Add(s)
+
+        Dim qry As String = "SELECT p.ProductName, SUM(si.Quantity * si.UnitPrice) as TotalVal FROM wallettransactions wt JOIN salesitem si ON wt.SaleID = si.SaleID JOIN products p ON si.ProductID = p.ProductID WHERE wt.TransactionType = 'Payment' AND wt.TransactionDate >= @d1 AND wt.TransactionDate <= @d2 GROUP BY p.ProductID, p.ProductName ORDER BY TotalVal DESC"
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Using cmd As New MySqlCommand(qry, conn)
+                    cmd.Parameters.AddWithValue("@d1", d1)
+                    cmd.Parameters.AddWithValue("@d2", d2)
+                    Using reader = cmd.ExecuteReader()
+                        Dim count As Integer = 0
+                        Dim otherTotal As Double = 0
+                        While reader.Read()
+                            Dim val As Double = Convert.ToDouble(reader("TotalVal"))
+                            If count < 10 Then
+                                s.Points.AddXY(reader("ProductName").ToString(), val)
+                            Else
+                                otherTotal += val
+                            End If
+                            count += 1
+                        End While
+                        If otherTotal > 0 Then
+                            s.Points.AddXY("Other", otherTotal)
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Chart Error: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub UpdateFinancialSummary(d1 As DateTime, d2 As DateTime)
         Dim dep As Decimal = GetTotalByTransactionType("Deposit", d1, d2)
-        Dim wth As Decimal = GetTotalByTransactionType("Withdrawal", d1, d2)
+        Dim wth As Decimal = Math.Abs(GetTotalByTransactionType("Withdrawal", d1, d2))
         Dim bon As Decimal = GetTotalByTransactionType("Bonus", d1, d2)
-        Dim adj As Decimal = GetTotalByTransactionType("Adjustment", d1, d2)
-        Dim ref As Decimal = GetTotalByTransactionType("Refund", d1, d2)
-
+        Dim adj As Decimal = Math.Abs(GetTotalByTransactionType("Adjustment", d1, d2))
+        Dim ref As Decimal = Math.Abs(GetTotalByTransactionType("Refund", d1, d2))
         Dim transCount As Integer = GetTransactionCount("Payment", d1, d2)
 
         Dim grossSes As Decimal = 0
@@ -417,7 +569,12 @@ Public Class RevenueReport
             cogs = GetCostOfGoodsSold(d1, d2)
         End If
 
-        Dim opEx As Decimal = 0
+        Dim monthlyOverhead As Decimal = NumericUpDown1.Value + NumericUpDown2.Value + NumericUpDown3.Value + NumericUpDown4.Value + NumericUpDown5.Value
+        Dim dailyCost As Decimal = monthlyOverhead / 30D
+        Dim daysInRange As Integer = (d2.Date - d1.Date).Days + 1
+        If daysInRange < 1 Then daysInRange = 1
+        Dim opEx As Decimal = dailyCost * daysInRange
+
         Dim totalSales As Decimal = grossSes + grossPro
         Dim grossProfit As Decimal = totalSales - cogs
         Dim netIncome As Decimal = grossProfit - (opEx + ref)
@@ -484,8 +641,8 @@ Public Class RevenueReport
             End Using
         End If
 
-        Dim titleFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16, BaseColor.DARK_GRAY)
-        Dim subFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.GRAY)
+        Dim titleFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.DARK_GRAY)
+        Dim subFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA, 11, BaseColor.GRAY)
 
         Dim header As New Paragraph("FINANCIAL REVENUE REPORT", titleFont)
         header.Alignment = Element.ALIGN_CENTER
@@ -512,8 +669,8 @@ Public Class RevenueReport
 
         Dim tableHeaderFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.WHITE)
         Dim tableCellFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK)
-        Dim tableTitleFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK)
-        Dim headerBgColor As New BaseColor(64, 64, 64)
+        Dim tableTitleFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.DARK_GRAY)
+        Dim headerBgColor As New BaseColor(41, 128, 185)
 
         For Each series As Series In Chart1.Series
             Dim tableTitle As New Paragraph(series.Name & " Data Breakdown", tableTitleFont)
@@ -523,16 +680,19 @@ Public Class RevenueReport
             Dim table As New PdfPTable(2)
             table.WidthPercentage = 100
             table.SetWidths(New Single() {0.5F, 0.5F})
+            table.KeepTogether = True
 
             Dim cellPeriod As New PdfPCell(New Phrase("Period", tableHeaderFont))
             cellPeriod.BackgroundColor = headerBgColor
-            cellPeriod.Padding = 6.0F
+            cellPeriod.Padding = 8.0F
+            cellPeriod.Border = Rectangle.NO_BORDER
             table.AddCell(cellPeriod)
 
             Dim cellRev As New PdfPCell(New Phrase("Revenue", tableHeaderFont))
             cellRev.BackgroundColor = headerBgColor
-            cellRev.Padding = 6.0F
+            cellRev.Padding = 8.0F
             cellRev.HorizontalAlignment = Element.ALIGN_RIGHT
+            cellRev.Border = Rectangle.NO_BORDER
             table.AddCell(cellRev)
 
             Dim rowCount As Integer = 0
@@ -540,14 +700,16 @@ Public Class RevenueReport
                 Dim cell1 As New PdfPCell(New Phrase(p.AxisLabel.ToString(), tableCellFont))
                 Dim cell2 As New PdfPCell(New Phrase(p.YValues(0).ToString("C2"), tableCellFont))
 
-                cell1.Padding = 5.0F
-                cell2.Padding = 5.0F
+                cell1.Padding = 7.0F
+                cell2.Padding = 7.0F
                 cell2.HorizontalAlignment = Element.ALIGN_RIGHT
                 cell1.BorderColor = BaseColor.LIGHT_GRAY
                 cell2.BorderColor = BaseColor.LIGHT_GRAY
+                cell1.BorderWidth = 0.5F
+                cell2.BorderWidth = 0.5F
 
                 If rowCount Mod 2 <> 0 Then
-                    Dim altBg As New BaseColor(245, 245, 245)
+                    Dim altBg As New BaseColor(245, 247, 250)
                     cell1.BackgroundColor = altBg
                     cell2.BackgroundColor = altBg
                 End If
@@ -560,6 +722,51 @@ Public Class RevenueReport
             doc.Add(table)
         Next
 
+        If Chart2.Series(0).Points.Count > 0 OrElse Chart3.Series(0).Points.Count > 0 Then
+            Dim pieTitle As New Paragraph("Popularity & Trend Analysis", tableTitleFont)
+            pieTitle.SpacingAfter = 8.0F
+            doc.Add(pieTitle)
+
+            Dim pieTable As New PdfPTable(2)
+            pieTable.WidthPercentage = 100
+            pieTable.SetWidths(New Single() {0.5F, 0.5F})
+            pieTable.KeepTogether = True
+            pieTable.SpacingAfter = 25.0F
+
+            If Chart2.Series(0).Points.Count > 0 Then
+                Using ms2 As New MemoryStream()
+                    Chart2.SaveImage(ms2, System.Drawing.Imaging.ImageFormat.Png)
+                    Dim img2 As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(ms2.ToArray())
+                    img2.ScaleToFit(240.0F, 180.0F)
+                    Dim cell As New PdfPCell(img2)
+                    cell.Border = Rectangle.NO_BORDER
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER
+                    pieTable.AddCell(cell)
+                End Using
+            Else
+                Dim emptyCell As New PdfPCell(New Phrase(" "))
+                emptyCell.Border = Rectangle.NO_BORDER
+                pieTable.AddCell(emptyCell)
+            End If
+
+            If Chart3.Series(0).Points.Count > 0 Then
+                Using ms3 As New MemoryStream()
+                    Chart3.SaveImage(ms3, System.Drawing.Imaging.ImageFormat.Png)
+                    Dim img3 As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(ms3.ToArray())
+                    img3.ScaleToFit(240.0F, 180.0F)
+                    Dim cell As New PdfPCell(img3)
+                    cell.Border = Rectangle.NO_BORDER
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER
+                    pieTable.AddCell(cell)
+                End Using
+            Else
+                Dim emptyCell As New PdfPCell(New Phrase(" "))
+                emptyCell.Border = Rectangle.NO_BORDER
+                pieTable.AddCell(emptyCell)
+            End If
+            doc.Add(pieTable)
+        End If
+
         AppendFinancialSummariesToPDF(doc)
         doc.Close()
     End Sub
@@ -569,10 +776,10 @@ Public Class RevenueReport
         Dim d2 As DateTime = GetEndDate()
 
         Dim dep As Decimal = GetTotalByTransactionType("Deposit", d1, d2)
-        Dim wth As Decimal = GetTotalByTransactionType("Withdrawal", d1, d2)
+        Dim wth As Decimal = Math.Abs(GetTotalByTransactionType("Withdrawal", d1, d2))
         Dim bon As Decimal = GetTotalByTransactionType("Bonus", d1, d2)
-        Dim adj As Decimal = GetTotalByTransactionType("Adjustment", d1, d2)
-        Dim ref As Decimal = GetTotalByTransactionType("Refund", d1, d2)
+        Dim adj As Decimal = Math.Abs(GetTotalByTransactionType("Adjustment", d1, d2))
+        Dim ref As Decimal = Math.Abs(GetTotalByTransactionType("Refund", d1, d2))
 
         Dim transCount As Integer = GetTransactionCount("Payment", d1, d2)
         Dim peak As String = GetPeakEarningPeriod(d1, d2)
@@ -589,7 +796,18 @@ Public Class RevenueReport
             cogs = GetCostOfGoodsSold(d1, d2)
         End If
 
-        Dim opEx As Decimal = 0
+        Dim salary As Decimal = NumericUpDown1.Value
+        Dim water As Decimal = NumericUpDown2.Value
+        Dim elec As Decimal = NumericUpDown3.Value
+        Dim internet As Decimal = NumericUpDown4.Value
+        Dim maint As Decimal = NumericUpDown5.Value
+
+        Dim monthlyOverhead As Decimal = salary + water + elec + internet + maint
+        Dim dailyCost As Decimal = monthlyOverhead / 30D
+        Dim daysInRange As Integer = (d2.Date - d1.Date).Days + 1
+        If daysInRange < 1 Then daysInRange = 1
+        Dim opEx As Decimal = dailyCost * daysInRange
+
         Dim totalSales As Decimal = grossSes + grossPro
         Dim grossProfit As Decimal = totalSales - cogs
         Dim netIncome As Decimal = grossProfit - (opEx + ref)
@@ -597,60 +815,88 @@ Public Class RevenueReport
         Dim cellFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK)
         Dim boldFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.BLACK)
         Dim titleFont As iTextSharp.text.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.WHITE)
-        Dim headerBgColor As New BaseColor(64, 64, 64)
-        Dim highlightBg As New BaseColor(230, 240, 255)
+        Dim headerBgColor As New BaseColor(44, 62, 80)
+        Dim highlightBg As New BaseColor(236, 240, 241)
 
         Dim cashTable As New PdfPTable(2)
         cashTable.WidthPercentage = 100
         cashTable.SetWidths(New Single() {0.65F, 0.35F})
         cashTable.SpacingBefore = 10.0F
+        cashTable.KeepTogether = True
 
         Dim cashHeader As New PdfPCell(New Phrase("CASH FLOW & WALLET SUMMARY", titleFont))
         cashHeader.BackgroundColor = headerBgColor
         cashHeader.Colspan = 2
         cashHeader.Padding = 8.0F
+        cashHeader.Border = Rectangle.NO_BORDER
         cashTable.AddCell(cashHeader)
 
-        AddStyledRow(cashTable, "1. Total Cash In (Deposits)", dep.ToString("C2"), cellFont)
-        AddStyledRow(cashTable, "2. Total Cash Out (Withdrawals)", wth.ToString("C2"), cellFont)
-        AddStyledRow(cashTable, "3. Promotional Bonuses Issued", bon.ToString("C2"), cellFont)
-        AddStyledRow(cashTable, "4. Manual Wallet Adjustments", adj.ToString("C2"), cellFont)
+        AddStyledRow(cashTable, "Total Cash In (Deposits)", dep.ToString("C2"), cellFont)
+        AddStyledRow(cashTable, "Total Cash Out (Withdrawals)", wth.ToString("C2"), cellFont)
+        AddStyledRow(cashTable, "Promotional Bonuses Issued", bon.ToString("C2"), cellFont)
+        AddStyledRow(cashTable, "Manual Wallet Adjustments", adj.ToString("C2"), cellFont)
         doc.Add(cashTable)
+
+        Dim opexTable As New PdfPTable(2)
+        opexTable.WidthPercentage = 100
+        opexTable.SetWidths(New Single() {0.65F, 0.35F})
+        opexTable.SpacingBefore = 20.0F
+        opexTable.KeepTogether = True
+
+        Dim opexHeader As New PdfPCell(New Phrase("OPERATING EXPENSES BREAKDOWN (MONTHLY OVERHEAD)", titleFont))
+        opexHeader.BackgroundColor = headerBgColor
+        opexHeader.Colspan = 2
+        opexHeader.Padding = 8.0F
+        opexHeader.Border = Rectangle.NO_BORDER
+        opexTable.AddCell(opexHeader)
+
+        AddStyledRow(opexTable, "Employee Salary", salary.ToString("C2"), cellFont)
+        AddStyledRow(opexTable, "Water", water.ToString("C2"), cellFont)
+        AddStyledRow(opexTable, "Electricity", elec.ToString("C2"), cellFont)
+        AddStyledRow(opexTable, "Internet", internet.ToString("C2"), cellFont)
+        AddStyledRow(opexTable, "Maintenance", maint.ToString("C2"), cellFont)
+        AddStyledRow(opexTable, "TOTAL MONTHLY OVERHEAD", monthlyOverhead.ToString("C2"), boldFont, highlightBg)
+        AddStyledRow(opexTable, $"Prorated Operational Cost ({daysInRange} days)", opEx.ToString("C2"), boldFont, highlightBg)
+        doc.Add(opexTable)
 
         Dim revTable As New PdfPTable(2)
         revTable.WidthPercentage = 100
         revTable.SetWidths(New Single() {0.65F, 0.35F})
-        revTable.SpacingBefore = 25.0F
+        revTable.SpacingBefore = 20.0F
+        revTable.KeepTogether = True
 
         Dim revHeader As New PdfPCell(New Phrase("REVENUE & INCOME SUMMARY", titleFont))
         revHeader.BackgroundColor = headerBgColor
         revHeader.Colspan = 2
         revHeader.Padding = 8.0F
+        revHeader.Border = Rectangle.NO_BORDER
         revTable.AddCell(revHeader)
 
-        AddStyledRow(revTable, "1. Total Transactions", transCount.ToString(), cellFont)
-        AddStyledRow(revTable, "2. Peak Earning Period", peak, cellFont)
-        AddStyledRow(revTable, "3. Total Session Sales", grossSes.ToString("C2"), cellFont)
-        AddStyledRow(revTable, "4. Total Product Sales", grossPro.ToString("C2"), cellFont)
-        AddStyledRow(revTable, "5. Less: Cost of Goods Sold", cogs.ToString("C2"), cellFont)
-        AddStyledRow(revTable, "6. GROSS PROFIT", grossProfit.ToString("C2"), boldFont)
-        AddStyledRow(revTable, "7. Less: Operating Expenses", opEx.ToString("C2"), cellFont)
-        AddStyledRow(revTable, "8. Less: Refunds Processed", ref.ToString("C2"), cellFont)
-        AddStyledRow(revTable, "9. NET EARNED INCOME", netIncome.ToString("C2"), boldFont, highlightBg)
+        AddStyledRow(revTable, "Total Transactions", transCount.ToString(), cellFont)
+        AddStyledRow(revTable, "Peak Earning Period", peak, cellFont)
+        AddStyledRow(revTable, "Total Session Sales", grossSes.ToString("C2"), cellFont)
+        AddStyledRow(revTable, "Total Product Sales", grossPro.ToString("C2"), cellFont)
+        AddStyledRow(revTable, "Less: Cost of Goods Sold", cogs.ToString("C2"), cellFont)
+        AddStyledRow(revTable, "GROSS PROFIT", grossProfit.ToString("C2"), boldFont)
+        AddStyledRow(revTable, "Less: Operating Expenses", opEx.ToString("C2"), cellFont)
+        AddStyledRow(revTable, "Less: Refunds Processed", ref.ToString("C2"), cellFont)
+        AddStyledRow(revTable, "NET EARNED INCOME", netIncome.ToString("C2"), boldFont, highlightBg)
         doc.Add(revTable)
     End Sub
 
     Private Sub AddStyledRow(table As PdfPTable, label As String, val As String, font As iTextSharp.text.Font, Optional bgColor As BaseColor = Nothing)
         Dim cellLabel As New PdfPCell(New Phrase(label, font))
-        cellLabel.Padding = 6.0F
+        cellLabel.Padding = 7.0F
         cellLabel.BorderColor = BaseColor.LIGHT_GRAY
+        cellLabel.BorderWidth = 0.5F
         If bgColor IsNot Nothing Then cellLabel.BackgroundColor = bgColor
         table.AddCell(cellLabel)
 
         Dim cellVal As New PdfPCell(New Phrase(val, font))
-        cellVal.Padding = 6.0F
+        cellVal.Padding = 7.0F
         cellVal.HorizontalAlignment = Element.ALIGN_RIGHT
         cellVal.BorderColor = BaseColor.LIGHT_GRAY
+        cellVal.BorderWidth = 0.5F
         If bgColor IsNot Nothing Then cellVal.BackgroundColor = bgColor
         table.AddCell(cellVal)
     End Sub
