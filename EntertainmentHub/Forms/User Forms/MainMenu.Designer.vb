@@ -38,21 +38,22 @@ Partial Class MainMenu
         Me.DataGridViewActivity = New System.Windows.Forms.DataGridView()
         Me.ComboBoxType = New System.Windows.Forms.ComboBox()
         Me.PanelDeposit = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LabelBalance = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelTotal = New System.Windows.Forms.Label()
         Me.LabelAvailable = New System.Windows.Forms.Label()
         Me.LabelInUse = New System.Windows.Forms.Label()
         Me.LabelInMaintenance = New System.Windows.Forms.Label()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.LabelBalance = New System.Windows.Forms.Label()
+        Me.PanelBrowse = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.DataGridViewActivity, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
-        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'LiveDurationTimer
@@ -96,6 +97,7 @@ Partial Class MainMenu
         Me.TableLayoutPanel4.Controls.Add(Me.LabelTier, 4, 6)
         Me.TableLayoutPanel4.Controls.Add(Me.LabelEntertainment, 3, 8)
         Me.TableLayoutPanel4.Controls.Add(Me.Panel1, 2, 10)
+        Me.TableLayoutPanel4.Controls.Add(Me.PanelBrowse, 1, 12)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(535, 138)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
@@ -263,6 +265,28 @@ Partial Class MainMenu
         Me.PanelDeposit.Size = New System.Drawing.Size(117, 40)
         Me.PanelDeposit.TabIndex = 4
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.LabelBalance)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(36, 64)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(213, 40)
+        Me.Panel2.TabIndex = 5
+        '
+        'LabelBalance
+        '
+        Me.LabelBalance.BackColor = System.Drawing.Color.White
+        Me.LabelBalance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBalance.ForeColor = System.Drawing.Color.DarkGreen
+        Me.LabelBalance.Location = New System.Drawing.Point(0, 0)
+        Me.LabelBalance.Margin = New System.Windows.Forms.Padding(0)
+        Me.LabelBalance.Name = "LabelBalance"
+        Me.LabelBalance.Size = New System.Drawing.Size(213, 40)
+        Me.LabelBalance.TabIndex = 0
+        Me.LabelBalance.Text = "Label1"
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.BackColor = System.Drawing.Color.Transparent
@@ -376,27 +400,14 @@ Partial Class MainMenu
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(1200, 702)
         Me.TableLayoutPanel3.TabIndex = 2
         '
-        'Panel2
+        'PanelBrowse
         '
-        Me.Panel2.Controls.Add(Me.LabelBalance)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(36, 64)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(213, 40)
-        Me.Panel2.TabIndex = 5
-        '
-        'LabelBalance
-        '
-        Me.LabelBalance.BackColor = System.Drawing.Color.White
-        Me.LabelBalance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBalance.ForeColor = System.Drawing.Color.DarkGreen
-        Me.LabelBalance.Location = New System.Drawing.Point(0, 0)
-        Me.LabelBalance.Margin = New System.Windows.Forms.Padding(0, 0, 0, 0)
-        Me.LabelBalance.Name = "LabelBalance"
-        Me.LabelBalance.Size = New System.Drawing.Size(213, 40)
-        Me.LabelBalance.TabIndex = 0
-        Me.LabelBalance.Text = "Label1"
+        Me.TableLayoutPanel4.SetColumnSpan(Me.PanelBrowse, 5)
+        Me.PanelBrowse.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelBrowse.Location = New System.Drawing.Point(30, 391)
+        Me.PanelBrowse.Name = "PanelBrowse"
+        Me.PanelBrowse.Size = New System.Drawing.Size(298, 118)
+        Me.PanelBrowse.TabIndex = 7
         '
         'MainMenu
         '
@@ -419,10 +430,10 @@ Partial Class MainMenu
         Me.Panel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         CType(Me.DataGridViewActivity, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -448,4 +459,5 @@ Partial Class MainMenu
     Friend WithEvents LabelTier As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents LabelBalance As Label
+    Friend WithEvents PanelBrowse As Panel
 End Class

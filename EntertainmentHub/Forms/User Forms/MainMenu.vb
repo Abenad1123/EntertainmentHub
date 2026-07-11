@@ -132,7 +132,7 @@ Public Class MainMenu
 #Region "Dynamic Data Binding Assemblies"
 
     Private Async Function LoadRecentActivityAsync(transactionFilter As String) As Task
-        Dim query As String = "SELECT wt.WalletTransactionID, wt.EmployeeID, wt.SalesID, wt.TransactionType, wt.TransactionDate, wt.Amount " &
+        Dim query As String = "SELECT wt.WalletTransactionID, wt.EmployeeID, wt.SaleID, wt.TransactionType, wt.TransactionDate, wt.Amount " &
                               "FROM wallettransactions wt " &
                               "INNER JOIN accountlogin al ON wt.AccountID = al.AccountID " &
                               "WHERE al.UserName = @Username "
@@ -278,6 +278,10 @@ Public Class MainMenu
             Diagnostics.Debug.WriteLine("Error pushing dynamic metrics to dashboard totals: " & ex.Message)
         End Try
     End Function
+
+    Private Sub PanelBrowse_Click(sender As Object, e As EventArgs) Handles PanelBrowse.Click
+        HelperFunc.SwitchForm(Me, New EntertainmentCustomer())
+    End Sub
 #End Region
 
 End Class

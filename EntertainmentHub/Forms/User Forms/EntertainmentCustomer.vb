@@ -1,8 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Drawing
-Imports System.Resources
+    Imports System.Resources
 
-Public Class EntertainmentManagement
+Public Class EntertainmentCustomer
     ' Core state identifiers resolved directly through your AccountData module
     Private currentTrackedUser As String = ""
     Private currentAccountID As Integer = 0
@@ -15,7 +15,7 @@ Public Class EntertainmentManagement
     Private ReadOnly ColorLimeGreen As Color = ColorTranslator.FromHtml("#32CD32")
     Private ReadOnly ColorCardBg As Color = ColorTranslator.FromHtml("#1E1E1E")
 
-    Private Sub EntertainmentManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub CustomerSideSession_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Explicitly bind state strings from your dynamic system module
             currentTrackedUser = AccountData.CustomerUsername
@@ -87,27 +87,33 @@ Public Class EntertainmentManagement
                             Dim rate As Decimal = Convert.ToDecimal(reader("HourlyRate"))
                             Dim tierName As String = reader("EntertainmentTierName").ToString()
 
-                            ' --- DYNAMIC REFLECTIVE RESOURCE LOOKUP BY TIER ---
-                            ' Automatically maps all records with matching Tier IDs to the same image key (tier_1, tier_2, etc.)
-                            Dim resourceKey As String = $"tier_{tierId}"
+                            ' --- STEP 1: DYNAMIC PHYSICAL DISK FILE PATH LOOKUP LOOP ---
+                            ' Automatically maps all records with matching Tier IDs to "Assets/Tiers/tier_X.png"
+                            Dim assetFolderName As String = IO.Path.Combine(Application.StartupPath, "Assets", "Images")
+                            Dim targetFileName As String = $"tier_{tierId}.png"
+                            Dim fullImagePath As String = IO.Path.Combine(assetFolderName, targetFileName)
+
                             Dim deviceImage As Image = Nothing
 
                             Try
-                                Dim foundObj As Object = My.Resources.ResourceManager.GetObject(resourceKey)
-                                If foundObj IsNot Nothing AndAlso TypeOf foundObj Is Image Then
-                                    deviceImage = CType(foundObj, Image)
+                                ' Verify the file physically exists on disk before attempting to initialize memory handlers
+                                If IO.File.Exists(fullImagePath) Then
+                                    ' Using FromStream instead of FromFile prevents the file lock from blocking write updates
+                                    Using fs As New IO.FileStream(fullImagePath, IO.FileMode.Open, IO.FileAccess.Read)
+                                        deviceImage = Image.FromStream(fs)
+                                    End Using
                                 End If
                             Catch ex As Exception
-                                Diagnostics.Debug.WriteLine($"Resource lookup failed for {resourceKey}: {ex.Message}")
+                                Diagnostics.Debug.WriteLine($"Physical asset read failure for {targetFileName}: {ex.Message}")
                             End Try
 
-                            ' Fallback generic block preview graphic if the tier image asset is missing
+                            ' Fallback generic block preview graphic if the file doesn't exist or crashes on read
                             If deviceImage Is Nothing Then
                                 Dim bmp As New Bitmap(200, 90)
                                 Using g As Graphics = Graphics.FromImage(bmp)
                                     g.Clear(Color.FromArgb(40, 40, 40))
                                     Using font As New Font("Segoe UI", 8.0F)
-                                        g.DrawString("[No Tier Image Loaded]", font, Brushes.Gray, New PointF(40, 35))
+                                        g.DrawString("[Missing Image File]", font, Brushes.Gray, New PointF(45, 35))
                                     End Using
                                 End Using
                                 deviceImage = bmp
@@ -467,5 +473,9 @@ Public Class EntertainmentManagement
             End Try
         End Using
     End Sub
+
+
+
+
 #End Region
 End Class
