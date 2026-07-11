@@ -282,6 +282,10 @@ Public Class MainMenu
     Private Sub PanelBrowse_Click(sender As Object, e As EventArgs) Handles PanelBrowse.Click
         HelperFunc.SwitchForm(Me, New EntertainmentCustomer())
     End Sub
+
+    Private Sub Panel4_click(sender As Object, e As EventArgs) Handles Panel4.Click
+        HelperFunc.SwitchForm(Me, New StartMenu())
+    End Sub
 #End Region
 
 End Class

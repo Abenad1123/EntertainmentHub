@@ -3,35 +3,35 @@ Imports System.Drawing
     Imports System.Resources
 
 Public Class EntertainmentCustomer
-    ' Core state identifiers resolved directly through your AccountData module
+
     Private currentTrackedUser As String = ""
     Private currentAccountID As Integer = 0
     Private activeSessionID As Integer = 0
     Private activeEntertainmentID As Integer = 0
     Private currentActiveLoginTime As DateTime
 
-    ' Aesthetic Hex styling codes (#2D2D30 background with Vibrant Lime Green accents)
+
     Private ReadOnly ColorCharcoal As Color = ColorTranslator.FromHtml("#2D2D30")
     Private ReadOnly ColorLimeGreen As Color = ColorTranslator.FromHtml("#32CD32")
     Private ReadOnly ColorCardBg As Color = ColorTranslator.FromHtml("#1E1E1E")
 
     Private Sub CustomerSideSession_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ' Explicitly bind state strings from your dynamic system module
+
             currentTrackedUser = AccountData.CustomerUsername
 
-            ' Enforce core interface styling architecture guidelines
+
             Me.BackColor = ColorCharcoal
             FlowEntertainmentCards.BackColor = ColorCharcoal
 
-            ' Resolve Account ID structural identity contexts safely
+
             FetchAccountContextByUsername()
 
-            ' Core data operations pipeline
+
             LoadInUse()
             UpdateStatusCounts()
 
-            ' Configure and initialize standard layout metrics timers (1-second intervals)
+
             LiveDurationTimer.Interval = 1000
             LiveDurationTimer.Start()
 
@@ -65,7 +65,7 @@ Public Class EntertainmentCustomer
 
 #Region "FUNCTION 1: VIEW ENTERTAINMENTS WITH TIER-BASED IMAGE GROUPING"
     Private Sub RenderEntertainmentCards()
-        ' Intercept control flickering arrays during active UI loops
+
         FlowEntertainmentCards.SuspendLayout()
         FlowEntertainmentCards.Controls.Clear()
 
@@ -87,8 +87,7 @@ Public Class EntertainmentCustomer
                             Dim rate As Decimal = Convert.ToDecimal(reader("HourlyRate"))
                             Dim tierName As String = reader("EntertainmentTierName").ToString()
 
-                            ' --- STEP 1: DYNAMIC PHYSICAL DISK FILE PATH LOOKUP LOOP ---
-                            ' Automatically maps all records with matching Tier IDs to "Assets/Tiers/tier_X.png"
+
                             Dim assetFolderName As String = IO.Path.Combine(Application.StartupPath, "Assets", "Images")
                             Dim targetFileName As String = $"tier_{tierId}.png"
                             Dim fullImagePath As String = IO.Path.Combine(assetFolderName, targetFileName)
@@ -96,9 +95,9 @@ Public Class EntertainmentCustomer
                             Dim deviceImage As Image = Nothing
 
                             Try
-                                ' Verify the file physically exists on disk before attempting to initialize memory handlers
+
                                 If IO.File.Exists(fullImagePath) Then
-                                    ' Using FromStream instead of FromFile prevents the file lock from blocking write updates
+
                                     Using fs As New IO.FileStream(fullImagePath, IO.FileMode.Open, IO.FileAccess.Read)
                                         deviceImage = Image.FromStream(fs)
                                     End Using
@@ -107,7 +106,7 @@ Public Class EntertainmentCustomer
                                 Diagnostics.Debug.WriteLine($"Physical asset read failure for {targetFileName}: {ex.Message}")
                             End Try
 
-                            ' Fallback generic block preview graphic if the file doesn't exist or crashes on read
+
                             If deviceImage Is Nothing Then
                                 Dim bmp As New Bitmap(200, 90)
                                 Using g As Graphics = Graphics.FromImage(bmp)
@@ -119,21 +118,21 @@ Public Class EntertainmentCustomer
                                 deviceImage = bmp
                             End If
 
-                            ' --- BUILD CARD PANEL & COMPONENT HIERARCHY ---
+
                             Dim cardPanel As New Panel With {
-                                .Size = New Size(220, 260), ' Expanded height layout to cleanly present images
+                                .Size = New Size(240, 290),
                                 .BackColor = ColorCardBg,
                                 .Margin = New Padding(12),
                                 .BorderStyle = BorderStyle.FixedSingle,
                                 .Tag = id
                             }
 
-                            ' Shared Tier Image Element Box
+
                             Dim picBox As New PictureBox With {
-                                .Size = New Size(200, 90),
+                                .Size = New Size(220, 120),
                                 .Location = New Point(10, 10),
                                 .Image = deviceImage,
-                                .SizeMode = PictureBoxSizeMode.Zoom,
+                                .SizeMode = PictureBoxSizeMode.StretchImage,
                                 .BackColor = Color.Black
                             }
 
@@ -141,35 +140,35 @@ Public Class EntertainmentCustomer
                                 .Text = name,
                                 .Font = New Font("Segoe UI", 11.0F, FontStyle.Bold),
                                 .ForeColor = Color.White,
-                                .Location = New Point(10, 110),
-                                .Size = New Size(200, 22)
+                                .Location = New Point(10, 140),
+                                .Size = New Size(220, 22)
                             }
 
                             Dim lblTier As New Label With {
                                 .Text = $"{tierName} - {rate:C2}/hr",
                                 .Font = New Font("Segoe UI", 9.0F, FontStyle.Regular),
                                 .ForeColor = Color.LightGray,
-                                .Location = New Point(10, 135),
-                                .Size = New Size(200, 18)
+                                .Location = New Point(10, 165),
+                                .Size = New Size(220, 18)
                             }
 
                             Dim lblStatus As New Label With {
                                 .Text = $"Status: {status}",
                                 .Font = New Font("Segoe UI", 9.0F, FontStyle.Italic),
-                                .Location = New Point(10, 160),
-                                .Size = New Size(200, 18)
+                                .Location = New Point(10, 185),
+                                .Size = New Size(220, 18)
                             }
 
                             Dim btnAction As New Button With {
-                                .Size = New Size(200, 35),
-                                .Location = New Point(10, 210),
+                                .Size = New Size(220, 35),
+                                .Location = New Point(10, 240),
                                 .FlatStyle = FlatStyle.Flat,
                                 .Font = New Font("Segoe UI", 9.5F, FontStyle.Bold),
                                 .Tag = New With {.ID = id, .Rate = rate, .Name = name}
                             }
                             btnAction.FlatAppearance.BorderSize = 1
 
-                            ' --- APPLY CONDITIONAL UI STATE ACCENTS ---
+
                             Select Case status.ToLower()
                                 Case "available"
                                     lblStatus.ForeColor = ColorLimeGreen
@@ -205,7 +204,7 @@ Public Class EntertainmentCustomer
                                     btnAction.Enabled = False
                             End Select
 
-                            ' Bind components layout together
+
                             cardPanel.Controls.Add(picBox)
                             cardPanel.Controls.Add(lblName)
                             cardPanel.Controls.Add(lblTier)
@@ -226,6 +225,7 @@ Public Class EntertainmentCustomer
 
 #Region "FUNCTION 2: RENT ENTERTAINMENT (START SESSION)"
     Private Sub BtnStartSession_Click(sender As Object, e As EventArgs)
+        Me.SuspendLayout()
         Dim btn = CType(sender, Button)
         Dim targetAsset = DirectCast(btn.Tag, Object)
         Dim entID As Integer = targetAsset.ID
@@ -245,7 +245,7 @@ Public Class EntertainmentCustomer
 
             Using tx As MySqlTransaction = conn.BeginTransaction()
                 Try
-                    ' 1. Concurrency row-level pessimistic locking protection
+
                     Dim checkQuery As String = "SELECT Status FROM entertainment WHERE EntertainmentID = @EntID FOR UPDATE;"
                     Using cmdCheck As New MySqlCommand(checkQuery, conn, tx)
                         cmdCheck.Parameters.AddWithValue("@EntID", entID)
@@ -255,14 +255,14 @@ Public Class EntertainmentCustomer
                         End If
                     End Using
 
-                    ' 2. Update status mapping to 'InUse'
+
                     Dim updateAssetQuery As String = "UPDATE entertainment SET Status = 'InUse' WHERE EntertainmentID = @EntID;"
                     Using cmdUpdate = New MySqlCommand(updateAssetQuery, conn, tx)
                         cmdUpdate.Parameters.AddWithValue("@EntID", entID)
                         cmdUpdate.ExecuteNonQuery()
                     End Using
 
-                    ' 3. Insert transaction log context record
+
                     Dim insertSessionQuery As String = "INSERT INTO entertainmentsession (AccountID, EntertainmentID, LoginTime, Status, RateApplied) " &
                                                        "VALUES (@AccountID, @EntID, NOW(), 'Active', @RateApplied);"
                     Using cmdInsert = New MySqlCommand(insertSessionQuery, conn, tx)
@@ -295,8 +295,10 @@ Public Class EntertainmentCustomer
 
 #Region "FUNCTION 3: VIEW ACTIVE SESSION TIMER"
     Private Sub LiveDurationTimer_Tick(sender As Object, e As EventArgs) Handles LiveDurationTimer.Tick
+
+
+        UpdateStatusCount()
         Try
-            ' Section A: DataGrid rows live computation update sweeps safely
             If DataGridEntertainment.Rows.Count > 0 AndAlso DataGridEntertainment.Columns.Contains("LoginTime") AndAlso DataGridEntertainment.Columns.Contains("Duration") Then
                 For Each row As DataGridViewRow In DataGridEntertainment.Rows
                     If row.Cells("LoginTime").Value IsNot Nothing AndAlso Not IsDBNull(row.Cells("LoginTime").Value) Then
@@ -309,10 +311,10 @@ Public Class EntertainmentCustomer
                 Next
             End If
 
-            ' Section B: Main runtime dashboard profile metrics ticker updates
+
             If activeSessionID <> 0 Then
                 Dim delta As TimeSpan = DateTime.Now - currentActiveLoginTime
-                LabelDuration.Text = String.Format("Duration: {0:00}:{1:00}:{2:00}", Math.Floor(delta.TotalHours), delta.Minutes, delta.Seconds)
+                LabelDuration.Text = String.Format("{0:00}:{1:00}:{2:00}", Math.Floor(delta.TotalHours), delta.Minutes, delta.Seconds)
             End If
         Catch ex As Exception
             Diagnostics.Debug.WriteLine("Timer Delta Calculation Error: " & ex.Message)
@@ -322,6 +324,7 @@ Public Class EntertainmentCustomer
 
 #Region "FUNCTION 4: END ACTIVE SESSION"
     Private Sub BtnEndSession_Click(sender As Object, e As EventArgs)
+        Me.SuspendLayout()
         Dim btn = CType(sender, Button)
         Dim targetAsset = DirectCast(btn.Tag, Object)
 
@@ -349,7 +352,7 @@ Public Class EntertainmentCustomer
             If conn.State <> ConnectionState.Open Then conn.Open()
             Using tx As MySqlTransaction = conn.BeginTransaction()
                 Try
-                    ' Step 1: Update log configurations for the active row block
+
                     Dim updateSessionQuery As String = "UPDATE entertainmentsession SET LogoutTime = @LogoutTime, Status = 'Completed', RateApplied = @Rate " &
                                                        "WHERE EntertainmentSessionID = @SessionID;"
                     Using cmdSession = New MySqlCommand(updateSessionQuery, conn, tx)
@@ -359,28 +362,28 @@ Public Class EntertainmentCustomer
                         cmdSession.ExecuteNonQuery()
                     End Using
 
-                    ' Step 2: Return status mapping of device to 'Available'
+
                     Dim updateAssetQuery As String = "UPDATE entertainment SET Status = 'Available' WHERE EntertainmentID = @EntID;"
                     Using cmdAsset = New MySqlCommand(updateAssetQuery, conn, tx)
                         cmdAsset.Parameters.AddWithValue("@EntID", activeEntertainmentID)
                         cmdAsset.ExecuteNonQuery()
                     End Using
 
-                    ' Step 3: Insert negative signature notation balance transaction record
+
                     Dim insertTransactionQuery As String = "INSERT INTO wallettransactions (EmployeeID, EntertainmentSessionID, AccountID, Amount, TransactionType, TransactionDate) " &
                                                            "VALUES (@EmployeeID, @SessionID, @AccountID, @Amount, 'Payment', @TxDate);"
                     Using cmdTx = New MySqlCommand(insertTransactionQuery, conn, tx)
                         cmdTx.Parameters.AddWithValue("@EmployeeID", DBNull.Value)
                         cmdTx.Parameters.AddWithValue("@SessionID", activeSessionID)
                         cmdTx.Parameters.AddWithValue("@AccountID", currentAccountID)
-                        cmdTx.Parameters.AddWithValue("@Amount", -calculatedCost) ' Absolute negative signature matched
+                        cmdTx.Parameters.AddWithValue("@Amount", -calculatedCost)
                         cmdTx.Parameters.AddWithValue("@TxDate", endTime)
                         cmdTx.ExecuteNonQuery()
                     End Using
 
                     tx.Commit()
 
-                    ' Post dynamic session receipt string logs out to external global state tracking structures
+
                     AccountData.ReceiptLog = $"Session ID: {activeSessionID} | Total Paid: {calculatedCost:C2}"
 
                     activeSessionID = 0
@@ -415,9 +418,9 @@ Public Class EntertainmentCustomer
         currentTrackedUser = AccountData.CustomerUsername
 
         If String.IsNullOrEmpty(currentTrackedUser) Then
-            LabelBalance.Text = "Balance: --"
-            LabelEntertainment.Text = "Device: --"
-            LabelDuration.Text = "Duration: --"
+            LabelBalance.Text = ""
+            LabelEntertainment.Text = ""
+            LabelDuration.Text = ""
             Exit Sub
         End If
 
@@ -439,8 +442,8 @@ Public Class EntertainmentCustomer
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             Dim balance As Decimal = If(Not IsDBNull(reader("Balance")), Convert.ToDecimal(reader("Balance")), 0D)
-                            LabelBalance.ForeColor = ColorLimeGreen
-                            LabelBalance.Text = "Balance: " & balance.ToString("C2")
+
+                            LabelBalance.Text = balance.ToString("C2")
 
                             Dim sessionStatus As String = If(Not IsDBNull(reader("SessionStatus")), reader("SessionStatus").ToString(), "")
                             If sessionStatus.Equals("Active", StringComparison.OrdinalIgnoreCase) Then
@@ -448,23 +451,23 @@ Public Class EntertainmentCustomer
                                 activeEntertainmentID = Convert.ToInt32(reader("EntertainmentID"))
 
                                 Dim deviceName As String = If(Not IsDBNull(reader("EntertainmentName")), reader("EntertainmentName").ToString(), "Unknown")
-                                LabelEntertainment.Text = "Device: " & deviceName
+                                LabelEntertainment.Text = deviceName
 
                                 If Not IsDBNull(reader("LoginTime")) Then
                                     currentActiveLoginTime = Convert.ToDateTime(reader("LoginTime"))
                                     Dim duration As TimeSpan = DateTime.Now - currentActiveLoginTime
-                                    LabelDuration.Text = String.Format("Duration: {0:00}:{1:00}:{2:00}", Math.Floor(duration.TotalHours), duration.Minutes, duration.Seconds)
+                                    LabelDuration.Text = String.Format("{0:00}:{1:00}:{2:00}", Math.Floor(duration.TotalHours), duration.Minutes, duration.Seconds)
                                 Else
-                                    LabelDuration.Text = "Duration: No Login Time"
+                                    LabelDuration.Text = "No Login Time"
                                 End If
                             Else
-                                LabelEntertainment.Text = "Device: No Active Session"
-                                LabelDuration.Text = "Duration: 00:00:00"
+                                LabelEntertainment.Text = "No Active Session"
+                                LabelDuration.Text = "00:00:00"
                             End If
                         Else
                             LabelBalance.Text = "Balance: User Not Found"
-                            LabelEntertainment.Text = "Device: --"
-                            LabelDuration.Text = "Duration: --"
+                            LabelEntertainment.Text = ""
+                            LabelDuration.Text = ""
                         End If
                     End Using
                 End Using
@@ -474,6 +477,52 @@ Public Class EntertainmentCustomer
         End Using
     End Sub
 
+    Private Sub UpdateStatusCount()
+        Dim query As String = "SELECT " &
+                              "  COUNT(CASE WHEN Status = 'InUse' THEN 1 END) As InUseCount, " &
+                              "  COUNT(CASE WHEN Status = 'Available' THEN 1 END) As AvailableCount, " &
+                              "  COUNT(CASE WHEN Status = 'Maintenance' THEN 1 END) As MaintenanceCount, " &
+                              "  COUNT(*) As TotalCount " &
+                              "FROM entertainment"
+
+        Try
+            Dim inUse As String = "0"
+            Dim available As String = "0"
+            Dim maintenance As String = "0"
+            Dim total As String = "0"
+
+
+            Using conn = DBConnection.GetConnection()
+                If conn.State <> ConnectionState.Open Then conn.Open()
+                Using cmd As New MySqlCommand(query, conn)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            inUse = reader("InUseCount").ToString()
+                            available = reader("AvailableCount").ToString()
+                            maintenance = reader("MaintenanceCount").ToString()
+                            total = reader("TotalCount").ToString()
+                        End If
+                    End Using
+                End Using
+            End Using
+
+
+            LabelInUse.Text = inUse
+            LabelAvailable.Text = available
+            LabelInMaintenance.Text = maintenance
+            LabelTotal.Text = total
+
+
+        Catch ex As Exception
+            Diagnostics.Debug.WriteLine("Error pushing dynamic metrics to dashboard totals: " & ex.Message)
+        Finally
+
+        End Try
+    End Sub
+
+    Private Sub Panel14_click(sender As Object, e As EventArgs) Handles Panel14.Click
+        HelperFunc.SwitchForm(Me, New MainMenu())
+    End Sub
 
 
 

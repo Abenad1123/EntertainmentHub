@@ -26,6 +26,8 @@ Partial Class MainMenu
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainMenu))
         Me.LiveDurationTimer = New System.Windows.Forms.Timer(Me.components)
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelStatus = New System.Windows.Forms.Label()
         Me.LabelName = New System.Windows.Forms.Label()
@@ -33,6 +35,7 @@ Partial Class MainMenu
         Me.LabelEntertainment = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LabelDuration = New System.Windows.Forms.Label()
+        Me.PanelBrowse = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.PanelHideBalance = New System.Windows.Forms.Panel()
         Me.DataGridViewActivity = New System.Windows.Forms.DataGridView()
@@ -46,7 +49,8 @@ Partial Class MainMenu
         Me.LabelInUse = New System.Windows.Forms.Label()
         Me.LabelInMaintenance = New System.Windows.Forms.Label()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.PanelBrowse = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel5.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -68,6 +72,7 @@ Partial Class MainMenu
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.3125!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.6875!))
+        Me.TableLayoutPanel5.Controls.Add(Me.Panel3, 3, 5)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(872, 138)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
@@ -82,6 +87,23 @@ Partial Class MainMenu
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel5.Size = New System.Drawing.Size(325, 561)
         Me.TableLayoutPanel5.TabIndex = 5
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.Panel4)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(104, 349)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(159, 117)
+        Me.Panel3.TabIndex = 0
+        '
+        'Panel4
+        '
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel4.Location = New System.Drawing.Point(0, 0)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(159, 117)
+        Me.Panel4.TabIndex = 0
         '
         'TableLayoutPanel4
         '
@@ -190,6 +212,15 @@ Partial Class MainMenu
         Me.LabelDuration.Name = "LabelDuration"
         Me.LabelDuration.Size = New System.Drawing.Size(75, 23)
         Me.LabelDuration.TabIndex = 0
+        '
+        'PanelBrowse
+        '
+        Me.TableLayoutPanel4.SetColumnSpan(Me.PanelBrowse, 5)
+        Me.PanelBrowse.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelBrowse.Location = New System.Drawing.Point(30, 391)
+        Me.PanelBrowse.Name = "PanelBrowse"
+        Me.PanelBrowse.Size = New System.Drawing.Size(298, 118)
+        Me.PanelBrowse.TabIndex = 7
         '
         'TableLayoutPanel2
         '
@@ -400,15 +431,6 @@ Partial Class MainMenu
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(1200, 702)
         Me.TableLayoutPanel3.TabIndex = 2
         '
-        'PanelBrowse
-        '
-        Me.TableLayoutPanel4.SetColumnSpan(Me.PanelBrowse, 5)
-        Me.PanelBrowse.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelBrowse.Location = New System.Drawing.Point(30, 391)
-        Me.PanelBrowse.Name = "PanelBrowse"
-        Me.PanelBrowse.Size = New System.Drawing.Size(298, 118)
-        Me.PanelBrowse.TabIndex = 7
-        '
         'MainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -425,6 +447,8 @@ Partial Class MainMenu
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EntertainmentHub"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.TableLayoutPanel5.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.TableLayoutPanel4.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -460,4 +484,6 @@ Partial Class MainMenu
     Friend WithEvents Panel2 As Panel
     Friend WithEvents LabelBalance As Label
     Friend WithEvents PanelBrowse As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
 End Class

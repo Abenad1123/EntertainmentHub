@@ -163,12 +163,6 @@
     <Compile Include="Forms\Admin Forms\EmployeeManagement Forms\UpdateEmployee.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.Designer.vb">
-      <DependentUpon>EntertainmentConfiguration.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentManagement.Designer.vb">
       <DependentUpon>EntertainmentManagement.vb</DependentUpon>
     </Compile>
@@ -308,9 +302,6 @@
     <EmbeddedResource Include="Forms\Admin Forms\EmployeeManagement Forms\UpdateEmployee.resx">
       <DependentUpon>UpdateEmployee.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentConfiguration.resx">
-      <DependentUpon>EntertainmentConfiguration.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin Forms\EntertainmentManagement Forms\EntertainmentManagement.resx">
       <DependentUpon>EntertainmentManagement.vb</DependentUpon>
     </EmbeddedResource>
@@ -443,6 +434,33 @@
     <Content Include="Assets\Images\start_menu_background.png" />
     <None Include="Assets\Images\user_login_btn_state_1.png" />
     <None Include="Assets\Images\user_login_btn_state_2.png" />
+    <Content Include="Assets\Images\tier_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\tier_9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="logo256.ico" />
     <None Include="Assets\Images\start_menu_background.jpg" />
     <None Include="Assets\Images\start_menu_panel.png" />
