@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Drawing
-    Imports System.Resources
+Imports System.Resources
 
 Public Class EntertainmentCustomer
 
@@ -71,11 +71,19 @@ Public Class EntertainmentCustomer
 
         Dim query As String = "SELECT e.EntertainmentID, e.EntertainmentTierID, e.EntertainmentName, e.Status, t.HourlyRate, t.EntertainmentTierName " &
                               "FROM entertainment e " &
-                              "INNER JOIN entertainmenttier t ON e.EntertainmentTierID = t.EntertainmentTierID " &
-                              "ORDER BY e.EntertainmentID ASC;"
+                              "INNER JOIN entertainmenttier t ON e.EntertainmentTierID = t.EntertainmentTierID "
+
+        If ComboboxStatus IsNot Nothing AndAlso ComboboxStatus.SelectedIndex > -1 AndAlso Not String.IsNullOrEmpty(ComboboxStatus.SelectedItem.ToString()) AndAlso ComboboxStatus.SelectedItem.ToString() <> "All" Then
+            query &= "WHERE e.Status = @FilterStatus "
+        End If
+
+        query &= "ORDER BY e.EntertainmentID ASC;"
 
         Using conn As MySqlConnection = DBConnection.GetConnection()
             Using cmd As New MySqlCommand(query, conn)
+                If ComboboxStatus IsNot Nothing AndAlso ComboboxStatus.SelectedIndex > -1 AndAlso Not String.IsNullOrEmpty(ComboboxStatus.SelectedItem.ToString()) AndAlso ComboboxStatus.SelectedItem.ToString() <> "All" Then
+                    cmd.Parameters.AddWithValue("@FilterStatus", ComboboxStatus.SelectedItem.ToString())
+                End If
                 Try
                     If conn.State <> ConnectionState.Open Then conn.Open()
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
@@ -229,6 +237,7 @@ Public Class EntertainmentCustomer
         Dim btn = CType(sender, Button)
         Dim targetAsset = DirectCast(btn.Tag, Object)
         Dim entID As Integer = targetAsset.ID
+        Dim rate As Decimal = targetAsset.Rate
 
         If String.IsNullOrEmpty(AccountData.CustomerUsername) Then
             MessageBox.Show("No active customer context loaded. Action canceled.", "Security Guard", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -237,6 +246,25 @@ Public Class EntertainmentCustomer
 
         If activeSessionID <> 0 Then
             MessageBox.Show("You already have an active open rental session running.", "Operation Guard", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim currentBalance As Decimal = 0D
+        Using conn As MySqlConnection = DBConnection.GetConnection()
+            Dim balanceQuery As String = "SELECT COALESCE(SUM(Amount), 0) FROM wallettransactions WHERE AccountID = @AccountID;"
+            Using cmdBalance As New MySqlCommand(balanceQuery, conn)
+                cmdBalance.Parameters.AddWithValue("@AccountID", currentAccountID)
+                Try
+                    If conn.State <> ConnectionState.Open Then conn.Open()
+                    currentBalance = Convert.ToDecimal(cmdBalance.ExecuteScalar())
+                Catch ex As Exception
+                    Diagnostics.Debug.WriteLine("Error reading balance: " & ex.Message)
+                End Try
+            End Using
+        End Using
+
+        If currentBalance < rate Then
+            MessageBox.Show("Your balance is lower than the hourly rate of this entertainment. Rental denied.", "Insufficient Balance", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -337,10 +365,34 @@ Public Class EntertainmentCustomer
         If calculatedTotalHours < (1.0 / 60.0) Then calculatedTotalHours = 1.0 / 60.0
 
         Dim ratePerHour As Decimal = Convert.ToDecimal(targetAsset.Rate)
-        Dim calculatedCost As Decimal = Math.Round(Convert.ToDecimal(calculatedTotalHours) * ratePerHour, 2)
+        Dim rawCost As Decimal = Convert.ToDecimal(calculatedTotalHours) * ratePerHour
+
+        Dim discountPercent As Decimal = 0D
+        Using conn As MySqlConnection = DBConnection.GetConnection()
+            Dim membershipQuery As String = "SELECT ml.Benefits FROM account a " &
+                                             "INNER JOIN membershiplevel ml ON a.MembershipLevelID = ml.MembershipLevelID " &
+                                             "WHERE a.AccountID = @AccountID LIMIT 1;"
+            Using cmdMem As New MySqlCommand(membershipQuery, conn)
+                cmdMem.Parameters.AddWithValue("@AccountID", currentAccountID)
+                Try
+                    If conn.State <> ConnectionState.Open Then conn.Open()
+                    Dim res = cmdMem.ExecuteScalar()
+                    If res IsNot Nothing AndAlso Not IsDBNull(res) Then
+                        discountPercent = Convert.ToDecimal(res)
+                    End If
+                Catch ex As Exception
+                    Diagnostics.Debug.WriteLine("Error looking up membership benefit rules: " & ex.Message)
+                End Try
+            End Using
+        End Using
+
+        Dim discountAmount As Decimal = rawCost * (discountPercent / 100D)
+        Dim calculatedCost As Decimal = Math.Round(rawCost - discountAmount, 2)
+        If calculatedCost < 0 Then calculatedCost = 0D
 
         Dim confirmationText As String = $"Are you sure you want to end your session?{Environment.NewLine}" &
                                          $"Elapsed Time: {Math.Floor(billingSpan.TotalHours):00}:{billingSpan.Minutes:00}:{billingSpan.Seconds:00}{Environment.NewLine}" &
+                                         $"Membership Bonus Discount: {discountPercent}% (-{discountAmount:C2}){Environment.NewLine}" &
                                          $"Total Due: {calculatedCost:C2}"
 
         If MessageBox.Show(confirmationText, "Confirm System Checkout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
@@ -414,6 +466,10 @@ Public Class EntertainmentCustomer
 #End Region
 
 #Region "Event Handlers (Dynamic State Synchronizer Engines)"
+    Private Sub ComboboxStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboboxStatus.SelectedIndexChanged
+        RenderEntertainmentCards()
+    End Sub
+
     Private Sub RefreshTrackedUserMetrics()
         currentTrackedUser = AccountData.CustomerUsername
 
@@ -429,13 +485,13 @@ Public Class EntertainmentCustomer
                 If conn.State <> ConnectionState.Open Then conn.Open()
 
                 Dim query As String = "SELECT " &
-                  "(SELECT COALESCE(SUM(wt.Amount), 0) FROM wallettransactions wt WHERE wt.AccountID = al.AccountID) As Balance, " &
-                  "ent.EntertainmentID, ent.EntertainmentName, es.EntertainmentSessionID, es.LoginTime, es.Status As SessionStatus " &
-                  "FROM AccountLogin al " &
-                  "LEFT JOIN entertainmentsession es ON al.AccountID = es.AccountID AND es.Status = 'Active' " &
-                  "LEFT JOIN entertainment ent ON es.EntertainmentID = ent.EntertainmentID " &
-                  "WHERE al.UserName = @UserName " &
-                  "ORDER BY es.LoginTime DESC LIMIT 1"
+                                      "(SELECT COALESCE(SUM(wt.Amount), 0) FROM wallettransactions wt WHERE wt.AccountID = al.AccountID) As Balance, " &
+                                      "ent.EntertainmentID, ent.EntertainmentName, es.EntertainmentSessionID, es.LoginTime, es.Status As SessionStatus " &
+                                      "FROM AccountLogin al " &
+                                      "LEFT JOIN entertainmentsession es ON al.AccountID = es.AccountID AND es.Status = 'Active' " &
+                                      "LEFT JOIN entertainment ent ON es.EntertainmentID = ent.EntertainmentID " &
+                                      "WHERE al.UserName = @UserName " &
+                                      "ORDER BY es.LoginTime DESC LIMIT 1"
 
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@UserName", currentTrackedUser.Trim())
@@ -522,6 +578,10 @@ Public Class EntertainmentCustomer
 
     Private Sub Panel14_click(sender As Object, e As EventArgs) Handles Panel14.Click
         HelperFunc.SwitchForm(Me, New MainMenu())
+    End Sub
+
+    Private Sub TableLayoutPanel4_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel4.Paint
+
     End Sub
 
 

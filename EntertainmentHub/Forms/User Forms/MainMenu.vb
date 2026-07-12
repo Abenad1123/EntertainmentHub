@@ -132,7 +132,7 @@ Public Class MainMenu
 #Region "Dynamic Data Binding Assemblies"
 
     Private Async Function LoadRecentActivityAsync(transactionFilter As String) As Task
-        Dim query As String = "SELECT wt.WalletTransactionID, wt.EmployeeID, wt.SaleID, wt.TransactionType, wt.TransactionDate, wt.Amount " &
+        Dim query As String = "SELECT wt.TransactionType, wt.TransactionDate, wt.Amount " &
                               "FROM wallettransactions wt " &
                               "INNER JOIN accountlogin al ON wt.AccountID = al.AccountID " &
                               "WHERE al.UserName = @Username "
@@ -171,7 +171,7 @@ Public Class MainMenu
     Private Sub FormatActivityGrid()
         Try
             If DataGridViewActivity.Columns.Count > 0 Then
-                If DataGridViewActivity.Columns.Contains("WalletTransactionID") Then DataGridViewActivity.Columns("WalletTransactionID").HeaderText = "TXN ID"
+               
                 If DataGridViewActivity.Columns.Contains("TransactionType") Then DataGridViewActivity.Columns("TransactionType").HeaderText = "Type"
                 If DataGridViewActivity.Columns.Contains("TransactionDate") Then DataGridViewActivity.Columns("TransactionDate").HeaderText = "Date & Time"
 

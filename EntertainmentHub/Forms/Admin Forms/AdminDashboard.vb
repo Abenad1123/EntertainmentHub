@@ -63,7 +63,7 @@ Public Class AdminDashboard
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnOpenManageEntertainment.Click
-        HelperFunc.SwitchForm(Me, New EntertainmentConfiguration())
+        HelperFunc.SwitchForm(Me, New EntertainmentManagement())
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnOpenManageProduct.Click

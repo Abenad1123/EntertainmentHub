@@ -502,6 +502,10 @@ Public Class EntertainmentManagement
         RefreshTrackedUserMetrics()
     End Sub
 
+    Private Sub Panel6_click(sender As Object, e As EventArgs) Handles Panel6.Click
+        HelperFunc.SwitchForm(Me, New StartMenu())
+    End Sub
+
 
 
 

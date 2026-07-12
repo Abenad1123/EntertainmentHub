@@ -281,7 +281,7 @@ Partial Class MainMenu
         Me.TableLayoutPanel2.SetColumnSpan(Me.ComboBoxType, 4)
         Me.ComboBoxType.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxType.FormattingEnabled = True
-        Me.ComboBoxType.Items.AddRange(New Object() {"Deposit", "Payment", "Refund", "Withdrawal", "Bonus", "Adjustment"})
+        Me.ComboBoxType.Items.AddRange(New Object() {"All", "Deposit", "Payment", "Refund", "Withdrawal", "Bonus", "Adjustment"})
         Me.ComboBoxType.Location = New System.Drawing.Point(255, 454)
         Me.ComboBoxType.Name = "ComboBoxType"
         Me.ComboBoxType.Size = New System.Drawing.Size(149, 33)
@@ -316,7 +316,6 @@ Partial Class MainMenu
         Me.LabelBalance.Name = "LabelBalance"
         Me.LabelBalance.Size = New System.Drawing.Size(213, 40)
         Me.LabelBalance.TabIndex = 0
-        Me.LabelBalance.Text = "Label1"
         '
         'TableLayoutPanel1
         '
