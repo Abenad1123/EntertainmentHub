@@ -25,10 +25,10 @@ Partial Class ReceiptManager
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReceiptManager))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblTItle = New System.Windows.Forms.Label()
-        Me.txtboxMainReceipt = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnSavePDF = New System.Windows.Forms.Button()
         Me.btnPrintReceipt = New System.Windows.Forms.Button()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
@@ -40,8 +40,8 @@ Partial Class ReceiptManager
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.lblTItle, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtboxMainReceipt, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 1, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.RichTextBox1, 1, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
@@ -64,16 +64,6 @@ Partial Class ReceiptManager
         Me.lblTItle.TabIndex = 0
         Me.lblTItle.Text = "----------RECEIPT----------"
         Me.lblTItle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'txtboxMainReceipt
-        '
-        Me.txtboxMainReceipt.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtboxMainReceipt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtboxMainReceipt.Location = New System.Drawing.Point(13, 53)
-        Me.txtboxMainReceipt.Multiline = True
-        Me.txtboxMainReceipt.Name = "txtboxMainReceipt"
-        Me.txtboxMainReceipt.Size = New System.Drawing.Size(560, 572)
-        Me.txtboxMainReceipt.TabIndex = 1
         '
         'TableLayoutPanel2
         '
@@ -118,6 +108,15 @@ Partial Class ReceiptManager
         Me.btnPrintReceipt.Text = "PRINT"
         Me.btnPrintReceipt.UseVisualStyleBackColor = False
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RichTextBox1.Location = New System.Drawing.Point(13, 53)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(560, 572)
+        Me.RichTextBox1.TabIndex = 3
+        Me.RichTextBox1.Text = ""
+        '
         'ReceiptManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -142,8 +141,8 @@ Partial Class ReceiptManager
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents lblTItle As Label
-    Friend WithEvents txtboxMainReceipt As TextBox
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents btnSavePDF As Button
     Friend WithEvents btnPrintReceipt As Button
+    Friend WithEvents RichTextBox1 As RichTextBox
 End Class

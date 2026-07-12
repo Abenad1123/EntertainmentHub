@@ -254,18 +254,6 @@
     <Compile Include="Forms\Login Forms\UserLoginMenu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\User Forms\CountdownTimer.Designer.vb">
-      <DependentUpon>CountdownTimer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\User Forms\CountdownTimer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\User Forms\UserMenu.Designer.vb">
-      <DependentUpon>UserMenu.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\User Forms\UserMenu.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -346,12 +334,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StartMenu.resx">
       <DependentUpon>StartMenu.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\User Forms\CountdownTimer.resx">
-      <DependentUpon>CountdownTimer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\User Forms\UserMenu.resx">
-      <DependentUpon>UserMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

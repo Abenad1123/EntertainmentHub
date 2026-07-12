@@ -13,15 +13,15 @@ Public Class ReceiptManager
         Me.DoubleBuffered = True
         HelperFunc.EnableDoubleBuffer(Me)
 
-        txtboxMainReceipt.Multiline = True
-        txtboxMainReceipt.ScrollBars = ScrollBars.Vertical
-        txtboxMainReceipt.ReadOnly = True
-        txtboxMainReceipt.Font = New System.Drawing.Font("Courier New", 10)
+        RichTextBox1.Multiline = True
+        RichTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical
+        RichTextBox1.ReadOnly = True
+        RichTextBox1.Font = New System.Drawing.Font("Courier New", 10)
 
         If AccountData.ReceiptLog IsNot Nothing AndAlso AccountData.ReceiptLog.Count > 0 Then
             GenerateReceiptContent()
         Else
-            txtboxMainReceipt.Text = "No receipt data found."
+            RichTextBox1.Text = "No receipt data found."
         End If
     End Sub
 
@@ -73,7 +73,7 @@ Public Class ReceiptManager
         sb.AppendLine(CenterText("THANK YOU FOR YOUR PURCHASE!", width))
         sb.AppendLine(CenterText("Please come again.", width))
 
-        txtboxMainReceipt.Text = sb.ToString()
+        RichTextBox1.Text = sb.ToString()
     End Sub
 
     Private Sub btnPrintReceipt_Click(sender As Object, e As EventArgs) Handles btnPrintReceipt.Click
@@ -99,7 +99,7 @@ Public Class ReceiptManager
             startY += logoHeight + 20
         End If
 
-        e.Graphics.DrawString(txtboxMainReceipt.Text, printFont, Brushes.Black, startX, startY)
+        e.Graphics.DrawString(RichTextBox1.Text, printFont, Brushes.Black, startX, startY)
     End Sub
 
     Private Sub btnSavePDF_Click(sender As Object, e As EventArgs) Handles btnSavePDF.Click
@@ -216,12 +216,13 @@ Public Class ReceiptManager
                 doc.Add(footerPara)
 
                 doc.Close()
-
-                MessageBox.Show("Receipt successfully exported to PDF!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show("Error generating PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
 
+    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
+
+    End Sub
 End Class
