@@ -136,7 +136,7 @@ Public Class UserManagement
             Return
         End If
 
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this customer? This action cannot be undone.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this customer AND their linked account? This action cannot be undone.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
 
         If result = DialogResult.Yes Then
             Dim customerId As Integer = Convert.ToInt32(DataGridView1.SelectedRows(0).Cells("CustomerID").Value)
@@ -146,22 +146,28 @@ Public Class UserManagement
                     conn.Open()
                     Using transaction = conn.BeginTransaction()
                         Try
-                            Dim query As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
-                            Using cmd As New MySqlCommand(query, conn, transaction)
-                                cmd.Parameters.AddWithValue("@custId", customerId)
-                                cmd.ExecuteNonQuery()
+                            Dim queryAcc As String = "DELETE FROM account WHERE CustomerID = @custId"
+                            Using cmdAcc As New MySqlCommand(queryAcc, conn, transaction)
+                                cmdAcc.Parameters.AddWithValue("@custId", customerId)
+                                cmdAcc.ExecuteNonQuery()
                             End Using
 
-                            Dim logDesc As String = $"Deleted customer ID {customerId} from the system."
+                            Dim queryCust As String = "DELETE FROM customerinfo WHERE CustomerID = @custId"
+                            Using cmdCust As New MySqlCommand(queryCust, conn, transaction)
+                                cmdCust.Parameters.AddWithValue("@custId", customerId)
+                                cmdCust.ExecuteNonQuery()
+                            End Using
+
+                            Dim logDesc As String = $"Deleted customer ID {customerId} and their linked account from the system."
                             HelperFunc.Log(conn, transaction, AccountData.AdminId, "customerinfo", "Delete", logDesc)
 
                             transaction.Commit()
-                            MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MessageBox.Show("Customer and linked account deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             LoadCustomerData(TextBox1.Text)
 
                         Catch ex As MySqlException When ex.Number = 1451
                             transaction.Rollback()
-                            MessageBox.Show("Cannot delete this customer because they already have an active account or transactions tied to them in the system. You must delete their accounts first.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            MessageBox.Show("Cannot delete this customer because they have active financial transactions (Wallet History) tied to their account. Financial records cannot be deleted.", "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Catch ex As Exception
                             transaction.Rollback()
                             Throw ex

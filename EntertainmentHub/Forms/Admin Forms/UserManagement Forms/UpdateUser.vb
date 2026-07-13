@@ -9,7 +9,7 @@ Public Class UpdateUser
     Private currentCustomerID As Integer = 0
     Private currentAccountID As Integer = 0
 
-    Private Sub CustomerAccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub UpdateUser_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.DoubleBuffered = True
         HelperFunc.EnableDoubleBuffer(Me)
 
@@ -298,7 +298,9 @@ Public Class UpdateUser
             txtboxUsername.Text = row.Cells("UserName").Value.ToString()
             txtboxPassword.Clear()
             cmbboxEditStatus.SelectedItem = row.Cells("Status").Value.ToString()
-            cmbboxEditMembership.SelectedIndex = cmbboxEditMembership.FindStringExact(row.Cells("MembershipLevelName").Value.ToString())
+
+            Dim membershipIdx As Integer = cmbboxEditMembership.FindStringExact(row.Cells("MembershipLevelName").Value.ToString())
+            If membershipIdx >= 0 Then cmbboxEditMembership.SelectedIndex = membershipIdx
         End If
     End Sub
 
@@ -314,12 +316,14 @@ Public Class UpdateUser
                             currentAccountID = Convert.ToInt32(rdr("AccountID"))
                             txtboxUsername.Text = rdr("UserName").ToString()
                             cmbboxEditStatus.SelectedItem = rdr("Status").ToString()
-                            cmbboxEditMembership.SelectedIndex = cmbboxEditMembership.FindStringExact(rdr("MembershipLevelName").ToString())
+
+                            Dim membershipIdx As Integer = cmbboxEditMembership.FindStringExact(rdr("MembershipLevelName").ToString())
+                            If membershipIdx >= 0 Then cmbboxEditMembership.SelectedIndex = membershipIdx
                         Else
                             currentAccountID = 0
                             txtboxUsername.Clear()
-                            cmbboxEditStatus.SelectedIndex = 0
-                            cmbboxEditMembership.SelectedIndex = 0
+                            If cmbboxEditStatus.Items.Count > 0 Then cmbboxEditStatus.SelectedIndex = 0
+                            If cmbboxEditMembership.Items.Count > 0 Then cmbboxEditMembership.SelectedIndex = 0
                         End If
                         txtboxPassword.Clear()
                     End Using
@@ -340,17 +344,31 @@ Public Class UpdateUser
         Dim email As String = txtboxEmail.Text.Trim()
         Dim phone As String = txtboxContactNum.Text.Trim()
 
+        ' Pre-flight Validation
+        If String.IsNullOrWhiteSpace(fn) OrElse String.IsNullOrWhiteSpace(ln) OrElse String.IsNullOrWhiteSpace(email) Then
+            MessageBox.Show("First Name, Last Name, and Email Address are required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Using conn = DBConnection.GetConnection()
             Try
                 conn.Open()
                 Using transaction = conn.BeginTransaction()
                     Try
-                        Dim queryCust As String = "UPDATE customerinfo SET FirstName=@fn, LastName=@ln, EmailAddress=@email, PhoneNumber=@phone, updated_at=NOW() WHERE CustomerID=@cid"
+                        ' Removed manual updated_at=NOW() as the schema utilizes 'ON UPDATE current_timestamp()'
+                        Dim queryCust As String = "UPDATE customerinfo SET FirstName=@fn, LastName=@ln, EmailAddress=@email, PhoneNumber=@phone WHERE CustomerID=@cid"
                         Using cmdCust As New MySqlCommand(queryCust, conn, transaction)
                             cmdCust.Parameters.AddWithValue("@fn", fn)
                             cmdCust.Parameters.AddWithValue("@ln", ln)
                             cmdCust.Parameters.AddWithValue("@email", email)
-                            cmdCust.Parameters.AddWithValue("@phone", phone)
+
+                            ' FIX: Inserting empty string "" into a UNIQUE column throws a duplicate error. Must inject DBNull.
+                            If String.IsNullOrWhiteSpace(phone) Then
+                                cmdCust.Parameters.AddWithValue("@phone", DBNull.Value)
+                            Else
+                                cmdCust.Parameters.AddWithValue("@phone", phone)
+                            End If
+
                             cmdCust.Parameters.AddWithValue("@cid", currentCustomerID)
                             cmdCust.ExecuteNonQuery()
                         End Using
@@ -359,7 +377,16 @@ Public Class UpdateUser
                         HelperFunc.Log(conn, transaction, AccountData.AdminId, "customerinfo", "Update", logDescCust)
 
                         If currentAccountID > 0 Then
-                            Dim queryAcc As String = "UPDATE account SET MembershipLevelID=@mid, Status=@status, updated_at=NOW() WHERE AccountID=@aid"
+                            ' Secondary Validation for existing accounts
+                            If String.IsNullOrWhiteSpace(txtboxUsername.Text) Then
+                                Throw New Exception("Username cannot be empty for an active account.")
+                            End If
+
+                            If cmbboxEditMembership.SelectedValue Is Nothing OrElse cmbboxEditStatus.SelectedItem Is Nothing Then
+                                Throw New Exception("Please ensure both a Membership Level and Status are selected.")
+                            End If
+
+                            Dim queryAcc As String = "UPDATE account SET MembershipLevelID=@mid, Status=@status WHERE AccountID=@aid"
                             Using cmdAcc As New MySqlCommand(queryAcc, conn, transaction)
                                 cmdAcc.Parameters.AddWithValue("@mid", Convert.ToInt32(cmbboxEditMembership.SelectedValue))
                                 cmdAcc.Parameters.AddWithValue("@status", cmbboxEditStatus.SelectedItem.ToString())
@@ -390,12 +417,14 @@ Public Class UpdateUser
 
                         transaction.Commit()
                         MessageBox.Show("Profile successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                        txtboxPassword.Clear() ' Clear out the password to prevent accidental re-hashing on consecutive updates
                         RefreshGrids()
 
                     Catch ex As MySqlException
                         transaction.Rollback()
                         If ex.Number = 1062 Then
-                            MessageBox.Show("Error: A unique database constraint was hit. Username, email, or phone may already exist.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                            MessageBox.Show("Error: A unique database constraint was hit. The Username, Email, or Phone Number you entered is already in use by another account.", "Duplicate Error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
                         Else
                             Throw ex
                         End If
@@ -410,7 +439,7 @@ Public Class UpdateUser
         End Using
     End Sub
 
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnGoBack.Click
+    Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
         HelperFunc.SwitchForm(Me, New UserManagement())
     End Sub
 
