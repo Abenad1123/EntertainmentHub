@@ -382,7 +382,6 @@ Public Class EntertainmentManagement
 #Region "Data Synchronization and Actions"
 
     Private Sub LoadInUseUsernames()
-        ' 1. Remember what user was selected right before the clear step
         Dim savedSelectedUser As String = ""
         If ComboBoxUsername.SelectedItem IsNot Nothing Then
             savedSelectedUser = ComboBoxUsername.SelectedItem.ToString()
@@ -411,7 +410,6 @@ Public Class EntertainmentManagement
                     End Using
                 End Using
 
-                ' 2. Restore their selected choice seamlessly if it still exists in the new list
                 If Not String.IsNullOrEmpty(savedSelectedUser) AndAlso ComboBoxUsername.Items.Contains(savedSelectedUser) Then
                     ComboBoxUsername.SelectedItem = savedSelectedUser
                 End If
@@ -503,7 +501,7 @@ Public Class EntertainmentManagement
     End Sub
 
     Private Sub Panel6_click(sender As Object, e As EventArgs) Handles Panel6.Click
-        HelperFunc.SwitchForm(Me, New StartMenu())
+        HelperFunc.SwitchForm(Me, New AdminDashboard())
     End Sub
 
 
